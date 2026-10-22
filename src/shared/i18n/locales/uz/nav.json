@@ -1,0 +1,17 @@
+{
+  "dashboard": "Boshqaruv paneli",
+  "sales": "Savdo",
+  "inventory": "Ombor",
+  "catalog": "Katalog",
+  "payments": "To'lovlar",
+  "reports": "Hisobotlar",
+  "settings": "Sozlamalar",
+  "users": "Foydalanuvchilar",
+  "roles": "Rollar",
+  "branches": "Nuqtalar",
+  "system": "Tizim sozlamalari",
+  "audit": "Audit jurnali",
+  "profile": "Profil",
+  "changePassword": "Parolni almashtirish",
+  "password": "Parol"
+}

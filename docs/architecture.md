@@ -1,11 +1,14 @@
 # Arxitektura (frontend)
 
-> Holat: **0-bosqich — reja**. Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
+> Holat: 1-bosqich amalga oshirildi (`app/`, `shared/`, `features/{auth,settings,audit,dashboard}`); `shared/realtime/` 2-bosqichda.
+> Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
 
-React + TypeScript + Vite · React Router · TanStack Query (server holati) · Zustand (mijoz holati) · Tailwind CSS · React Hook Form + Zod · Recharts · react-i18next (uz-Latn) · openapi-typescript (API turlari) · vite-plugin-pwa · Tauri.
-Testlar: Vitest + Testing Library + MSW. Lint: ESLint + Prettier.
+React 19 + TypeScript 5.9 + Vite 8 · React Router 8 · TanStack Query 5 (server holati) · Zustand 5 (mijoz holati) · Tailwind CSS 4 · React Hook Form + Zod 4 · Recharts (8-bosqich) · react-i18next (uz-Latn) · openapi-typescript (API turlari) · vite-plugin-pwa va Tauri (9-bosqich).
+Testlar: Vitest + Testing Library + MSW. Lint: ESLint (flat config, feature chegaralari qoidasi) + Prettier.
+
+Rejadan farqlar: access token `shared/api/tokenStore.ts` (React dan tashqari kichik modul) da, auth store (`features/auth/store`) uni ishlatadi — shunda `shared/api/client.ts` features ni import qilmaydi; `QueryClient` ham `shared/api/queryClient.ts` da (logout da tozalash uchun).
 
 ## 2. Papka tuzilishi (feature-based)
 

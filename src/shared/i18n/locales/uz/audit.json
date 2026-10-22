@@ -1,0 +1,30 @@
+{
+  "title": "Audit jurnali",
+  "event": "Hodisa",
+  "actor": "Kim",
+  "branch": "Nuqta",
+  "object": "Ob'ekt",
+  "when": "Vaqt",
+  "payload": "Ma'lumot",
+  "system": "Tizim",
+  "filters": {
+    "eventPrefix": "Hodisa (boshi)",
+    "eventPrefixPlaceholder": "masalan user. yoki branch.",
+    "dateFrom": "Sanadan",
+    "dateTo": "Sanagacha"
+  },
+  "events": {
+    "user.logged_in": "Tizimga kirdi",
+    "user.login_failed": "Kirish muvaffaqiyatsiz",
+    "user.created": "Foydalanuvchi yaratildi",
+    "user.updated": "Foydalanuvchi o'zgartirildi",
+    "user.deactivated": "Foydalanuvchi o'chirildi (faol emas)",
+    "user.password_changed": "Parol almashtirildi",
+    "role.created": "Rol yaratildi",
+    "role.updated": "Rol o'zgartirildi",
+    "role.deleted": "Rol o'chirildi",
+    "branch.created": "Nuqta yaratildi",
+    "branch.updated": "Nuqta o'zgartirildi",
+    "setting.changed": "Sozlama o'zgartirildi"
+  }
+}
