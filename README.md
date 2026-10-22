@@ -7,7 +7,8 @@ React 19 + TypeScript + Vite 8. Backend alohida repoda: [sevento_back](https://g
 | Bosqich | Holat |
 |---|---|
 | 1. Skelet: API klient (refresh, xatolar), auth (cookie), layout, login, foydalanuvchilar/rollar/nuqtalar/tizim sozlamalari/audit sahifalari | ✅ |
-| 2. Realtime klient (ticket, backoff, invalidate xaritasi, holat indikatori) | ⏳ keyingi |
+| 2. Realtime klient (ticket, backoff, ping/pong, invalidate xaritasi, holat indikatori, polling fallback) | ✅ |
+| 3. Katalog va valyuta sahifalari | ⏳ keyingi |
 
 Tuzilma va qoidalar: [docs/architecture.md](docs/architecture.md). Umumiy hujjatlar (arxitektura, ER, hodisalar, WebSocket, huquqlar, bosqichlar) — `sevento_back/docs/`.
 
@@ -38,3 +39,4 @@ Backend lokal ishlab turishi kerak (`sevento_back` README). Boshlang'ich login: 
 - Access token faqat xotirada; refresh httpOnly cookie da; sahifa yangilanganda `POST /auth/refresh/` bilan tiklanadi.
 - Boshqa feature faqat `@/features/<nom>` (index.ts) orqali; `shared/` features ni import qilmaydi (ESLint tekshiradi).
 - Matnlar `src/shared/i18n/locales/uz/*.json` da; kodda qattiq matn yo'q.
+- WebSocket faqat bildirishnoma kanali: xabar → `src/shared/realtime/invalidation.ts` xaritasi → TanStack kesh invalidate; ma'lumot doim REST dan. Uzilganda `meta.pollWhenOffline` so'rovlar har 30 s qayta o'qiladi.

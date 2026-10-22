@@ -1,0 +1,67 @@
+/**
+ * WebSocket xabar turi → qaysi TanStack Query keshlari invalidate qilinadi (docs/realtime.md jadvali).
+ * Xabar ishlovchilari komponentlarda emas, faqat shu yerda. Tez-tez keladigan turlar debounce bilan.
+ */
+import type { QueryClient, QueryKey } from '@tanstack/react-query'
+
+import { queryKeys } from '@/shared/api/queryKeys'
+
+import type { RealtimeMessage } from './client'
+
+type Payload = Record<string, unknown>
+
+interface Rule {
+  keys: (payload: Payload) => QueryKey[]
+  /** Shu vaqt ichida kelgan bir xil kalitlar bitta invalidate ga yig'iladi */
+  debounceMs?: number
+}
+
+export const invalidationRules: Record<string, Rule> = {
+  'session.revoked': { keys: () => [queryKeys.me] },
+  'system.notice': { keys: () => [] },
+  // 3-bosqich: 'currency.rate_updated' → currency, products
+  // 5-bosqich: 'stock.changed' (debounce 1500), 'dashboard.updated' (debounce 2000)
+  // 6-bosqich: 'payment.received', 'debt.overdue', 'customer.credit_limit_warning'
+  // 7-bosqich: 'transfer.*'; 8-bosqich: 'report.ready' / 'report.failed'
+}
+
+export function keysFor(message: RealtimeMessage): QueryKey[] | null {
+  const rule = invalidationRules[message.type]
+  return rule ? rule.keys(message.payload ?? {}) : null
+}
+
+/** Xabar → invalidate; noma'lum tur jim e'tiborsiz (eski mijoz yangi server bilan buzilmaydi). */
+export function createInvalidator(queryClient: QueryClient) {
+  const pending = new Map<
+    string,
+    { keys: Map<string, QueryKey>; timer: ReturnType<typeof setTimeout> }
+  >()
+
+  const flush = (type: string) => {
+    const bucket = pending.get(type)
+    if (!bucket) return
+    pending.delete(type)
+    bucket.keys.forEach((queryKey) => void queryClient.invalidateQueries({ queryKey }))
+  }
+
+  return (message: RealtimeMessage): boolean => {
+    const rule = invalidationRules[message.type]
+    if (!rule) return false
+    const keys = rule.keys(message.payload ?? {})
+    if (!keys.length) return true
+    if (!rule.debounceMs) {
+      keys.forEach((queryKey) => void queryClient.invalidateQueries({ queryKey }))
+      return true
+    }
+    let bucket = pending.get(message.type)
+    if (!bucket) {
+      bucket = {
+        keys: new Map(),
+        timer: setTimeout(() => flush(message.type), rule.debounceMs),
+      }
+      pending.set(message.type, bucket)
+    }
+    keys.forEach((key) => bucket!.keys.set(JSON.stringify(key), key))
+    return true
+  }
+}

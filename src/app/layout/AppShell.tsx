@@ -8,6 +8,7 @@ import { cn } from '@/shared/lib/cn'
 import { Button, toast } from '@/shared/ui'
 
 import { BranchSwitcher } from './BranchSwitcher'
+import { ConnectionIndicator, OfflineBanner } from './ConnectionIndicator'
 import { filterNav, navItems } from './nav'
 
 export function AppShell() {
@@ -131,8 +132,10 @@ export function AppShell() {
             <Menu className="size-5" />
           </button>
           <div className="flex-1" />
+          <ConnectionIndicator />
           <BranchSwitcher />
         </header>
+        <OfflineBanner />
         <main className="flex-1 overflow-y-auto p-4 sm:p-6">
           <Outlet />
         </main>

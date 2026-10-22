@@ -1,0 +1,47 @@
+import { QueryClient } from '@tanstack/react-query'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { createInvalidator, invalidationRules } from './invalidation'
+
+describe('createInvalidator', () => {
+  let qc: QueryClient
+  let spy: ReturnType<typeof vi.spyOn>
+
+  beforeEach(() => {
+    vi.useFakeTimers()
+    qc = new QueryClient()
+    spy = vi.spyOn(qc, 'invalidateQueries')
+    invalidationRules['test.fast'] = { keys: (p) => [['items', p.id]] }
+    invalidationRules['test.slow'] = { keys: (p) => [['stock', p.branch]], debounceMs: 1000 }
+  })
+
+  afterEach(() => {
+    delete invalidationRules['test.fast']
+    delete invalidationRules['test.slow']
+    vi.useRealTimers()
+  })
+
+  it("noma'lum tur jim e'tiborsiz", () => {
+    const invalidate = createInvalidator(qc)
+    expect(invalidate({ type: 'nope', payload: {}, timestamp: '' })).toBe(false)
+    expect(spy).not.toHaveBeenCalled()
+  })
+
+  it('debounce siz tur darhol invalidate qiladi', () => {
+    const invalidate = createInvalidator(qc)
+    invalidate({ type: 'test.fast', payload: { id: 7 }, timestamp: '' })
+    expect(spy).toHaveBeenCalledWith({ queryKey: ['items', 7] })
+  })
+
+  it("debounce li tur bir xil kalitlarni yig'ib bir marta invalidate qiladi", () => {
+    const invalidate = createInvalidator(qc)
+    for (let i = 0; i < 20; i++)
+      invalidate({ type: 'test.slow', payload: { branch: 1 }, timestamp: '' })
+    invalidate({ type: 'test.slow', payload: { branch: 2 }, timestamp: '' })
+    expect(spy).not.toHaveBeenCalled()
+    vi.advanceTimersByTime(1000)
+    expect(spy).toHaveBeenCalledTimes(2)
+    expect(spy).toHaveBeenCalledWith({ queryKey: ['stock', 1] })
+    expect(spy).toHaveBeenCalledWith({ queryKey: ['stock', 2] })
+  })
+})

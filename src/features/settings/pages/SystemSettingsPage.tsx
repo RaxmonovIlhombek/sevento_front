@@ -17,6 +17,7 @@ import {
 } from '@/shared/ui'
 
 import { useResetSystemSetting, useSystemSettings, useUpdateSystemSetting } from '../api/system.api'
+import { NoticeForm } from '../components/NoticeForm'
 
 export function SystemSettingsPage() {
   const { t } = useTranslation('settings')
@@ -27,6 +28,9 @@ export function SystemSettingsPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <PageHeader title={t('system.title')} />
+      <div className="mb-4">
+        <NoticeForm />
+      </div>
       <div className="space-y-3">
         {settings.data?.map((item) => (
           <SettingRow key={item.key} item={item} />

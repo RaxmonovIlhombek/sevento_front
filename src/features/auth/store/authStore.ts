@@ -50,6 +50,8 @@ interface AuthState {
   login: (username: string, password: string) => Promise<void>
   logout: () => Promise<void>
   setUser: (user: Me) => void
+  /** me ni qayta o'qiydi (huquqlar o'zgarganda); 401/403 bo'lsa chiqaradi. false = chiqarildi */
+  refreshUser: () => Promise<boolean>
   setCurrentBranch: (id: number | null) => void
   hasCapability: (code: string) => boolean
 }
@@ -95,6 +97,18 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   setUser(user) {
     set({ user, currentBranchId: pickBranch(user) })
+  },
+
+  async refreshUser() {
+    try {
+      const me = await authApi.me()
+      set({ user: me, currentBranchId: pickBranch(me) })
+      await queryClient.invalidateQueries()
+      return true
+    } catch {
+      await get().logout()
+      return false
+    }
   },
 
   setCurrentBranch(id) {

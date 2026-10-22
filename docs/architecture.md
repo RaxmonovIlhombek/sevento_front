@@ -1,6 +1,6 @@
 # Arxitektura (frontend)
 
-> Holat: 1-bosqich amalga oshirildi (`app/`, `shared/`, `features/{auth,settings,audit,dashboard}`); `shared/realtime/` 2-bosqichda.
+> Holat: 1–2-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard}`).
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek

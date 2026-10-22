@@ -6,12 +6,13 @@ import auth from './locales/uz/auth.json'
 import common from './locales/uz/common.json'
 import errors from './locales/uz/errors.json'
 import nav from './locales/uz/nav.json'
+import realtime from './locales/uz/realtime.json'
 import settings from './locales/uz/settings.json'
 import validation from './locales/uz/validation.json'
 
 // Hozir faqat o'zbek (lotin). Yangi til: locales/<kod>/ papkasi + shu yerda resources ga qo'shish.
 export const resources = {
-  uz: { common, nav, auth, settings, audit, errors, validation },
+  uz: { common, nav, auth, settings, audit, errors, validation, realtime },
 } as const
 
 export const defaultNS = 'common'

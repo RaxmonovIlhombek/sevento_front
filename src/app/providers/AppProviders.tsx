@@ -5,6 +5,8 @@ import { useAuthStore } from '@/features/auth'
 import { queryClient } from '@/shared/api/queryClient'
 import { Toaster } from '@/shared/ui'
 
+import { RealtimeProvider } from './RealtimeProvider'
+
 /** Ilova ochilganda refresh cookie orqali sessiyani tiklaydi. */
 function AuthBootstrap({ children }: { children: ReactNode }) {
   const status = useAuthStore((s) => s.status)
@@ -18,7 +20,9 @@ function AuthBootstrap({ children }: { children: ReactNode }) {
 export function AppProviders({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthBootstrap>{children}</AuthBootstrap>
+      <AuthBootstrap>
+        <RealtimeProvider>{children}</RealtimeProvider>
+      </AuthBootstrap>
       <Toaster />
     </QueryClientProvider>
   )

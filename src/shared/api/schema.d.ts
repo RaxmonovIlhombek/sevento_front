@@ -190,6 +190,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/realtime/notice/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Barcha ulangan foydalanuvchilarga xabar */
+        post: operations["realtime_notice_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/realtime/ticket/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** WebSocket uchun bir martalik ticket (30 s) */
+        post: operations["realtime_ticket_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/roles/": {
         parameters: {
             query?: never;
@@ -388,6 +422,13 @@ export interface components {
             db: boolean;
             redis: boolean;
         };
+        /**
+         * @description * `info` - info
+         *     * `warning` - warning
+         *     * `error` - error
+         * @enum {string}
+         */
+        LevelEnum: "info" | "warning" | "error";
         LoginRequest: {
             username: string;
             password: string;
@@ -406,6 +447,11 @@ export interface components {
             capabilities: string[];
             branches: components["schemas"]["UserBranch"][];
             all_branches: boolean;
+        };
+        NoticeRequest: {
+            /** @default info */
+            level: components["schemas"]["LevelEnum"];
+            message: string;
         };
         PaginatedAuditLogList: {
             /** @example 120 */
@@ -519,6 +565,10 @@ export interface components {
         };
         SystemSettingUpdateRequest: {
             value: unknown;
+        };
+        Ticket: {
+            ticket: string;
+            expires_in: number;
         };
         /**
          * @description * `shop` - Do'kon
@@ -964,6 +1014,48 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    realtime_notice_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NoticeRequest"];
+                "multipart/form-data": components["schemas"]["NoticeRequest"];
+            };
+        };
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    realtime_ticket_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Ticket"];
                 };
             };
         };
