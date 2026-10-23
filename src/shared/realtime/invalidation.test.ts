@@ -64,8 +64,10 @@ describe('ombor xabarlari', () => {
       })
     expect(spy).not.toHaveBeenCalled()
     vi.advanceTimersByTime(1500)
-    expect(spy).toHaveBeenCalledTimes(1)
+    // 30 ta xabar → har kalit bir martadan (ombor + kassa qidiruvi)
+    expect(spy).toHaveBeenCalledTimes(2)
     expect(spy).toHaveBeenCalledWith({ queryKey: queryKeys.inventory.all })
+    expect(spy).toHaveBeenCalledWith({ queryKey: queryKeys.sales.posAll })
   })
 
   it('stock.below_minimum qoldiqni darhol yangilaydi', () => {
@@ -73,5 +75,20 @@ describe('ombor xabarlari', () => {
     const spy = vi.spyOn(qc, 'invalidateQueries')
     createInvalidator(qc)({ type: 'stock.below_minimum', payload: {}, timestamp: '' })
     expect(spy).toHaveBeenCalledWith({ queryKey: queryKeys.inventory.all })
+  })
+})
+
+describe("savdo va to'lov xabarlari", () => {
+  it('stock.changed kassa qidiruvidagi qoldiqni ham yangilaydi', () => {
+    expect(invalidationRules['stock.changed'].keys({})).toContainEqual(queryKeys.sales.posAll)
+  })
+
+  it("to'lov kelganda kassa va savdolar ro'yxati yangilanadi", () => {
+    const keys = invalidationRules['payment.received'].keys({})
+    expect(keys).toContainEqual(queryKeys.payments.all)
+    expect(keys).toContainEqual(queryKeys.sales.lists)
+    expect(invalidationRules['dashboard.updated'].keys({})).toContainEqual(
+      queryKeys.sales.summaryAll,
+    )
   })
 })

@@ -581,6 +581,110 @@ export interface paths {
         patch: operations["inventory_stock_partial_update"];
         trace?: never;
     };
+    "/api/v1/payments/cash-categories/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["payments_cash_categories_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/cash-transactions/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kassa jurnali (faqat o'qish). */
+        get: operations["payments_cash_transactions_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/cashboxes/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kassalar (nuqta × valyuta) va qoldiq. Faqat ko'rinadigan nuqtalar. */
+        get: operations["payments_cashboxes_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/cashboxes/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kassalar (nuqta × valyuta) va qoldiq. Faqat ko'rinadigan nuqtalar. */
+        get: operations["payments_cashboxes_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/methods/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description To'lov turlari (MB da). Ro'yxat — kassir ham ko'radi; o'zgartirish — sozlamalar huquqi. */
+        get: operations["payments_methods_list"];
+        put?: never;
+        /** @description To'lov turlari (MB da). Ro'yxat — kassir ham ko'radi; o'zgartirish — sozlamalar huquqi. */
+        post: operations["payments_methods_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/methods/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description To'lov turlari (MB da). Ro'yxat — kassir ham ko'radi; o'zgartirish — sozlamalar huquqi. */
+        put: operations["payments_methods_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description To'lov turlari (MB da). Ro'yxat — kassir ham ko'radi; o'zgartirish — sozlamalar huquqi. */
+        patch: operations["payments_methods_partial_update"];
+        trace?: never;
+    };
     "/api/v1/purchasing/expense-types/": {
         parameters: {
             query?: never;
@@ -814,6 +918,126 @@ export interface paths {
         patch: operations["roles_partial_update"];
         trace?: never;
     };
+    "/api/v1/sales/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Savdolar. POST — bitta so'rovda yakunlangan savdo (Idempotency-Key bilan). */
+        get: operations["sales_list"];
+        put?: never;
+        /** @description Savdolar. POST — bitta so'rovda yakunlangan savdo (Idempotency-Key bilan). */
+        post: operations["sales_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sales/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Savdolar. POST — bitta so'rovda yakunlangan savdo (Idempotency-Key bilan). */
+        get: operations["sales_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sales/{id}/cancel/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Savdolar. POST — bitta so'rovda yakunlangan savdo (Idempotency-Key bilan). */
+        post: operations["sales_cancel_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sales/{id}/receipt/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Chek PDF (80 mm). O'zbek harflari bilan, termoprinter uchun. */
+        get: operations["sales_receipt_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sales/pos-config/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kassa sozlamalari: boshlang'ich valyuta, foydalanuvchining chegirma chegarasi. */
+        get: operations["sales_pos_config_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sales/pos-products/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kassa qidiruvi: nomi/artikul/shtrix-kod, savdo valyutasidagi narx va nuqta qoldig'i. */
+        get: operations["sales_pos_products_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sales/summary/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kunlik savdo xulosasi (dashboard). Tannarx/foyda — faqat inventory.view_cost bilan. */
+        get: operations["sales_summary_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/settings/": {
         parameters: {
             query?: never;
@@ -985,6 +1209,49 @@ export interface components {
             name: string;
             group: string;
         };
+        CashFlowCategory: {
+            readonly id: number;
+            code: string;
+            name: string;
+            /** @description in | out | both */
+            direction?: string;
+        };
+        CashTransaction: {
+            readonly id: number;
+            readonly cashbox: number;
+            readonly cashbox_name: string;
+            readonly branch: number;
+            readonly currency_code: string;
+            readonly direction: components["schemas"]["PaymentDirectionEnum"];
+            readonly category_code: string;
+            readonly category_name: string;
+            /** Format: decimal */
+            readonly amount: string;
+            /** Format: decimal */
+            readonly balance_after: string;
+            readonly payment_number: string | null;
+            readonly document_type: string;
+            readonly document_id: number | null;
+            readonly document_number: string;
+            readonly note: string;
+            readonly created_by_name: string;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        Cashbox: {
+            readonly id: number;
+            readonly name: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly currency: number;
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /** Format: decimal */
+            readonly balance: string;
+            readonly is_active: boolean;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
         Category: {
             readonly id: number;
             name: string;
@@ -1070,6 +1337,21 @@ export interface components {
             branch: number | null;
             /** Format: date-time */
             valid_from: string;
+        };
+        DailySummary: {
+            /** Format: date */
+            date: string;
+            branch: number | null;
+            count: number;
+            cancelled_count: number;
+            by_currency: components["schemas"]["SummaryCurrency"][];
+            /** Format: decimal */
+            total_base: string;
+            /** Format: decimal */
+            cost_base: string | null;
+            /** Format: decimal */
+            profit_base: string | null;
+            base_currency: string;
         };
         ErrorBody: {
             code: string;
@@ -1169,6 +1451,7 @@ export interface components {
          * @description * `purchase_in` - Kirim
          *     * `purchase_cancel` - Kirim bekor qilindi
          *     * `sale_out` - Savdo
+         *     * `sale_cancel` - Savdo bekor qilindi
          *     * `sale_return_in` - Qaytarish
          *     * `transfer_out` - Ko'chirish (jo'natildi)
          *     * `transfer_in` - Ko'chirish (qabul qilindi)
@@ -1177,7 +1460,7 @@ export interface components {
          *     * `write_off` - Hisobdan chiqarish
          * @enum {string}
          */
-        MovementTypeEnum: "purchase_in" | "purchase_cancel" | "sale_out" | "sale_return_in" | "transfer_out" | "transfer_in" | "count_surplus" | "count_shortage" | "write_off";
+        MovementTypeEnum: "purchase_in" | "purchase_cancel" | "sale_out" | "sale_cancel" | "sale_return_in" | "transfer_out" | "transfer_in" | "count_surplus" | "count_shortage" | "write_off";
         NoticeRequest: {
             /** @default info */
             level: components["schemas"]["LevelEnum"];
@@ -1215,6 +1498,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["Branch"][];
+        };
+        PaginatedCashTransactionList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["CashTransaction"][];
         };
         PaginatedExchangeRateList: {
             /** @example 120 */
@@ -1259,6 +1553,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["Role"][];
+        };
+        PaginatedSaleListList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["SaleList"][];
         };
         PaginatedStockLevelList: {
             /** @example 120 */
@@ -1338,6 +1643,16 @@ export interface components {
             /** Format: decimal */
             min_quantity?: string | null;
         };
+        PatchedPaymentMethodRequest: {
+            code?: string;
+            name?: string;
+            /** @default manual */
+            provider: components["schemas"]["ProviderEnum"];
+            /** @description Kassa qoldig'iga ta'sir qiladimi */
+            is_cash?: boolean;
+            is_active?: boolean;
+            sort_order?: number;
+        };
         PatchedPriceTypeRequest: {
             code?: string;
             name?: string;
@@ -1390,6 +1705,53 @@ export interface components {
             default_branch_id?: number | null;
             /** @default true */
             is_active: boolean;
+        };
+        /**
+         * @description * `in` - Kirim
+         *     * `out` - Chiqim
+         * @enum {string}
+         */
+        PaymentDirectionEnum: "in" | "out";
+        PaymentMethod: {
+            readonly id: number;
+            code: string;
+            name: string;
+            /** @default manual */
+            provider: components["schemas"]["ProviderEnum"];
+            /** @description Kassa qoldig'iga ta'sir qiladimi */
+            is_cash?: boolean;
+            is_active?: boolean;
+            sort_order?: number;
+        };
+        PaymentMethodRequest: {
+            code: string;
+            name: string;
+            /** @default manual */
+            provider: components["schemas"]["ProviderEnum"];
+            /** @description Kassa qoldig'iga ta'sir qiladimi */
+            is_cash?: boolean;
+            is_active?: boolean;
+            sort_order?: number;
+        };
+        PosConfig: {
+            default_currency: string;
+            /**
+             * Format: decimal
+             * @description null — cheksiz
+             */
+            max_discount_percent: string | null;
+        };
+        PosProduct: {
+            id: number;
+            sku: string;
+            barcode: string;
+            name: string;
+            unit_code: string;
+            unit_decimal_places: number;
+            /** Format: decimal */
+            price: string | null;
+            /** Format: decimal */
+            stock: string;
         };
         PriceType: {
             readonly id: number;
@@ -1478,6 +1840,11 @@ export interface components {
             description?: string;
             is_active?: boolean;
         };
+        /**
+         * @description * `manual` - Qo'lda (naqd, terminal, o'tkazma)
+         * @enum {string}
+         */
+        ProviderEnum: "manual";
         PurchaseDetail: {
             readonly id: number;
             readonly number: string;
@@ -1650,6 +2017,174 @@ export interface components {
             name: string;
             capabilities?: string[];
         };
+        SaleCancelRequest: {
+            reason: string;
+        };
+        /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
+        SaleDetail: {
+            readonly id: number;
+            readonly number: string;
+            readonly status: components["schemas"]["SaleStatusEnum"];
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly seller: number;
+            readonly seller_name: string;
+            readonly currency: number;
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /**
+             * Format: decimal
+             * @description chegirmasiz
+             */
+            readonly subtotal: string;
+            /** Format: decimal */
+            readonly discount_total: string;
+            /** Format: decimal */
+            readonly total: string;
+            /** Format: decimal */
+            readonly total_base: string;
+            /** Format: decimal */
+            readonly cost_base: string | null;
+            /** Format: decimal */
+            readonly profit_base: string | null;
+            /**
+             * Format: decimal
+             * @description to'lovlar savdo valyutasida
+             */
+            readonly paid_total: string;
+            /** Format: decimal */
+            readonly change_amount: string;
+            readonly items_count: number;
+            /** Format: date-time */
+            readonly completed_at: string;
+            /** Format: date-time */
+            readonly cancelled_at: string | null;
+            readonly price_type: number;
+            readonly price_type_name: string;
+            /** Format: decimal */
+            readonly rate_to_base: string;
+            readonly note: string;
+            readonly cancelled_by_name: string | null;
+            readonly cancel_reason: string;
+            readonly items: components["schemas"]["SaleItem"][];
+            readonly payments: components["schemas"]["SalePayment"][];
+            readonly base_currency: string;
+            readonly can_cancel: boolean;
+        };
+        /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
+        SaleItem: {
+            readonly id: number;
+            readonly position: number;
+            readonly product: number;
+            readonly product_name: string;
+            readonly product_sku: string;
+            readonly unit_code: string;
+            readonly unit_decimal_places: number;
+            /** Format: decimal */
+            readonly quantity: string;
+            /** Format: decimal */
+            readonly unit_price: string;
+            /** Format: decimal */
+            readonly discount_amount: string;
+            /** Format: decimal */
+            readonly line_total: string;
+            /** Format: decimal */
+            readonly cost_base: string | null;
+        };
+        SaleItemWriteRequest: {
+            product: number;
+            /** Format: decimal */
+            quantity: string;
+            /**
+             * Format: decimal
+             * @default 0.0000
+             */
+            discount_amount: string;
+        };
+        /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
+        SaleList: {
+            readonly id: number;
+            readonly number: string;
+            readonly status: components["schemas"]["SaleStatusEnum"];
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly seller: number;
+            readonly seller_name: string;
+            readonly currency: number;
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /**
+             * Format: decimal
+             * @description chegirmasiz
+             */
+            readonly subtotal: string;
+            /** Format: decimal */
+            readonly discount_total: string;
+            /** Format: decimal */
+            readonly total: string;
+            /** Format: decimal */
+            readonly total_base: string;
+            /** Format: decimal */
+            readonly cost_base: string | null;
+            /** Format: decimal */
+            readonly profit_base: string | null;
+            /**
+             * Format: decimal
+             * @description to'lovlar savdo valyutasida
+             */
+            readonly paid_total: string;
+            /** Format: decimal */
+            readonly change_amount: string;
+            readonly items_count: number;
+            /** Format: date-time */
+            readonly completed_at: string;
+            /** Format: date-time */
+            readonly cancelled_at: string | null;
+        };
+        /** @description Savdo to'lovlari (payments app dagi Payment, atribut nomlari bo'yicha). */
+        SalePayment: {
+            id: number;
+            number: string;
+            kind: string;
+            direction: string;
+            status: string;
+            method_code: string;
+            method_name: string;
+            is_cash: boolean;
+            currency_code: string;
+            currency_decimal_places: number;
+            /** Format: decimal */
+            amount: string;
+            received_by_name: string;
+            /** Format: date-time */
+            received_at: string;
+        };
+        SalePaymentWriteRequest: {
+            method: number;
+            currency: number;
+            /** Format: decimal */
+            amount: string;
+        };
+        /**
+         * @description * `completed` - Yakunlandi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        SaleStatusEnum: "completed" | "cancelled";
+        SaleWriteRequest: {
+            branch: number;
+            currency: number;
+            price_type?: number | null;
+            items: components["schemas"]["SaleItemWriteRequest"][];
+            payments: components["schemas"]["SalePaymentWriteRequest"][];
+            /** @default  */
+            note: string;
+            /**
+             * Format: decimal
+             * @description Kassada ko'rsatilgan jami; serverdagidan farq qilsa 409 total_mismatch
+             */
+            expected_total?: string | null;
+        };
         SetPasswordRequest: {
             new_password: string;
         };
@@ -1722,6 +2257,12 @@ export interface components {
             readonly created_by_name: string | null;
             /** Format: date-time */
             readonly created_at: string;
+        };
+        SummaryCurrency: {
+            currency: string;
+            count: number;
+            /** Format: decimal */
+            total: string;
         };
         Supplier: {
             readonly id: number;
@@ -3139,6 +3680,7 @@ export interface operations {
                  * @description * `purchase_in` - Kirim
                  *     * `purchase_cancel` - Kirim bekor qilindi
                  *     * `sale_out` - Savdo
+                 *     * `sale_cancel` - Savdo bekor qilindi
                  *     * `sale_return_in` - Qaytarish
                  *     * `transfer_out` - Ko'chirish (jo'natildi)
                  *     * `transfer_in` - Ko'chirish (qabul qilindi)
@@ -3146,7 +3688,7 @@ export interface operations {
                  *     * `count_shortage` - Inventarizatsiya: kamomad
                  *     * `write_off` - Hisobdan chiqarish
                  */
-                type?: ("count_shortage" | "count_surplus" | "purchase_cancel" | "purchase_in" | "sale_out" | "sale_return_in" | "transfer_in" | "transfer_out" | "write_off")[];
+                type?: ("count_shortage" | "count_surplus" | "purchase_cancel" | "purchase_in" | "sale_cancel" | "sale_out" | "sale_return_in" | "transfer_in" | "transfer_out" | "write_off")[];
             };
             header?: never;
             path?: never;
@@ -3264,6 +3806,221 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StockLevel"];
+                };
+            };
+        };
+    };
+    payments_cash_categories_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashFlowCategory"][];
+                };
+            };
+        };
+    };
+    payments_cash_transactions_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                cashbox?: number;
+                category?: string;
+                date_from?: string;
+                date_to?: string;
+                /**
+                 * @description * `in` - Kirim
+                 *     * `out` - Chiqim
+                 */
+                direction?: "in" | "out";
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedCashTransactionList"];
+                };
+            };
+        };
+    };
+    payments_cashboxes_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                currency?: string;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Cashbox"][];
+                };
+            };
+        };
+    };
+    payments_cashboxes_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this cashbox. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Cashbox"];
+                };
+            };
+        };
+    };
+    payments_methods_list: {
+        parameters: {
+            query?: {
+                is_active?: boolean;
+                is_cash?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethod"][];
+                };
+            };
+        };
+    };
+    payments_methods_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PaymentMethodRequest"];
+                "multipart/form-data": components["schemas"]["PaymentMethodRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethod"];
+                };
+            };
+        };
+    };
+    payments_methods_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payment method. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PaymentMethodRequest"];
+                "multipart/form-data": components["schemas"]["PaymentMethodRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethod"];
+                };
+            };
+        };
+    };
+    payments_methods_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payment method. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedPaymentMethodRequest"];
+                "multipart/form-data": components["schemas"]["PatchedPaymentMethodRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentMethod"];
                 };
             };
         };
@@ -3918,6 +4675,245 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Role"];
+                };
+            };
+        };
+    };
+    sales_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                currency?: string;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                seller?: number;
+                /**
+                 * @description * `completed` - Yakunlandi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: "cancelled" | "completed";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedSaleListList"];
+                };
+            };
+        };
+    };
+    sales_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SaleWriteRequest"];
+                "multipart/form-data": components["schemas"]["SaleWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SaleDetail"];
+                };
+            };
+            /** @description Xato */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    sales_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this sale. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SaleDetail"];
+                };
+            };
+        };
+    };
+    sales_cancel_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this sale. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SaleCancelRequest"];
+                "multipart/form-data": components["schemas"]["SaleCancelRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SaleDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    sales_receipt_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this sale. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/pdf": string;
+                };
+            };
+        };
+    };
+    sales_pos_config_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PosConfig"];
+                };
+            };
+        };
+    };
+    sales_pos_products_list: {
+        parameters: {
+            query: {
+                barcode?: string;
+                branch: number;
+                currency: string;
+                date_from?: string;
+                date_to?: string;
+                /** @description vergul bilan: 1,2,3 */
+                ids?: string;
+                limit?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                price_type?: number;
+                search?: string;
+                seller?: number;
+                /**
+                 * @description * `completed` - Yakunlandi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: "cancelled" | "completed";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PosProduct"][];
+                };
+            };
+        };
+    };
+    sales_summary_retrieve: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DailySummary"];
                 };
             };
         };

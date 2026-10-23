@@ -54,6 +54,23 @@ export const queryKeys = {
     purchase: (id: number | string) => ['purchasing', 'purchase', String(id)] as const,
     preview: (id: number | string) => ['purchasing', 'purchase', String(id), 'preview'] as const,
   },
+  sales: {
+    all: ['sales'] as const,
+    list: (params: object) => ['sales', 'list', params] as const,
+    detail: (id: number | string) => ['sales', 'detail', String(id)] as const,
+    lists: ['sales', 'list'] as const,
+    pos: (params: object) => ['sales', 'pos', params] as const,
+    posAll: ['sales', 'pos'] as const,
+    summary: (params: object) => ['sales', 'summary', params] as const,
+    summaryAll: ['sales', 'summary'] as const,
+  },
+  payments: {
+    all: ['payments'] as const,
+    methods: ['payments', 'methods'] as const,
+    categories: ['payments', 'categories'] as const,
+    cashboxes: (params: object) => ['payments', 'cashboxes', params] as const,
+    transactions: (params: object) => ['payments', 'transactions', params] as const,
+  },
   products: {
     all: ['products'] as const,
     list: (params: object) => ['products', 'list', params] as const,

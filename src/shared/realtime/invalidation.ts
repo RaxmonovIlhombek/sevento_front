@@ -21,10 +21,26 @@ export const invalidationRules: Record<string, Rule> = {
   'system.notice': { keys: () => [] },
   'currency.rate_updated': { keys: () => [queryKeys.currency.all, queryKeys.products.all] },
   // Ombor: qoldiq, harakatlar, partiyalar bitta kalit ostida (kirim/savdo ko'p qatorli bo'lsa ham bitta so'rov)
-  'stock.changed': { keys: () => [queryKeys.inventory.all], debounceMs: 1500 },
+  // kassa qidiruvidagi qoldiq ham shu xabar bilan yangilanadi (ikki kassada sinxron)
+  'stock.changed': {
+    keys: () => [queryKeys.inventory.all, queryKeys.sales.posAll],
+    debounceMs: 1500,
+  },
   'stock.below_minimum': { keys: () => [queryKeys.inventory.all] },
-  // 5-bosqich: 'dashboard.updated' (debounce 2000)
-  // 6-bosqich: 'payment.received', 'debt.overdue', 'customer.credit_limit_warning'
+  'dashboard.updated': {
+    keys: () => [queryKeys.sales.summaryAll, queryKeys.sales.lists],
+    debounceMs: 2000,
+  },
+  // to'lov (savdo ham) — kassa qoldig'i, jurnal, savdolar ro'yxati, kunlik xulosa
+  'payment.received': {
+    keys: () => [queryKeys.payments.all, queryKeys.sales.lists, queryKeys.sales.summaryAll],
+    debounceMs: 1000,
+  },
+  'payment.refunded': {
+    keys: () => [queryKeys.payments.all, queryKeys.sales.lists, queryKeys.sales.summaryAll],
+    debounceMs: 1000,
+  },
+  // 6-bosqich: 'debt.overdue', 'customer.credit_limit_warning'
   // 7-bosqich: 'transfer.*'; 8-bosqich: 'report.ready' / 'report.failed'
 }
 

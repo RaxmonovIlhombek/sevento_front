@@ -10,6 +10,7 @@ import { DataTable, type Column } from '@/shared/ui'
 /** Hujjat turi → frontend sahifasi (keyingi bosqichlarda savdo, ko'chirish qo'shiladi). */
 const DOCUMENT_ROUTES: Record<string, (id: number) => string> = {
   purchase: (id) => `/purchasing/purchases/${id}`,
+  sale: (id) => `/sales/${id}`,
 }
 
 export function MovementsTable({

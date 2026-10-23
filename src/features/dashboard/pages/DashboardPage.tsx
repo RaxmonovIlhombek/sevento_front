@@ -1,9 +1,13 @@
 import { Building2, ScrollText, ShieldCheck, Users } from 'lucide-react'
+import { lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 
 import { useAuthStore, useCapability } from '@/features/auth'
 import { Card, PageHeader } from '@/shared/ui'
+
+// Savdo moduli alohida chunk da: dashboard (boshlang'ich sahifa) yengil qolsin
+const TodaySales = lazy(() => import('@/features/sales').then((m) => ({ default: m.TodaySales })))
 
 export function DashboardPage() {
   const { t } = useTranslation()
@@ -11,6 +15,7 @@ export function DashboardPage() {
   const canUsers = useCapability('users.manage')
   const canBranches = useCapability('branches.manage')
   const canAudit = useCapability('audit.view')
+  const canSales = useCapability('sales.view')
 
   if (!user) return null
 
@@ -27,6 +32,13 @@ export function DashboardPage() {
         title={t('dashboard.title')}
         subtitle={t('dashboard.welcome', { name: user.full_name })}
       />
+      {canSales && (
+        <div className="mb-4">
+          <Suspense fallback={null}>
+            <TodaySales />
+          </Suspense>
+        </div>
+      )}
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <p className="text-xs font-semibold text-slate-500 uppercase">{t('dashboard.role')}</p>

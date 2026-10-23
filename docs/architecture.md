@@ -1,6 +1,6 @@
 # Arxitektura (frontend)
 
-> Holat: 1–4-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing}`).
+> Holat: 1–5-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments}`).
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
@@ -116,6 +116,7 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - `RealtimeProvider` login dan keyin `RealtimeClient.connect()`, logout da `close(1000)`.
 - Har xabar → `invalidation.ts` xaritasi → `queryClient.invalidateQueries(keys)`; toast/bildirishnoma kerak turlar uchun `notifications` store ga yoziladi (sarlavhadagi qo'ng'iroq).
 - `ConnectionIndicator`: `connecting | online | offline`; `offline` da muhim so'rovlar `refetchInterval` bilan polling.
+- Savdo: `stock.changed` kassa qidiruvini (`['sales','pos']`) ham yangilaydi — ikki kassada qoldiq sinxron; `dashboard.updated` → `['sales','summary']`, `['sales','list']`; `payment.received`/`payment.refunded` → `['payments']` (kassa qoldig'i, jurnal) va savdolar ro'yxati.
 - Ombor: `stock.changed` → `['inventory']` (qoldiq, harakatlar, partiyalar bitta kalit ostida; 1,5 s debounce — ko'p qatorli kirim bitta qayta o'qish), `stock.below_minimum` → shu kalit + "Kam qoldi" toast. Qoldiq va harakatlar so'rovlari `meta.pollWhenOffline`.
 
 ## 6. Formalar va pul
@@ -126,6 +127,15 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - `MoneyInput` valyuta belgisi va kasr soni bilan; `QuantityInput` birlikning `decimal_places` ga qarab.
 - API dan kelgan son forma maydoniga `toDecimalInput` bilan qaytadi (`"25.500"` → `25,5`).
 - Hujjat qatorlari (kirim, keyin savdo/ko'chirish): `useFieldArray`; tovar `ProductPicker` (`shared/ui/Combobox` asosida, `@/features/catalog` dan) bilan tanlanadi. Forma turlari `z.input` (tovar hali tanlanmagan — `null`) va `z.output` (tekshiruvdan keyin) ga ajratiladi. Qator summasi mijozda faqat ko'rsatish uchun; tannarx va yakuniy summa — `GET purchases/<id>/preview/` (server) dan. Birlik aniqligi (dona 0, kg 3 xona) mijozda ham, serverda ham tekshiriladi.
+
+### Kassa (POS)
+
+- Savat — Zustand store, `sessionStorage` da (sahifa yangilansa yo'qolmaydi; sir yo'q). Nuqta, valyuta yoki narx turi o'zgarsa tozalanadi; sahifa qayta ochilganda narx va qoldiq `GET sales/pos-products/?ids=` bilan yangilanadi.
+- Hisob-kitob (`features/sales/lib/money.ts`) — BigInt bilan, serverdagi qoidalarning aniq nusxasi: qator = yaxlitlash(miqdor × narx) − chegirma; to'lov valyutasi → savdo valyutasi 4 xona; qaytim pastga yaxlitlanadi. Ekrandagi jami `expected_total` sifatida yuboriladi (narx o'zgargan bo'lsa server 409 qaytaradi, savat yangilanadi).
+- Shtrix-kod skaneri: raqamlar + Enter → `?barcode=` aniq qidiruv. F2 — qidiruv, F9 — to'lov.
+- To'lov oynasi: bir nechta qator (to'lov turi × valyuta), "Qolganini" tugmasi boshqa valyutada kerakli summani yuqoriga yaxlitlab qo'yadi; ortiqcha summa faqat naqd bo'lsa (qaytim naqd beriladi). Har urinishga bitta `Idempotency-Key` (tarmoq uzilib qayta yuborilsa ikkinchi savdo bo'lmaydi).
+- Chek: PDF `api.blob()` (Authorization bilan) → yashirin iframe → brauzer chop etish oynasi (`shared/lib/print.ts`); "avtomatik chop etish" — har kassir uchun `localStorage` da (qulaylik).
+- Menyu: faol band — eng uzun mos keladigan yo'l (`/sales/pos` da faqat "Kassa").
 
 ## 7. i18n
 

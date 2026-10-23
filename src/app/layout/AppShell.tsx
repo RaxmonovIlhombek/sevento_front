@@ -1,7 +1,7 @@
 import { KeyRound, LogOut, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, Outlet, useNavigate } from 'react-router'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router'
 
 import { ChangePasswordModal, useAuthStore } from '@/features/auth'
 import { cn } from '@/shared/lib/cn'
@@ -9,7 +9,7 @@ import { Button, toast } from '@/shared/ui'
 
 import { BranchSwitcher } from './BranchSwitcher'
 import { ConnectionIndicator, OfflineBanner } from './ConnectionIndicator'
-import { filterNav, navItems } from './nav'
+import { activeNavPath, filterNav, navItems } from './nav'
 
 export function AppShell() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -20,6 +20,8 @@ export function AppShell() {
   const logout = useAuthStore((s) => s.logout)
 
   const items = filterNav(navItems, user?.capabilities ?? [])
+  const { pathname } = useLocation()
+  const activePath = activeNavPath(pathname, items)
 
   const onLogout = async () => {
     await logout()
@@ -39,6 +41,7 @@ export function AppShell() {
               <NavItemLink
                 key={child.to}
                 to={child.to!}
+                active={child.to === activePath}
                 icon={child.icon}
                 label={t(`nav:${child.labelKey}`)}
                 onClick={() => setMobileOpen(false)}
@@ -49,6 +52,7 @@ export function AppShell() {
           <NavItemLink
             key={item.to}
             to={item.to!}
+            active={item.to === activePath}
             icon={item.icon}
             label={t(`nav:${item.labelKey}`)}
             onClick={() => setMobileOpen(false)}
@@ -148,30 +152,29 @@ export function AppShell() {
 
 function NavItemLink({
   to,
+  active,
   icon: Icon,
   label,
   onClick,
 }: {
   to: string
+  active: boolean
   icon: typeof Menu
   label: string
   onClick?: () => void
 }) {
   return (
-    <NavLink
+    <Link
       to={to}
       onClick={onClick}
-      className={({ isActive }) =>
-        cn(
-          'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-          isActive
-            ? 'bg-brand-700 text-white'
-            : 'text-slate-300 hover:bg-slate-800 hover:text-white',
-        )
-      }
+      aria-current={active ? 'page' : undefined}
+      className={cn(
+        'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+        active ? 'bg-brand-700 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white',
+      )}
     >
       <Icon className="size-4 shrink-0" />
       {label}
-    </NavLink>
+    </Link>
   )
 }

@@ -23,5 +23,9 @@
   "movements": "Harakatlar",
   "purchases": "Kirimlar",
   "suppliers": "Yetkazib beruvchilar",
-  "expenseTypes": "Xarajat turlari"
+  "expenseTypes": "Xarajat turlari",
+  "pos": "Kassa (POS)",
+  "salesList": "Savdolar",
+  "cash": "Kassa qoldig'i",
+  "paymentMethods": "To'lov turlari"
 }

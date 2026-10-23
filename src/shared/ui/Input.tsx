@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
+import type { ComponentProps, SelectHTMLAttributes, TextareaHTMLAttributes } from 'react'
 
 import { cn } from '@/shared/lib/cn'
 
@@ -6,7 +6,7 @@ const base =
   'block w-full rounded-md border bg-white px-3 text-sm text-slate-900 shadow-sm placeholder:text-slate-400 ' +
   'focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:bg-slate-50 disabled:text-slate-500'
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends ComponentProps<'input'> {
   invalid?: boolean
 }
 
@@ -48,7 +48,7 @@ export function Select({ invalid, className, children, ...rest }: SelectProps) {
   )
 }
 
-export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface CheckboxProps extends Omit<ComponentProps<'input'>, 'type'> {
   label?: string
 }
 

@@ -31,6 +31,13 @@ const inventory = () => import('@/features/inventory')
 const StockPage = lazy(() => inventory().then((m) => ({ default: m.StockPage })))
 const MovementsPage = lazy(() => inventory().then((m) => ({ default: m.MovementsPage })))
 const ProductStockPage = lazy(() => inventory().then((m) => ({ default: m.ProductStockPage })))
+const sales = () => import('@/features/sales')
+const PosPage = lazy(() => sales().then((m) => ({ default: m.PosPage })))
+const SalesPage = lazy(() => sales().then((m) => ({ default: m.SalesPage })))
+const SaleDetailPage = lazy(() => sales().then((m) => ({ default: m.SaleDetailPage })))
+const payments = () => import('@/features/payments')
+const CashPage = lazy(() => payments().then((m) => ({ default: m.CashPage })))
+const PaymentMethodsPage = lazy(() => payments().then((m) => ({ default: m.PaymentMethodsPage })))
 const purchasing = () => import('@/features/purchasing')
 const PurchasesPage = lazy(() => purchasing().then((m) => ({ default: m.PurchasesPage })))
 const PurchaseFormPage = lazy(() => purchasing().then((m) => ({ default: m.PurchaseFormPage })))
@@ -77,6 +84,15 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        path: 'sales',
+        children: [
+          { index: true, element: guarded('sales.view', <SalesPage />) },
+          { path: 'pos', element: guarded('sales.create', <PosPage />) },
+          { path: ':id', element: guarded('sales.view', <SaleDetailPage />) },
+        ],
+      },
+      { path: 'cash', element: guarded('cashbox.view', <CashPage />) },
+      {
         path: 'inventory',
         children: [
           { index: true, element: <Navigate to="/inventory/stock" replace /> },
@@ -117,6 +133,10 @@ export const router = createBrowserRouter([
           },
           { path: 'currencies', element: guarded('settings.manage', <CurrenciesPage />) },
           { path: 'system', element: guarded('settings.manage', <SystemSettingsPage />) },
+          {
+            path: 'payment-methods',
+            element: guarded('settings.manage', <PaymentMethodsPage />),
+          },
         ],
       },
       { path: 'audit', element: guarded('audit.view', <AuditPage />) },

@@ -10,7 +10,8 @@ React 19 + TypeScript + Vite 8. Backend alohida repoda: [sevento_back](https://g
 | 2. Realtime klient (ticket, backoff, ping/pong, invalidate xaritasi, holat indikatori, polling fallback) | ✅ |
 | 3. Katalog (tovarlar, narxlar, kategoriya daraxti, ma'lumotnomalar), valyuta kursi, valyutalar | ✅ |
 | 4. Kirim (forma, tannarx oldindan hisobi, qabul, bekor qilish), yetkazib beruvchilar, xarajat turlari, qoldiq, harakatlar, tovar kartasi, minimal qoldiq; qoldiq `stock.changed` bilan jonli | ✅ |
-| 5. Savdo (POS), chek | ⏳ keyingi |
+| 5. Kassa (POS: skaner, savat, aralash valyuta, qaytim, chek chop etish), savdolar, bekor qilish, kassa qoldig'i, to'lov turlari, dashboard da bugungi savdo; qoldiq ikki kassada jonli | ✅ |
+| 6. Nasiya, mijozlar, qarzlar, to'lovlar, kassa smenasi | ⏳ keyingi |
 
 Tuzilma va qoidalar: [docs/architecture.md](docs/architecture.md). Umumiy hujjatlar (arxitektura, ER, hodisalar, WebSocket, huquqlar, bosqichlar) — `sevento_back/docs/`.
 

@@ -53,3 +53,10 @@ export function toDecimalInput(value: string | number | null | undefined): strin
 export function parseDecimalInput(text: string): string {
   return text.replace(/[\s\u00A0]/g, '').replace(',', '.')
 }
+
+/** Birlik aniqligi: dona → 0 xona, kg → 3 xona ("1,500" kg uchun to'g'ri, dona uchun "1,5" — yo'q). */
+export function fitsPrecision(quantity: string, places: number): boolean {
+  const text = parseDecimalInput(quantity || '')
+  const [, fraction = ''] = text.split('.')
+  return fraction.replace(/0+$/, '').length <= places
+}

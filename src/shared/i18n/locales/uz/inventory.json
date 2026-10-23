@@ -65,7 +65,8 @@
     "transfer_in": "Ko'chirish (qabul qilindi)",
     "count_surplus": "Inventarizatsiya: ortiqcha",
     "count_shortage": "Inventarizatsiya: kamomad",
-    "write_off": "Hisobdan chiqarish"
+    "write_off": "Hisobdan chiqarish",
+    "sale_cancel": "Savdo bekor qilindi"
   },
   "lowStockToast": "Kam qoldi: {{product}}",
   "lowStockText": "{{quantity}} {{unit}} (minimal {{min}})"

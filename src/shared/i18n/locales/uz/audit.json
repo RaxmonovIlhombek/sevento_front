@@ -43,6 +43,11 @@
     "expense_type.saved": "Xarajat turi saqlandi",
     "purchase.created": "Kirim hujjati yaratildi",
     "purchase.received": "Kirim qabul qilindi",
-    "purchase.cancelled": "Kirim bekor qilindi"
+    "purchase.cancelled": "Kirim bekor qilindi",
+    "sale.completed": "Savdo yakunlandi",
+    "sale.cancelled": "Savdo bekor qilindi",
+    "payment.received": "To'lov qabul qilindi",
+    "payment.refunded": "Pul qaytarildi",
+    "payment_method.saved": "To'lov turi saqlandi"
   }
 }

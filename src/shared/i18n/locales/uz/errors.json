@@ -32,5 +32,17 @@
   "insufficient_stock": "Omborda yetarli qoldiq yo'q",
   "batch_consumed": "Partiyadan tovar sotilgan yoki ko'chirilgan — bekor qilib bo'lmaydi",
   "purchase_empty": "Kirimda kamida bitta tovar bo'lishi kerak",
-  "branch_locked": "Hujjat nuqtasini o'zgartirib bo'lmaydi"
+  "branch_locked": "Hujjat nuqtasini o'zgartirib bo'lmaydi",
+  "total_mismatch": "Narxlar o'zgargan — savatni yangilang",
+  "payment_insufficient": "To'lov summasi yetarli emas",
+  "discount_forbidden": "Chegirma berish huquqi yo'q",
+  "discount_limit": "Chegirma ruxsat etilgan chegaradan katta",
+  "change_not_cash": "Ortiqcha summa faqat naqd pulda bo'lishi mumkin (qaytim naqd beriladi)",
+  "insufficient_cash": "Kassada yetarli naqd pul yo'q",
+  "provider_unavailable": "To'lov provayderi ulanmagan",
+  "payment_declined": "To'lov rad etildi",
+  "no_cash_method": "Faol naqd to'lov turi yo'q",
+  "price_type_missing": "Narx turi belgilanmagan",
+  "method_inactive": "To'lov turi faol emas",
+  "invalid_amount": "Summa musbat bo'lishi kerak"
 }

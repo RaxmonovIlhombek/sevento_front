@@ -9,8 +9,10 @@ import currency from './locales/uz/currency.json'
 import errors from './locales/uz/errors.json'
 import inventory from './locales/uz/inventory.json'
 import nav from './locales/uz/nav.json'
+import payments from './locales/uz/payments.json'
 import purchasing from './locales/uz/purchasing.json'
 import realtime from './locales/uz/realtime.json'
+import sales from './locales/uz/sales.json'
 import settings from './locales/uz/settings.json'
 import validation from './locales/uz/validation.json'
 
@@ -29,6 +31,8 @@ export const resources = {
     currency,
     inventory,
     purchasing,
+    sales,
+    payments,
   },
 } as const
 

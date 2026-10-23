@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { filterNav, navItems } from './nav'
+import { activeNavPath, filterNav, navItems } from './nav'
 
 const paths = (caps: string[]) =>
   filterNav(navItems, caps).flatMap((i) => (i.children ? i.children.map((c) => c.to) : [i.to]))
@@ -34,5 +34,14 @@ describe('filterNav', () => {
   it("huquqi yo'q guruh butunlay yashiriladi", () => {
     const groups = filterNav(navItems, []).map((i) => i.labelKey)
     expect(groups).not.toContain('inventory')
+  })
+})
+
+describe('activeNavPath', () => {
+  it("eng uzun mos yo'l faol: /sales/pos — Kassa, /sales/12 — Savdolar", () => {
+    expect(activeNavPath('/sales/pos', navItems)).toBe('/sales/pos')
+    expect(activeNavPath('/sales/12', navItems)).toBe('/sales')
+    expect(activeNavPath('/catalog/products/5', navItems)).toBe('/catalog/products')
+    expect(activeNavPath('/salesman', navItems)).toBeNull()
   })
 })

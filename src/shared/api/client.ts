@@ -20,6 +20,8 @@ export interface RequestOptions {
   headers?: HeadersInit
   idempotencyKey?: string
   signal?: AbortSignal
+  /** 'blob' — PDF/Excel kabi fayllar uchun */
+  responseType?: 'json' | 'blob'
 }
 
 type Transport = (input: string, init: RequestInit) => Promise<Response>
@@ -108,7 +110,7 @@ export function refreshAccess(): Promise<string | null> {
 
 async function request<T>(path: string, options: RequestOptions = {}, retried = false): Promise<T> {
   const headers = new Headers(options.headers)
-  headers.set('Accept', 'application/json')
+  headers.set('Accept', options.responseType === 'blob' ? '*/*' : 'application/json')
   const isFormData = typeof FormData !== 'undefined' && options.body instanceof FormData
   if (options.body !== undefined && !isFormData) headers.set('Content-Type', 'application/json')
   const token = tokenStore.get()
@@ -143,6 +145,7 @@ async function request<T>(path: string, options: RequestOptions = {}, retried = 
 
   if (!response.ok) throw await parseError(response)
   if (response.status === 204) return undefined as T
+  if (options.responseType === 'blob') return (await response.blob()) as T
   return (await response.json()) as T
 }
 
@@ -157,6 +160,9 @@ export const api = {
     request<T>(path, { ...options, body, method: 'PATCH' }),
   delete: <T = void>(path: string, options?: Omit<RequestOptions, 'method'>) =>
     request<T>(path, { ...options, method: 'DELETE' }),
+  /** Fayl (PDF, Excel) — Authorization bilan; natija Blob. */
+  blob: (path: string, query?: QueryParams) =>
+    request<Blob>(path, { query, method: 'GET', responseType: 'blob' }),
 }
 
 /** Mutatsiyalar uchun Idempotency-Key (tarmoq uzilib qayta yuborilsa ikkinchi hujjat yaratilmaydi). */

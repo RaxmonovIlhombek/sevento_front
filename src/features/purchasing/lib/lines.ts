@@ -15,9 +15,4 @@ export function sumTotals(lines: { quantity: string; unit_price: string }[]): nu
   return lines.reduce((acc, l) => acc + (lineTotal(l.quantity, l.unit_price) ?? 0), 0)
 }
 
-/** Birlik aniqligi: dona → 0 xona, kg → 3 xona. */
-export function fitsPrecision(quantity: string, places: number): boolean {
-  const text = parseDecimalInput(quantity || '')
-  const [, fraction = ''] = text.split('.')
-  return fraction.replace(/0+$/, '').length <= places
-}
+export { fitsPrecision } from '@/shared/lib/money'

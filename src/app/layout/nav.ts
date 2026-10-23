@@ -6,10 +6,12 @@ import {
   Building2,
   ClipboardList,
   Coins,
+  CreditCard,
   FolderTree,
   Package,
   PackageCheck,
   Receipt,
+  ShoppingCart,
   Truck,
   Warehouse,
   LayoutDashboard,
@@ -18,6 +20,7 @@ import {
   ShieldCheck,
   SlidersHorizontal,
   Users,
+  Wallet,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -32,6 +35,15 @@ export interface NavItem {
 /** Menyu. capability berilmagan band hammaga ko'rinadi; bolalari bo'sh qolgan guruh yashiriladi. */
 export const navItems: NavItem[] = [
   { to: '/dashboard', labelKey: 'dashboard', icon: LayoutDashboard },
+  {
+    labelKey: 'sales',
+    icon: ShoppingCart,
+    children: [
+      { to: '/sales/pos', labelKey: 'pos', icon: ShoppingCart, capability: 'sales.create' },
+      { to: '/sales', labelKey: 'salesList', icon: Receipt, capability: 'sales.view' },
+      { to: '/cash', labelKey: 'cash', icon: Wallet, capability: 'cashbox.view' },
+    ],
+  },
   {
     labelKey: 'inventory',
     icon: Warehouse,
@@ -107,6 +119,12 @@ export const navItems: NavItem[] = [
         capability: 'settings.manage',
       },
       {
+        to: '/settings/payment-methods',
+        labelKey: 'paymentMethods',
+        icon: CreditCard,
+        capability: 'settings.manage',
+      },
+      {
         to: '/settings/system',
         labelKey: 'system',
         icon: SlidersHorizontal,
@@ -126,4 +144,27 @@ export function filterNav(items: NavItem[], capabilities: readonly string[]): Na
     }
     return [item]
   })
+}
+
+/**
+ * Faol menyu bandi — eng uzun mos keladigan yo'l. Shunda /sales/pos da faqat "Kassa" faol
+ * bo'ladi ("Savdolar" (/sales) emas), /sales/12 da esa "Savdolar".
+ */
+export function activeNavPath(pathname: string, items: NavItem[]): string | null {
+  let best: string | null = null
+  const visit = (list: NavItem[]) => {
+    for (const item of list) {
+      if (item.children) visit(item.children)
+      const to = item.to
+      if (!to) continue
+      if (
+        (pathname === to || pathname.startsWith(`${to}/`)) &&
+        (!best || to.length > best.length)
+      ) {
+        best = to
+      }
+    }
+  }
+  visit(items)
+  return best
 }

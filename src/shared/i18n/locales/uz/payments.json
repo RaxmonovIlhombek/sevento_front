@@ -1,0 +1,39 @@
+{
+  "cash": {
+    "title": "Kassa qoldig'i",
+    "balance": "Qoldiq",
+    "empty": "Kassada hali harakat yo'q",
+    "journal": "Kassa jurnali",
+    "cashbox": "Kassa",
+    "allCashboxes": "Barcha kassalar",
+    "direction": "Yo'nalish",
+    "in": "Kirim",
+    "out": "Chiqim",
+    "both": "Hammasi",
+    "category": "Turi",
+    "allCategories": "Barcha turlar",
+    "amount": "Summa",
+    "balanceAfter": "Qoldiq",
+    "document": "Hujjat",
+    "by": "Kim",
+    "date": "Vaqt",
+    "dateFrom": "Sanadan",
+    "dateTo": "Sanagacha",
+    "updated": "Yangilangan: {{date}}"
+  },
+  "methods": {
+    "title": "To'lov turlari",
+    "new": "Yangi to'lov turi",
+    "edit": "To'lov turini tahrirlash",
+    "code": "Kod",
+    "name": "Nomi",
+    "provider": "Provayder",
+    "isCash": "Naqd pul (kassa qoldig'iga ta'sir qiladi)",
+    "cashShort": "Naqd",
+    "order": "Tartib",
+    "saved": "To'lov turi saqlandi",
+    "providers": {
+      "manual": "Qo'lda (naqd, terminal, o'tkazma)"
+    }
+  }
+}
