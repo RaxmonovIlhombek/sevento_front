@@ -19,6 +19,16 @@ const RoleFormPage = lazy(() => settings().then((m) => ({ default: m.RoleFormPag
 const BranchesPage = lazy(() => settings().then((m) => ({ default: m.BranchesPage })))
 const SystemSettingsPage = lazy(() => settings().then((m) => ({ default: m.SystemSettingsPage })))
 const AuditPage = lazy(() => import('@/features/audit').then((m) => ({ default: m.AuditPage })))
+const catalog = () => import('@/features/catalog')
+const ProductsPage = lazy(() => catalog().then((m) => ({ default: m.ProductsPage })))
+const ProductFormPage = lazy(() => catalog().then((m) => ({ default: m.ProductFormPage })))
+const CategoriesPage = lazy(() => catalog().then((m) => ({ default: m.CategoriesPage })))
+const ReferencesPage = lazy(() => catalog().then((m) => ({ default: m.ReferencesPage })))
+const currency = () => import('@/features/currency')
+const CurrencyRatesPage = lazy(() => currency().then((m) => ({ default: m.CurrencyRatesPage })))
+const CurrenciesPage = lazy(() => currency().then((m) => ({ default: m.CurrenciesPage })))
+
+const lazyPage = (element: ReactNode) => <Suspense fallback={<PageSpinner />}>{element}</Suspense>
 
 const guarded = (cap: string, element: ReactNode) => (
   <RequireCapability cap={cap}>
@@ -47,6 +57,18 @@ export const router = createBrowserRouter([
       { index: true, element: <Navigate to="/dashboard" replace /> },
       { path: 'dashboard', element: <DashboardPage /> },
       {
+        path: 'catalog',
+        children: [
+          { index: true, element: <Navigate to="/catalog/products" replace /> },
+          { path: 'products', element: guarded('catalog.view', <ProductsPage />) },
+          { path: 'products/new', element: guarded('catalog.manage', <ProductFormPage />) },
+          { path: 'products/:id', element: guarded('catalog.view', <ProductFormPage />) },
+          { path: 'categories', element: guarded('catalog.view', <CategoriesPage />) },
+          { path: 'references', element: guarded('catalog.view', <ReferencesPage />) },
+        ],
+      },
+      { path: 'currency', element: lazyPage(<CurrencyRatesPage />) },
+      {
         path: 'settings',
         children: [
           { index: true, element: <Navigate to="/settings/users" replace /> },
@@ -64,6 +86,7 @@ export const router = createBrowserRouter([
               </Suspense>
             ),
           },
+          { path: 'currencies', element: guarded('settings.manage', <CurrenciesPage />) },
           { path: 'system', element: guarded('settings.manage', <SystemSettingsPage />) },
         ],
       },

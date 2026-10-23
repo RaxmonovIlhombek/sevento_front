@@ -3,6 +3,7 @@ import { useEffect, type ReactNode } from 'react'
 import { useAuthStore } from '@/features/auth'
 import { queryClient } from '@/shared/api/queryClient'
 import i18n from '@/shared/i18n'
+import { formatNumber } from '@/shared/lib/money'
 import {
   CLOSE_CODES,
   createInvalidator,
@@ -29,6 +30,15 @@ function startOfflinePolling() {
 function handleSideEffects(message: RealtimeMessage) {
   const auth = useAuthStore.getState()
   switch (message.type) {
+    case 'currency.rate_updated': {
+      const rates =
+        (message.payload.rates as { currency: string; rate: string }[] | undefined) ?? []
+      const text = rates
+        .map((r) => `${r.currency} = ${formatNumber(r.rate, 2)} ${i18n.t('currency:quoteSymbol')}`)
+        .join(', ')
+      toast.info(i18n.t('currency:rateUpdatedToast'), text)
+      return
+    }
     case 'system.notice': {
       const level = String(message.payload.level ?? 'info') as 'info' | 'warning' | 'error'
       const show = toast[level] ?? toast.info

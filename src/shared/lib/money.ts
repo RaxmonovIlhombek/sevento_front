@@ -1,19 +1,24 @@
 /**
  * Pul va miqdor API da satr ("12500.00") — float emas. Bu yerda faqat ko'rsatish/formatlash.
  * Yakuniy summalar doim backend dan keladi.
+ *
+ * O'zbekcha format: 12 650,45 (minglik — bo'linmas bo'sh joy, kasr — vergul). Brauzerning lokal
+ * ma'lumotiga tayanmaymiz: Chromium/WebKit ning ba'zi buildlarida `uz` lokali yo'q va
+ * Intl jim ingliz formatiga (12,650.45) qaytadi — bu chalkashlik tug'diradi.
  */
-const LOCALE = 'uz-Latn-UZ'
-const formatters = new Map<string, Intl.NumberFormat>()
+const GROUP = '\u00A0'
+const DECIMAL = ','
+const formatters = new Map<number, Intl.NumberFormat>()
 
 function formatter(decimals: number): Intl.NumberFormat {
-  const key = String(decimals)
-  let fmt = formatters.get(key)
+  let fmt = formatters.get(decimals)
   if (!fmt) {
-    fmt = new Intl.NumberFormat(LOCALE, {
+    fmt = new Intl.NumberFormat('en-US', {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals,
+      useGrouping: true,
     })
-    formatters.set(key, fmt)
+    formatters.set(decimals, fmt)
   }
   return fmt
 }
@@ -22,7 +27,10 @@ export function formatNumber(value: string | number | null | undefined, decimals
   if (value === null || value === undefined || value === '') return '—'
   const num = typeof value === 'number' ? value : Number(value)
   if (Number.isNaN(num)) return String(value)
-  return formatter(decimals).format(num)
+  return formatter(decimals)
+    .formatToParts(num)
+    .map((part) => (part.type === 'group' ? GROUP : part.type === 'decimal' ? DECIMAL : part.value))
+    .join('')
 }
 
 export function formatMoney(
@@ -32,4 +40,9 @@ export function formatMoney(
 ): string {
   const text = formatNumber(value, decimals)
   return currency && text !== '—' ? `${text} ${currency}` : text
+}
+
+/** Foydalanuvchi kiritgan son (bo'sh joy yoki vergul bilan) → API uchun "12650.45". */
+export function parseDecimalInput(text: string): string {
+  return text.replace(/[\s\u00A0]/g, '').replace(',', '.')
 }

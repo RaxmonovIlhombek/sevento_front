@@ -11,6 +11,11 @@
   "branches": "Nuqtalar",
   "system": "Tizim sozlamalari",
   "audit": "Audit jurnali",
+  "products": "Tovarlar",
+  "categories": "Kategoriyalar",
+  "references": "Ma'lumotnomalar",
+  "currencyRates": "Valyuta kursi",
+  "currencies": "Valyutalar",
   "profile": "Profil",
   "changePassword": "Parolni almashtirish",
   "password": "Parol"

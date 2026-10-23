@@ -1,6 +1,6 @@
 # Arxitektura (frontend)
 
-> Holat: 1–2-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard}`).
+> Holat: 1–3-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency}`).
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
@@ -121,6 +121,7 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 
 - React Hook Form + Zod; Zod sxemalar `features/*/schemas.ts` da; server `details` xatolari `setError` ga.
 - Pul va miqdor API da satr; UI da `decimal.js` emas — formatlash uchun `Intl.NumberFormat('uz')`, arifmetika (savat yig'indisi) uchun kichik `money.ts` (butun tiyin/sent bilan) — tannarx va yakuniy summa baribir backend dan keladi, frontend faqat ko'rsatadi.
+- **Raqam va sana formati brauzer lokaliga bog'liq emas** (`shared/lib/money.ts`, `date.ts`): `12 650,45`, `22.10.2026 14:05`. Sabab: Chromium/WebKit ning ba'zi buildlarida (shu jumladan Tauri ishlatadigan WebKitGTK) `uz` lokali yo'q va `Intl` jim ingliz formatiga qaytadi. Kasr xonalari valyuta jadvalidan (`decimal_places`), kodda qattiq yozilmaydi. Kiritilgan sonlar `parseDecimalInput` bilan (bo'sh joy va vergul qabul qilinadi).
 - `MoneyInput` valyuta belgisi va kasr soni bilan; `QuantityInput` birlikning `decimal_places` ga qarab.
 
 ## 7. i18n

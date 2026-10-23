@@ -174,6 +174,294 @@ export interface paths {
         patch: operations["branches_partial_update"];
         trace?: never;
     };
+    "/api/v1/catalog/categories/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["catalog_categories_list"];
+        put?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        post: operations["catalog_categories_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/categories/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["catalog_categories_retrieve"];
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        put: operations["catalog_categories_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        patch: operations["catalog_categories_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/catalog/categories/tree/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["catalog_categories_tree_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/price-types/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["catalog_price_types_list"];
+        put?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        post: operations["catalog_price_types_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/price-types/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["catalog_price_types_retrieve"];
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        put: operations["catalog_price_types_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        patch: operations["catalog_price_types_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/catalog/products/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Tovarlar. ?branch= — joriy narxlar shu nuqtaga xos narxlarni hisobga olib qaytariladi. */
+        get: operations["catalog_products_list"];
+        put?: never;
+        /** @description Tovarlar. ?branch= — joriy narxlar shu nuqtaga xos narxlarni hisobga olib qaytariladi. */
+        post: operations["catalog_products_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/products/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Tovarlar. ?branch= — joriy narxlar shu nuqtaga xos narxlarni hisobga olib qaytariladi. */
+        get: operations["catalog_products_retrieve"];
+        /** @description Tovarlar. ?branch= — joriy narxlar shu nuqtaga xos narxlarni hisobga olib qaytariladi. */
+        put: operations["catalog_products_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Tovarlar. ?branch= — joriy narxlar shu nuqtaga xos narxlarni hisobga olib qaytariladi. */
+        patch: operations["catalog_products_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/catalog/products/{id}/prices/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Narx tarixi (barcha nuqtalar, barcha turlar). */
+        get: operations["catalog_products_prices_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/products/{id}/set-price/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Tovarlar. ?branch= — joriy narxlar shu nuqtaga xos narxlarni hisobga olib qaytariladi. */
+        post: operations["catalog_products_set_price_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/units/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["catalog_units_list"];
+        put?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        post: operations["catalog_units_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/units/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["catalog_units_retrieve"];
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        put: operations["catalog_units_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        patch: operations["catalog_units_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/currencies/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Valyutalar jadvali. Ro'yxat hammaga; o'zgartirish — settings.manage. */
+        get: operations["currencies_list"];
+        put?: never;
+        /** @description Valyutalar jadvali. Ro'yxat hammaga; o'zgartirish — settings.manage. */
+        post: operations["currencies_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/currencies/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Valyutalar jadvali. Ro'yxat hammaga; o'zgartirish — settings.manage. */
+        get: operations["currencies_retrieve"];
+        /** @description Valyutalar jadvali. Ro'yxat hammaga; o'zgartirish — settings.manage. */
+        put: operations["currencies_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Valyutalar jadvali. Ro'yxat hammaga; o'zgartirish — settings.manage. */
+        patch: operations["currencies_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/currency-rates/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kurslar tarixi; qo'lda kiritish va provayderdan yangilash — currency.rates.manage. */
+        get: operations["currency_rates_list"];
+        put?: never;
+        /** @description Kurslar tarixi; qo'lda kiritish va provayderdan yangilash — currency.rates.manage. */
+        post: operations["currency_rates_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/currency-rates/fetch/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Tanlangan manbadan (sozlama currency.rate_provider) hozir yangilash. */
+        post: operations["currency_rates_fetch_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/currency-rates/latest/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Har faol valyuta uchun joriy kurs (UZS dan tashqari). */
+        get: operations["currency_rates_latest_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/health/": {
         parameters: {
             query?: never;
@@ -399,9 +687,66 @@ export interface components {
             name: string;
             group: string;
         };
+        Category: {
+            readonly id: number;
+            name: string;
+            parent?: number | null;
+            readonly parent_name: string | null;
+            sort_order?: number;
+            is_active?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        CategoryRequest: {
+            name: string;
+            parent?: number | null;
+            sort_order?: number;
+            is_active?: boolean;
+        };
+        CategoryTree: {
+            id: number;
+            name: string;
+            sort_order: number;
+            is_active: boolean;
+            parent: number | null;
+            children: components["schemas"]["CategoryTree"][];
+        };
         ChangePasswordRequest: {
             current_password: string;
             new_password: string;
+        };
+        Currency: {
+            readonly id: number;
+            code: string;
+            name: string;
+            symbol?: string;
+            decimal_places?: number;
+            is_active?: boolean;
+            sort_order?: number;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        CurrencyRequest: {
+            code: string;
+            name: string;
+            symbol?: string;
+            decimal_places?: number;
+            is_active?: boolean;
+            sort_order?: number;
+        };
+        CurrentPrice: {
+            price_type: string;
+            price_type_name: string;
+            currency: string;
+            /** Format: decimal */
+            amount: string;
+            branch: number | null;
+            /** Format: date-time */
+            valid_from: string;
         };
         ErrorBody: {
             code: string;
@@ -417,10 +762,42 @@ export interface components {
         ErrorResponse: {
             error: components["schemas"]["ErrorBody"];
         };
+        ExchangeRate: {
+            readonly id: number;
+            readonly currency: number;
+            readonly currency_code: string;
+            /** Format: decimal */
+            readonly rate: string;
+            /** Format: date */
+            readonly date: string;
+            readonly source: components["schemas"]["SourceEnum"];
+            readonly created_by: number | null;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        FetchResult: {
+            provider: string;
+            updated: components["schemas"]["ExchangeRate"][];
+        };
         Health: {
             status: string;
             db: boolean;
             redis: boolean;
+        };
+        LatestRate: {
+            currency: number;
+            code: string;
+            name: string;
+            symbol: string;
+            decimal_places: number;
+            /** Format: decimal */
+            rate: string | null;
+            /** Format: date */
+            date: string | null;
+            source: string | null;
         };
         /**
          * @description * `info` - info
@@ -475,6 +852,28 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["Branch"][];
         };
+        PaginatedExchangeRateList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["ExchangeRate"][];
+        };
+        PaginatedProductList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Product"][];
+        };
         PaginatedRoleList: {
             /** @example 120 */
             count: number;
@@ -507,10 +906,50 @@ export interface components {
             settings?: unknown;
             is_active?: boolean;
         };
+        PatchedCategoryRequest: {
+            name?: string;
+            parent?: number | null;
+            sort_order?: number;
+            is_active?: boolean;
+        };
+        PatchedCurrencyRequest: {
+            code?: string;
+            name?: string;
+            symbol?: string;
+            decimal_places?: number;
+            is_active?: boolean;
+            sort_order?: number;
+        };
+        PatchedPriceTypeRequest: {
+            code?: string;
+            name?: string;
+            is_default?: boolean;
+            sort_order?: number;
+        };
+        PatchedProductWriteRequest: {
+            sku?: string;
+            barcode?: string;
+            name?: string;
+            category?: number | null;
+            unit?: number;
+            /**
+             * Format: decimal
+             * @description Bo'sh — sozlamadagi default (inventory.default_min_quantity)
+             */
+            min_quantity?: string | null;
+            description?: string;
+            is_active?: boolean;
+        };
         PatchedRoleRequest: {
             code?: string;
             name?: string;
             capabilities?: string[];
+        };
+        PatchedUnitRequest: {
+            code?: string;
+            name?: string;
+            decimal_places?: number;
+            is_active?: boolean;
         };
         PatchedUserWriteRequest: {
             username?: string;
@@ -523,6 +962,100 @@ export interface components {
             default_branch_id?: number | null;
             /** @default true */
             is_active: boolean;
+        };
+        PriceType: {
+            readonly id: number;
+            code: string;
+            name: string;
+            is_default?: boolean;
+            sort_order?: number;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        PriceTypeRequest: {
+            code: string;
+            name: string;
+            is_default?: boolean;
+            sort_order?: number;
+        };
+        Product: {
+            readonly id: number;
+            readonly sku: string;
+            readonly barcode: string;
+            readonly name: string;
+            readonly category: number | null;
+            readonly category_name: string | null;
+            readonly unit: number;
+            readonly unit_code: string;
+            readonly unit_name: string;
+            readonly unit_decimal_places: number;
+            /**
+             * Format: decimal
+             * @description Bo'sh — sozlamadagi default (inventory.default_min_quantity)
+             */
+            readonly min_quantity: string | null;
+            readonly description: string;
+            readonly is_active: boolean;
+            readonly prices: components["schemas"]["CurrentPrice"][];
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        ProductPrice: {
+            readonly id: number;
+            readonly price_type: number;
+            readonly price_type_code: string;
+            readonly price_type_name: string;
+            readonly currency: number;
+            readonly currency_code: string;
+            readonly branch: number | null;
+            readonly branch_name: string | null;
+            /** Format: decimal */
+            readonly amount: string;
+            /** Format: date-time */
+            readonly valid_from: string;
+            readonly created_by: number | null;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        ProductWrite: {
+            sku: string;
+            barcode?: string;
+            name: string;
+            category?: number | null;
+            unit: number;
+            /**
+             * Format: decimal
+             * @description Bo'sh — sozlamadagi default (inventory.default_min_quantity)
+             */
+            min_quantity?: string | null;
+            description?: string;
+            is_active?: boolean;
+        };
+        ProductWriteRequest: {
+            sku: string;
+            barcode?: string;
+            name: string;
+            category?: number | null;
+            unit: number;
+            /**
+             * Format: decimal
+             * @description Bo'sh — sozlamadagi default (inventory.default_min_quantity)
+             */
+            min_quantity?: string | null;
+            description?: string;
+            is_active?: boolean;
+        };
+        RateCreateRequest: {
+            currency: number;
+            /** Format: decimal */
+            rate: string;
+            /** Format: date */
+            date?: string;
         };
         RefreshResponse: {
             access: string;
@@ -551,6 +1084,21 @@ export interface components {
         SetPasswordRequest: {
             new_password: string;
         };
+        SetPriceRequest: {
+            price_type: number;
+            currency: number;
+            branch?: number | null;
+            /** Format: decimal */
+            amount: string;
+            /** Format: date-time */
+            valid_from?: string;
+        };
+        /**
+         * @description * `cbu` - Markaziy bank
+         *     * `manual` - Qo'lda
+         * @enum {string}
+         */
+        SourceEnum: "cbu" | "manual";
         SystemSetting: {
             readonly key: string;
             readonly type: string;
@@ -576,6 +1124,23 @@ export interface components {
          * @enum {string}
          */
         TypeEnum: "shop" | "warehouse";
+        Unit: {
+            readonly id: number;
+            code: string;
+            name: string;
+            decimal_places?: number;
+            is_active?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        UnitRequest: {
+            code: string;
+            name: string;
+            decimal_places?: number;
+            is_active?: boolean;
+        };
         User: {
             readonly id: number;
             /** @description Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
@@ -995,6 +1560,837 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Branch"];
+                };
+            };
+        };
+    };
+    catalog_categories_list: {
+        parameters: {
+            query?: {
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                parent?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Category"][];
+                };
+            };
+        };
+    };
+    catalog_categories_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CategoryRequest"];
+                "multipart/form-data": components["schemas"]["CategoryRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Category"];
+                };
+            };
+        };
+    };
+    catalog_categories_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this category. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Category"];
+                };
+            };
+        };
+    };
+    catalog_categories_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this category. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CategoryRequest"];
+                "multipart/form-data": components["schemas"]["CategoryRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Category"];
+                };
+            };
+        };
+    };
+    catalog_categories_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this category. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedCategoryRequest"];
+                "multipart/form-data": components["schemas"]["PatchedCategoryRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Category"];
+                };
+            };
+        };
+    };
+    catalog_categories_tree_list: {
+        parameters: {
+            query?: {
+                include_inactive?: boolean;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                parent?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CategoryTree"][];
+                };
+            };
+        };
+    };
+    catalog_price_types_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PriceType"][];
+                };
+            };
+        };
+    };
+    catalog_price_types_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PriceTypeRequest"];
+                "multipart/form-data": components["schemas"]["PriceTypeRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PriceType"];
+                };
+            };
+        };
+    };
+    catalog_price_types_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this price type. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PriceType"];
+                };
+            };
+        };
+    };
+    catalog_price_types_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this price type. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PriceTypeRequest"];
+                "multipart/form-data": components["schemas"]["PriceTypeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PriceType"];
+                };
+            };
+        };
+    };
+    catalog_price_types_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this price type. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedPriceTypeRequest"];
+                "multipart/form-data": components["schemas"]["PatchedPriceTypeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PriceType"];
+                };
+            };
+        };
+    };
+    catalog_products_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                category?: number;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                unit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedProductList"];
+                };
+            };
+        };
+    };
+    catalog_products_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductWriteRequest"];
+                "multipart/form-data": components["schemas"]["ProductWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Product"];
+                };
+            };
+        };
+    };
+    catalog_products_retrieve: {
+        parameters: {
+            query?: {
+                branch?: number;
+            };
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this product. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Product"];
+                };
+            };
+        };
+    };
+    catalog_products_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this product. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductWriteRequest"];
+                "multipart/form-data": components["schemas"]["ProductWriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Product"];
+                };
+            };
+        };
+    };
+    catalog_products_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this product. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedProductWriteRequest"];
+                "multipart/form-data": components["schemas"]["PatchedProductWriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductWrite"];
+                };
+            };
+        };
+    };
+    catalog_products_prices_list: {
+        parameters: {
+            query?: {
+                category?: number;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+                unit?: number;
+            };
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this product. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductPrice"][];
+                };
+            };
+        };
+    };
+    catalog_products_set_price_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this product. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SetPriceRequest"];
+                "multipart/form-data": components["schemas"]["SetPriceRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductPrice"];
+                };
+            };
+        };
+    };
+    catalog_units_list: {
+        parameters: {
+            query?: {
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Unit"][];
+                };
+            };
+        };
+    };
+    catalog_units_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UnitRequest"];
+                "multipart/form-data": components["schemas"]["UnitRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Unit"];
+                };
+            };
+        };
+    };
+    catalog_units_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this unit. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Unit"];
+                };
+            };
+        };
+    };
+    catalog_units_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this unit. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UnitRequest"];
+                "multipart/form-data": components["schemas"]["UnitRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Unit"];
+                };
+            };
+        };
+    };
+    catalog_units_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this unit. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedUnitRequest"];
+                "multipart/form-data": components["schemas"]["PatchedUnitRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Unit"];
+                };
+            };
+        };
+    };
+    currencies_list: {
+        parameters: {
+            query?: {
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Currency"][];
+                };
+            };
+        };
+    };
+    currencies_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CurrencyRequest"];
+                "multipart/form-data": components["schemas"]["CurrencyRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Currency"];
+                };
+            };
+        };
+    };
+    currencies_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this currency. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Currency"];
+                };
+            };
+        };
+    };
+    currencies_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this currency. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CurrencyRequest"];
+                "multipart/form-data": components["schemas"]["CurrencyRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Currency"];
+                };
+            };
+        };
+    };
+    currencies_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this currency. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedCurrencyRequest"];
+                "multipart/form-data": components["schemas"]["PatchedCurrencyRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Currency"];
+                };
+            };
+        };
+    };
+    currency_rates_list: {
+        parameters: {
+            query?: {
+                code?: string;
+                currency?: number;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `cbu` - Markaziy bank
+                 *     * `manual` - Qo'lda
+                 */
+                source?: "cbu" | "manual";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedExchangeRateList"];
+                };
+            };
+        };
+    };
+    currency_rates_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RateCreateRequest"];
+                "multipart/form-data": components["schemas"]["RateCreateRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExchangeRate"];
+                };
+            };
+        };
+    };
+    currency_rates_fetch_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FetchResult"];
+                };
+            };
+        };
+    };
+    currency_rates_latest_list: {
+        parameters: {
+            query?: {
+                code?: string;
+                currency?: number;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `cbu` - Markaziy bank
+                 *     * `manual` - Qo'lda
+                 */
+                source?: "cbu" | "manual";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LatestRate"][];
                 };
             };
         };

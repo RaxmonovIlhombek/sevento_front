@@ -1,5 +1,11 @@
 import {
+  Banknote,
+  BookOpen,
+  Boxes,
   Building2,
+  Coins,
+  FolderTree,
+  Package,
   LayoutDashboard,
   ScrollText,
   Settings,
@@ -21,6 +27,26 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   { to: '/dashboard', labelKey: 'dashboard', icon: LayoutDashboard },
   {
+    labelKey: 'catalog',
+    icon: Boxes,
+    children: [
+      { to: '/catalog/products', labelKey: 'products', icon: Package, capability: 'catalog.view' },
+      {
+        to: '/catalog/categories',
+        labelKey: 'categories',
+        icon: FolderTree,
+        capability: 'catalog.view',
+      },
+      {
+        to: '/catalog/references',
+        labelKey: 'references',
+        icon: BookOpen,
+        capability: 'catalog.view',
+      },
+      { to: '/currency', labelKey: 'currencyRates', icon: Banknote },
+    ],
+  },
+  {
     labelKey: 'settings',
     icon: Settings,
     children: [
@@ -31,6 +57,12 @@ export const navItems: NavItem[] = [
         labelKey: 'branches',
         icon: Building2,
         capability: 'branches.manage',
+      },
+      {
+        to: '/settings/currencies',
+        labelKey: 'currencies',
+        icon: Coins,
+        capability: 'settings.manage',
       },
       {
         to: '/settings/system',

@@ -25,6 +25,17 @@
     "role.deleted": "Rol o'chirildi",
     "branch.created": "Nuqta yaratildi",
     "branch.updated": "Nuqta o'zgartirildi",
-    "setting.changed": "Sozlama o'zgartirildi"
+    "setting.changed": "Sozlama o'zgartirildi",
+    "system.notice": "Hammaga xabar yuborildi",
+    "currency.created": "Valyuta qo'shildi",
+    "currency.updated": "Valyuta o'zgartirildi",
+    "currency.rate_updated": "Valyuta kursi yangilandi",
+    "category.created": "Kategoriya yaratildi",
+    "category.updated": "Kategoriya o'zgartirildi",
+    "unit.saved": "O'lchov birligi saqlandi",
+    "price_type.saved": "Narx turi saqlandi",
+    "product.created": "Tovar yaratildi",
+    "product.updated": "Tovar o'zgartirildi",
+    "product.price_changed": "Tovar narxi o'zgardi"
   }
 }

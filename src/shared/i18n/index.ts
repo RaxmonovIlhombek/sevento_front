@@ -3,7 +3,9 @@ import { initReactI18next } from 'react-i18next'
 
 import audit from './locales/uz/audit.json'
 import auth from './locales/uz/auth.json'
+import catalog from './locales/uz/catalog.json'
 import common from './locales/uz/common.json'
+import currency from './locales/uz/currency.json'
 import errors from './locales/uz/errors.json'
 import nav from './locales/uz/nav.json'
 import realtime from './locales/uz/realtime.json'
@@ -12,7 +14,18 @@ import validation from './locales/uz/validation.json'
 
 // Hozir faqat o'zbek (lotin). Yangi til: locales/<kod>/ papkasi + shu yerda resources ga qo'shish.
 export const resources = {
-  uz: { common, nav, auth, settings, audit, errors, validation, realtime },
+  uz: {
+    common,
+    nav,
+    auth,
+    settings,
+    audit,
+    errors,
+    validation,
+    realtime,
+    catalog,
+    currency,
+  },
 } as const
 
 export const defaultNS = 'common'

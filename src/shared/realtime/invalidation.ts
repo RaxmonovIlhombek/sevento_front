@@ -19,7 +19,7 @@ interface Rule {
 export const invalidationRules: Record<string, Rule> = {
   'session.revoked': { keys: () => [queryKeys.me] },
   'system.notice': { keys: () => [] },
-  // 3-bosqich: 'currency.rate_updated' → currency, products
+  'currency.rate_updated': { keys: () => [queryKeys.currency.all, queryKeys.products.all] },
   // 5-bosqich: 'stock.changed' (debounce 1500), 'dashboard.updated' (debounce 2000)
   // 6-bosqich: 'payment.received', 'debt.overdue', 'customer.credit_limit_warning'
   // 7-bosqich: 'transfer.*'; 8-bosqich: 'report.ready' / 'report.failed'

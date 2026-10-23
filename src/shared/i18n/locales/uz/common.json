@@ -37,7 +37,8 @@
     "perPage": "Sahifada",
     "prev": "Oldingi",
     "next": "Keyingi",
-    "actions": "Amallar"
+    "actions": "Amallar",
+    "all": "Hammasi"
   },
   "fields": {
     "name": "Nomi",

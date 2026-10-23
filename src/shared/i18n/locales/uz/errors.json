@@ -20,5 +20,13 @@
   "role_in_use": "Bu rolga foydalanuvchilar biriktirilgan",
   "unknown_capability": "Noma'lum huquq",
   "invalid_status_transition": "Bu holatdan o'tish mumkin emas",
-  "business_rule_violation": "Amalni bajarib bo'lmaydi"
+  "business_rule_violation": "Amalni bajarib bo'lmaydi",
+  "rate_unavailable": "Valyuta kursi kiritilmagan",
+  "rate_provider_unavailable": "Kurs manbai (Markaziy bank) javob bermadi, keyinroq urinib ko'ring",
+  "invalid_rate": "Kurs musbat bo'lishi kerak",
+  "quote_currency": "So'm uchun kurs kiritilmaydi",
+  "currency_code_locked": "Valyuta kodini o'zgartirib bo'lmaydi",
+  "currency_required": "Asosiy va so'm valyutasini o'chirib bo'lmaydi",
+  "category_cycle": "Kategoriya o'zining ichki kategoriyasiga ko'chirilmaydi",
+  "invalid_price": "Narx manfiy bo'lmasin"
 }
