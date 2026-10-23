@@ -1,6 +1,6 @@
 # Arxitektura (frontend)
 
-> Holat: 1–5-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments}`); 6-bosqich: nasiya, mijozlar, smena.
+> Holat: 1–7-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments}`); 6-bosqich: nasiya, mijozlar, smena; 7-bosqich: ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish.
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
@@ -145,6 +145,16 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - Qarz to'lovi oynasi: "Hammasini" summasini server hisoblaydi (`GET customers/<id>/payoff/`) — boshqa valyutada yaxlitlash xatosi bo'lmasin; har ochilishga bitta `Idempotency-Key`.
 - BigInt yordamchilari `shared/lib/decimal.ts` da (POS va to'lovlar uchun umumiy).
 - Realtime: `payment.received`, `debt.changed`, `cash.updated` → `['payments']` (mijoz kartasi, qarzlar, kassa jonli); `debt.overdue`, `customer.credit_limit_warning` → toast (faqat `debts.manage` huquqi borlarga keladi).
+
+### Ombor hujjatlari va qaytarish (7-bosqich)
+
+- `features/inventory/api/documents.api.ts` — ko'chirish, inventarizatsiya, hisobdan chiqarish hooklari; kalitlar `['inventory', ...]` ostida, shuning uchun `stock.changed` va `transfer.*` ularni bitta invalidate bilan yangilaydi.
+- Ko'chirish sahifasi bitta (`TransferPage`): qoralama va tahrirlash huquqi bo'lsa — muharrir (qatorlar `LinesEditor`, "Saqlash va jo'natish"), aks holda — ko'rinish (qabul oynasi, bekor qilish). Tugmalar serverdagi `allowed` maydonidan. Qabul qiluvchi nuqta ro'yxati — `GET inventory/transfers/destinations/` (omborchi o'z nuqtasidan boshqasini ham tanlay olishi uchun).
+- Menyuda "Ko'chirishlar" yonida qabul kutilayotganlar soni (`useNavBadges` — app qatlamida, ombor chunk ini asosiy bundle ga tortmaslik uchun).
+- Toastlar `app/providers/transferNotice.ts` (sof funksiya, test bilan): jo'natildi → qabul qiluvchi nuqta omborchisiga, qabul qilindi → jo'natuvchiga (farq bo'lsa ogohlantirish, rahbarga ham), jo'natilgani bekor qilindi → qabul qiluvchiga; o'z amali haqida toast yo'q. Bir xabar ikki guruhdan kelsa `RealtimeClient` uni `id` bo'yicha bir marta uzatadi.
+- Inventarizatsiya: kiritishlar sahifalar orasida saqlanadi (tovar id → qiymat), "Saqlash" bitta so'rov; qoralamada farq = sanalgan − hozirgi qoldiq (BigInt), Enter — keyingi qatorga (skaner bilan tez sanash).
+- Qaytarish oynasi (`features/sales/components/ReturnModal.tsx`): summa `lib/returns.ts` da server formulasining aniq nusxasi (`round(L·(r+q)/Q) − round(L·r/Q)`), avval qarzdan, qolgani pul (taxminiy; yakuniy — server). Qaytarish bo'lgan savdoda "Bekor qilish" ko'rinmaydi.
+- Hujjat havolalari (`purchase`, `sale`, `sale_return`, `transfer`, `stock_count`, `write_off`, `customer`) — `shared/lib/documentRoutes.ts` (harakatlar jurnali, kassa, to'lovlar).
 
 ## 7. i18n
 

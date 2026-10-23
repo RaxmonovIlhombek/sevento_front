@@ -117,7 +117,12 @@
     "debt": "Nasiya",
     "debtRemaining": "Qarz qoldig'i",
     "dueDate": "Muddati",
-    "debtStatus": "Qarz holati"
+    "debtStatus": "Qarz holati",
+    "returnedQty": "Qaytarilgan",
+    "returnedTotal": "Qaytarilgan summa",
+    "netTotal": "Sof savdo",
+    "returnsTitle": "Qaytarishlar",
+    "noCancelWithReturns": "Qaytarish bo'lgan savdo bekor qilinmaydi — qolganini qaytarish orqali"
   },
   "summary": {
     "title": "Bugungi savdo",
@@ -125,6 +130,47 @@
     "revenue": "Tushum",
     "profit": "Yalpi foyda ({{base}})",
     "cancelled": "Bekor qilingan: {{count}}",
-    "none": "Bugun hali savdo yo'q"
+    "none": "Bugun hali savdo yo'q",
+    "returns": "Qaytarishlar: {{count}} ta ({{total}} {{base}})"
+  },
+  "returnState": {
+    "partial": "Qisman qaytarilgan",
+    "full": "To'liq qaytarilgan"
+  },
+  "returns": {
+    "title": "Qaytarishlar",
+    "action": "Qaytarish",
+    "modalTitle": "Tovar qaytarish — {{number}}",
+    "hint": "Tovar omborga (asl partiyalarga) qaytadi. Summa avval savdo nasiyasidan ayiriladi, qolgani mijozga qaytariladi.",
+    "product": "Tovar",
+    "sold": "Sotilgan",
+    "returned": "Qaytarilgan",
+    "available": "Mumkin",
+    "quantity": "Qaytariladi",
+    "amount": "Summa",
+    "all": "Hammasini",
+    "reason": "Sabab",
+    "reasonPlaceholder": "Masalan: sifatsiz, mijoz fikridan qaytdi",
+    "refundMethod": "Pulni qaytarish",
+    "total": "Qaytarish summasi",
+    "debtReduction": "Qarzdan ayiriladi",
+    "refund": "Mijozga qaytariladi",
+    "estimateNote": "Taxminiy — yakuniy summa serverda hisoblanadi",
+    "submit": "Qaytarish",
+    "nothing": "Qaytariladigan miqdor kiriting",
+    "done": "Qaytarildi: {{number}}",
+    "doneText": "Qarzdan: {{debt}} · Qaytarildi: {{refund}} {{currency}}",
+    "number": "Raqam",
+    "date": "Vaqt",
+    "sale": "Savdo",
+    "customer": "Mijoz",
+    "branch": "Nuqta",
+    "by": "Kim",
+    "method": "Qaytarish turi",
+    "itemsCount": "Tovarlar",
+    "searchPlaceholder": "Qaytarish yoki savdo raqami",
+    "empty": "Qaytarish yo'q",
+    "cost": "Tannarx ({{base}})",
+    "toSale": "Savdoga o'tish"
   }
 }

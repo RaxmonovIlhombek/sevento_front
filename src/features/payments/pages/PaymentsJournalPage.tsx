@@ -9,6 +9,7 @@ import type { PaymentList } from '@/shared/api/types'
 import { useListParams } from '@/shared/hooks/useListParams'
 import { formatDateTime } from '@/shared/lib/date'
 import { formatNumber } from '@/shared/lib/money'
+import { documentRoute } from '@/shared/lib/documentRoutes'
 import {
   Badge,
   Button,
@@ -30,17 +31,6 @@ import {
   usePaymentsJournal,
   useRefundPayment,
 } from '../api/payments.api'
-
-function documentLink(p: {
-  document_type: string
-  document_id: number
-  document_number: string
-  customer: number | null
-}) {
-  if (p.document_type === 'sale') return `/sales/${p.document_id}`
-  if (p.document_type === 'customer') return `/customers/${p.document_id}`
-  return null
-}
 
 /** To'lovlar jurnali: savdo to'lovlari, qaytim, qarz to'lovlari va qaytarishlar. */
 export function PaymentsJournalPage() {
@@ -116,7 +106,7 @@ export function PaymentsJournalPage() {
       key: 'doc',
       header: t('journal.document'),
       render: (p) => {
-        const to = documentLink(p)
+        const to = documentRoute(p.document_type, p.document_id)
         return to ? (
           <Link
             to={to}

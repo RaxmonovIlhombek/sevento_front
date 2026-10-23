@@ -55,5 +55,22 @@
   "shift_closed": "Kassa smenasi ochilmagan",
   "shift_already_open": "Bu nuqtada smena allaqachon ochiq",
   "category_not_manual": "Bu turdagi kassa yozuvini qo'lda kiritib bo'lmaydi",
-  "refund_not_allowed": "Bu to'lovni qaytarib bo'lmaydi"
+  "refund_not_allowed": "Bu to'lovni qaytarib bo'lmaydi",
+  "same_branch": "Jo'natuvchi va qabul qiluvchi nuqta bir xil bo'lmasin",
+  "branch_inactive": "Nuqta faol emas",
+  "transfer_empty": "Ko'chirishda kamida bitta tovar bo'lishi kerak",
+  "duplicate_product": "Tovar takrorlangan",
+  "product_inactive": "Tovar faol emas",
+  "unit_precision": "Miqdor o'lchov birligi aniqligidan ortiq",
+  "received_out_of_range": "Qabul qilingan miqdor 0 dan jo'natilgangacha bo'lishi kerak",
+  "unknown_item": "Hujjatda bunday qator yo'q",
+  "count_in_progress": "Bu nuqtada yakunlanmagan inventarizatsiya bor",
+  "count_empty": "Birorta ham tovar sanalmagan",
+  "write_off_system": "Ko'chirish kamomadi hujjatini alohida bekor qilib bo'lmaydi",
+  "reason_not_allowed": "Bu sababni tanlab bo'lmaydi",
+  "sale_has_returns": "Savdo bo'yicha qaytarish bor — bekor qilib bo'lmaydi",
+  "exceeds_sold": "Qaytarish miqdori sotilgandan (qaytarilganini ayirib) ko'p",
+  "not_in_sale": "Bu qator savdoda yo'q",
+  "return_allocation": "Qaytarishni partiyalarga taqsimlab bo'lmadi",
+  "return_forbidden": "Faqat o'z savdongizni qaytara olasiz"
 }

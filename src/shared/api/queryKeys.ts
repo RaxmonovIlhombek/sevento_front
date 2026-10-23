@@ -45,6 +45,17 @@ export const queryKeys = {
     stock: (params: object) => ['inventory', 'stock', params] as const,
     batches: (params: object) => ['inventory', 'batches', params] as const,
     movements: (params: object) => ['inventory', 'movements', params] as const,
+    // hujjatlar ham ['inventory'] ostida: stock.changed ularni ham yangilaydi
+    transfers: (params: object) => ['inventory', 'transfers', params] as const,
+    transfer: (id: number | string) => ['inventory', 'transfer', String(id)] as const,
+    incomingTransfers: ['inventory', 'transfers-incoming'] as const,
+    counts: (params: object) => ['inventory', 'counts', params] as const,
+    count: (id: number | string) => ['inventory', 'count', String(id)] as const,
+    countItems: (id: number | string, params: object) =>
+      ['inventory', 'count', String(id), 'items', params] as const,
+    writeOffs: (params: object) => ['inventory', 'write-offs', params] as const,
+    writeOff: (id: number | string) => ['inventory', 'write-off', String(id)] as const,
+    writeOffReasons: ['inventory', 'write-off-reasons'] as const,
   },
   purchasing: {
     all: ['purchasing'] as const,
@@ -63,6 +74,8 @@ export const queryKeys = {
     posAll: ['sales', 'pos'] as const,
     summary: (params: object) => ['sales', 'summary', params] as const,
     summaryAll: ['sales', 'summary'] as const,
+    returns: (params: object) => ['sales', 'returns', params] as const,
+    returnDetail: (id: number | string) => ['sales', 'return', String(id)] as const,
   },
   payments: {
     all: ['payments'] as const,

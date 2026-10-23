@@ -102,7 +102,7 @@ export function SalesPage() {
     {
       key: 'status',
       header: t('list.status'),
-      render: (s) => <SaleStatusBadge status={s.status} />,
+      render: (s) => <SaleStatusBadge status={s.status} returnState={s.return_state} />,
     },
   ]
 

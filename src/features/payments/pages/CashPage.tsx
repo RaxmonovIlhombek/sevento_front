@@ -9,6 +9,7 @@ import { useListParams } from '@/shared/hooks/useListParams'
 import { cn } from '@/shared/lib/cn'
 import { formatDateTime } from '@/shared/lib/date'
 import { formatNumber } from '@/shared/lib/money'
+import { documentRoute } from '@/shared/lib/documentRoutes'
 import {
   Button,
   Card,
@@ -25,11 +26,6 @@ import {
 import { useCashboxes, useCashCategories, useCashTransactions } from '../api/payments.api'
 import { CashEntryModal } from '../components/CashEntryModal'
 import { ShiftPanel } from '../components/ShiftPanel'
-
-const DOCUMENT_ROUTES: Record<string, (id: number) => string> = {
-  sale: (id) => `/sales/${id}`,
-  customer: (id) => `/customers/${id}`,
-}
 
 /** Kassa qoldig'i (nuqta × valyuta) va kassa jurnali. To'lovlar realtime bilan yangilanadi. */
 export function CashPage() {
@@ -83,7 +79,7 @@ export function CashPage() {
       key: 'doc',
       header: t('cash.document'),
       render: (tx) => {
-        const route = tx.document_id ? DOCUMENT_ROUTES[tx.document_type]?.(tx.document_id) : null
+        const route = documentRoute(tx.document_type, tx.document_id)
         const label = tx.document_number || tx.payment_number || '—'
         return route ? (
           <Link to={route} className="text-brand-700 hover:underline">

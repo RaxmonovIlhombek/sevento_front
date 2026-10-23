@@ -5,13 +5,19 @@
  *  - uzilganda eksponensial backoff (1s → 30s) + jitter; har urinishda yangi ticket
  *  - brauzer `online` va tab ko'ringanda darhol qayta ulanish
  * Faqat bildirishnoma kanali: xabar kelganda TanStack Query keshi invalidate qilinadi.
+ *  - bir xabar bir nechta guruh orqali kelsa (ko'chirish — ikkala nuqtaga) `id` bo'yicha bir marta
  */
 
 export interface RealtimeMessage {
+  /** Server konverti id si — takroriy yetkazishni aniqlash uchun (eski serverda bo'lmasligi mumkin) */
+  id?: string
   type: string
   payload: Record<string, unknown>
   timestamp: string
 }
+
+/** Oxirgi shuncha xabar id si eslab qolinadi (takrorlar odatda millisekundlar ichida keladi). */
+const SEEN_LIMIT = 200
 
 export type ClientStatus = 'idle' | 'connecting' | 'online' | 'offline'
 
@@ -48,6 +54,7 @@ export class RealtimeClient {
   private pingTimer: ReturnType<typeof setInterval> | null = null
   private pongPending = false
   private missedPongs = 0
+  private readonly seen = new Set<string>()
 
   constructor(private readonly opts: RealtimeClientOptions) {}
 
@@ -153,6 +160,13 @@ export class RealtimeClient {
         this.missedPongs = 0
         return
       default:
+        if (message.id) {
+          if (this.seen.has(message.id)) return
+          this.seen.add(message.id)
+          if (this.seen.size > SEEN_LIMIT) {
+            this.seen.delete(this.seen.values().next().value as string)
+          }
+        }
         this.opts.onMessage({ ...message, payload: message.payload ?? {} })
     }
   }

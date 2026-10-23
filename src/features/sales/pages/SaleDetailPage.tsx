@@ -1,11 +1,12 @@
-import { ArrowLeft, Ban, Printer } from 'lucide-react'
+import { ArrowLeft, Ban, Printer, Undo2 } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router'
 
 import { errorMessage } from '@/shared/api/errors'
-import type { SaleItem, SalePayment } from '@/shared/api/types'
+import type { SaleItem, SalePayment, SaleReturnBrief } from '@/shared/api/types'
 import { formatDate, formatDateTime } from '@/shared/lib/date'
+import { fromScaled, toScaled } from '@/shared/lib/decimal'
 import { formatNumber } from '@/shared/lib/money'
 import {
   Badge,
@@ -22,6 +23,7 @@ import {
 } from '@/shared/ui'
 
 import { useCancelSale, useSale } from '../api/sales.api'
+import { ReturnModal } from '../components/ReturnModal'
 import { SaleStatusBadge } from '../components/SaleStatusBadge'
 import { printReceipt } from '../lib/receipt'
 
@@ -33,6 +35,7 @@ export function SaleDetailPage() {
   const sale = useSale(id)
   const cancel = useCancelSale()
   const [cancelOpen, setCancelOpen] = useState(false)
+  const [returnOpen, setReturnOpen] = useState(false)
   const [reason, setReason] = useState('')
 
   if (sale.isPending) return <PageSpinner />
@@ -41,6 +44,7 @@ export function SaleDetailPage() {
   const places = s.currency_decimal_places
   const showCost = s.cost_base !== null
   const base = s.base_currency
+  const hasReturns = s.returns.length > 0
 
   const itemColumns: Column<SaleItem>[] = [
     { key: 'pos', header: '#', className: 'w-8 text-slate-400', render: (i) => i.position + 1 },
@@ -78,6 +82,19 @@ export function SaleDetailPage() {
       className: 'text-right tabular-nums font-semibold',
       render: (i) => formatNumber(i.line_total, places),
     },
+    ...(hasReturns
+      ? [
+          {
+            key: 'returned',
+            header: t('detail.returnedQty'),
+            className: 'text-right tabular-nums text-amber-700',
+            render: (i: SaleItem) =>
+              Number(i.returned_quantity)
+                ? formatNumber(i.returned_quantity, i.unit_decimal_places)
+                : '—',
+          },
+        ]
+      : []),
     ...(showCost
       ? [
           {
@@ -121,6 +138,47 @@ export function SaleDetailPage() {
     },
   ]
 
+  const returnColumns: Column<SaleReturnBrief>[] = [
+    {
+      key: 'number',
+      header: t('returns.number'),
+      render: (r) => (
+        <Link to={`/sales/returns/${r.id}`} className="font-medium text-brand-700 hover:underline">
+          {r.number}
+        </Link>
+      ),
+    },
+    {
+      key: 'date',
+      header: t('returns.date'),
+      className: 'whitespace-nowrap',
+      render: (r) => formatDateTime(r.created_at),
+    },
+    {
+      key: 'total',
+      header: t('returns.total'),
+      className: 'text-right tabular-nums',
+      render: (r) => formatNumber(r.total, places),
+    },
+    {
+      key: 'debt',
+      header: t('returns.debtReduction'),
+      className: 'text-right tabular-nums',
+      render: (r) => (Number(r.debt_reduction) ? formatNumber(r.debt_reduction, places) : '—'),
+    },
+    {
+      key: 'refund',
+      header: t('returns.refund'),
+      className: 'text-right tabular-nums',
+      render: (r) =>
+        Number(r.refund_amount)
+          ? `${formatNumber(r.refund_amount, places)} (${r.refund_method_name ?? '—'})`
+          : '—',
+    },
+    { key: 'reason', header: t('returns.reason'), render: (r) => r.reason },
+    { key: 'by', header: t('returns.by'), render: (r) => r.created_by_name },
+  ]
+
   return (
     <div className="mx-auto max-w-5xl space-y-4">
       <PageHeader
@@ -128,7 +186,7 @@ export function SaleDetailPage() {
         subtitle={`${formatDateTime(s.completed_at)} · ${s.branch_name} · ${s.seller_name}`}
         actions={
           <>
-            <SaleStatusBadge status={s.status} />
+            <SaleStatusBadge status={s.status} returnState={s.return_state} />
             <Button
               variant="secondary"
               icon={<Printer className="size-4" />}
@@ -137,6 +195,16 @@ export function SaleDetailPage() {
             >
               {t('detail.print')}
             </Button>
+            {s.can_return && (
+              <Button
+                variant="secondary"
+                icon={<Undo2 className="size-4" />}
+                onClick={() => setReturnOpen(true)}
+                data-testid="sale-return"
+              >
+                {t('returns.action')}
+              </Button>
+            )}
             {s.can_cancel && (
               <Button
                 variant="secondary"
@@ -230,6 +298,24 @@ export function SaleDetailPage() {
           <dd className="text-right text-base font-bold tabular-nums" data-testid="sale-total">
             {formatNumber(s.total, places)} {s.currency_code}
           </dd>
+          {Number(s.returned_total) > 0 && (
+            <>
+              <dt className="text-amber-700">{t('detail.returnedTotal')}</dt>
+              <dd className="text-right text-amber-700 tabular-nums" data-testid="sale-returned">
+                −{formatNumber(s.returned_total, places)}
+              </dd>
+              <dt className="font-medium">{t('detail.netTotal')}</dt>
+              <dd className="text-right font-medium tabular-nums">
+                {formatNumber(
+                  fromScaled(
+                    (toScaled(s.total, places) ?? 0n) - (toScaled(s.returned_total, places) ?? 0n),
+                    places,
+                  ),
+                  places,
+                )}
+              </dd>
+            </>
+          )}
           {s.currency_code !== base && (
             <>
               <dt className="text-slate-500">{t('detail.totalBase', { base })}</dt>
@@ -260,6 +346,18 @@ export function SaleDetailPage() {
         <h2 className="mb-2 text-sm font-semibold text-slate-700">{t('detail.payments')}</h2>
         <DataTable columns={paymentColumns} rows={s.payments} rowKey={(p) => p.id} />
       </Card>
+
+      {hasReturns && (
+        <Card data-testid="sale-returns">
+          <h2 className="mb-2 text-sm font-semibold text-slate-700">{t('detail.returnsTitle')}</h2>
+          <DataTable columns={returnColumns} rows={s.returns} rowKey={(r) => r.id} />
+          {s.status === 'completed' && (
+            <p className="mt-2 text-xs text-slate-500">{t('detail.noCancelWithReturns')}</p>
+          )}
+        </Card>
+      )}
+
+      {returnOpen && <ReturnModal sale={s} onClose={() => setReturnOpen(false)} />}
 
       <Modal
         open={cancelOpen}

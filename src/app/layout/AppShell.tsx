@@ -10,6 +10,7 @@ import { Button, toast } from '@/shared/ui'
 import { BranchSwitcher } from './BranchSwitcher'
 import { ConnectionIndicator, OfflineBanner } from './ConnectionIndicator'
 import { activeNavPath, filterNav, navItems } from './nav'
+import { useNavBadges } from './useNavBadges'
 
 export function AppShell() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -22,6 +23,8 @@ export function AppShell() {
   const items = filterNav(navItems, user?.capabilities ?? [])
   const { pathname } = useLocation()
   const activePath = activeNavPath(pathname, items)
+  // qabul qiluvchi nuqtaga: kutilayotgan ko'chirishlar soni (transfer.* xabari bilan yangilanadi)
+  const badges = useNavBadges()
 
   const onLogout = async () => {
     await logout()
@@ -44,6 +47,7 @@ export function AppShell() {
                 active={child.to === activePath}
                 icon={child.icon}
                 label={t(`nav:${child.labelKey}`)}
+                badge={child.badge ? badges[child.badge] : 0}
                 onClick={() => setMobileOpen(false)}
               />
             ))}
@@ -155,12 +159,14 @@ function NavItemLink({
   active,
   icon: Icon,
   label,
+  badge = 0,
   onClick,
 }: {
   to: string
   active: boolean
   icon: typeof Menu
   label: string
+  badge?: number
   onClick?: () => void
 }) {
   return (
@@ -174,7 +180,15 @@ function NavItemLink({
       )}
     >
       <Icon className="size-4 shrink-0" />
-      {label}
+      <span className="flex-1">{label}</span>
+      {badge > 0 && (
+        <span
+          className="rounded-full bg-sky-500 px-1.5 text-xs font-semibold text-white"
+          data-testid="nav-badge"
+        >
+          {badge}
+        </span>
+      )}
     </Link>
   )
 }

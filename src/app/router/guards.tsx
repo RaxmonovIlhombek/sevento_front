@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react'
 import { Navigate, useLocation } from 'react-router'
 
-import { useAuthStore, useCapability } from '@/features/auth'
+import { useAuthStore } from '@/features/auth'
 import { PageSpinner } from '@/shared/ui'
+
+import { hasCapability } from '../layout/nav'
 
 export function RequireAuth({ children }: { children: ReactNode }) {
   const status = useAuthStore((s) => s.status)
@@ -21,9 +23,15 @@ export function RedirectIfAuthed({ children }: { children: ReactNode }) {
   return children
 }
 
-/** Huquq bo'lmasa /403. Backend baribir tekshiradi — bu faqat qulaylik. */
-export function RequireCapability({ cap, children }: { cap: string; children: ReactNode }) {
-  const allowed = useCapability(cap)
+/** Huquq bo'lmasa /403 (ro'yxat — birortasi yetarli). Backend baribir tekshiradi — bu qulaylik. */
+export function RequireCapability({
+  cap,
+  children,
+}: {
+  cap: string | readonly string[]
+  children: ReactNode
+}) {
+  const allowed = useAuthStore((s) => hasCapability(s.user?.capabilities ?? [], cap))
   if (!allowed) return <Navigate to="/403" replace />
   return children
 }

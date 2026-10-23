@@ -35,6 +35,15 @@ export function TodaySales() {
                 {t('summary.cancelled', { count: data.cancelled_count })}
               </p>
             )}
+            {data.returns_count > 0 && (
+              <p className="text-xs text-amber-700" data-testid="today-returns">
+                {t('summary.returns', {
+                  count: data.returns_count,
+                  total: formatNumber(data.returns_total_base, 2),
+                  base: data.base_currency,
+                })}
+              </p>
+            )}
           </div>
           <div>
             <p className="text-xs font-semibold text-slate-500 uppercase">{t('summary.revenue')}</p>

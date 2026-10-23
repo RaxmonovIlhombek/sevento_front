@@ -51,7 +51,16 @@ export const invalidationRules: Record<string, Rule> = {
   },
   // kassa smenasi, qo'lda kirim-chiqim
   'cash.updated': { keys: () => [queryKeys.payments.all], debounceMs: 500 },
-  // 7-bosqich: 'transfer.*'; 8-bosqich: 'report.ready' / 'report.failed'
+  // ko'chirish holati ikkala nuqtada (ro'yxat, hujjat, menyudagi "kutilmoqda" soni, qoldiq)
+  'transfer.sent': { keys: () => [queryKeys.inventory.all] },
+  'transfer.received': { keys: () => [queryKeys.inventory.all] },
+  'transfer.cancelled': { keys: () => [queryKeys.inventory.all] },
+  // qaytarish: savdolar (qaytarilgan summa), qaytarishlar ro'yxati, kassa/qarz
+  'sale_return.completed': {
+    keys: () => [queryKeys.sales.all, queryKeys.payments.all],
+    debounceMs: 500,
+  },
+  // 8-bosqich: 'report.ready' / 'report.failed'
 }
 
 export function keysFor(message: RealtimeMessage): QueryKey[] | null {

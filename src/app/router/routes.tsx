@@ -7,6 +7,7 @@ import { DashboardPage } from '@/features/dashboard'
 import { PageSpinner } from '@/shared/ui'
 
 import { AppShell } from '../layout/AppShell'
+import { TRANSFER_VIEW_CAPS } from '../layout/nav'
 import { ErrorPage, ForbiddenPage, NotFoundPage } from '../pages/StatusPages'
 import { RedirectIfAuthed, RequireAuth, RequireCapability } from './guards'
 
@@ -31,10 +32,21 @@ const inventory = () => import('@/features/inventory')
 const StockPage = lazy(() => inventory().then((m) => ({ default: m.StockPage })))
 const MovementsPage = lazy(() => inventory().then((m) => ({ default: m.MovementsPage })))
 const ProductStockPage = lazy(() => inventory().then((m) => ({ default: m.ProductStockPage })))
+const TransfersPage = lazy(() => inventory().then((m) => ({ default: m.TransfersPage })))
+const TransferPage = lazy(() => inventory().then((m) => ({ default: m.TransferPage })))
+const StockCountsPage = lazy(() => inventory().then((m) => ({ default: m.StockCountsPage })))
+const StockCountPage = lazy(() => inventory().then((m) => ({ default: m.StockCountPage })))
+const WriteOffsPage = lazy(() => inventory().then((m) => ({ default: m.WriteOffsPage })))
+const WriteOffPage = lazy(() => inventory().then((m) => ({ default: m.WriteOffPage })))
+const WriteOffReasonsPage = lazy(() =>
+  inventory().then((m) => ({ default: m.WriteOffReasonsPage })),
+)
 const sales = () => import('@/features/sales')
 const PosPage = lazy(() => sales().then((m) => ({ default: m.PosPage })))
 const SalesPage = lazy(() => sales().then((m) => ({ default: m.SalesPage })))
 const SaleDetailPage = lazy(() => sales().then((m) => ({ default: m.SaleDetailPage })))
+const ReturnsPage = lazy(() => sales().then((m) => ({ default: m.ReturnsPage })))
+const ReturnDetailPage = lazy(() => sales().then((m) => ({ default: m.ReturnDetailPage })))
 const payments = () => import('@/features/payments')
 const CashPage = lazy(() => payments().then((m) => ({ default: m.CashPage })))
 const PaymentMethodsPage = lazy(() => payments().then((m) => ({ default: m.PaymentMethodsPage })))
@@ -50,7 +62,10 @@ const ExpenseTypesPage = lazy(() => purchasing().then((m) => ({ default: m.Expen
 
 const lazyPage = (element: ReactNode) => <Suspense fallback={<PageSpinner />}>{element}</Suspense>
 
-const guarded = (cap: string, element: ReactNode) => (
+const COUNT_VIEW = ['inventory.counts.manage', 'inventory.view_cost'] as const
+const WRITE_OFF_VIEW = ['inventory.writeoffs.manage', 'inventory.view_cost'] as const
+
+const guarded = (cap: string | readonly string[], element: ReactNode) => (
   <RequireCapability cap={cap}>
     <Suspense fallback={<PageSpinner />}>{element}</Suspense>
   </RequireCapability>
@@ -92,6 +107,8 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: guarded('sales.view', <SalesPage />) },
           { path: 'pos', element: guarded('sales.create', <PosPage />) },
+          { path: 'returns', element: guarded('sales.view', <ReturnsPage />) },
+          { path: 'returns/:id', element: guarded('sales.view', <ReturnDetailPage />) },
           { path: ':id', element: guarded('sales.view', <SaleDetailPage />) },
         ],
       },
@@ -107,6 +124,20 @@ export const router = createBrowserRouter([
           { path: 'stock', element: guarded('inventory.view', <StockPage />) },
           { path: 'movements', element: guarded('inventory.view', <MovementsPage />) },
           { path: 'products/:id', element: guarded('inventory.view', <ProductStockPage />) },
+          { path: 'transfers', element: guarded(TRANSFER_VIEW_CAPS, <TransfersPage />) },
+          {
+            path: 'transfers/new',
+            element: guarded('inventory.transfers.create', <TransferPage />),
+          },
+          { path: 'transfers/:id', element: guarded(TRANSFER_VIEW_CAPS, <TransferPage />) },
+          { path: 'counts', element: guarded(COUNT_VIEW, <StockCountsPage />) },
+          { path: 'counts/:id', element: guarded(COUNT_VIEW, <StockCountPage />) },
+          { path: 'write-offs', element: guarded(WRITE_OFF_VIEW, <WriteOffsPage />) },
+          {
+            path: 'write-offs/new',
+            element: guarded('inventory.writeoffs.manage', <WriteOffPage />),
+          },
+          { path: 'write-offs/:id', element: guarded(WRITE_OFF_VIEW, <WriteOffPage />) },
         ],
       },
       {
@@ -144,6 +175,10 @@ export const router = createBrowserRouter([
           {
             path: 'payment-methods',
             element: guarded('settings.manage', <PaymentMethodsPage />),
+          },
+          {
+            path: 'write-off-reasons',
+            element: guarded('settings.manage', <WriteOffReasonsPage />),
           },
         ],
       },

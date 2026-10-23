@@ -27,5 +27,14 @@
   "debtOverdue": "Muddati o'tgan qarz: {{customer}}",
   "debtOverdueText": "{{amount}} {{currency}} — {{days}} kun o'tdi",
   "creditWarning": "Kredit limitiga yaqin: {{customer}}",
-  "creditWarningText": "{{percent}}% ishlatildi ({{used}} / {{limit}} {{base}})"
+  "creditWarningText": "{{percent}}% ishlatildi ({{used}} / {{limit}} {{base}})",
+  "transferIncoming": "Yangi ko'chirish keldi: {{number}}",
+  "transferIncomingText": "{{from}} → {{to}}, {{count}} ta tovar. Qabul qilishni kutmoqda",
+  "transferReceived": "Ko'chirish qabul qilindi: {{number}}",
+  "transferReceivedText": "{{to}} qabul qildi",
+  "transferShortage": "Ko'chirishda kamomad: {{number}}",
+  "transferShortageText": "{{to}}: {{items}}",
+  "transferCancelled": "Ko'chirish bekor qilindi: {{number}}",
+  "transferCancelledText": "{{from}}: {{reason}}",
+  "open": "Ochish"
 }

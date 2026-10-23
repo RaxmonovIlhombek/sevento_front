@@ -119,7 +119,8 @@
       "debt": "Nasiya",
       "payment": "To'lov",
       "refund": "To'lov qaytarildi",
-      "cancel": "Qarz bekor qilindi"
+      "cancel": "Qarz bekor qilindi",
+      "return": "Tovar qaytarildi"
     }
   },
   "journal": {

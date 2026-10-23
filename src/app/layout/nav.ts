@@ -3,6 +3,11 @@ import {
   BookOpen,
   Boxes,
   ArrowLeftRight,
+  ArrowRightLeft,
+  ClipboardCheck,
+  ListX,
+  PackageX,
+  Undo2,
   Building2,
   ClipboardList,
   Coins,
@@ -30,9 +35,19 @@ export interface NavItem {
   to?: string
   labelKey: string
   icon: LucideIcon
-  capability?: string
+  /** Bitta huquq yoki ro'yxat (birortasi yetarli) */
+  capability?: string | readonly string[]
+  /** Menyuda son ko'rsatkichi (masalan qabul qilinishi kutilayotgan ko'chirishlar) */
+  badge?: 'incomingTransfers'
   children?: NavItem[]
 }
+
+/** Ko'chirishlarni ko'ra oladiganlar (backend TransferViewSet bilan bir xil). */
+export const TRANSFER_VIEW_CAPS = [
+  'inventory.transfers.create',
+  'inventory.transfers.receive',
+  'inventory.view_cost',
+] as const
 
 /** Menyu. capability berilmagan band hammaga ko'rinadi; bolalari bo'sh qolgan guruh yashiriladi. */
 export const navItems: NavItem[] = [
@@ -43,6 +58,7 @@ export const navItems: NavItem[] = [
     children: [
       { to: '/sales/pos', labelKey: 'pos', icon: ShoppingCart, capability: 'sales.create' },
       { to: '/sales', labelKey: 'salesList', icon: Receipt, capability: 'sales.view' },
+      { to: '/sales/returns', labelKey: 'returns', icon: Undo2, capability: 'sales.view' },
     ],
   },
   {
@@ -70,6 +86,25 @@ export const navItems: NavItem[] = [
         labelKey: 'movements',
         icon: ArrowLeftRight,
         capability: 'inventory.view',
+      },
+      {
+        to: '/inventory/transfers',
+        labelKey: 'transfers',
+        icon: ArrowRightLeft,
+        capability: TRANSFER_VIEW_CAPS,
+        badge: 'incomingTransfers',
+      },
+      {
+        to: '/inventory/counts',
+        labelKey: 'counts',
+        icon: ClipboardCheck,
+        capability: ['inventory.counts.manage', 'inventory.view_cost'],
+      },
+      {
+        to: '/inventory/write-offs',
+        labelKey: 'writeOffs',
+        icon: PackageX,
+        capability: ['inventory.writeoffs.manage', 'inventory.view_cost'],
       },
       {
         to: '/purchasing/purchases',
@@ -136,6 +171,12 @@ export const navItems: NavItem[] = [
         capability: 'settings.manage',
       },
       {
+        to: '/settings/write-off-reasons',
+        labelKey: 'writeOffReasons',
+        icon: ListX,
+        capability: 'settings.manage',
+      },
+      {
         to: '/settings/system',
         labelKey: 'system',
         icon: SlidersHorizontal,
@@ -146,9 +187,18 @@ export const navItems: NavItem[] = [
   { to: '/audit', labelKey: 'audit', icon: ScrollText, capability: 'audit.view' },
 ]
 
+export function hasCapability(
+  capabilities: readonly string[],
+  required: string | readonly string[] | undefined,
+): boolean {
+  if (!required) return true
+  if (typeof required === 'string') return capabilities.includes(required)
+  return required.some((c) => capabilities.includes(c))
+}
+
 export function filterNav(items: NavItem[], capabilities: readonly string[]): NavItem[] {
   return items.flatMap((item) => {
-    if (item.capability && !capabilities.includes(item.capability)) return []
+    if (!hasCapability(capabilities, item.capability)) return []
     if (item.children) {
       const children = filterNav(item.children, capabilities)
       return children.length ? [{ ...item, children }] : []

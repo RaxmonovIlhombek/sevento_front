@@ -13,7 +13,9 @@ import {
   websocketUrl,
   type RealtimeMessage,
 } from '@/shared/realtime'
-import { toast } from '@/shared/ui'
+import { toast, useToastStore } from '@/shared/ui'
+
+import { transferNotice } from './transferNotice'
 
 const OFFLINE_POLL_MS = 30_000
 
@@ -27,8 +29,15 @@ function startOfflinePolling() {
   }, OFFLINE_POLL_MS)
 }
 
+const TRANSFER_TOAST_MS = 10_000 // omborchi ko'rib ulgurishi uchun uzunroq
+
 function handleSideEffects(message: RealtimeMessage) {
   const auth = useAuthStore.getState()
+  const notice = transferNotice(message, auth.user)
+  if (notice) {
+    useToastStore.getState().push({ ...notice, duration: TRANSFER_TOAST_MS })
+    return
+  }
   switch (message.type) {
     case 'currency.rate_updated': {
       const rates =

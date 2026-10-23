@@ -57,6 +57,18 @@
     "customer.credit_limit_warning": "Kredit limitiga yaqinlashdi",
     "cash_shift.opened": "Kassa smenasi ochildi",
     "cash_shift.closed": "Kassa smenasi yopildi",
-    "cash_entry.created": "Kassaga qo'lda yozuv"
+    "cash_entry.created": "Kassaga qo'lda yozuv",
+    "transfer.created": "Ko'chirish yaratildi",
+    "transfer.sent": "Ko'chirish jo'natildi",
+    "transfer.received": "Ko'chirish qabul qilindi",
+    "transfer.cancelled": "Ko'chirish bekor qilindi",
+    "stock_count.created": "Inventarizatsiya ochildi",
+    "stock_count.completed": "Inventarizatsiya yakunlandi",
+    "stock_count.cancelled": "Inventarizatsiya bekor qilindi",
+    "write_off_reason.saved": "Hisobdan chiqarish sababi saqlandi",
+    "write_off.completed": "Hisobdan chiqarildi",
+    "write_off.cancelled": "Hisobdan chiqarish bekor qilindi",
+    "sale_return.completed": "Savdo qaytarildi",
+    "debt.reduced": "Qarz qaytarish hisobiga kamaydi"
   }
 }

@@ -1,6 +1,6 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
-import { api } from '@/shared/api/client'
+import { api, newIdempotencyKey } from '@/shared/api/client'
 import { queryKeys } from '@/shared/api/queryKeys'
 import type {
   DailySummary,
@@ -10,6 +10,9 @@ import type {
   PosProduct,
   SaleDetail,
   SaleList,
+  SaleReturnDetail,
+  SaleReturnList,
+  SaleReturnWriteRequest,
   SaleWriteRequest,
 } from '@/shared/api/types'
 
@@ -36,6 +39,10 @@ export const salesApi = {
       ...query,
       price_type: query.price_type ?? undefined,
     }),
+  returns: (params: ListParams) => api.get<Paginated<SaleReturnList>>('/sales/returns/', params),
+  returnDetail: (id: number | string) => api.get<SaleReturnDetail>(`/sales/returns/${id}/`),
+  createReturn: (body: SaleReturnWriteRequest) =>
+    api.post<SaleReturnDetail>('/sales/returns/', body, { idempotencyKey: newIdempotencyKey() }),
   summary: (params: { date?: string; branch?: number | null }) =>
     api.get<DailySummary>('/sales/summary/', {
       date: params.date,
@@ -109,6 +116,37 @@ export function useCancelSale() {
     onSuccess: (sale) => {
       qc.setQueryData(queryKeys.sales.detail(sale.id), sale)
       invalidateAfterSale(qc)
+    },
+  })
+}
+
+// --- qaytarish ---
+
+export function useReturns(params: ListParams) {
+  return useQuery({
+    queryKey: queryKeys.sales.returns(params),
+    queryFn: () => salesApi.returns(params),
+    placeholderData: keepPreviousData,
+  })
+}
+
+export function useReturn(id: number | string | undefined) {
+  return useQuery({
+    queryKey: queryKeys.sales.returnDetail(id ?? ''),
+    queryFn: () => salesApi.returnDetail(id!),
+    enabled: id !== undefined,
+  })
+}
+
+/** Qaytarish: savdo, kassa/qarz va ombor keshlari yangilanadi. */
+export function useCreateReturn() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: salesApi.createReturn,
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: queryKeys.sales.all })
+      void qc.invalidateQueries({ queryKey: queryKeys.payments.all })
+      void qc.invalidateQueries({ queryKey: queryKeys.inventory.all })
     },
   })
 }

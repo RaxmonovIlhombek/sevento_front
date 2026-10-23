@@ -108,6 +108,22 @@ describe('RealtimeClient', () => {
     expect(messages[0].type).toBe('stock.changed')
   })
 
+  it('bir xil id li xabar (ikki guruh orqali) bir marta uzatiladi; id siz — har safar', async () => {
+    const ws = await connectAndAuth()
+    const sent = { id: 'abc', type: 'transfer.sent', payload: { transfer_id: 1 }, timestamp: 't' }
+    ws.serverSend(sent)
+    ws.serverSend(sent)
+    ws.serverSend({ ...sent, id: 'def' })
+    ws.serverSend({ type: 'stock.changed', payload: {}, timestamp: 't' })
+    ws.serverSend({ type: 'stock.changed', payload: {}, timestamp: 't' })
+    expect(messages.map((m) => m.id ?? m.type)).toEqual([
+      'abc',
+      'def',
+      'stock.changed',
+      'stock.changed',
+    ])
+  })
+
   it('uzilganda backoff bilan yangi ticket olib qayta ulanadi', async () => {
     const ws = await connectAndAuth()
     ws.serverClose(1006)

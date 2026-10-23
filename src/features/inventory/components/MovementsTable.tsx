@@ -6,12 +6,9 @@ import { cn } from '@/shared/lib/cn'
 import { formatDateTime } from '@/shared/lib/date'
 import { formatNumber } from '@/shared/lib/money'
 import { DataTable, type Column } from '@/shared/ui'
+import { documentRoute } from '@/shared/lib/documentRoutes'
 
 /** Hujjat turi → frontend sahifasi (keyingi bosqichlarda savdo, ko'chirish qo'shiladi). */
-const DOCUMENT_ROUTES: Record<string, (id: number) => string> = {
-  purchase: (id) => `/purchasing/purchases/${id}`,
-  sale: (id) => `/sales/${id}`,
-}
 
 export function MovementsTable({
   rows,
@@ -102,10 +99,10 @@ export function MovementsTable({
       header: t('movements.document'),
       className: 'whitespace-nowrap',
       render: (m) => {
-        const route = DOCUMENT_ROUTES[m.document_type]
+        const route = documentRoute(m.document_type, m.document_id)
         const label = m.document_number || `${m.document_type} #${m.document_id}`
         return route ? (
-          <Link to={route(m.document_id)} className="text-brand-700 hover:underline">
+          <Link to={route} className="text-brand-700 hover:underline">
             {label}
           </Link>
         ) : (

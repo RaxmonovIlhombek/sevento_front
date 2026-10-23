@@ -512,6 +512,113 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/inventory/counts/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Inventarizatsiya: yaratish → counted (sanash; qatorlar — /counts/{id}/items/) → complete. */
+        get: operations["inventory_counts_list"];
+        put?: never;
+        /** @description Inventarizatsiya: yaratish → counted (sanash; qatorlar — /counts/{id}/items/) → complete. */
+        post: operations["inventory_counts_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/counts/{count_pk}/items/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Inventarizatsiya qatorlari (sahifalangan): search, state=counted|uncounted|diff.
+         *
+         *     current_quantity — hozirgi qoldiq (qoralamada yakunlash shu bilan solishtiradi).
+         */
+        get: operations["inventory_counts_items_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/counts/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Inventarizatsiya: yaratish → counted (sanash; qatorlar — /counts/{id}/items/) → complete. */
+        get: operations["inventory_counts_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/counts/{id}/cancel/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Inventarizatsiya: yaratish → counted (sanash; qatorlar — /counts/{id}/items/) → complete. */
+        post: operations["inventory_counts_cancel_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/counts/{id}/complete/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Inventarizatsiya: yaratish → counted (sanash; qatorlar — /counts/{id}/items/) → complete. */
+        post: operations["inventory_counts_complete_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/counts/{id}/counted/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Sanalgan miqdorlarni saqlash (bir nechta qator). null — sanalmagan holatga qaytarish. */
+        post: operations["inventory_counts_counted_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/inventory/movements/": {
         parameters: {
             query?: never;
@@ -579,6 +686,240 @@ export interface paths {
         head?: never;
         /** @description Qoldiqlar (o'z nuqtalari). PATCH — faqat nuqtaga xos minimal qoldiq (inventory.manage). */
         patch: operations["inventory_stock_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/inventory/transfers/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Nuqtalar orasida ko'chirish: qoralama → send → receive (farq bilan ham) | cancel.
+         *
+         *     Qabul qiluvchi nuqta qoralamani ko'rmaydi. Holat o'zgarishi ikkala nuqtaga WebSocket orqali.
+         */
+        get: operations["inventory_transfers_list"];
+        put?: never;
+        /**
+         * @description Nuqtalar orasida ko'chirish: qoralama → send → receive (farq bilan ham) | cancel.
+         *
+         *     Qabul qiluvchi nuqta qoralamani ko'rmaydi. Holat o'zgarishi ikkala nuqtaga WebSocket orqali.
+         */
+        post: operations["inventory_transfers_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/transfers/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Nuqtalar orasida ko'chirish: qoralama → send → receive (farq bilan ham) | cancel.
+         *
+         *     Qabul qiluvchi nuqta qoralamani ko'rmaydi. Holat o'zgarishi ikkala nuqtaga WebSocket orqali.
+         */
+        get: operations["inventory_transfers_retrieve"];
+        /**
+         * @description Nuqtalar orasida ko'chirish: qoralama → send → receive (farq bilan ham) | cancel.
+         *
+         *     Qabul qiluvchi nuqta qoralamani ko'rmaydi. Holat o'zgarishi ikkala nuqtaga WebSocket orqali.
+         */
+        put: operations["inventory_transfers_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * @description Nuqtalar orasida ko'chirish: qoralama → send → receive (farq bilan ham) | cancel.
+         *
+         *     Qabul qiluvchi nuqta qoralamani ko'rmaydi. Holat o'zgarishi ikkala nuqtaga WebSocket orqali.
+         */
+        patch: operations["inventory_transfers_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/inventory/transfers/{id}/cancel/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * @description Nuqtalar orasida ko'chirish: qoralama → send → receive (farq bilan ham) | cancel.
+         *
+         *     Qabul qiluvchi nuqta qoralamani ko'rmaydi. Holat o'zgarishi ikkala nuqtaga WebSocket orqali.
+         */
+        post: operations["inventory_transfers_cancel_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/transfers/{id}/receive/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Qabul: items berilmasa hammasi to'liq; kam kelgan qism avtomatik hisobdan chiqariladi. */
+        post: operations["inventory_transfers_receive_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/transfers/{id}/send/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Jo'natish: manbadan FIFO chiqim. Qoldiq yetmasa 409 insufficient_stock (qator bilan). */
+        post: operations["inventory_transfers_send_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/transfers/destinations/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qabul qiluvchi nuqta tanlovi: barcha faol nuqtalar (begona nuqtalar ham). */
+        get: operations["inventory_transfers_destinations_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/transfers/incoming/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Foydalanuvchi nuqtalariga jo'natilgan, hali qabul qilinmaganlar soni (menyu nishoni). */
+        get: operations["inventory_transfers_incoming_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/write-off-reasons/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Hisobdan chiqarish sabablari (ma'lumotnoma). Tizim sababi qo'lda tanlanmaydi. */
+        get: operations["inventory_write_off_reasons_list"];
+        put?: never;
+        /** @description Hisobdan chiqarish sabablari (ma'lumotnoma). Tizim sababi qo'lda tanlanmaydi. */
+        post: operations["inventory_write_off_reasons_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/write-off-reasons/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description Hisobdan chiqarish sabablari (ma'lumotnoma). Tizim sababi qo'lda tanlanmaydi. */
+        put: operations["inventory_write_off_reasons_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Hisobdan chiqarish sabablari (ma'lumotnoma). Tizim sababi qo'lda tanlanmaydi. */
+        patch: operations["inventory_write_off_reasons_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/inventory/write-offs/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Hisobdan chiqarish: POST darhol yakunlaydi (FIFO chiqim); cancel — asl partiyalarga. */
+        get: operations["inventory_write_offs_list"];
+        put?: never;
+        /** @description Hisobdan chiqarish: POST darhol yakunlaydi (FIFO chiqim); cancel — asl partiyalarga. */
+        post: operations["inventory_write_offs_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/write-offs/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Hisobdan chiqarish: POST darhol yakunlaydi (FIFO chiqim); cancel — asl partiyalarga. */
+        get: operations["inventory_write_offs_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/write-offs/{id}/cancel/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Hisobdan chiqarish: POST darhol yakunlaydi (FIFO chiqim); cancel — asl partiyalarga. */
+        post: operations["inventory_write_offs_cancel_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/api/v1/payments/cash-categories/": {
@@ -1280,6 +1621,41 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sales/returns/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qaytarishlar. POST — tovar omborga, summa qarzdan ayiriladi, qolgani mijozga qaytariladi. */
+        get: operations["sales_returns_list"];
+        put?: never;
+        /** @description Qaytarishlar. POST — tovar omborga, summa qarzdan ayiriladi, qolgani mijozga qaytariladi. */
+        post: operations["sales_returns_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sales/returns/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qaytarishlar. POST — tovar omborga, summa qarzdan ayiriladi, qolgani mijozga qaytariladi. */
+        get: operations["sales_returns_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/sales/summary/": {
         parameters: {
             query?: never;
@@ -1460,6 +1836,11 @@ export interface components {
             /** Format: date-time */
             readonly updated_at: string;
         };
+        BranchBrief: {
+            id: number;
+            code: string;
+            name: string;
+        };
         BranchRequest: {
             /** @description Hujjat raqamlarida ishlatiladi */
             code: string;
@@ -1612,6 +1993,14 @@ export interface components {
             /** Format: decimal */
             landed_unit_cost_base: string;
         };
+        CountedLineRequest: {
+            product: number;
+            /** Format: decimal */
+            counted_quantity: string | null;
+        };
+        CountedWriteRequest: {
+            items: components["schemas"]["CountedLineRequest"][];
+        };
         CreditStatus: {
             /** Format: decimal */
             limit_base: string;
@@ -1746,6 +2135,9 @@ export interface components {
             total_base: string;
             /** Format: decimal */
             cost_base: string | null;
+            returns_count: number;
+            /** Format: decimal */
+            returns_total_base: string;
             /** Format: decimal */
             profit_base: string | null;
             base_currency: string;
@@ -1764,6 +2156,11 @@ export interface components {
             readonly amount: string;
             /** Format: decimal */
             readonly paid_amount: string;
+            /**
+             * Format: decimal
+             * @description qaytarilgan tovar summasi
+             */
+            readonly returned_amount: string;
             /** Format: decimal */
             readonly remaining: string;
             /** Format: date */
@@ -1796,6 +2193,10 @@ export interface components {
          * @enum {string}
          */
         DebtStatusEnum: "open" | "paid" | "cancelled";
+        DocumentRef: {
+            id: number;
+            number: string;
+        };
         ErrorBody: {
             code: string;
             message: string;
@@ -1852,6 +2253,12 @@ export interface components {
             db: boolean;
             redis: boolean;
         };
+        IncomingTransfers: {
+            count: number;
+        };
+        InventoryCancelRequest: {
+            reason: string;
+        };
         LatestRate: {
             currency: number;
             code: string;
@@ -1889,9 +2296,10 @@ export interface components {
          *     * `payment` - To'lov
          *     * `refund` - To'lov qaytarildi
          *     * `cancel` - Qarz bekor qilindi
+         *     * `return` - Tovar qaytarildi
          * @enum {string}
          */
-        LedgerEntryTypeEnum: "debt" | "payment" | "refund" | "cancel";
+        LedgerEntryTypeEnum: "debt" | "payment" | "refund" | "cancel" | "return";
         /**
          * @description * `info` - info
          *     * `warning` - warning
@@ -1899,6 +2307,11 @@ export interface components {
          * @enum {string}
          */
         LevelEnum: "info" | "warning" | "error";
+        LineWriteRequest: {
+            product: number;
+            /** Format: decimal */
+            quantity: string;
+        };
         LoginRequest: {
             username: string;
             password: string;
@@ -1924,14 +2337,17 @@ export interface components {
          *     * `sale_out` - Savdo
          *     * `sale_cancel` - Savdo bekor qilindi
          *     * `sale_return_in` - Qaytarish
+         *     * `sale_return_cancel` - Qaytarish bekor qilindi
          *     * `transfer_out` - Ko'chirish (jo'natildi)
          *     * `transfer_in` - Ko'chirish (qabul qilindi)
+         *     * `transfer_cancel` - Ko'chirish bekor qilindi
          *     * `count_surplus` - Inventarizatsiya: ortiqcha
          *     * `count_shortage` - Inventarizatsiya: kamomad
          *     * `write_off` - Hisobdan chiqarish
+         *     * `write_off_cancel` - Hisobdan chiqarish bekor qilindi
          * @enum {string}
          */
-        MovementTypeEnum: "purchase_in" | "purchase_cancel" | "sale_out" | "sale_cancel" | "sale_return_in" | "transfer_out" | "transfer_in" | "count_surplus" | "count_shortage" | "write_off";
+        MovementTypeEnum: "purchase_in" | "purchase_cancel" | "sale_out" | "sale_cancel" | "sale_return_in" | "sale_return_cancel" | "transfer_out" | "transfer_in" | "transfer_cancel" | "count_surplus" | "count_shortage" | "write_off" | "write_off_cancel";
         NoticeRequest: {
             /** @default info */
             level: components["schemas"]["LevelEnum"];
@@ -2091,6 +2507,39 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["SaleList"][];
         };
+        PaginatedSaleReturnListList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["SaleReturnList"][];
+        };
+        PaginatedStockCountItemList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["StockCountItem"][];
+        };
+        PaginatedStockCountListList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["StockCountList"][];
+        };
         PaginatedStockLevelList: {
             /** @example 120 */
             count: number;
@@ -2124,6 +2573,17 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["Supplier"][];
         };
+        PaginatedTransferListList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["TransferList"][];
+        };
         PaginatedUserList: {
             /** @example 120 */
             count: number;
@@ -2134,6 +2594,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["User"][];
+        };
+        PaginatedWriteOffListList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["WriteOffList"][];
         };
         PatchedBranchRequest: {
             /** @description Hujjat raqamlarida ishlatiladi */
@@ -2231,6 +2702,11 @@ export interface components {
             default_branch_id?: number | null;
             /** @default true */
             is_active: boolean;
+        };
+        PatchedWriteOffReasonRequest: {
+            code?: string;
+            name?: string;
+            is_active?: boolean;
         };
         /** @description Hujjat ichida ko'rsatish uchun (savdo tafsiloti, chek). */
         PaymentDetail: {
@@ -2612,6 +3088,13 @@ export interface components {
         RefreshResponse: {
             access: string;
         };
+        /**
+         * @description * `none` - none
+         *     * `partial` - partial
+         *     * `full` - full
+         * @enum {string}
+         */
+        ReturnStateEnum: "none" | "partial" | "full";
         Role: {
             readonly id: number;
             code: string;
@@ -2643,6 +3126,8 @@ export interface components {
             amount: string;
             /** Format: decimal */
             paid_amount: string;
+            /** Format: decimal */
+            returned_amount: string;
             /** Format: decimal */
             remaining: string;
             /** Format: date */
@@ -2692,6 +3177,9 @@ export interface components {
             readonly debt_amount: string;
             /** Format: date */
             readonly due_date: string | null;
+            /** Format: decimal */
+            readonly returned_total: string;
+            readonly return_state: components["schemas"]["ReturnStateEnum"];
             readonly items_count: number;
             /** Format: date-time */
             readonly completed_at: string;
@@ -2708,7 +3196,11 @@ export interface components {
             readonly payments: components["schemas"]["SalePayment"][];
             readonly base_currency: string;
             readonly can_cancel: boolean;
+            readonly can_return: boolean;
             readonly debt: components["schemas"]["SaleDebt"] | null;
+            /** Format: decimal */
+            readonly returned_total_base: string;
+            readonly returns: components["schemas"]["SaleReturnBrief"][];
         };
         /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
         SaleItem: {
@@ -2729,6 +3221,8 @@ export interface components {
             readonly line_total: string;
             /** Format: decimal */
             readonly cost_base: string | null;
+            /** Format: decimal */
+            readonly returned_quantity: string;
         };
         SaleItemWriteRequest: {
             product: number;
@@ -2783,6 +3277,9 @@ export interface components {
             readonly debt_amount: string;
             /** Format: date */
             readonly due_date: string | null;
+            /** Format: decimal */
+            readonly returned_total: string;
+            readonly return_state: components["schemas"]["ReturnStateEnum"];
             readonly items_count: number;
             /** Format: date-time */
             readonly completed_at: string;
@@ -2812,6 +3309,129 @@ export interface components {
             currency: number;
             /** Format: decimal */
             amount: string;
+        };
+        SaleReturnBrief: {
+            readonly id: number;
+            readonly number: string;
+            /**
+             * Format: decimal
+             * @description savdo valyutasida
+             */
+            readonly total: string;
+            /** Format: decimal */
+            readonly debt_reduction: string;
+            /** Format: decimal */
+            readonly refund_amount: string;
+            readonly refund_method_name: string | null;
+            readonly reason: string;
+            readonly created_by_name: string;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
+        SaleReturnDetail: {
+            readonly id: number;
+            readonly number: string;
+            readonly sale: number;
+            readonly sale_number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly customer: number | null;
+            readonly customer_name: string | null;
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /**
+             * Format: decimal
+             * @description savdo valyutasida
+             */
+            readonly total: string;
+            /**
+             * Format: decimal
+             * @description savdo kursi bilan (foyda hisobi uchun)
+             */
+            readonly total_base: string;
+            /** Format: decimal */
+            readonly cost_base: string | null;
+            /** Format: decimal */
+            readonly debt_reduction: string;
+            /** Format: decimal */
+            readonly refund_amount: string;
+            readonly refund_method: number | null;
+            readonly refund_method_name: string | null;
+            readonly reason: string;
+            /** @default 0 */
+            readonly items_count: number;
+            readonly created_by_name: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            readonly items: components["schemas"]["SaleReturnItem"][];
+        };
+        /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
+        SaleReturnItem: {
+            readonly id: number;
+            readonly sale_item: number;
+            readonly product: number;
+            readonly product_name: string;
+            readonly unit_code: string;
+            readonly unit_decimal_places: number;
+            /** Format: decimal */
+            readonly quantity: string;
+            /**
+             * Format: decimal
+             * @description savdo valyutasida
+             */
+            readonly amount: string;
+            /** Format: decimal */
+            readonly cost_base: string | null;
+        };
+        SaleReturnLineRequest: {
+            sale_item: number;
+            /** Format: decimal */
+            quantity: string;
+        };
+        /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
+        SaleReturnList: {
+            readonly id: number;
+            readonly number: string;
+            readonly sale: number;
+            readonly sale_number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly customer: number | null;
+            readonly customer_name: string | null;
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /**
+             * Format: decimal
+             * @description savdo valyutasida
+             */
+            readonly total: string;
+            /**
+             * Format: decimal
+             * @description savdo kursi bilan (foyda hisobi uchun)
+             */
+            readonly total_base: string;
+            /** Format: decimal */
+            readonly cost_base: string | null;
+            /** Format: decimal */
+            readonly debt_reduction: string;
+            /** Format: decimal */
+            readonly refund_amount: string;
+            readonly refund_method: number | null;
+            readonly refund_method_name: string | null;
+            readonly reason: string;
+            /** @default 0 */
+            readonly items_count: number;
+            readonly created_by_name: string;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        SaleReturnWriteRequest: {
+            sale: number;
+            items: components["schemas"]["SaleReturnLineRequest"][];
+            reason: string;
+            /** @description Pul qaytarish turi; bo'sh — naqd */
+            refund_method?: number | null;
         };
         /**
          * @description * `completed` - Yakunlandi
@@ -2888,6 +3508,70 @@ export interface components {
          * @enum {string}
          */
         SourceEnum: "cbu" | "manual";
+        StockCountCreateRequest: {
+            branch: number;
+            category?: number | null;
+            /** @default false */
+            include_zero: boolean;
+            /** @default  */
+            note: string;
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        StockCountItem: {
+            readonly id: number;
+            readonly product: number;
+            readonly product_name: string;
+            readonly product_sku: string;
+            readonly product_barcode: string;
+            readonly unit_code: string;
+            readonly unit_decimal_places: number;
+            readonly category_name: string | null;
+            /** Format: decimal */
+            readonly expected_quantity: string;
+            /** Format: decimal */
+            readonly current_quantity: string | null;
+            /** Format: decimal */
+            readonly counted_quantity: string | null;
+            /** Format: decimal */
+            readonly difference: string;
+            /** Format: decimal */
+            readonly unit_cost_base: string;
+            /** Format: decimal */
+            readonly cost_difference_base: string;
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        StockCountList: {
+            readonly id: number;
+            readonly number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly category: number | null;
+            readonly category_name: string | null;
+            readonly status: components["schemas"]["StockCountStatusEnum"];
+            readonly status_display: string;
+            /** @default 0 */
+            readonly items_count: number;
+            /** @default 0 */
+            readonly counted_count: number;
+            /** Format: decimal */
+            readonly surplus_cost_base: string;
+            /** Format: decimal */
+            readonly shortage_cost_base: string;
+            readonly note: string;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+            readonly completed_by_name: string | null;
+            /** Format: date-time */
+            readonly completed_at: string | null;
+        };
+        /**
+         * @description * `draft` - Sanalmoqda
+         *     * `completed` - Yakunlandi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        StockCountStatusEnum: "draft" | "completed" | "cancelled";
         /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
         StockLevel: {
             readonly id: number;
@@ -2995,6 +3679,120 @@ export interface components {
             ticket: string;
             expires_in: number;
         };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        TransferDetail: {
+            readonly id: number;
+            readonly number: string;
+            readonly from_branch: number;
+            readonly from_branch_name: string;
+            readonly to_branch: number;
+            readonly to_branch_name: string;
+            readonly status: components["schemas"]["TransferStatusEnum"];
+            readonly status_display: string;
+            /** @default 0 */
+            readonly items_count: number;
+            readonly has_discrepancy: boolean;
+            /** Format: decimal */
+            readonly total_cost_base: string;
+            /** Format: decimal */
+            readonly shortage_cost_base: string;
+            readonly note: string;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly sent_at: string | null;
+            /** Format: date-time */
+            readonly received_at: string | null;
+            readonly items: components["schemas"]["TransferItem"][];
+            readonly sent_by_name: string | null;
+            readonly received_by_name: string | null;
+            readonly receive_note: string;
+            readonly cancelled_by_name: string | null;
+            /** Format: date-time */
+            readonly cancelled_at: string | null;
+            readonly cancel_reason: string;
+            readonly shortage_write_off: components["schemas"]["DocumentRef"] | null;
+            readonly allowed: components["schemas"]["TransferPermissions"];
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        TransferItem: {
+            readonly id: number;
+            readonly product: number;
+            readonly product_name: string;
+            readonly product_sku: string;
+            readonly product_barcode: string;
+            readonly unit_code: string;
+            readonly unit_decimal_places: number;
+            /** Format: decimal */
+            readonly quantity: string;
+            /** Format: decimal */
+            readonly quantity_received: string | null;
+            /** Format: decimal */
+            readonly shortage: string;
+            /** Format: decimal */
+            readonly unit_cost_base: string;
+            /** Format: decimal */
+            readonly total_cost_base: string;
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        TransferList: {
+            readonly id: number;
+            readonly number: string;
+            readonly from_branch: number;
+            readonly from_branch_name: string;
+            readonly to_branch: number;
+            readonly to_branch_name: string;
+            readonly status: components["schemas"]["TransferStatusEnum"];
+            readonly status_display: string;
+            /** @default 0 */
+            readonly items_count: number;
+            readonly has_discrepancy: boolean;
+            /** Format: decimal */
+            readonly total_cost_base: string;
+            /** Format: decimal */
+            readonly shortage_cost_base: string;
+            readonly note: string;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly sent_at: string | null;
+            /** Format: date-time */
+            readonly received_at: string | null;
+        };
+        TransferPermissions: {
+            edit: boolean;
+            send: boolean;
+            receive: boolean;
+            cancel: boolean;
+        };
+        TransferReceiveLineRequest: {
+            id: number;
+            /** Format: decimal */
+            quantity_received: string;
+        };
+        /** @description Berilmagan qatorlar to'liq qabul qilingan hisoblanadi. */
+        TransferReceiveRequest: {
+            items?: components["schemas"]["TransferReceiveLineRequest"][];
+            /** @default  */
+            note: string;
+        };
+        /**
+         * @description * `draft` - Qoralama
+         *     * `sent` - Jo'natildi
+         *     * `received` - Qabul qilindi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        TransferStatusEnum: "draft" | "sent" | "received" | "cancelled";
+        TransferWriteRequest: {
+            from_branch: number;
+            to_branch: number;
+            /** @default  */
+            note: string;
+            items: components["schemas"]["LineWriteRequest"][];
+        };
         Unit: {
             readonly id: number;
             code: string;
@@ -3075,6 +3873,96 @@ export interface components {
             default_branch_id?: number | null;
             /** @default true */
             is_active: boolean;
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        WriteOffDetail: {
+            readonly id: number;
+            readonly number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly reason: number;
+            readonly reason_code: string;
+            readonly reason_name: string;
+            readonly status: components["schemas"]["SaleStatusEnum"];
+            readonly status_display: string;
+            /** @default 0 */
+            readonly items_count: number;
+            /** Format: decimal */
+            readonly total_cost_base: string;
+            readonly transfer: number | null;
+            readonly transfer_number: string | null;
+            readonly note: string;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly completed_at: string;
+            readonly items: components["schemas"]["WriteOffItem"][];
+            readonly cancelled_by_name: string | null;
+            /** Format: date-time */
+            readonly cancelled_at: string | null;
+            readonly cancel_reason: string;
+            /** @default false */
+            readonly can_cancel: boolean;
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        WriteOffItem: {
+            readonly id: number;
+            readonly product: number;
+            readonly product_name: string;
+            readonly product_sku: string;
+            readonly product_barcode: string;
+            readonly unit_code: string;
+            readonly unit_decimal_places: number;
+            /** Format: decimal */
+            readonly quantity: string;
+            /** Format: decimal */
+            readonly unit_cost_base: string;
+            /** Format: decimal */
+            readonly total_cost_base: string;
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        WriteOffList: {
+            readonly id: number;
+            readonly number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly reason: number;
+            readonly reason_code: string;
+            readonly reason_name: string;
+            readonly status: components["schemas"]["SaleStatusEnum"];
+            readonly status_display: string;
+            /** @default 0 */
+            readonly items_count: number;
+            /** Format: decimal */
+            readonly total_cost_base: string;
+            readonly transfer: number | null;
+            readonly transfer_number: string | null;
+            readonly note: string;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly completed_at: string;
+        };
+        WriteOffReason: {
+            readonly id: number;
+            code: string;
+            name: string;
+            is_active?: boolean;
+            readonly is_system: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        WriteOffReasonRequest: {
+            code: string;
+            name: string;
+            is_active?: boolean;
+        };
+        WriteOffWriteRequest: {
+            branch: number;
+            reason: number;
+            /** @default  */
+            note: string;
+            items: components["schemas"]["LineWriteRequest"][];
         };
     };
     responses: never;
@@ -4339,6 +5227,214 @@ export interface operations {
             };
         };
     };
+    inventory_counts_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `draft` - Sanalmoqda
+                 *     * `completed` - Yakunlandi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: ("cancelled" | "completed" | "draft")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedStockCountListList"];
+                };
+            };
+        };
+    };
+    inventory_counts_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StockCountCreateRequest"];
+                "multipart/form-data": components["schemas"]["StockCountCreateRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockCountList"];
+                };
+            };
+        };
+    };
+    inventory_counts_items_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `counted` - counted
+                 *     * `uncounted` - uncounted
+                 *     * `diff` - diff
+                 */
+                state?: "counted" | "diff" | "uncounted";
+            };
+            header?: never;
+            path: {
+                count_pk: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedStockCountItemList"];
+                };
+            };
+        };
+    };
+    inventory_counts_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this stock count. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockCountList"];
+                };
+            };
+        };
+    };
+    inventory_counts_cancel_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this stock count. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockCountList"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    inventory_counts_complete_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this stock count. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockCountList"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    inventory_counts_counted_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this stock count. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CountedWriteRequest"];
+                "multipart/form-data": components["schemas"]["CountedWriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockCountList"];
+                };
+            };
+        };
+    };
     inventory_movements_list: {
         parameters: {
             query?: {
@@ -4367,13 +5463,16 @@ export interface operations {
                  *     * `sale_out` - Savdo
                  *     * `sale_cancel` - Savdo bekor qilindi
                  *     * `sale_return_in` - Qaytarish
+                 *     * `sale_return_cancel` - Qaytarish bekor qilindi
                  *     * `transfer_out` - Ko'chirish (jo'natildi)
                  *     * `transfer_in` - Ko'chirish (qabul qilindi)
+                 *     * `transfer_cancel` - Ko'chirish bekor qilindi
                  *     * `count_surplus` - Inventarizatsiya: ortiqcha
                  *     * `count_shortage` - Inventarizatsiya: kamomad
                  *     * `write_off` - Hisobdan chiqarish
+                 *     * `write_off_cancel` - Hisobdan chiqarish bekor qilindi
                  */
-                type?: ("count_shortage" | "count_surplus" | "purchase_cancel" | "purchase_in" | "sale_cancel" | "sale_out" | "sale_return_in" | "transfer_in" | "transfer_out" | "write_off")[];
+                type?: ("count_shortage" | "count_surplus" | "purchase_cancel" | "purchase_in" | "sale_cancel" | "sale_out" | "sale_return_cancel" | "sale_return_in" | "transfer_cancel" | "transfer_in" | "transfer_out" | "write_off" | "write_off_cancel")[];
             };
             header?: never;
             path?: never;
@@ -4491,6 +5590,543 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StockLevel"];
+                };
+            };
+        };
+    };
+    inventory_transfers_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date_from?: string;
+                date_to?: string;
+                /**
+                 * @description * `in` - in
+                 *     * `out` - out
+                 */
+                direction?: "in" | "out";
+                from_branch?: number;
+                has_discrepancy?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `draft` - Qoralama
+                 *     * `sent` - Jo'natildi
+                 *     * `received` - Qabul qilindi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: ("cancelled" | "draft" | "received" | "sent")[];
+                to_branch?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedTransferListList"];
+                };
+            };
+        };
+    };
+    inventory_transfers_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TransferWriteRequest"];
+                "multipart/form-data": components["schemas"]["TransferWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferDetail"];
+                };
+            };
+        };
+    };
+    inventory_transfers_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this transfer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferDetail"];
+                };
+            };
+        };
+    };
+    inventory_transfers_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this transfer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TransferWriteRequest"];
+                "multipart/form-data": components["schemas"]["TransferWriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferDetail"];
+                };
+            };
+        };
+    };
+    inventory_transfers_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this transfer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferList"];
+                };
+            };
+        };
+    };
+    inventory_transfers_cancel_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this transfer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InventoryCancelRequest"];
+                "multipart/form-data": components["schemas"]["InventoryCancelRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    inventory_transfers_receive_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this transfer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["TransferReceiveRequest"];
+                "multipart/form-data": components["schemas"]["TransferReceiveRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    inventory_transfers_send_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this transfer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransferDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    inventory_transfers_destinations_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date_from?: string;
+                date_to?: string;
+                /**
+                 * @description * `in` - in
+                 *     * `out` - out
+                 */
+                direction?: "in" | "out";
+                from_branch?: number;
+                has_discrepancy?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `draft` - Qoralama
+                 *     * `sent` - Jo'natildi
+                 *     * `received` - Qabul qilindi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: ("cancelled" | "draft" | "received" | "sent")[];
+                to_branch?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BranchBrief"][];
+                };
+            };
+        };
+    };
+    inventory_transfers_incoming_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["IncomingTransfers"];
+                };
+            };
+        };
+    };
+    inventory_write_off_reasons_list: {
+        parameters: {
+            query?: {
+                is_active?: boolean;
+                is_system?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteOffReason"][];
+                };
+            };
+        };
+    };
+    inventory_write_off_reasons_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["WriteOffReasonRequest"];
+                "multipart/form-data": components["schemas"]["WriteOffReasonRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteOffReason"];
+                };
+            };
+        };
+    };
+    inventory_write_off_reasons_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this write off reason. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["WriteOffReasonRequest"];
+                "multipart/form-data": components["schemas"]["WriteOffReasonRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteOffReason"];
+                };
+            };
+        };
+    };
+    inventory_write_off_reasons_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this write off reason. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedWriteOffReasonRequest"];
+                "multipart/form-data": components["schemas"]["PatchedWriteOffReasonRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteOffReason"];
+                };
+            };
+        };
+    };
+    inventory_write_offs_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                reason?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `completed` - Yakunlandi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: ("cancelled" | "completed")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedWriteOffListList"];
+                };
+            };
+        };
+    };
+    inventory_write_offs_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["WriteOffWriteRequest"];
+                "multipart/form-data": components["schemas"]["WriteOffWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteOffDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    inventory_write_offs_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this write off. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteOffDetail"];
+                };
+            };
+        };
+    };
+    inventory_write_offs_cancel_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this write off. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["InventoryCancelRequest"];
+                "multipart/form-data": components["schemas"]["InventoryCancelRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WriteOffDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -6169,6 +7805,103 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PosProduct"][];
+                };
+            };
+        };
+    };
+    sales_returns_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                customer?: number;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                sale?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedSaleReturnListList"];
+                };
+            };
+        };
+    };
+    sales_returns_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SaleReturnWriteRequest"];
+                "multipart/form-data": components["schemas"]["SaleReturnWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SaleReturnDetail"];
+                };
+            };
+            /** @description Xato */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    sales_returns_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this sale return. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SaleReturnDetail"];
                 };
             };
         };

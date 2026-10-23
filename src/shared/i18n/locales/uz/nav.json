@@ -30,5 +30,10 @@
   "paymentMethods": "To'lov turlari",
   "customers": "Mijozlar",
   "debts": "Qarzlar",
-  "paymentsJournal": "To'lovlar"
+  "paymentsJournal": "To'lovlar",
+  "transfers": "Ko'chirishlar",
+  "counts": "Inventarizatsiya",
+  "writeOffs": "Hisobdan chiqarish",
+  "writeOffReasons": "Chiqarish sabablari",
+  "returns": "Qaytarishlar"
 }

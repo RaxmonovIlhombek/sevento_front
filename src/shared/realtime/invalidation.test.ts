@@ -102,3 +102,20 @@ describe('nasiya va kassa xabarlari', () => {
     ])
   })
 })
+
+describe('ombor hujjatlari va qaytarish', () => {
+  it("ko'chirish holati o'zgarsa ombor keshlari (ro'yxat, hujjat, kutilayotganlar) yangilanadi", () => {
+    for (const type of ['transfer.sent', 'transfer.received', 'transfer.cancelled']) {
+      expect(invalidationRules[type].keys({})).toEqual([queryKeys.inventory.all])
+    }
+    // hujjat kalitlari ['inventory'] ostida — bitta invalidate yetadi
+    expect(queryKeys.inventory.transfer(5)[0]).toBe('inventory')
+    expect(queryKeys.inventory.incomingTransfers[0]).toBe('inventory')
+  })
+
+  it('qaytarishda savdolar va kassa yangilanadi', () => {
+    const keys = invalidationRules['sale_return.completed'].keys({})
+    expect(keys).toContainEqual(queryKeys.sales.all)
+    expect(keys).toContainEqual(queryKeys.payments.all)
+  })
+})
