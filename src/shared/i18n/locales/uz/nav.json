@@ -18,5 +18,10 @@
   "currencies": "Valyutalar",
   "profile": "Profil",
   "changePassword": "Parolni almashtirish",
-  "password": "Parol"
+  "password": "Parol",
+  "stock": "Qoldiq",
+  "movements": "Harakatlar",
+  "purchases": "Kirimlar",
+  "suppliers": "Yetkazib beruvchilar",
+  "expenseTypes": "Xarajat turlari"
 }

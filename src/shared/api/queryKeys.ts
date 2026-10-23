@@ -40,6 +40,20 @@ export const queryKeys = {
     units: ['catalog', 'units'] as const,
     priceTypes: ['catalog', 'price-types'] as const,
   },
+  inventory: {
+    all: ['inventory'] as const,
+    stock: (params: object) => ['inventory', 'stock', params] as const,
+    batches: (params: object) => ['inventory', 'batches', params] as const,
+    movements: (params: object) => ['inventory', 'movements', params] as const,
+  },
+  purchasing: {
+    all: ['purchasing'] as const,
+    suppliers: (params: object) => ['purchasing', 'suppliers', params] as const,
+    expenseTypes: ['purchasing', 'expense-types'] as const,
+    purchases: (params: object) => ['purchasing', 'purchases', params] as const,
+    purchase: (id: number | string) => ['purchasing', 'purchase', String(id)] as const,
+    preview: (id: number | string) => ['purchasing', 'purchase', String(id), 'preview'] as const,
+  },
   products: {
     all: ['products'] as const,
     list: (params: object) => ['products', 'list', params] as const,

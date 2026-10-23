@@ -18,7 +18,8 @@
     "searchPlaceholder": "Nomi, artikul yoki shtrix-kod",
     "created": "Tovar yaratildi",
     "updated": "Tovar saqlandi",
-    "readOnly": "Ko'rish rejimi — tahrirlash huquqi yo'q"
+    "readOnly": "Ko'rish rejimi — tahrirlash huquqi yo'q",
+    "stockLink": "Qoldiq va harakatlar"
   },
   "prices": {
     "title": "Joriy narxlar",

@@ -42,6 +42,13 @@ export function formatMoney(
   return currency && text !== '—' ? `${text} ${currency}` : text
 }
 
+/** API dagi "25.500" → forma maydoni uchun "25,5" (ortiqcha nollarsiz, o'zbekcha vergul). */
+export function toDecimalInput(value: string | number | null | undefined): string {
+  if (value === null || value === undefined || value === '') return ''
+  const n = Number(value)
+  return Number.isFinite(n) ? String(n).replace('.', ',') : ''
+}
+
 /** Foydalanuvchi kiritgan son (bo'sh joy yoki vergul bilan) → API uchun "12650.45". */
 export function parseDecimalInput(text: string): string {
   return text.replace(/[\s\u00A0]/g, '').replace(',', '.')

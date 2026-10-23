@@ -39,6 +39,23 @@ function handleSideEffects(message: RealtimeMessage) {
       toast.info(i18n.t('currency:rateUpdatedToast'), text)
       return
     }
+    case 'stock.below_minimum': {
+      const p = message.payload as {
+        product_name?: string
+        quantity?: string
+        min_quantity?: string
+        unit?: string
+      }
+      toast.warning(
+        i18n.t('inventory:lowStockToast', { product: p.product_name ?? '' }),
+        i18n.t('inventory:lowStockText', {
+          quantity: formatNumber(p.quantity ?? '0', 3).replace(/,?0+$/, ''),
+          unit: p.unit ?? '',
+          min: formatNumber(p.min_quantity ?? '0', 3).replace(/,?0+$/, ''),
+        }),
+      )
+      return
+    }
     case 'system.notice': {
       const level = String(message.payload.level ?? 'info') as 'info' | 'warning' | 'error'
       const show = toast[level] ?? toast.info

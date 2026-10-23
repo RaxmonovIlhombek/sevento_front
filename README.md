@@ -9,7 +9,8 @@ React 19 + TypeScript + Vite 8. Backend alohida repoda: [sevento_back](https://g
 | 1. Skelet: API klient (refresh, xatolar), auth (cookie), layout, login, foydalanuvchilar/rollar/nuqtalar/tizim sozlamalari/audit sahifalari | ✅ |
 | 2. Realtime klient (ticket, backoff, ping/pong, invalidate xaritasi, holat indikatori, polling fallback) | ✅ |
 | 3. Katalog (tovarlar, narxlar, kategoriya daraxti, ma'lumotnomalar), valyuta kursi, valyutalar | ✅ |
-| 4. Kirim va ombor sahifalari | ⏳ keyingi |
+| 4. Kirim (forma, tannarx oldindan hisobi, qabul, bekor qilish), yetkazib beruvchilar, xarajat turlari, qoldiq, harakatlar, tovar kartasi, minimal qoldiq; qoldiq `stock.changed` bilan jonli | ✅ |
+| 5. Savdo (POS), chek | ⏳ keyingi |
 
 Tuzilma va qoidalar: [docs/architecture.md](docs/architecture.md). Umumiy hujjatlar (arxitektura, ER, hodisalar, WebSocket, huquqlar, bosqichlar) — `sevento_back/docs/`.
 

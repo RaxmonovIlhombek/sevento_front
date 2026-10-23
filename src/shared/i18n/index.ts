@@ -7,7 +7,9 @@ import catalog from './locales/uz/catalog.json'
 import common from './locales/uz/common.json'
 import currency from './locales/uz/currency.json'
 import errors from './locales/uz/errors.json'
+import inventory from './locales/uz/inventory.json'
 import nav from './locales/uz/nav.json'
+import purchasing from './locales/uz/purchasing.json'
 import realtime from './locales/uz/realtime.json'
 import settings from './locales/uz/settings.json'
 import validation from './locales/uz/validation.json'
@@ -25,6 +27,8 @@ export const resources = {
     realtime,
     catalog,
     currency,
+    inventory,
+    purchasing,
   },
 } as const
 

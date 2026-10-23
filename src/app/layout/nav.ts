@@ -2,10 +2,16 @@ import {
   Banknote,
   BookOpen,
   Boxes,
+  ArrowLeftRight,
   Building2,
+  ClipboardList,
   Coins,
   FolderTree,
   Package,
+  PackageCheck,
+  Receipt,
+  Truck,
+  Warehouse,
   LayoutDashboard,
   ScrollText,
   Settings,
@@ -26,6 +32,42 @@ export interface NavItem {
 /** Menyu. capability berilmagan band hammaga ko'rinadi; bolalari bo'sh qolgan guruh yashiriladi. */
 export const navItems: NavItem[] = [
   { to: '/dashboard', labelKey: 'dashboard', icon: LayoutDashboard },
+  {
+    labelKey: 'inventory',
+    icon: Warehouse,
+    children: [
+      {
+        to: '/inventory/stock',
+        labelKey: 'stock',
+        icon: PackageCheck,
+        capability: 'inventory.view',
+      },
+      {
+        to: '/inventory/movements',
+        labelKey: 'movements',
+        icon: ArrowLeftRight,
+        capability: 'inventory.view',
+      },
+      {
+        to: '/purchasing/purchases',
+        labelKey: 'purchases',
+        icon: ClipboardList,
+        capability: 'purchasing.view',
+      },
+      {
+        to: '/purchasing/suppliers',
+        labelKey: 'suppliers',
+        icon: Truck,
+        capability: 'purchasing.view',
+      },
+      {
+        to: '/purchasing/expense-types',
+        labelKey: 'expenseTypes',
+        icon: Receipt,
+        capability: 'purchasing.manage',
+      },
+    ],
+  },
   {
     labelKey: 'catalog',
     icon: Boxes,

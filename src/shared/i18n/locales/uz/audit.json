@@ -36,6 +36,13 @@
     "price_type.saved": "Narx turi saqlandi",
     "product.created": "Tovar yaratildi",
     "product.updated": "Tovar o'zgartirildi",
-    "product.price_changed": "Tovar narxi o'zgardi"
+    "product.price_changed": "Tovar narxi o'zgardi",
+    "stock.below_minimum": "Qoldiq minimaldan kam bo'ldi",
+    "stock.min_quantity_changed": "Minimal qoldiq o'zgartirildi",
+    "supplier.saved": "Yetkazib beruvchi saqlandi",
+    "expense_type.saved": "Xarajat turi saqlandi",
+    "purchase.created": "Kirim hujjati yaratildi",
+    "purchase.received": "Kirim qabul qilindi",
+    "purchase.cancelled": "Kirim bekor qilindi"
   }
 }

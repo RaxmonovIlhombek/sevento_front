@@ -28,5 +28,9 @@
   "currency_code_locked": "Valyuta kodini o'zgartirib bo'lmaydi",
   "currency_required": "Asosiy va so'm valyutasini o'chirib bo'lmaydi",
   "category_cycle": "Kategoriya o'zining ichki kategoriyasiga ko'chirilmaydi",
-  "invalid_price": "Narx manfiy bo'lmasin"
+  "invalid_price": "Narx manfiy bo'lmasin",
+  "insufficient_stock": "Omborda yetarli qoldiq yo'q",
+  "batch_consumed": "Partiyadan tovar sotilgan yoki ko'chirilgan — bekor qilib bo'lmaydi",
+  "purchase_empty": "Kirimda kamida bitta tovar bo'lishi kerak",
+  "branch_locked": "Hujjat nuqtasini o'zgartirib bo'lmaydi"
 }

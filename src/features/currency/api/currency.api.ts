@@ -41,7 +41,8 @@ export function useActiveCurrencies() {
     const active = (query.data ?? []).filter((c) => c.is_active)
     const decimals: Record<string, number> = {}
     for (const c of query.data ?? []) decimals[c.code] = c.decimal_places ?? 2
-    return { currencies: active, decimals, isPending: query.isPending }
+    const base = query.data?.find((c) => c.is_base)?.code ?? ''
+    return { currencies: active, decimals, base, isPending: query.isPending }
   }, [query.data, query.isPending])
 }
 

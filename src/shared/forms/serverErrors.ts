@@ -6,12 +6,16 @@ import { toast } from '@/shared/ui/toast'
 /**
  * Backend validatsiya xatolarini formaga tarqatadi: maydonli → setError, maydonsiz → toast.
  * Maydon nomi formada bo'lmasa (masalan ichki yo'l) ham toast ko'rsatiladi.
+ * knownFields — ro'yxat yoki predikat (field array uchun: f => f.startsWith('items.')).
  */
 export function applyServerErrors<T extends FieldValues>(
   error: unknown,
   setError: UseFormSetError<T>,
-  knownFields?: readonly string[],
+  knownFields?: readonly string[] | ((field: string) => boolean),
 ): void {
+  const isKnown = (field: string) =>
+    !knownFields ||
+    (typeof knownFields === 'function' ? knownFields(field) : knownFields.includes(field))
   if (!isApiError(error)) {
     toast.error(error instanceof Error ? error.message : String(error))
     return
@@ -23,7 +27,7 @@ export function applyServerErrors<T extends FieldValues>(
   const unmatched: string[] = []
   for (const detail of error.details) {
     const field = detail.field
-    if (field && (!knownFields || knownFields.includes(field))) {
+    if (field && isKnown(field)) {
       setError(field as Path<T>, { type: detail.code, message: detail.message })
     } else {
       unmatched.push(field ? `${field}: ${detail.message}` : detail.message)

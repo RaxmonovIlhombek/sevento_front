@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { formatDate, formatDateTime, toIsoDate } from './date'
-import { formatMoney, formatNumber, parseDecimalInput } from './money'
+import { formatMoney, formatNumber, parseDecimalInput, toDecimalInput } from './money'
 
 const NB = '\u00A0'
 
@@ -47,5 +47,14 @@ describe('formatDate / formatDateTime', () => {
   it("bo'sh/noto'g'ri", () => {
     expect(formatDate(null)).toBe('—')
     expect(formatDateTime('xato')).toBe('—')
+  })
+})
+
+describe('toDecimalInput', () => {
+  it('API qiymatini vergulli forma qiymatiga aylantiradi', () => {
+    expect(toDecimalInput('25.500')).toBe('25,5')
+    expect(toDecimalInput('100.000')).toBe('100')
+    expect(toDecimalInput(null)).toBe('')
+    expect(parseDecimalInput(toDecimalInput('0.4500'))).toBe('0.45')
   })
 })

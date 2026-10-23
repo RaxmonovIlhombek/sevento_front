@@ -1,0 +1,72 @@
+{
+  "stock": {
+    "title": "Qoldiq",
+    "product": "Tovar",
+    "branch": "Nuqta",
+    "quantity": "Qoldiq",
+    "min": "Minimal",
+    "value": "Qiymat ({{base}})",
+    "updated": "Yangilangan",
+    "belowMin": "Kam qoldi",
+    "onlyBelowMin": "Faqat kam qolganlar",
+    "inStock": "Bor",
+    "outOfStock": "Tugagan",
+    "allStock": "Hammasi",
+    "searchPlaceholder": "Nomi, artikul yoki shtrix-kod",
+    "allCategories": "Barcha kategoriyalar",
+    "totalValue": "Jami qiymat: {{value}}",
+    "empty": "Qoldiq yo'q — kirim qiling"
+  },
+  "min": {
+    "title": "Minimal qoldiq",
+    "subtitle": "{{product}} — {{branch}}",
+    "value": "Shu nuqta uchun minimal qoldiq",
+    "hint": "Bo'sh — tovardagi yoki tizim sozlamasidagi qiymat ({{current}})",
+    "saved": "Minimal qoldiq saqlandi"
+  },
+  "card": {
+    "title": "Qoldiq va harakatlar",
+    "byBranch": "Nuqtalar bo'yicha qoldiq",
+    "batches": "Ochiq partiyalar (FIFO tartibida)",
+    "batchSource": "Manba",
+    "batchDate": "Kirim sanasi",
+    "batchInitial": "Kirgan",
+    "batchRemaining": "Qolgan",
+    "batchCost": "Birlik tannarxi ({{base}})",
+    "noBatches": "Ochiq partiya yo'q",
+    "toProduct": "Tovar sahifasi"
+  },
+  "movements": {
+    "title": "Ombor harakatlari",
+    "date": "Vaqt",
+    "type": "Harakat",
+    "product": "Tovar",
+    "branch": "Nuqta",
+    "quantity": "Miqdor",
+    "balance": "Qoldiq",
+    "cost": "Tannarx ({{base}})",
+    "document": "Hujjat",
+    "by": "Kim",
+    "allTypes": "Barcha harakatlar",
+    "direction": "Yo'nalish",
+    "in": "Kirim",
+    "out": "Chiqim",
+    "both": "Hammasi",
+    "dateFrom": "Sanadan",
+    "dateTo": "Sanagacha",
+    "searchPlaceholder": "Tovar yoki hujjat raqami"
+  },
+  "types": {
+    "purchase_in": "Kirim",
+    "purchase_cancel": "Kirim bekor qilindi",
+    "sale_out": "Savdo",
+    "sale_return_in": "Qaytarish",
+    "transfer_out": "Ko'chirish (jo'natildi)",
+    "transfer_in": "Ko'chirish (qabul qilindi)",
+    "count_surplus": "Inventarizatsiya: ortiqcha",
+    "count_shortage": "Inventarizatsiya: kamomad",
+    "write_off": "Hisobdan chiqarish"
+  },
+  "lowStockToast": "Kam qoldi: {{product}}",
+  "lowStockText": "{{quantity}} {{unit}} (minimal {{min}})"
+}

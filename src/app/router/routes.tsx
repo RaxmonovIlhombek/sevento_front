@@ -27,6 +27,15 @@ const ReferencesPage = lazy(() => catalog().then((m) => ({ default: m.References
 const currency = () => import('@/features/currency')
 const CurrencyRatesPage = lazy(() => currency().then((m) => ({ default: m.CurrencyRatesPage })))
 const CurrenciesPage = lazy(() => currency().then((m) => ({ default: m.CurrenciesPage })))
+const inventory = () => import('@/features/inventory')
+const StockPage = lazy(() => inventory().then((m) => ({ default: m.StockPage })))
+const MovementsPage = lazy(() => inventory().then((m) => ({ default: m.MovementsPage })))
+const ProductStockPage = lazy(() => inventory().then((m) => ({ default: m.ProductStockPage })))
+const purchasing = () => import('@/features/purchasing')
+const PurchasesPage = lazy(() => purchasing().then((m) => ({ default: m.PurchasesPage })))
+const PurchaseFormPage = lazy(() => purchasing().then((m) => ({ default: m.PurchaseFormPage })))
+const SuppliersPage = lazy(() => purchasing().then((m) => ({ default: m.SuppliersPage })))
+const ExpenseTypesPage = lazy(() => purchasing().then((m) => ({ default: m.ExpenseTypesPage })))
 
 const lazyPage = (element: ReactNode) => <Suspense fallback={<PageSpinner />}>{element}</Suspense>
 
@@ -65,6 +74,26 @@ export const router = createBrowserRouter([
           { path: 'products/:id', element: guarded('catalog.view', <ProductFormPage />) },
           { path: 'categories', element: guarded('catalog.view', <CategoriesPage />) },
           { path: 'references', element: guarded('catalog.view', <ReferencesPage />) },
+        ],
+      },
+      {
+        path: 'inventory',
+        children: [
+          { index: true, element: <Navigate to="/inventory/stock" replace /> },
+          { path: 'stock', element: guarded('inventory.view', <StockPage />) },
+          { path: 'movements', element: guarded('inventory.view', <MovementsPage />) },
+          { path: 'products/:id', element: guarded('inventory.view', <ProductStockPage />) },
+        ],
+      },
+      {
+        path: 'purchasing',
+        children: [
+          { index: true, element: <Navigate to="/purchasing/purchases" replace /> },
+          { path: 'purchases', element: guarded('purchasing.view', <PurchasesPage />) },
+          { path: 'purchases/new', element: guarded('purchasing.manage', <PurchaseFormPage />) },
+          { path: 'purchases/:id', element: guarded('purchasing.view', <PurchaseFormPage />) },
+          { path: 'suppliers', element: guarded('purchasing.view', <SuppliersPage />) },
+          { path: 'expense-types', element: guarded('purchasing.manage', <ExpenseTypesPage />) },
         ],
       },
       { path: 'currency', element: lazyPage(<CurrencyRatesPage />) },

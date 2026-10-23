@@ -478,6 +478,270 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/inventory/batches/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Partiyalar va ularning tannarxi — inventory.view_cost. */
+        get: operations["inventory_batches_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/batches/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Partiyalar va ularning tannarxi — inventory.view_cost. */
+        get: operations["inventory_batches_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/movements/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Ombor harakatlari jurnali. Tannarx ustunlari — faqat inventory.view_cost bilan. */
+        get: operations["inventory_movements_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/movements/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Ombor harakatlari jurnali. Tannarx ustunlari — faqat inventory.view_cost bilan. */
+        get: operations["inventory_movements_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/stock/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qoldiqlar (o'z nuqtalari). PATCH — faqat nuqtaga xos minimal qoldiq (inventory.manage). */
+        get: operations["inventory_stock_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/inventory/stock/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qoldiqlar (o'z nuqtalari). PATCH — faqat nuqtaga xos minimal qoldiq (inventory.manage). */
+        get: operations["inventory_stock_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Qoldiqlar (o'z nuqtalari). PATCH — faqat nuqtaga xos minimal qoldiq (inventory.manage). */
+        patch: operations["inventory_stock_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/purchasing/expense-types/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["purchasing_expense_types_list"];
+        put?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        post: operations["purchasing_expense_types_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/purchasing/expense-types/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        put: operations["purchasing_expense_types_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        patch: operations["purchasing_expense_types_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/purchasing/purchases/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kirimlar. Qoralama → receive (partiyalar, tannarx) → cancel (chiqim bo'lmagan bo'lsa). */
+        get: operations["purchasing_purchases_list"];
+        put?: never;
+        /** @description Kirimlar. Qoralama → receive (partiyalar, tannarx) → cancel (chiqim bo'lmagan bo'lsa). */
+        post: operations["purchasing_purchases_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/purchasing/purchases/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kirimlar. Qoralama → receive (partiyalar, tannarx) → cancel (chiqim bo'lmagan bo'lsa). */
+        get: operations["purchasing_purchases_retrieve"];
+        /** @description Kirimlar. Qoralama → receive (partiyalar, tannarx) → cancel (chiqim bo'lmagan bo'lsa). */
+        put: operations["purchasing_purchases_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Kirimlar. Qoralama → receive (partiyalar, tannarx) → cancel (chiqim bo'lmagan bo'lsa). */
+        patch: operations["purchasing_purchases_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/purchasing/purchases/{id}/cancel/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Kirimlar. Qoralama → receive (partiyalar, tannarx) → cancel (chiqim bo'lmagan bo'lsa). */
+        post: operations["purchasing_purchases_cancel_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/purchasing/purchases/{id}/preview/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qoralama uchun tannarx hisob-kitobi joriy kurs bilan (saqlanmaydi). Kurs yo'q → 409. */
+        get: operations["purchasing_purchases_preview_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/purchasing/purchases/{id}/receive/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Kirimlar. Qoralama → receive (partiyalar, tannarx) → cancel (chiqim bo'lmagan bo'lsa). */
+        post: operations["purchasing_purchases_receive_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/purchasing/suppliers/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["purchasing_suppliers_list"];
+        put?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        post: operations["purchasing_suppliers_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/purchasing/suppliers/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        get: operations["purchasing_suppliers_retrieve"];
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        put: operations["purchasing_suppliers_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description ViewSet: capability_map = {"list": "x.view", "create": "x.manage", ...}. */
+        patch: operations["purchasing_suppliers_partial_update"];
+        trace?: never;
+    };
     "/api/v1/realtime/notice/": {
         parameters: {
             query?: never;
@@ -641,6 +905,12 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /**
+         * @description * `by_value` - Qiymat bo'yicha
+         *     * `by_quantity` - Miqdor bo'yicha
+         * @enum {string}
+         */
+        AllocationMethodEnum: "by_value" | "by_quantity";
         AuditLog: {
             readonly id: number;
             readonly event_name: string;
@@ -657,12 +927,31 @@ export interface components {
             /** Format: date-time */
             readonly created_at: string;
         };
+        Batch: {
+            readonly id: number;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly product: number;
+            readonly product_name: string;
+            readonly unit_code: string;
+            readonly source_type: string;
+            readonly source_id: number;
+            readonly source_number: string;
+            /** Format: date-time */
+            readonly received_at: string;
+            /** Format: decimal */
+            readonly quantity_initial: string;
+            /** Format: decimal */
+            readonly quantity_remaining: string;
+            /** Format: decimal */
+            readonly unit_cost_base: string;
+        };
         Branch: {
             readonly id: number;
             /** @description Hujjat raqamlarida ishlatiladi */
             code: string;
             name: string;
-            type?: components["schemas"]["TypeEnum"];
+            type?: components["schemas"]["BranchTypeEnum"];
             address?: string;
             phone?: string;
             settings?: unknown;
@@ -676,11 +965,20 @@ export interface components {
             /** @description Hujjat raqamlarida ishlatiladi */
             code: string;
             name: string;
-            type?: components["schemas"]["TypeEnum"];
+            type?: components["schemas"]["BranchTypeEnum"];
             address?: string;
             phone?: string;
             settings?: unknown;
             is_active?: boolean;
+        };
+        /**
+         * @description * `shop` - Do'kon
+         *     * `warehouse` - Ombor
+         * @enum {string}
+         */
+        BranchTypeEnum: "shop" | "warehouse";
+        CancelRequest: {
+            reason: string;
         };
         Capability: {
             code: string;
@@ -717,6 +1015,29 @@ export interface components {
             current_password: string;
             new_password: string;
         };
+        CostPreview: {
+            /** Format: decimal */
+            rate_to_base: string;
+            /** Format: decimal */
+            subtotal: string;
+            /** Format: decimal */
+            subtotal_base: string;
+            /** Format: decimal */
+            expenses_total_base: string;
+            /** Format: decimal */
+            total_base: string;
+            lines: components["schemas"]["CostPreviewLine"][];
+        };
+        CostPreviewLine: {
+            /** Format: decimal */
+            line_total: string;
+            /** Format: decimal */
+            line_total_base: string;
+            /** Format: decimal */
+            allocated_expense_base: string;
+            /** Format: decimal */
+            landed_unit_cost_base: string;
+        };
         Currency: {
             readonly id: number;
             code: string;
@@ -725,6 +1046,8 @@ export interface components {
             decimal_places?: number;
             is_active?: boolean;
             sort_order?: number;
+            /** @description Tannarx, foyda va kredit limiti shu valyutada (sozlama currency.base_code). */
+            readonly is_base: boolean;
             /** Format: date-time */
             readonly created_at: string;
             /** Format: date-time */
@@ -778,6 +1101,23 @@ export interface components {
             /** Format: date-time */
             readonly updated_at: string;
         };
+        ExpenseType: {
+            readonly id: number;
+            code: string;
+            name: string;
+            default_allocation?: components["schemas"]["AllocationMethodEnum"];
+            is_active?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        ExpenseTypeRequest: {
+            code: string;
+            name: string;
+            default_allocation?: components["schemas"]["AllocationMethodEnum"];
+            is_active?: boolean;
+        };
         FetchResult: {
             provider: string;
             updated: components["schemas"]["ExchangeRate"][];
@@ -825,6 +1165,19 @@ export interface components {
             branches: components["schemas"]["UserBranch"][];
             all_branches: boolean;
         };
+        /**
+         * @description * `purchase_in` - Kirim
+         *     * `purchase_cancel` - Kirim bekor qilindi
+         *     * `sale_out` - Savdo
+         *     * `sale_return_in` - Qaytarish
+         *     * `transfer_out` - Ko'chirish (jo'natildi)
+         *     * `transfer_in` - Ko'chirish (qabul qilindi)
+         *     * `count_surplus` - Inventarizatsiya: ortiqcha
+         *     * `count_shortage` - Inventarizatsiya: kamomad
+         *     * `write_off` - Hisobdan chiqarish
+         * @enum {string}
+         */
+        MovementTypeEnum: "purchase_in" | "purchase_cancel" | "sale_out" | "sale_return_in" | "transfer_out" | "transfer_in" | "count_surplus" | "count_shortage" | "write_off";
         NoticeRequest: {
             /** @default info */
             level: components["schemas"]["LevelEnum"];
@@ -840,6 +1193,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["AuditLog"][];
+        };
+        PaginatedBatchList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Batch"][];
         };
         PaginatedBranchList: {
             /** @example 120 */
@@ -874,6 +1238,17 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["Product"][];
         };
+        PaginatedPurchaseListList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["PurchaseList"][];
+        };
         PaginatedRoleList: {
             /** @example 120 */
             count: number;
@@ -884,6 +1259,39 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["Role"][];
+        };
+        PaginatedStockLevelList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["StockLevel"][];
+        };
+        PaginatedStockMovementList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["StockMovement"][];
+        };
+        PaginatedSupplierList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Supplier"][];
         };
         PaginatedUserList: {
             /** @example 120 */
@@ -900,7 +1308,7 @@ export interface components {
             /** @description Hujjat raqamlarida ishlatiladi */
             code?: string;
             name?: string;
-            type?: components["schemas"]["TypeEnum"];
+            type?: components["schemas"]["BranchTypeEnum"];
             address?: string;
             phone?: string;
             settings?: unknown;
@@ -919,6 +1327,16 @@ export interface components {
             decimal_places?: number;
             is_active?: boolean;
             sort_order?: number;
+        };
+        PatchedExpenseTypeRequest: {
+            code?: string;
+            name?: string;
+            default_allocation?: components["schemas"]["AllocationMethodEnum"];
+            is_active?: boolean;
+        };
+        PatchedMinQuantityRequest: {
+            /** Format: decimal */
+            min_quantity?: string | null;
         };
         PatchedPriceTypeRequest: {
             code?: string;
@@ -944,6 +1362,16 @@ export interface components {
             code?: string;
             name?: string;
             capabilities?: string[];
+        };
+        PatchedSupplierRequest: {
+            name?: string;
+            phone?: string;
+            contact_person?: string;
+            /** STIR */
+            tin?: string;
+            address?: string;
+            note?: string;
+            is_active?: boolean;
         };
         PatchedUnitRequest: {
             code?: string;
@@ -1050,6 +1478,147 @@ export interface components {
             description?: string;
             is_active?: boolean;
         };
+        PurchaseDetail: {
+            readonly id: number;
+            readonly number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly supplier: number;
+            readonly supplier_name: string;
+            readonly status: components["schemas"]["PurchaseStatusEnum"];
+            readonly status_display: string;
+            readonly invoice_number: string;
+            /** Format: date */
+            readonly invoice_date: string | null;
+            readonly currency: number;
+            readonly currency_code: string;
+            /** Format: decimal */
+            readonly subtotal: string;
+            /** Format: decimal */
+            readonly total_base: string;
+            /** @default 0 */
+            readonly items_count: number;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly received_at: string | null;
+            /** Format: decimal */
+            readonly rate_to_base: string | null;
+            /** Format: decimal */
+            readonly subtotal_base: string;
+            /** Format: decimal */
+            readonly expenses_total_base: string;
+            readonly note: string;
+            readonly items: components["schemas"]["PurchaseItem"][];
+            readonly expenses: components["schemas"]["PurchaseExpense"][];
+            readonly received_by_name: string | null;
+            readonly cancelled_by_name: string | null;
+            /** Format: date-time */
+            readonly cancelled_at: string | null;
+            readonly cancel_reason: string;
+            /** @default false */
+            readonly can_cancel: boolean;
+            /** @default  */
+            readonly base_currency: string;
+        };
+        PurchaseExpense: {
+            readonly id: number;
+            readonly expense_type: number;
+            readonly expense_type_name: string;
+            readonly currency: number;
+            readonly currency_code: string;
+            /** Format: decimal */
+            readonly amount: string;
+            readonly allocation_method: components["schemas"]["AllocationMethodEnum"];
+            /** Format: decimal */
+            readonly rate_to_base: string | null;
+            /** Format: decimal */
+            readonly amount_base: string;
+            readonly note: string;
+        };
+        PurchaseExpenseWriteRequest: {
+            expense_type: number;
+            currency: number;
+            /** Format: decimal */
+            amount: string;
+            allocation_method?: components["schemas"]["AllocationMethodEnum"];
+            /** @default  */
+            note: string;
+        };
+        PurchaseItem: {
+            readonly id: number;
+            readonly product: number;
+            readonly product_name: string;
+            readonly product_sku: string;
+            readonly unit_code: string;
+            readonly unit_decimal_places: number;
+            /** Format: decimal */
+            readonly quantity: string;
+            /** Format: decimal */
+            readonly unit_price: string;
+            /** Format: decimal */
+            readonly line_total: string;
+            /** Format: decimal */
+            readonly line_total_base: string;
+            /** Format: decimal */
+            readonly allocated_expense_base: string;
+            /** Format: decimal */
+            readonly landed_unit_cost_base: string;
+        };
+        PurchaseItemWriteRequest: {
+            product: number;
+            /** Format: decimal */
+            quantity: string;
+            /** Format: decimal */
+            unit_price: string;
+        };
+        PurchaseList: {
+            readonly id: number;
+            readonly number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly supplier: number;
+            readonly supplier_name: string;
+            readonly status: components["schemas"]["PurchaseStatusEnum"];
+            readonly status_display: string;
+            readonly invoice_number: string;
+            /** Format: date */
+            readonly invoice_date: string | null;
+            readonly currency: number;
+            readonly currency_code: string;
+            /** Format: decimal */
+            readonly subtotal: string;
+            /** Format: decimal */
+            readonly total_base: string;
+            /** @default 0 */
+            readonly items_count: number;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly received_at: string | null;
+        };
+        /**
+         * @description * `draft` - Qoralama
+         *     * `received` - Qabul qilindi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        PurchaseStatusEnum: "draft" | "received" | "cancelled";
+        PurchaseWriteRequest: {
+            branch: number;
+            supplier: number;
+            currency: number;
+            /** @default  */
+            invoice_number: string;
+            /** Format: date */
+            invoice_date?: string | null;
+            /** @default  */
+            note: string;
+            items: components["schemas"]["PurchaseItemWriteRequest"][];
+            expenses?: components["schemas"]["PurchaseExpenseWriteRequest"][];
+        };
         RateCreateRequest: {
             currency: number;
             /** Format: decimal */
@@ -1099,6 +1668,88 @@ export interface components {
          * @enum {string}
          */
         SourceEnum: "cbu" | "manual";
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        StockLevel: {
+            readonly id: number;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly product: number;
+            readonly product_name: string;
+            readonly product_sku: string;
+            readonly product_barcode: string;
+            readonly category_name: string | null;
+            readonly unit_code: string;
+            readonly unit_decimal_places: number;
+            /** Format: decimal */
+            readonly quantity: string;
+            /**
+             * Format: decimal
+             * @description Bo'sh — tovardagi yoki sozlamadagi minimal qoldiq
+             */
+            readonly min_quantity: string | null;
+            /** Format: decimal */
+            readonly effective_min: string;
+            readonly is_below_min: boolean;
+            /** Format: decimal */
+            readonly value_base: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
+        StockMovement: {
+            readonly id: number;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly product: number;
+            readonly product_name: string;
+            readonly product_sku: string;
+            readonly unit_code: string;
+            readonly batch: number;
+            readonly type: components["schemas"]["MovementTypeEnum"];
+            readonly type_display: string;
+            /** Format: decimal */
+            readonly quantity: string;
+            /** Format: decimal */
+            readonly balance_after: string;
+            /** Format: decimal */
+            readonly unit_cost_base: string;
+            /** Format: decimal */
+            readonly total_cost_base: string;
+            readonly document_type: string;
+            readonly document_id: number;
+            readonly document_number: string;
+            readonly created_by: number | null;
+            readonly created_by_name: string | null;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        Supplier: {
+            readonly id: number;
+            name: string;
+            phone?: string;
+            contact_person?: string;
+            /** STIR */
+            tin?: string;
+            address?: string;
+            note?: string;
+            is_active?: boolean;
+            /** @default 0 */
+            readonly purchases_count: number;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        SupplierRequest: {
+            name: string;
+            phone?: string;
+            contact_person?: string;
+            /** STIR */
+            tin?: string;
+            address?: string;
+            note?: string;
+            is_active?: boolean;
+        };
         SystemSetting: {
             readonly key: string;
             readonly type: string;
@@ -1118,12 +1769,6 @@ export interface components {
             ticket: string;
             expires_in: number;
         };
-        /**
-         * @description * `shop` - Do'kon
-         *     * `warehouse` - Ombor
-         * @enum {string}
-         */
-        TypeEnum: "shop" | "warehouse";
         Unit: {
             readonly id: number;
             code: string;
@@ -2410,6 +3055,678 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    inventory_batches_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                open?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                product?: number;
+                /** @description A search term. */
+                search?: string;
+                source_type?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedBatchList"];
+                };
+            };
+        };
+    };
+    inventory_batches_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this batch. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Batch"];
+                };
+            };
+        };
+    };
+    inventory_movements_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date_from?: string;
+                date_to?: string;
+                /**
+                 * @description * `in` - in
+                 *     * `out` - out
+                 */
+                direction?: "in" | "out";
+                document_id?: number;
+                document_type?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                product?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `purchase_in` - Kirim
+                 *     * `purchase_cancel` - Kirim bekor qilindi
+                 *     * `sale_out` - Savdo
+                 *     * `sale_return_in` - Qaytarish
+                 *     * `transfer_out` - Ko'chirish (jo'natildi)
+                 *     * `transfer_in` - Ko'chirish (qabul qilindi)
+                 *     * `count_surplus` - Inventarizatsiya: ortiqcha
+                 *     * `count_shortage` - Inventarizatsiya: kamomad
+                 *     * `write_off` - Hisobdan chiqarish
+                 */
+                type?: ("count_shortage" | "count_surplus" | "purchase_cancel" | "purchase_in" | "sale_out" | "sale_return_in" | "transfer_in" | "transfer_out" | "write_off")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedStockMovementList"];
+                };
+            };
+        };
+    };
+    inventory_movements_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this stock movement. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockMovement"];
+                };
+            };
+        };
+    };
+    inventory_stock_list: {
+        parameters: {
+            query?: {
+                below_minimum?: boolean;
+                branch?: number;
+                category?: number;
+                in_stock?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                product?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedStockLevelList"];
+                };
+            };
+        };
+    };
+    inventory_stock_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this stock level. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockLevel"];
+                };
+            };
+        };
+    };
+    inventory_stock_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this stock level. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedMinQuantityRequest"];
+                "multipart/form-data": components["schemas"]["PatchedMinQuantityRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StockLevel"];
+                };
+            };
+        };
+    };
+    purchasing_expense_types_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExpenseType"][];
+                };
+            };
+        };
+    };
+    purchasing_expense_types_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ExpenseTypeRequest"];
+                "multipart/form-data": components["schemas"]["ExpenseTypeRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExpenseType"];
+                };
+            };
+        };
+    };
+    purchasing_expense_types_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this expense type. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ExpenseTypeRequest"];
+                "multipart/form-data": components["schemas"]["ExpenseTypeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExpenseType"];
+                };
+            };
+        };
+    };
+    purchasing_expense_types_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this expense type. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedExpenseTypeRequest"];
+                "multipart/form-data": components["schemas"]["PatchedExpenseTypeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ExpenseType"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                currency?: number;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `draft` - Qoralama
+                 *     * `received` - Qabul qilindi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: ("cancelled" | "draft" | "received")[];
+                supplier?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedPurchaseListList"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PurchaseWriteRequest"];
+                "multipart/form-data": components["schemas"]["PurchaseWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseDetail"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this purchase. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseDetail"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this purchase. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PurchaseWriteRequest"];
+                "multipart/form-data": components["schemas"]["PurchaseWriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseDetail"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this purchase. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseList"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_cancel_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this purchase. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CancelRequest"];
+                "multipart/form-data": components["schemas"]["CancelRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_preview_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this purchase. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CostPreview"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    purchasing_purchases_receive_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this purchase. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PurchaseDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    purchasing_suppliers_list: {
+        parameters: {
+            query?: {
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedSupplierList"];
+                };
+            };
+        };
+    };
+    purchasing_suppliers_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SupplierRequest"];
+                "multipart/form-data": components["schemas"]["SupplierRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Supplier"];
+                };
+            };
+        };
+    };
+    purchasing_suppliers_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this supplier. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Supplier"];
+                };
+            };
+        };
+    };
+    purchasing_suppliers_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this supplier. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SupplierRequest"];
+                "multipart/form-data": components["schemas"]["SupplierRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Supplier"];
+                };
+            };
+        };
+    };
+    purchasing_suppliers_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this supplier. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedSupplierRequest"];
+                "multipart/form-data": components["schemas"]["PatchedSupplierRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Supplier"];
                 };
             };
         };

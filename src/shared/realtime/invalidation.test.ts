@@ -1,6 +1,8 @@
 import { QueryClient } from '@tanstack/react-query'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { queryKeys } from '@/shared/api/queryKeys'
+
 import { createInvalidator, invalidationRules } from './invalidation'
 
 describe('createInvalidator', () => {
@@ -43,5 +45,33 @@ describe('createInvalidator', () => {
     expect(spy).toHaveBeenCalledTimes(2)
     expect(spy).toHaveBeenCalledWith({ queryKey: ['stock', 1] })
     expect(spy).toHaveBeenCalledWith({ queryKey: ['stock', 2] })
+  })
+})
+
+describe('ombor xabarlari', () => {
+  afterEach(() => vi.useRealTimers())
+
+  it("stock.changed ko'p qatorli kirimda bitta invalidate ga yig'iladi", () => {
+    vi.useFakeTimers()
+    const qc = new QueryClient()
+    const spy = vi.spyOn(qc, 'invalidateQueries')
+    const invalidate = createInvalidator(qc)
+    for (let product = 1; product <= 30; product++)
+      invalidate({
+        type: 'stock.changed',
+        payload: { branch_id: 1, product_id: product },
+        timestamp: '',
+      })
+    expect(spy).not.toHaveBeenCalled()
+    vi.advanceTimersByTime(1500)
+    expect(spy).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledWith({ queryKey: queryKeys.inventory.all })
+  })
+
+  it('stock.below_minimum qoldiqni darhol yangilaydi', () => {
+    const qc = new QueryClient()
+    const spy = vi.spyOn(qc, 'invalidateQueries')
+    createInvalidator(qc)({ type: 'stock.below_minimum', payload: {}, timestamp: '' })
+    expect(spy).toHaveBeenCalledWith({ queryKey: queryKeys.inventory.all })
   })
 })

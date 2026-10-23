@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Warehouse } from 'lucide-react'
 import { useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -68,6 +68,7 @@ function ProductForm({ id }: { id?: string }) {
   const { t: tc } = useTranslation()
   const navigate = useNavigate()
   const canManage = useCapability('catalog.manage')
+  const canViewStock = useCapability('inventory.view')
   const branchId = useAuthStore((s) => s.currentBranchId)
 
   const product = useProduct(isNew ? undefined : id, branchId)
@@ -123,13 +124,24 @@ function ProductForm({ id }: { id?: string }) {
         title={isNew ? t('products.new') : (product.data?.name ?? t('products.edit'))}
         subtitle={readOnly ? t('products.readOnly') : product.data?.sku}
         actions={
-          <Button
-            variant="ghost"
-            icon={<ArrowLeft className="size-4" />}
-            onClick={() => navigate('/catalog/products')}
-          >
-            {tc('actions.back')}
-          </Button>
+          <>
+            {!isNew && canViewStock && (
+              <Button
+                variant="secondary"
+                icon={<Warehouse className="size-4" />}
+                onClick={() => navigate(`/inventory/products/${id}`)}
+              >
+                {t('products.stockLink')}
+              </Button>
+            )}
+            <Button
+              variant="ghost"
+              icon={<ArrowLeft className="size-4" />}
+              onClick={() => navigate('/catalog/products')}
+            >
+              {tc('actions.back')}
+            </Button>
+          </>
         }
       />
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
