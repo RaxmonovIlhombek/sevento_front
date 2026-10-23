@@ -39,8 +39,10 @@ export function ReportPage() {
       {
         onSuccess: (res) => {
           if (res.kind === 'file') {
-            saveFile(res.file.blob, res.file.filename)
-            toast.success(t('downloaded'), res.file.filename)
+            const { blob, filename } = res.file
+            void saveFile(blob, filename).then((saved) => {
+              if (saved) toast.success(t('downloaded'), filename)
+            })
           } else {
             toast.info(t('queued'), t('queuedText'))
           }

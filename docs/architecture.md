@@ -1,11 +1,11 @@
 # Arxitektura (frontend)
 
-> Holat: 1–8-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments,reports}`); 6-bosqich: nasiya, mijozlar, smena; 7-bosqich: ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish; 8-bosqich: hisobotlar (PDF/Excel), rahbar dashboardi (jonli).
+> Holat: 1–9-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments,reports}`); 6-bosqich: nasiya, mijozlar, smena; 7-bosqich: ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish; 8-bosqich: hisobotlar (PDF/Excel), rahbar dashboardi (jonli); 9-bosqich: PWA va Tauri desktop.
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
 
-React 19 + TypeScript 5.9 + Vite 8 · React Router 8 · TanStack Query 5 (server holati) · Zustand 5 (mijoz holati) · Tailwind CSS 4 · React Hook Form + Zod 4 · Recharts 3 (dashboard, alohida lazy chunk) · react-i18next (uz-Latn) · openapi-typescript (API turlari) · vite-plugin-pwa va Tauri (9-bosqich).
+React 19 + TypeScript 5.9 + Vite 8 · React Router 8 · TanStack Query 5 (server holati) · Zustand 5 (mijoz holati) · Tailwind CSS 4 · React Hook Form + Zod 4 · Recharts 3 (dashboard, alohida lazy chunk) · react-i18next (uz-Latn) · openapi-typescript (API turlari) · vite-plugin-pwa 2 · Tauri 2 (Rust).
 Testlar: Vitest + Testing Library + MSW. Lint: ESLint (flat config, feature chegaralari qoidasi) + Prettier.
 
 Rejadan farqlar: access token `shared/api/tokenStore.ts` (React dan tashqari kichik modul) da, auth store (`features/auth/store`) uni ishlatadi — shunda `shared/api/client.ts` features ni import qilmaydi; `QueryClient` ham `shared/api/queryClient.ts` da (logout da tozalash uchun).
@@ -171,11 +171,29 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - Kodda qattiq matn yo'q (ESLint `i18next/no-literal-string` ogohlantirish bilan). Yangi til = `locales/<kod>/` papkasi.
 - Sana/raqam formatlari `Intl` orqali, til bilan birga o'zgaradi.
 
-## 8. PWA va Tauri (9-bosqich)
+## 8. PWA va Tauri (9-bosqich) ✅
 
-- `vite-plugin-pwa`: manifest (nom, ikonkalar, `standalone`), service worker faqat ilova qobig'i (shell) va statik fayllar uchun; API javoblari keshlanmaydi (ma'lumot manbai doim server). Offline da "Internet yo'q" ekrani.
-- Tauri: `src-tauri/` shu kod bazasini o'raydi; `VITE_API_URL` buildda to'liq manzil; HTTP — plugin-http; yangilanish uchun `tauri-plugin-updater` keyinroq.
-- Alohida mobil/desktop kod yo'q — ekranlar responsive (POS planshetda ishlashi kerak).
+### PWA (`vite.config.ts`, `app/providers/PwaUpdater.tsx`)
+
+- `vite-plugin-pwa` (generateSW): manifest (uz, `standalone`, ikonkalar 192/512 va maskable, yorliqlar: Kassa, Qoldiq, Hisobotlar). Ikonkalar manbasi — `assets/icon.svg`, `assets/icon-maskable.svg`.
+- **Faqat ilova qobig'i keshlanadi** (HTML, JS, CSS, ikonkalar). API javoblari, PDF/Excel, WebSocket — hech qachon (`runtimeCaching: []`); `/api/`, `/ws/`, `/admin/`, `/static/`, `/media/` navigatsiyalari SPA ga aylanmaydi. Ma'lumot manbai doim server.
+- Oflayn: ilova keshdan ochiladi; refresh tarmoq xatosi bilan tugasa auth holati `offline` → "Internet yo'q" ekrani (login emas — sessiya saqlanib turibdi), `online` hodisasida o'zi qayta urinadi. `client.ts` da refresh tarmoq/5xx xatosida chiqarib yubormaydi (`ApiError` tashlaydi), faqat 401 da.
+- Ishlayotganda internet uzilsa — darhol qizil banner (`navigator.onLine`); WebSocket uzilishi banneri avvalgidek 10 s dan keyin. Mutatsiyalar `networkMode: 'always'`: oflayn bo'lsa darhol "Server bilan aloqa yo'q" xatosi — navbatga qo'yilmaydi (savdo aloqa tiklanganda kassir bilmagan holda "o'zi" yuborilmasin).
+- Yangi versiya: `registerType: 'prompt'` — "Yangi versiya tayyor · Yangilash / Keyinroq" oynasi; sahifa o'zi qayta yuklanmaydi (kassir savdo o'rtasida bo'lishi mumkin). Ochiq oynalar har soatda yangilanishni tekshiradi.
+- Nginx: `sw.js`, `manifest.webmanifest`, `index.html` — `no-cache`; `assets/` — 1 yil `immutable`. O'rnatish uchun HTTPS kerak (localhost bundan mustasno).
+
+### Tauri desktop (`src-tauri/`, `src/shared/platform/`)
+
+- Tauri 2, shu kod bazasi (`dist/`). Desktop farqlari faqat `shared/platform/desktop.ts` da — `main.tsx` uni faqat Tauri ichida dinamik yuklaydi (veb bundle ga kirmaydi). Desktop buildida service worker o'chiq (`TAURI_ENV_PLATFORM`).
+- **HTTP:** `client.ts` dagi `setTransport` orqali.
+  - `login`/`refresh`/`logout` → Rust buyrug'i `auth_request` (`src-tauri/src/auth.rs`): o'z cookie jari, `Set-Cookie` javobdan olib tashlanadi — refresh token JS ga hech qachon kelmaydi (brauzerdagi httpOnly bilan bir xil). Jar `~/.local/share/uz.sevento.desktop/session.json` (Windows/macOS da ilova ma'lumotlari papkasi), huquq 0600; ilova qayta ochilganda sessiya tiklanadi, "Chiqish" o'chiradi. Buyruq faqat build dagi server va shu uchta yo'lni qabul qiladi.
+  - Qolgan so'rovlar → `@tauri-apps/plugin-http` (CORS yo'q). Uning cookie jari o'chirilgan; ruxsat (capability scope) faqat `VITE_API_URL/api/v1/*`.
+  - WebSocket — WebView ning oddiy WebSocket i (ticket bilan); CSP `connect-src` faqat shu server.
+- **Fayllar:** JS ga fayl tizimi ruxsati berilmaydi. Hisobot → `save_document` (tizimning saqlash oynasi); chek/PDF → `open_document` (kesh papkasiga yoziladi va tizim dasturida ochiladi — u yerdan chop etiladi; WebKitGTK PDF ni ichida ko'rsata olmaydi). Fayl nomi Rust da tozalanadi (papka qismlarisiz).
+- **Ruxsatlar:** `capabilities/default.json` — `core:default` + uchta ilova buyrug'i (build.rs `AppManifest` — ro'yxatda yo'q buyruq chaqirilmaydi); HTTP capability va CSP `connect-src` ni `scripts/tauri.mjs` build paytida `VITE_API_URL` dan yaratadi (`src-tauri/tauri.env.conf.json`, gitignore).
+- **Build:** `VITE_API_URL=https://sevento.example.uz npm run tauri:build` (https majburiy, http faqat localhost). `npm run tauri:dev` — default `http://localhost:8000`. CI: `.github/workflows/desktop.yml` — PR da `cargo fmt/clippy/test`, teg yoki qo'lda — Linux (deb, rpm, AppImage), Windows (msi, nsis), macOS (dmg) paketlari. Kod imzolash va avtomatik yangilanish (`tauri-plugin-updater`) — keyinroq.
+- Linux uchun tizim kutubxonalari: `libwebkit2gtk-4.1-dev libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev`.
+- Alohida mobil/desktop kod yo'q — ekranlar responsive (POS planshetda ham ishlaydi).
 
 ## 9. Build va skriptlar
 
@@ -185,6 +203,6 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 | `npm run gen:api` | `openapi-typescript` → `src/shared/api/schema.d.ts` (manba: `OPENAPI_URL` yoki `../sevento_back/docs/api/openapi.yaml`) |
 | `npm run typecheck` / `lint` / `test` | tsc, eslint, vitest |
 | `npm run build` | production build (Docker da Nginx tarqatadi) |
-| `npm run tauri dev/build` | 9-bosqichdan |
+| `npm run tauri:dev` / `tauri:build` | desktop ilova (`scripts/tauri.mjs` → `VITE_API_URL` dan capability va CSP, keyin Tauri CLI) |
 
 Docker: ko'p bosqichli `Dockerfile` (node build → nginx), `nginx.conf` `/api/` va `/ws/` ni `backend:8000` ga proxy qiladi (WS upgrade bilan). Backend repodagi `docker-compose.yml` shu Dockerfile ni ishlatadi.

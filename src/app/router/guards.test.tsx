@@ -51,6 +51,13 @@ function renderAt(path: string) {
 }
 
 describe('route guards', () => {
+  it("server bilan aloqa yo'q (oflayn) — login emas, «Internet yo'q» ekrani", () => {
+    useAuthStore.setState({ status: 'offline', user: null })
+    renderAt('/sales')
+    expect(screen.getByTestId('offline-screen')).toBeInTheDocument()
+    expect(screen.queryByText('login sahifasi')).not.toBeInTheDocument()
+  })
+
   it("anonim foydalanuvchini login ga yo'naltiradi", () => {
     useAuthStore.setState({ status: 'anonymous', user: null })
     renderAt('/sales')

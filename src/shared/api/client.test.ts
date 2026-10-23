@@ -120,6 +120,30 @@ describe('api client', () => {
     expect(tokenStore.get()).toBeNull()
   })
 
+  it('tarmoq uzilsa refresh chiqarib yubormaydi: network_error, token saqlanadi', async () => {
+    tokenStore.set('old')
+    const onUnauthorized = vi.fn()
+    const off = tokenStore.onUnauthorized(onUnauthorized)
+    server.use(
+      http.get(`${BASE}/users/`, () =>
+        HttpResponse.json(errorBody('token_not_valid'), { status: 401 }),
+      ),
+      http.post(`${BASE}/auth/refresh/`, () => HttpResponse.error()),
+    )
+    const error = await api.get('/users/').catch((e: unknown) => e as ApiError)
+    expect((error as ApiError).code).toBe('network_error')
+    expect(tokenStore.get()).toBe('old')
+    expect(onUnauthorized).not.toHaveBeenCalled()
+    off()
+  })
+
+  it('server ishlamasa (502) refresh xato tashlaydi, sessiya «tugadi» deb hisoblanmaydi', async () => {
+    server.use(http.post(`${BASE}/auth/refresh/`, () => new HttpResponse(null, { status: 502 })))
+    const error = await refreshAccess().catch((e: unknown) => e as ApiError)
+    expect(error).toBeInstanceOf(ApiError)
+    expect((error as ApiError).code).toBe('server_error')
+  })
+
   it('204 javobda undefined qaytaradi va Idempotency-Key yuboradi', async () => {
     let key: string | null = null
     server.use(

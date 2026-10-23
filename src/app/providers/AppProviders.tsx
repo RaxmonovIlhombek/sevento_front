@@ -5,6 +5,7 @@ import { useAuthStore } from '@/features/auth'
 import { queryClient } from '@/shared/api/queryClient'
 import { Toaster } from '@/shared/ui'
 
+import { PwaUpdater } from './PwaUpdater'
 import { RealtimeProvider } from './RealtimeProvider'
 
 /** Ilova ochilganda refresh cookie orqali sessiyani tiklaydi. */
@@ -24,6 +25,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
         <RealtimeProvider>{children}</RealtimeProvider>
       </AuthBootstrap>
       <Toaster />
+      <PwaUpdater />
     </QueryClientProvider>
   )
 }

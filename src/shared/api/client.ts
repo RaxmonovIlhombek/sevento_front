@@ -95,29 +95,36 @@ const NO_REFRESH_PATHS = ['/auth/login/', '/auth/refresh/', '/auth/logout/']
 
 let refreshPromise: Promise<string | null> | null = null
 
-/** Refresh cookie bilan yangi access oladi. Parallel chaqiruvlar bitta so'rovni kutadi. */
+/**
+ * Refresh cookie bilan yangi access oladi. Parallel chaqiruvlar bitta so'rovni kutadi.
+ * `null` — sessiya yo'q (cookie yo'q yoki eskirgan). Tarmoq uzilgan yoki server ishlamayotgan
+ * bo'lsa `ApiError` (network_error / server_error) tashlanadi — bu chiqish (logout) emas:
+ * aloqa tiklangach sessiya davom etadi.
+ */
 export function refreshAccess(): Promise<string | null> {
   if (!refreshPromise) {
     refreshPromise = (async () => {
+      let response: Response
       try {
-        const response = await transport(buildUrl('/auth/refresh/'), {
+        response = await transport(buildUrl('/auth/refresh/'), {
           method: 'POST',
           credentials: 'include',
           headers: { Accept: 'application/json' },
         })
-        if (!response.ok) {
-          tokenStore.clear()
-          return null
-        }
-        const data = (await response.json()) as { access: string }
-        tokenStore.set(data.access)
-        return data.access
       } catch {
-        return null
-      } finally {
-        refreshPromise = null
+        throw new ApiError(0, 'network_error', localizeErrorCode('network_error'))
       }
-    })()
+      if (response.status >= 500) throw await parseError(response)
+      if (!response.ok) {
+        tokenStore.clear()
+        return null
+      }
+      const data = (await response.json()) as { access: string }
+      tokenStore.set(data.access)
+      return data.access
+    })().finally(() => {
+      refreshPromise = null
+    })
   }
   return refreshPromise
 }

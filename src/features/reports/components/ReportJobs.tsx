@@ -22,7 +22,7 @@ export function ReportJobs() {
     setBusy(job.id)
     try {
       const result = await reportsApi.download(job.download_url)
-      if (result.kind === 'file') saveFile(result.file.blob, result.file.filename)
+      if (result.kind === 'file') await saveFile(result.file.blob, result.file.filename)
     } catch (error) {
       toast.error(error instanceof Error ? error.message : String(error))
     } finally {

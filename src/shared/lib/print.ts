@@ -3,7 +3,20 @@
  * Token URL ga yozilmaydi (fayl avval Authorization bilan olinadi). Iframe chop etolmasa
  * (masalan Safari) — yangi oynada ochiladi.
  */
-export function printPdf(blob: Blob): void {
+type OpenHandler = (blob: Blob, filename: string) => Promise<void>
+
+// Desktop (Tauri): webview PDF ni ichida ko'rsata olmaydi (WebKitGTK) — tizim dasturida ochiladi
+let openHandler: OpenHandler | null = null
+
+export function setOpenHandler(handler: OpenHandler) {
+  openHandler = handler
+}
+
+export function printPdf(blob: Blob, filename = 'chek.pdf'): void {
+  if (openHandler) {
+    void openHandler(blob, filename)
+    return
+  }
   const url = URL.createObjectURL(blob)
   const frame = document.createElement('iframe')
   frame.style.position = 'fixed'
@@ -32,7 +45,11 @@ export function printPdf(blob: Blob): void {
   document.body.appendChild(frame)
 }
 
-export function openPdf(blob: Blob): void {
+export function openPdf(blob: Blob, filename = 'hujjat.pdf'): void {
+  if (openHandler) {
+    void openHandler(blob, filename)
+    return
+  }
   const url = URL.createObjectURL(blob)
   window.open(url, '_blank', 'noopener')
   setTimeout(() => URL.revokeObjectURL(url), 60_000)

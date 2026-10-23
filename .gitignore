@@ -12,3 +12,5 @@ coverage/
 *.log
 npm-debug.log*
 src-tauri/target/
+src-tauri/tauri.env.conf.json
+src-tauri/gen/

@@ -79,5 +79,21 @@
     "branches": "Nuqtalar",
     "capabilities": "Huquqlar",
     "quickLinks": "Tez o'tish"
+  },
+  "offline": {
+    "title": "Internet yo'q",
+    "text": "Server bilan aloqa o'rnatib bo'lmadi. Internet ulanishini tekshiring — aloqa tiklanishi bilan ilova o'zi davom etadi.",
+    "retry": "Qayta urinish",
+    "banner": "Internet aloqasi yo'q — ma'lumotlar yangilanmaydi va o'zgarishlar saqlanmaydi. Aloqa tiklanishini kuting."
+  },
+  "pwa": {
+    "updateTitle": "Yangi versiya tayyor",
+    "updateText": "Ilovaning yangi versiyasi yuklandi. Joriy ishni tugatib, yangilang.",
+    "update": "Yangilash",
+    "later": "Keyinroq"
+  },
+  "desktop": {
+    "saveFailed": "Faylni saqlab bo'lmadi",
+    "openFailed": "Faylni ochib bo'lmadi"
   }
 }

@@ -1,6 +1,8 @@
+import { RefreshCw, WifiOff } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link, useRouteError } from 'react-router'
 
+import { useAuthStore } from '@/features/auth'
 import { Button } from '@/shared/ui'
 
 function StatusPage({ code, title, text }: { code: string; title: string; text: string }) {
@@ -34,4 +36,32 @@ export function ErrorPage() {
   const error = useRouteError()
   const message = error instanceof Error ? error.message : String(error)
   return <StatusPage code="!" title={t('status.error')} text={message} />
+}
+
+/**
+ * Ilova ochilganda server bilan aloqa yo'q (PWA oflayn ochilgan, internet yoki server ishlamayapti).
+ * Login sahifasiga yubormaymiz — sessiya saqlanib turibdi; aloqa tiklansa avtomatik davom etadi.
+ */
+export function OfflineScreen() {
+  const { t } = useTranslation()
+  const bootstrap = useAuthStore((s) => s.bootstrap)
+  return (
+    <div
+      className="flex min-h-full flex-col items-center justify-center px-6 text-center"
+      data-testid="offline-screen"
+    >
+      <div className="flex size-16 items-center justify-center rounded-full bg-slate-100">
+        <WifiOff className="size-8 text-slate-500" />
+      </div>
+      <h1 className="mt-4 text-xl font-semibold">{t('offline.title')}</h1>
+      <p className="mt-1 max-w-md text-sm text-slate-500">{t('offline.text')}</p>
+      <Button
+        className="mt-6"
+        icon={<RefreshCw className="size-4" />}
+        onClick={() => void bootstrap()}
+      >
+        {t('offline.retry')}
+      </Button>
+    </div>
+  )
 }

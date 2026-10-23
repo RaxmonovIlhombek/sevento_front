@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 import { refreshAccess } from '@/shared/api/client'
+import { isApiError } from '@/shared/api/errors'
 import { queryClient } from '@/shared/api/queryClient'
 import { tokenStore } from '@/shared/api/tokenStore'
 import type { Me } from '@/shared/api/types'
@@ -9,7 +10,8 @@ import { toast } from '@/shared/ui/toast'
 
 import { authApi } from '../api/auth.api'
 
-export type AuthStatus = 'idle' | 'loading' | 'authenticated' | 'anonymous'
+/** offline — server bilan aloqa yo'q (sessiya bor-yo'qligi noma'lum): "Internet yo'q" ekrani */
+export type AuthStatus = 'idle' | 'loading' | 'authenticated' | 'anonymous' | 'offline'
 
 const BRANCH_KEY = 'sevento.currentBranch'
 
@@ -64,7 +66,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   async bootstrap() {
     if (get().status === 'loading') return
     set({ status: 'loading' })
-    const token = await refreshAccess()
+    let token: string | null
+    try {
+      token = await refreshAccess()
+    } catch {
+      // tarmoq yoki server ishlamayapti — login emas, "Internet yo'q" (aloqa tiklansa qayta)
+      set({ status: 'offline', user: null })
+      return
+    }
     if (!token) {
       set({ status: 'anonymous', user: null })
       return
@@ -72,7 +81,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     try {
       const me = await authApi.me()
       set({ status: 'authenticated', user: me, currentBranchId: pickBranch(me) })
-    } catch {
+    } catch (error) {
+      if (isApiError(error) && (error.status === 0 || error.status >= 500)) {
+        set({ status: 'offline', user: null })
+        return
+      }
       tokenStore.clear()
       set({ status: 'anonymous', user: null })
     }
@@ -129,3 +142,10 @@ tokenStore.onUnauthorized(() => {
     toast.warning(i18n.t('auth:sessionExpired'))
   }
 })
+
+// Ilova oflayn ochilgan bo'lsa — aloqa tiklanishi bilan sessiyani qayta tiklashga urinadi
+if (typeof window !== 'undefined') {
+  window.addEventListener('online', () => {
+    if (useAuthStore.getState().status === 'offline') void useAuthStore.getState().bootstrap()
+  })
+}

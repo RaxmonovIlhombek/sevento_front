@@ -2,6 +2,7 @@ import { WifiOff } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useOnlineStatus } from '@/shared/hooks/useOnlineStatus'
 import { cn } from '@/shared/lib/cn'
 import { useRealtimeStore, type RealtimeStatus } from '@/shared/realtime'
 
@@ -32,6 +33,7 @@ const BANNER_AFTER_MS = 10_000
 /** 10 s dan ortiq uzilgan bo'lsa — ogohlantirish banneri (polling ishlayotgani haqida). */
 export function OfflineBanner() {
   const { t } = useTranslation('realtime')
+  const online = useOnlineStatus()
   const offlineSince = useRealtimeStore((s) => s.offlineSince)
   const [now, setNow] = useState(() => Date.now())
 
@@ -41,6 +43,19 @@ export function OfflineBanner() {
     return () => clearInterval(timer)
   }, [offlineSince])
 
+  if (!online) {
+    // internet umuman yo'q — darhol (WebSocket uzilishini kutmasdan)
+    return (
+      <div
+        role="alert"
+        data-testid="offline-banner"
+        className="flex items-center gap-2 border-b border-red-200 bg-red-50 px-4 py-2 text-sm text-red-900"
+      >
+        <WifiOff className="size-4 shrink-0" />
+        {t('common:offline.banner')}
+      </div>
+    )
+  }
   const show = offlineSince !== null && now - offlineSince >= BANNER_AFTER_MS
   if (!show) return null
   return (

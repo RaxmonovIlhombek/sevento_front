@@ -8,8 +8,9 @@ import { salesApi } from '../api/sales.api'
 export async function printReceipt(saleId: number, mode: 'print' | 'open' = 'print') {
   try {
     const blob = await salesApi.receipt(saleId)
-    if (mode === 'print') printPdf(blob)
-    else openPdf(blob)
+    const filename = `chek-${saleId}.pdf`
+    if (mode === 'print') printPdf(blob, filename)
+    else openPdf(blob, filename)
   } catch (error) {
     toast.error(errorMessage(error))
   }

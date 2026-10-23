@@ -13,6 +13,8 @@ export const queryClient = new QueryClient({
         return failureCount < 2
       },
     },
-    mutations: { retry: false },
+    // Oflayn bo'lsa mutatsiya kutib turmaydi (navbat yo'q): darhol "Internet yo'q" xatosi.
+    // Aks holda savdo aloqa tiklanganda "o'zi" yuborilib, kassir buni bilmay qolardi.
+    mutations: { retry: false, networkMode: 'always' },
   },
 })
