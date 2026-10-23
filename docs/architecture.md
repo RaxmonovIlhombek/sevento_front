@@ -1,11 +1,11 @@
 # Arxitektura (frontend)
 
-> Holat: 1–7-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments}`); 6-bosqich: nasiya, mijozlar, smena; 7-bosqich: ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish.
+> Holat: 1–8-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments,reports}`); 6-bosqich: nasiya, mijozlar, smena; 7-bosqich: ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish; 8-bosqich: hisobotlar (PDF/Excel), rahbar dashboardi (jonli).
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
 
-React 19 + TypeScript 5.9 + Vite 8 · React Router 8 · TanStack Query 5 (server holati) · Zustand 5 (mijoz holati) · Tailwind CSS 4 · React Hook Form + Zod 4 · Recharts (8-bosqich) · react-i18next (uz-Latn) · openapi-typescript (API turlari) · vite-plugin-pwa va Tauri (9-bosqich).
+React 19 + TypeScript 5.9 + Vite 8 · React Router 8 · TanStack Query 5 (server holati) · Zustand 5 (mijoz holati) · Tailwind CSS 4 · React Hook Form + Zod 4 · Recharts 3 (dashboard, alohida lazy chunk) · react-i18next (uz-Latn) · openapi-typescript (API turlari) · vite-plugin-pwa va Tauri (9-bosqich).
 Testlar: Vitest + Testing Library + MSW. Lint: ESLint (flat config, feature chegaralari qoidasi) + Prettier.
 
 Rejadan farqlar: access token `shared/api/tokenStore.ts` (React dan tashqari kichik modul) da, auth store (`features/auth/store`) uni ishlatadi — shunda `shared/api/client.ts` features ni import qilmaydi; `QueryClient` ham `shared/api/queryClient.ts` da (logout da tozalash uchun).
@@ -39,14 +39,14 @@ sevento_front/
 │   │   └── i18n/                 # index.ts, locales/uz/{common,auth,catalog,...}.json
 │   ├── features/
 │   │   ├── auth/                 # api/ hooks/ components/ pages/ store/ (useAuthStore: access token, user, capabilities)
-│   │   ├── dashboard/
+│   │   ├── dashboard/            # bosh sahifa; rahbar dashboardi (components/ExecutiveDashboard — recharts, lazy), lib/chart.ts (palitra)
 │   │   ├── catalog/              # tovarlar, kategoriyalar, narxlar
 │   │   ├── currency/
 │   │   ├── inventory/            # qoldiq, harakatlar, ko'chirish, inventarizatsiya, hisobdan chiqarish
 │   │   ├── purchasing/           # yetkazib beruvchi, kirim
 │   │   ├── sales/                # POS, savdolar, qaytarish, chek
 │   │   ├── payments/             # mijozlar, qarzlar, to'lovlar, kassa, smena
-│   │   ├── reports/
+│   │   ├── reports/              # hisobotlar ro'yxati, filtrlar (ta'rifdan), jadval, PDF/Excel, tayyorlangan fayllar
 │   │   └── settings/             # foydalanuvchilar, rollar, nuqtalar, valyuta, to'lov turlari, tizim sozlamalari
 │   ├── main.tsx
 │   └── vite-env.d.ts
@@ -116,7 +116,7 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - `RealtimeProvider` login dan keyin `RealtimeClient.connect()`, logout da `close(1000)`.
 - Har xabar → `invalidation.ts` xaritasi → `queryClient.invalidateQueries(keys)`; toast/bildirishnoma kerak turlar uchun `notifications` store ga yoziladi (sarlavhadagi qo'ng'iroq).
 - `ConnectionIndicator`: `connecting | online | offline`; `offline` da muhim so'rovlar `refetchInterval` bilan polling.
-- Savdo: `stock.changed` kassa qidiruvini (`['sales','pos']`) ham yangilaydi — ikki kassada qoldiq sinxron; `dashboard.updated` → `['sales','summary']`, `['sales','list']`; `payment.received`/`payment.refunded` → `['payments']` (kassa qoldig'i, jurnal) va savdolar ro'yxati.
+- Savdo: `stock.changed` kassa qidiruvini (`['sales','pos']`) ham yangilaydi — ikki kassada qoldiq sinxron; `dashboard.updated` → `['sales','summary']`, `['sales','list']`, `['dashboard']` (2 s debounce); `payment.received`/`payment.refunded` → `['payments']` (kassa qoldig'i, jurnal) va savdolar ro'yxati.
 - Ombor: `stock.changed` → `['inventory']` (qoldiq, harakatlar, partiyalar bitta kalit ostida; 1,5 s debounce — ko'p qatorli kirim bitta qayta o'qish), `stock.below_minimum` → shu kalit + "Kam qoldi" toast. Qoldiq va harakatlar so'rovlari `meta.pollWhenOffline`.
 
 ## 6. Formalar va pul
@@ -155,6 +155,15 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - Inventarizatsiya: kiritishlar sahifalar orasida saqlanadi (tovar id → qiymat), "Saqlash" bitta so'rov; qoralamada farq = sanalgan − hozirgi qoldiq (BigInt), Enter — keyingi qatorga (skaner bilan tez sanash).
 - Qaytarish oynasi (`features/sales/components/ReturnModal.tsx`): summa `lib/returns.ts` da server formulasining aniq nusxasi (`round(L·(r+q)/Q) − round(L·r/Q)`), avval qarzdan, qolgani pul (taxminiy; yakuniy — server). Qaytarish bo'lgan savdoda "Bekor qilish" ko'rinmaydi.
 - Hujjat havolalari (`purchase`, `sale`, `sale_return`, `transfer`, `stock_count`, `write_off`, `customer`) — `shared/lib/documentRoutes.ts` (harakatlar jurnali, kassa, to'lovlar).
+
+### Hisobotlar va dashboard (8-bosqich)
+
+- **Hisobotlar** (`features/reports`): ro'yxat va filtrlar backend ta'rifidan (`GET /reports/` — `filters`: `date`, `branch`, `category`, `supplier`, `write_off_reason`, `payment_method`, `currency`, `choice`, `bool`). Yangi hisobot backend da qo'shilsa frontend kodi o'zgarmaydi. Filtr qiymatlari URL da (`useListParams`) — havola ulashsa shu ko'rinish ochiladi; "Barcha nuqtalar" — maxsus `all` qiymati (bo'sh qiymat URL dan o'chiriladi). Davr tugmalari: bugun, kecha, 7 kun, shu oy, o'tgan oy.
+- Jadval kataklari `lib/format.ts`: ustun turi (`money`, `quantity`, `percent`, `date`...) va qatordagi xona soni (`decimals_key`, masalan `_qdp` — birlik aniqligi, `_dp` — valyuta) bo'yicha; miqdorda faqat kasr qismidagi nollar kesiladi. Ekranda `reports.preview_row_limit` (500) qator, to'liq ro'yxat — faylda.
+- **Eksport** `api.postFileOrJson()`: `200` + fayl (`Content-Disposition` dan nom) → `saveFile()`; `202` + `ReportJob` → "tayyorlanmoqda" toast, `report.ready` WS → "Hisobot tayyor" toast va «Tayyorlangan fayllar» (`['reports','jobs']`, kutilayotgan bo'lsa 5 s polling — WS uzilsa ham ko'rinadi). Fayl `api.file()` bilan (Authorization sarlavhasi bilan) yuklanadi.
+- **Rahbar dashboardi** (`dashboard.view`): `DashboardPage` uni `lazy()` bilan yuklaydi — recharts (≈400 KB) faqat rahbar/buxgalterga kerak bo'lganda yuklanadi; boshqalarga avvalgi sodda bosh sahifa (`TodaySales`). Davr: bugun (soatlik), 7 kun, 30 kun, shu oy (kunlik); nuqta — sarlavhadagi tanlagich.
+- Grafik qoidalari (dataviz): KPI — plitka (oldingi davrga nisbatan %, yo'nalish rangi ma'noga qarab: qaytarishlar o'sishi — yomon), dinamika — bitta o'qli chiziq (tushum 10% maydon bilan, foyda chiziq), nuqtalar — bitta rangli gorizontal ustunlar (8 tadan ko'pi "Boshqa N ta nuqta"), to'lov turlari — bitta yig'ma ustun + qiymatli legend, ranglar `lib/chart.ts` dagi validatsiyadan o'tgan palitradan va **to'lov turiga bog'liq** (MB dagi tartib bo'yicha, davr o'zgarsa rang o'zgarmaydi). Matn doim ink ranglarda, grafikning jadval ko'rinishi bor. Qayta so'rashda oldingi holat xira ko'rinadi (sakrash yo'q).
+- Foyda va ombor qiymati faqat server qaytarsa ko'rinadi (`reports.financial`, `inventory.view_cost`); dashboard foydasi hisobotlardagi bilan bir xil yaxlitlanadi.
 
 ## 7. i18n
 

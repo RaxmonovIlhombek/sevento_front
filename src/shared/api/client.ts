@@ -20,8 +20,22 @@ export interface RequestOptions {
   headers?: HeadersInit
   idempotencyKey?: string
   signal?: AbortSignal
-  /** 'blob' — PDF/Excel kabi fayllar uchun */
-  responseType?: 'json' | 'blob'
+  /** 'blob' — PDF/Excel kabi fayllar uchun; 'auto' — fayl yoki JSON (javob turiga qarab) */
+  responseType?: 'json' | 'blob' | 'auto'
+}
+
+export interface DownloadedFile {
+  blob: Blob
+  filename: string
+}
+
+/** Hisobot eksporti: fayl darhol (200) yoki fon vazifasi haqida JSON (202). */
+export type FileOrJson<T> = { kind: 'file'; file: DownloadedFile } | { kind: 'json'; data: T }
+
+function filenameFrom(response: Response, fallback: string): string {
+  const header = response.headers.get('Content-Disposition') ?? ''
+  const match = /filename\*?=(?:UTF-8'')?"?([^";]+)"?/i.exec(header)
+  return match ? decodeURIComponent(match[1]) : fallback
 }
 
 type Transport = (input: string, init: RequestInit) => Promise<Response>
@@ -110,7 +124,10 @@ export function refreshAccess(): Promise<string | null> {
 
 async function request<T>(path: string, options: RequestOptions = {}, retried = false): Promise<T> {
   const headers = new Headers(options.headers)
-  headers.set('Accept', options.responseType === 'blob' ? '*/*' : 'application/json')
+  headers.set(
+    'Accept',
+    options.responseType === 'json' || !options.responseType ? 'application/json' : '*/*',
+  )
   const isFormData = typeof FormData !== 'undefined' && options.body instanceof FormData
   if (options.body !== undefined && !isFormData) headers.set('Content-Type', 'application/json')
   const token = tokenStore.get()
@@ -146,6 +163,17 @@ async function request<T>(path: string, options: RequestOptions = {}, retried = 
   if (!response.ok) throw await parseError(response)
   if (response.status === 204) return undefined as T
   if (options.responseType === 'blob') return (await response.blob()) as T
+  if (options.responseType === 'auto') {
+    const isJson = (response.headers.get('Content-Type') ?? '').includes('application/json')
+    return (
+      isJson
+        ? { kind: 'json', data: await response.json() }
+        : {
+            kind: 'file',
+            file: { blob: await response.blob(), filename: filenameFrom(response, 'hisobot') },
+          }
+    ) as T
+  }
   return (await response.json()) as T
 }
 
@@ -163,6 +191,11 @@ export const api = {
   /** Fayl (PDF, Excel) — Authorization bilan; natija Blob. */
   blob: (path: string, query?: QueryParams) =>
     request<Blob>(path, { query, method: 'GET', responseType: 'blob' }),
+  /** Fayl nomi bilan (Content-Disposition) — yuklab olish uchun. */
+  file: (path: string) => request<FileOrJson<never>>(path, { method: 'GET', responseType: 'auto' }),
+  /** POST → fayl yoki JSON (masalan og'ir hisobot fonda: 202). */
+  postFileOrJson: <T>(path: string, body?: unknown) =>
+    request<FileOrJson<T>>(path, { body, method: 'POST', responseType: 'auto' }),
 }
 
 /** Mutatsiyalar uchun Idempotency-Key (tarmoq uzilib qayta yuborilsa ikkinchi hujjat yaratilmaydi). */

@@ -23,7 +23,7 @@ export interface Notice {
   description: string
 }
 
-const trim = (value: string) => value.replace(/\.?0+$/, '')
+const trim = (value: string) => (value.includes('.') ? value.replace(/\.?0+$/, '') : value)
 
 /**
  * Ko'chirish xabari kimga toast bo'lib ko'rinadi (keshni yangilash hammaga):

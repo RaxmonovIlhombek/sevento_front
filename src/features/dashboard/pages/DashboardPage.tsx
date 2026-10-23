@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 
 import { useAuthStore, useCapability } from '@/features/auth'
-import { Card, PageHeader } from '@/shared/ui'
+import { Card, PageHeader, PageSpinner } from '@/shared/ui'
 
-// Savdo moduli alohida chunk da: dashboard (boshlang'ich sahifa) yengil qolsin
+// Savdo moduli va grafiklar (recharts) alohida chunk da: boshlang'ich sahifa yengil qolsin
 const TodaySales = lazy(() => import('@/features/sales').then((m) => ({ default: m.TodaySales })))
+const ExecutiveDashboard = lazy(() => import('../components/ExecutiveDashboard'))
 
 export function DashboardPage() {
   const { t } = useTranslation()
@@ -16,6 +17,7 @@ export function DashboardPage() {
   const canBranches = useCapability('branches.manage')
   const canAudit = useCapability('audit.view')
   const canSales = useCapability('sales.view')
+  const canDashboard = useCapability('dashboard.view')
 
   if (!user) return null
 
@@ -32,38 +34,46 @@ export function DashboardPage() {
         title={t('dashboard.title')}
         subtitle={t('dashboard.welcome', { name: user.full_name })}
       />
-      {canSales && (
-        <div className="mb-4">
-          <Suspense fallback={null}>
-            <TodaySales />
-          </Suspense>
-        </div>
+      {canDashboard ? (
+        // rahbar: ko'rsatkichlar va grafiklar (savdoda jonli yangilanadi)
+        <Suspense fallback={<PageSpinner />}>
+          <ExecutiveDashboard />
+        </Suspense>
+      ) : (
+        <>
+          {canSales && (
+            <div className="mb-4">
+              <Suspense fallback={null}>
+                <TodaySales />
+              </Suspense>
+            </div>
+          )}
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Card>
+              <p className="text-xs font-semibold text-slate-500 uppercase">
+                {t('dashboard.role')}
+              </p>
+              <p className="mt-1 text-lg font-semibold">{user.role?.name ?? '—'}</p>
+            </Card>
+            <Card>
+              <p className="text-xs font-semibold text-slate-500 uppercase">
+                {t('dashboard.branches')}
+              </p>
+              <p className="mt-1 text-lg font-semibold">
+                {user.all_branches
+                  ? t('branch.all')
+                  : user.branches.map((b) => b.name).join(', ') || '—'}
+              </p>
+            </Card>
+            <Card>
+              <p className="text-xs font-semibold text-slate-500 uppercase">
+                {t('dashboard.capabilities')}
+              </p>
+              <p className="mt-1 text-lg font-semibold">{user.capabilities.length}</p>
+            </Card>
+          </div>
+        </>
       )}
-      <div className="grid gap-4 sm:grid-cols-3">
-        <Card>
-          <p className="text-xs font-semibold text-slate-500 uppercase">{t('dashboard.role')}</p>
-          <p className="mt-1 text-lg font-semibold">{user.role?.name ?? '—'}</p>
-        </Card>
-        <Card>
-          <p className="text-xs font-semibold text-slate-500 uppercase">
-            {t('dashboard.branches')}
-          </p>
-          <p className="mt-1 text-lg font-semibold">
-            {user.all_branches
-              ? t('branch.all')
-              : user.branches.map((b) => b.name).join(', ') || '—'}
-          </p>
-        </Card>
-        <Card>
-          <p className="text-xs font-semibold text-slate-500 uppercase">
-            {t('dashboard.capabilities')}
-          </p>
-          <p className="mt-1 text-lg font-semibold">{user.capabilities.length}</p>
-        </Card>
-      </div>
-      <Card className="mt-4">
-        <p className="text-sm text-slate-600">{t('dashboard.comingSoon')}</p>
-      </Card>
       {links.length > 0 && (
         <div className="mt-6">
           <h2 className="mb-2 text-sm font-semibold text-slate-700">{t('dashboard.quickLinks')}</h2>

@@ -101,6 +101,19 @@ function handleSideEffects(message: RealtimeMessage) {
       )
       return
     }
+    case 'report.ready': {
+      const p = message.payload as { title?: string; format?: string }
+      toast.success(
+        i18n.t('reports:readyToast', { title: p.title ?? '' }),
+        i18n.t('reports:readyToastText', { format: (p.format ?? '').toUpperCase() }),
+      )
+      return
+    }
+    case 'report.failed': {
+      const p = message.payload as { title?: string; error?: string }
+      toast.error(i18n.t('reports:failedToast', { title: p.title ?? '' }), p.error ?? '')
+      return
+    }
     case 'system.notice': {
       const level = String(message.payload.level ?? 'info') as 'info' | 'warning' | 'error'
       const show = toast[level] ?? toast.info

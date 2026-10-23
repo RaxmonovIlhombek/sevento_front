@@ -1,4 +1,5 @@
 export { useStock } from './api/inventory.api'
+export { useWriteOffReasons } from './api/documents.api'
 export { MovementsPage } from './pages/MovementsPage'
 export { ProductStockPage } from './pages/ProductStockPage'
 export { StockCountPage } from './pages/StockCountPage'

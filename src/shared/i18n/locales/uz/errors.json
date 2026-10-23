@@ -72,5 +72,8 @@
   "exceeds_sold": "Qaytarish miqdori sotilgandan (qaytarilganini ayirib) ko'p",
   "not_in_sale": "Bu qator savdoda yo'q",
   "return_allocation": "Qaytarishni partiyalarga taqsimlab bo'lmadi",
-  "return_forbidden": "Faqat o'z savdongizni qaytara olasiz"
+  "return_forbidden": "Faqat o'z savdongizni qaytara olasiz",
+  "report_not_found": "Bunday hisobot yo'q",
+  "report_not_ready": "Fayl hali tayyor emas",
+  "unsupported_format": "Bu format qo'llab-quvvatlanmaydi"
 }

@@ -54,6 +54,9 @@ const CustomersPage = lazy(() => payments().then((m) => ({ default: m.CustomersP
 const CustomerDetailPage = lazy(() => payments().then((m) => ({ default: m.CustomerDetailPage })))
 const DebtsPage = lazy(() => payments().then((m) => ({ default: m.DebtsPage })))
 const PaymentsJournalPage = lazy(() => payments().then((m) => ({ default: m.PaymentsJournalPage })))
+const reports = () => import('@/features/reports')
+const ReportsPage = lazy(() => reports().then((m) => ({ default: m.ReportsPage })))
+const ReportPage = lazy(() => reports().then((m) => ({ default: m.ReportPage })))
 const purchasing = () => import('@/features/purchasing')
 const PurchasesPage = lazy(() => purchasing().then((m) => ({ default: m.PurchasesPage })))
 const PurchaseFormPage = lazy(() => purchasing().then((m) => ({ default: m.PurchaseFormPage })))
@@ -62,6 +65,7 @@ const ExpenseTypesPage = lazy(() => purchasing().then((m) => ({ default: m.Expen
 
 const lazyPage = (element: ReactNode) => <Suspense fallback={<PageSpinner />}>{element}</Suspense>
 
+const REPORTS_VIEW = ['reports.view', 'reports.financial'] as const
 const COUNT_VIEW = ['inventory.counts.manage', 'inventory.view_cost'] as const
 const WRITE_OFF_VIEW = ['inventory.writeoffs.manage', 'inventory.view_cost'] as const
 
@@ -152,6 +156,8 @@ export const router = createBrowserRouter([
         ],
       },
       { path: 'currency', element: lazyPage(<CurrencyRatesPage />) },
+      { path: 'reports', element: guarded(REPORTS_VIEW, <ReportsPage />) },
+      { path: 'reports/:key', element: guarded(REPORTS_VIEW, <ReportPage />) },
       {
         path: 'settings',
         children: [

@@ -12,6 +12,7 @@ import nav from './locales/uz/nav.json'
 import payments from './locales/uz/payments.json'
 import purchasing from './locales/uz/purchasing.json'
 import realtime from './locales/uz/realtime.json'
+import reports from './locales/uz/reports.json'
 import sales from './locales/uz/sales.json'
 import settings from './locales/uz/settings.json'
 import validation from './locales/uz/validation.json'
@@ -33,6 +34,7 @@ export const resources = {
     purchasing,
     sales,
     payments,
+    reports,
   },
 } as const
 

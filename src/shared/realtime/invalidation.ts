@@ -28,7 +28,7 @@ export const invalidationRules: Record<string, Rule> = {
   },
   'stock.below_minimum': { keys: () => [queryKeys.inventory.all] },
   'dashboard.updated': {
-    keys: () => [queryKeys.sales.summaryAll, queryKeys.sales.lists],
+    keys: () => [queryKeys.sales.summaryAll, queryKeys.sales.lists, queryKeys.dashboard.all],
     debounceMs: 2000,
   },
   // to'lov (savdo ham) — kassa qoldig'i, jurnal, savdolar ro'yxati, kunlik xulosa
@@ -60,7 +60,9 @@ export const invalidationRules: Record<string, Rule> = {
     keys: () => [queryKeys.sales.all, queryKeys.payments.all],
     debounceMs: 500,
   },
-  // 8-bosqich: 'report.ready' / 'report.failed'
+  // fondagi hisobot: "Tayyorlangan fayllar" ro'yxati (toast — RealtimeProvider)
+  'report.ready': { keys: () => [queryKeys.reports.jobs] },
+  'report.failed': { keys: () => [queryKeys.reports.jobs] },
 }
 
 export function keysFor(message: RealtimeMessage): QueryKey[] | null {

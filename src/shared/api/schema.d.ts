@@ -1480,6 +1480,139 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/reports/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Hisobotlar reyestri. Ko'rish — JSON (ekranda); fayl — PDF/Excel.
+         *
+         *     Har hisobotning o'z huquqi bor (`reports.view` / `reports.financial`); nuqta chegarasi
+         *     selectorlarda qo'llanadi. Parametrlar — hisobot `filters` ro'yxatidagi nomlar.
+         */
+        get: operations["reports_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reports/{key}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Hisobotlar reyestri. Ko'rish — JSON (ekranda); fayl — PDF/Excel.
+         *
+         *     Har hisobotning o'z huquqi bor (`reports.view` / `reports.financial`); nuqta chegarasi
+         *     selectorlarda qo'llanadi. Parametrlar — hisobot `filters` ro'yxatidagi nomlar.
+         */
+        get: operations["reports_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reports/{key}/export/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yengil hisobot — fayl darhol; og'ir yoki uzun davr — 202 + ReportJob (report.ready). */
+        post: operations["reports_export_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reports/dashboard/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * @description Rahbar dashboardi: KPI (oldingi davr bilan), kunlik/soatlik qator, nuqtalar, top tovar.
+         *
+         *     Jonli: `dashboard.updated` kelganda frontend qayta so'raydi.
+         */
+        get: operations["reports_dashboard_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reports/jobs/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Fonda tayyorlangan hisobotlar — faqat o'ziniki (oxirgi 20 ta). */
+        get: operations["reports_jobs_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reports/jobs/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Fonda tayyorlangan hisobotlar — faqat o'ziniki (oxirgi 20 ta). */
+        get: operations["reports_jobs_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/reports/jobs/{id}/download/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Fonda tayyorlangan hisobotlar — faqat o'ziniki (oxirgi 20 ta). */
+        get: operations["reports_jobs_download_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/roles/": {
         parameters: {
             query?: never;
@@ -1851,6 +1984,12 @@ export interface components {
             settings?: unknown;
             is_active?: boolean;
         };
+        BranchSales: {
+            branch: string;
+            /** Format: decimal */
+            revenue: string;
+            count: number;
+        };
         /**
          * @description * `shop` - Do'kon
          *     * `warehouse` - Ombor
@@ -1864,6 +2003,12 @@ export interface components {
             code: string;
             name: string;
             group: string;
+        };
+        CashBalance: {
+            currency: string;
+            decimal_places: number;
+            /** Format: decimal */
+            balance: string;
         };
         CashEntryWriteRequest: {
             branch: number;
@@ -1969,6 +2114,18 @@ export interface components {
         ChangePasswordRequest: {
             current_password: string;
             new_password: string;
+        };
+        Choice: {
+            value: string;
+            label: string;
+        };
+        Column: {
+            key: string;
+            label: string;
+            type: string;
+            decimals: number;
+            decimals_key: string | null;
+            total: boolean;
         };
         CostPreview: {
             /** Format: decimal */
@@ -2142,6 +2299,27 @@ export interface components {
             profit_base: string | null;
             base_currency: string;
         };
+        Dashboard: {
+            period: components["schemas"]["Period"];
+            base_currency: string;
+            show_profit: boolean;
+            kpi: components["schemas"]["DashboardKpi"];
+            series: components["schemas"]["SeriesPoint"][];
+            by_branch: components["schemas"]["BranchSales"][];
+            top_products: components["schemas"]["TopProduct"][];
+            payment_methods: components["schemas"]["MethodShare"][];
+            cash: components["schemas"]["CashBalance"][];
+            debts: components["schemas"]["DebtTotals"];
+            inventory: components["schemas"]["InventoryTotals"];
+        };
+        DashboardKpi: {
+            revenue: components["schemas"]["Kpi"];
+            /** @description faqat reports.financial bilan */
+            profit?: components["schemas"]["Kpi"];
+            sales_count: components["schemas"]["Kpi"];
+            average_check: components["schemas"]["Kpi"];
+            returns: components["schemas"]["Kpi"];
+        };
         Debt: {
             readonly id: number;
             readonly customer: number;
@@ -2193,6 +2371,13 @@ export interface components {
          * @enum {string}
          */
         DebtStatusEnum: "open" | "paid" | "cancelled";
+        DebtTotals: {
+            /** Format: decimal */
+            open: string;
+            /** Format: decimal */
+            overdue: string;
+            overdue_count: number;
+        };
         DocumentRef: {
             id: number;
             number: string;
@@ -2244,10 +2429,30 @@ export interface components {
             default_allocation?: components["schemas"]["AllocationMethodEnum"];
             is_active?: boolean;
         };
+        ExportRequestRequest: {
+            format: components["schemas"]["FormatEnum"];
+            params?: {
+                [key: string]: unknown;
+            };
+        };
         FetchResult: {
             provider: string;
             updated: components["schemas"]["ExchangeRate"][];
         };
+        Filter: {
+            name: string;
+            type: string;
+            label: string;
+            required: boolean;
+            readonly choices: components["schemas"]["Choice"][];
+            readonly default: string | null;
+        };
+        /**
+         * @description * `pdf` - PDF
+         *     * `xlsx` - Excel
+         * @enum {string}
+         */
+        FormatEnum: "pdf" | "xlsx";
         Health: {
             status: string;
             db: boolean;
@@ -2258,6 +2463,23 @@ export interface components {
         };
         InventoryCancelRequest: {
             reason: string;
+        };
+        InventoryTotals: {
+            low_stock: number;
+            /** Format: decimal */
+            stock_value: string | null;
+            incoming_transfers: number;
+        };
+        Kpi: {
+            /** Format: decimal */
+            value: string;
+            /** Format: decimal */
+            previous: string;
+            /**
+             * Format: decimal
+             * @description oldingi davrga nisbatan %
+             */
+            change: string | null;
         };
         LatestRate: {
             currency: number;
@@ -2330,6 +2552,11 @@ export interface components {
             capabilities: string[];
             branches: components["schemas"]["UserBranch"][];
             all_branches: boolean;
+        };
+        MethodShare: {
+            method: string;
+            /** Format: decimal */
+            amount: string;
         };
         /**
          * @description * `purchase_in` - Kirim
@@ -2822,6 +3049,13 @@ export interface components {
             /** Format: decimal */
             amount: string;
         };
+        Period: {
+            key: string;
+            /** Format: date */
+            date_from: string;
+            /** Format: date */
+            date_to: string;
+        };
         PosConfig: {
             default_currency: string;
             /**
@@ -3087,6 +3321,60 @@ export interface components {
         };
         RefreshResponse: {
             access: string;
+        };
+        ReportInfo: {
+            key: string;
+            title: string;
+            description: string;
+            category: string;
+            readonly category_label: string;
+            filters: components["schemas"]["Filter"][];
+            readonly formats: string[];
+            heavy: boolean;
+        };
+        ReportJob: {
+            readonly id: number;
+            readonly report_key: string;
+            readonly title: string;
+            readonly format: string;
+            readonly params: unknown;
+            readonly status: components["schemas"]["ReportJobStatusEnum"];
+            readonly status_display: string;
+            readonly rows_count: number;
+            readonly error: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly finished_at: string | null;
+            readonly download_url: string | null;
+        };
+        /**
+         * @description * `pending` - Navbatda
+         *     * `running` - Tayyorlanmoqda
+         *     * `ready` - Tayyor
+         *     * `failed` - Xato
+         * @enum {string}
+         */
+        ReportJobStatusEnum: "pending" | "running" | "ready" | "failed";
+        ReportResult: {
+            key: string;
+            title: string;
+            subtitle: string;
+            params: {
+                [key: string]: unknown;
+            };
+            columns: components["schemas"]["Column"][];
+            readonly rows: {
+                [key: string]: unknown;
+            }[];
+            readonly totals: {
+                [key: string]: unknown;
+            } | null;
+            notes: string[];
+            row_count: number;
+            truncated: boolean;
+            /** @description Fayl fonda tayyorlanadi (report.ready) */
+            heavy: boolean;
         };
         /**
          * @description * `none` - none
@@ -3460,6 +3748,14 @@ export interface components {
              */
             expected_total?: string | null;
         };
+        SeriesPoint: {
+            label: string;
+            /** Format: decimal */
+            revenue: string;
+            /** Format: decimal */
+            profit?: string;
+            count: number;
+        };
         SetPasswordRequest: {
             new_password: string;
         };
@@ -3678,6 +3974,15 @@ export interface components {
         Ticket: {
             ticket: string;
             expires_in: number;
+        };
+        TopProduct: {
+            product_id: number;
+            name: string;
+            unit: string;
+            /** Format: decimal */
+            quantity: string;
+            /** Format: decimal */
+            revenue: string;
         };
         /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
         TransferDetail: {
@@ -7435,6 +7740,210 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Ticket"];
+                };
+            };
+        };
+    };
+    reports_list: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportInfo"][];
+                };
+            };
+        };
+    };
+    reports_retrieve: {
+        parameters: {
+            query?: {
+                /** @description hisobot filtrlari (date_from, date_to, branch, ...) */
+                params?: {
+                    [key: string]: unknown;
+                };
+            };
+            header?: never;
+            path: {
+                key: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportResult"];
+                };
+            };
+            /** @description Xato */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Xato */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    reports_export_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                key: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ExportRequestRequest"];
+                "multipart/form-data": components["schemas"]["ExportRequestRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/pdf": string;
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": string;
+                };
+            };
+            /** @description fonda tayyorlanadi */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportJob"];
+                };
+            };
+            /** @description Xato */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    reports_dashboard_retrieve: {
+        parameters: {
+            query?: {
+                branch?: number | null;
+                /**
+                 * @description * `today` - Bugun
+                 *     * `7d` - 7 kun
+                 *     * `30d` - 30 kun
+                 *     * `month` - Shu oy
+                 */
+                period?: "today" | "7d" | "30d" | "month";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Dashboard"];
+                };
+            };
+        };
+    };
+    reports_jobs_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportJob"][];
+                };
+            };
+        };
+    };
+    reports_jobs_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this report job. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReportJob"];
+                };
+            };
+        };
+    };
+    reports_jobs_download_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this report job. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/octet-stream": string;
                 };
             };
         };

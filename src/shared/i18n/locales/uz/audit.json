@@ -69,6 +69,7 @@
     "write_off.completed": "Hisobdan chiqarildi",
     "write_off.cancelled": "Hisobdan chiqarish bekor qilindi",
     "sale_return.completed": "Savdo qaytarildi",
-    "debt.reduced": "Qarz qaytarish hisobiga kamaydi"
+    "debt.reduced": "Qarz qaytarish hisobiga kamaydi",
+    "report.exported": "Hisobot yuklab olindi"
   }
 }

@@ -5,6 +5,7 @@ import {
   ArrowLeftRight,
   ArrowRightLeft,
   ClipboardCheck,
+  FileBarChart,
   ListX,
   PackageX,
   Undo2,
@@ -125,6 +126,12 @@ export const navItems: NavItem[] = [
         capability: 'purchasing.manage',
       },
     ],
+  },
+  {
+    to: '/reports',
+    labelKey: 'reports',
+    icon: FileBarChart,
+    capability: ['reports.view', 'reports.financial'],
   },
   {
     labelKey: 'catalog',

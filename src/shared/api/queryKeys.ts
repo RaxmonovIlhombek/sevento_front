@@ -95,6 +95,16 @@ export const queryKeys = {
     shifts: (params: object) => ['payments', 'shifts', params] as const,
     currentShift: (branch: number | null) => ['payments', 'shift-current', branch] as const,
   },
+  reports: {
+    all: ['reports'] as const,
+    list: ['reports', 'list'] as const,
+    result: (key: string, params: object) => ['reports', 'result', key, params] as const,
+    jobs: ['reports', 'jobs'] as const,
+  },
+  dashboard: {
+    all: ['dashboard'] as const,
+    data: (params: object) => ['dashboard', params] as const,
+  },
   products: {
     all: ['products'] as const,
     list: (params: object) => ['products', 'list', params] as const,
