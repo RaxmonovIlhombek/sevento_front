@@ -27,5 +27,8 @@
   "pos": "Kassa (POS)",
   "salesList": "Savdolar",
   "cash": "Kassa qoldig'i",
-  "paymentMethods": "To'lov turlari"
+  "paymentMethods": "To'lov turlari",
+  "customers": "Mijozlar",
+  "debts": "Qarzlar",
+  "paymentsJournal": "To'lovlar"
 }

@@ -8,6 +8,7 @@ import {
   Coins,
   CreditCard,
   FolderTree,
+  HandCoins,
   Package,
   PackageCheck,
   Receipt,
@@ -15,6 +16,7 @@ import {
   Truck,
   Warehouse,
   LayoutDashboard,
+  NotebookPen,
   ScrollText,
   Settings,
   ShieldCheck,
@@ -41,6 +43,15 @@ export const navItems: NavItem[] = [
     children: [
       { to: '/sales/pos', labelKey: 'pos', icon: ShoppingCart, capability: 'sales.create' },
       { to: '/sales', labelKey: 'salesList', icon: Receipt, capability: 'sales.view' },
+    ],
+  },
+  {
+    labelKey: 'payments',
+    icon: HandCoins,
+    children: [
+      { to: '/customers', labelKey: 'customers', icon: Users, capability: 'customers.view' },
+      { to: '/debts', labelKey: 'debts', icon: NotebookPen, capability: 'debts.view' },
+      { to: '/payments', labelKey: 'paymentsJournal', icon: Banknote, capability: 'payments.view' },
       { to: '/cash', labelKey: 'cash', icon: Wallet, capability: 'cashbox.view' },
     ],
   },

@@ -92,3 +92,13 @@ describe("savdo va to'lov xabarlari", () => {
     )
   })
 })
+
+describe('nasiya va kassa xabarlari', () => {
+  it("qarz o'zgarsa va kassa yangilansa payments keshlari yangilanadi", () => {
+    expect(invalidationRules['debt.changed'].keys({})).toContainEqual(queryKeys.payments.all)
+    expect(invalidationRules['cash.updated'].keys({})).toContainEqual(queryKeys.payments.all)
+    expect(invalidationRules['customer.credit_limit_warning'].keys({ customer_id: 7 })).toEqual([
+      queryKeys.payments.customer('7'),
+    ])
+  })
+})

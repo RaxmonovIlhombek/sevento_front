@@ -1,14 +1,16 @@
-import { Wallet } from 'lucide-react'
+import { ArrowDownUp, Wallet } from 'lucide-react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 
-import { useAuthStore } from '@/features/auth'
+import { useAuthStore, useCapability } from '@/features/auth'
 import type { CashTransaction, Cashbox } from '@/shared/api/types'
 import { useListParams } from '@/shared/hooks/useListParams'
 import { cn } from '@/shared/lib/cn'
 import { formatDateTime } from '@/shared/lib/date'
 import { formatNumber } from '@/shared/lib/money'
 import {
+  Button,
   Card,
   DataTable,
   EmptyState,
@@ -21,15 +23,20 @@ import {
 } from '@/shared/ui'
 
 import { useCashboxes, useCashCategories, useCashTransactions } from '../api/payments.api'
+import { CashEntryModal } from '../components/CashEntryModal'
+import { ShiftPanel } from '../components/ShiftPanel'
 
 const DOCUMENT_ROUTES: Record<string, (id: number) => string> = {
   sale: (id) => `/sales/${id}`,
+  customer: (id) => `/customers/${id}`,
 }
 
 /** Kassa qoldig'i (nuqta × valyuta) va kassa jurnali. To'lovlar realtime bilan yangilanadi. */
 export function CashPage() {
   const { t } = useTranslation('payments')
   const branchId = useAuthStore((s) => s.currentBranchId)
+  const canManage = useCapability('cashbox.manage')
+  const [entryOpen, setEntryOpen] = useState(false)
   const cashboxes = useCashboxes({ branch: branchId })
   const categories = useCashCategories()
   const { params, page, set, setPage } = useListParams()
@@ -92,7 +99,23 @@ export function CashPage() {
 
   return (
     <div className="space-y-4">
-      <PageHeader title={t('cash.title')} />
+      <PageHeader
+        title={t('cash.title')}
+        actions={
+          canManage &&
+          branchId !== null && (
+            <Button
+              variant="secondary"
+              icon={<ArrowDownUp className="size-4" />}
+              onClick={() => setEntryOpen(true)}
+              data-testid="entry-new"
+            >
+              {t('entry.new')}
+            </Button>
+          )
+        }
+      />
+      {branchId !== null && <ShiftPanel branchId={branchId} />}
       {boxes.length === 0 && !cashboxes.isPending ? (
         <Card>
           <EmptyState text={t('cash.empty')} />
@@ -188,6 +211,9 @@ export function CashPage() {
           />
         </div>
       </Card>
+      {entryOpen && branchId !== null && (
+        <CashEntryModal branchId={branchId} onClose={() => setEntryOpen(false)} />
+      )}
     </div>
   )
 }

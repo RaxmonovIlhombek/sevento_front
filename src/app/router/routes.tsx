@@ -38,6 +38,10 @@ const SaleDetailPage = lazy(() => sales().then((m) => ({ default: m.SaleDetailPa
 const payments = () => import('@/features/payments')
 const CashPage = lazy(() => payments().then((m) => ({ default: m.CashPage })))
 const PaymentMethodsPage = lazy(() => payments().then((m) => ({ default: m.PaymentMethodsPage })))
+const CustomersPage = lazy(() => payments().then((m) => ({ default: m.CustomersPage })))
+const CustomerDetailPage = lazy(() => payments().then((m) => ({ default: m.CustomerDetailPage })))
+const DebtsPage = lazy(() => payments().then((m) => ({ default: m.DebtsPage })))
+const PaymentsJournalPage = lazy(() => payments().then((m) => ({ default: m.PaymentsJournalPage })))
 const purchasing = () => import('@/features/purchasing')
 const PurchasesPage = lazy(() => purchasing().then((m) => ({ default: m.PurchasesPage })))
 const PurchaseFormPage = lazy(() => purchasing().then((m) => ({ default: m.PurchaseFormPage })))
@@ -92,6 +96,10 @@ export const router = createBrowserRouter([
         ],
       },
       { path: 'cash', element: guarded('cashbox.view', <CashPage />) },
+      { path: 'customers', element: guarded('customers.view', <CustomersPage />) },
+      { path: 'customers/:id', element: guarded('customers.view', <CustomerDetailPage />) },
+      { path: 'debts', element: guarded('debts.view', <DebtsPage />) },
+      { path: 'payments', element: guarded('payments.view', <PaymentsJournalPage />) },
       {
         path: 'inventory',
         children: [

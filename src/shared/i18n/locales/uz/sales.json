@@ -30,7 +30,12 @@
     "chooseBranch": "Kassa uchun nuqtani tanlang",
     "itemsCount": "{{count}} xil tovar",
     "pricesUpdated": "Narxlar yangilandi — savatni tekshiring",
-    "autoPrint": "Chekni avtomatik chop etish"
+    "autoPrint": "Chekni avtomatik chop etish",
+    "customer": "Mijoz",
+    "customerPlaceholder": "Mijoz (ixtiyoriy): ism yoki telefon",
+    "newCustomer": "Yangi mijoz",
+    "creditAvailable": "Kredit: mavjud {{amount}} {{base}}",
+    "customerDebt": "Qarzi: {{amount}} {{base}}"
   },
   "payment": {
     "title": "To'lov",
@@ -46,7 +51,12 @@
     "changeNotCash": "Ortiqcha summa faqat naqd pulda bo'lishi mumkin",
     "noRate": "{{currency}} uchun kurs yo'q",
     "confirm": "Savdoni yakunlash",
-    "inSale": "≈ {{amount}}"
+    "inSale": "≈ {{amount}}",
+    "credit": "Nasiyaga",
+    "creditHint": "Qolgan summa {{customer}} nomiga nasiya yoziladi",
+    "dueDate": "Nasiya muddati",
+    "noCustomer": "Nasiya uchun mijozni tanlang",
+    "overLimit": "Kredit limiti yetmaydi (mavjud {{amount}} {{base}})"
   },
   "success": {
     "title": "Savdo yakunlandi",
@@ -54,7 +64,9 @@
     "change": "Qaytim",
     "print": "Chekni chop etish",
     "open": "PDF ni ochish",
-    "newSale": "Yangi savdo"
+    "newSale": "Yangi savdo",
+    "debt": "Nasiya: {{amount}} {{currency}}",
+    "dueDate": "Muddati: {{date}}"
   },
   "list": {
     "title": "Savdolar",
@@ -70,7 +82,10 @@
     "allStatuses": "Barcha holatlar",
     "dateFrom": "Sanadan",
     "dateTo": "Sanagacha",
-    "empty": "Savdo yo'q"
+    "empty": "Savdo yo'q",
+    "customer": "Mijoz",
+    "debt": "Nasiya",
+    "onlyCredit": "Faqat nasiya"
   },
   "status": {
     "completed": "Yakunlangan",
@@ -97,7 +112,12 @@
       "change": "Qaytim",
       "refund": "Qaytarildi",
       "change_return": "Qaytim qaytarildi"
-    }
+    },
+    "customer": "Mijoz",
+    "debt": "Nasiya",
+    "debtRemaining": "Qarz qoldig'i",
+    "dueDate": "Muddati",
+    "debtStatus": "Qarz holati"
   },
   "summary": {
     "title": "Bugungi savdo",

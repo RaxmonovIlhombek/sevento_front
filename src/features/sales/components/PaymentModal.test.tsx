@@ -16,7 +16,7 @@ const methods = [
   { id: 11, code: 'card', name: 'Karta', is_cash: false, is_active: true },
 ] as PaymentMethod[]
 
-function setup() {
+function setup(credit?: { customerName: string; available4: bigint | null }) {
   const onConfirm = vi.fn()
   render(
     <PaymentModal
@@ -29,6 +29,8 @@ function setup() {
       methods={methods}
       loading={false}
       error={null}
+      credit={credit}
+      canCredit
       onClose={() => {}}
       onConfirm={onConfirm}
     />,
@@ -45,7 +47,9 @@ describe("to'lov oynasi", () => {
     fireEvent.change(screen.getByTestId('pay-amount-1'), { target: { value: '150 000' } })
     expect(text('pay-change')).toBe('7 500 UZS')
     fireEvent.click(screen.getByTestId('pay-confirm'))
-    expect(onConfirm).toHaveBeenCalledWith([{ method: 10, currency: 2, amount: '150000' }])
+    expect(onConfirm).toHaveBeenCalledWith([{ method: 10, currency: 2, amount: '150000' }], {
+      dueDate: null,
+    })
   })
 
   it("dollar + karta aralash: 'Qolganini' tugmasi aniq summani qo'yadi", () => {
@@ -57,10 +61,13 @@ describe("to'lov oynasi", () => {
     fireEvent.click(screen.getByTestId('pay-fill-2'))
     expect((screen.getByTestId('pay-amount-2') as HTMLInputElement).value).toBe('17500')
     fireEvent.click(screen.getByTestId('pay-confirm'))
-    expect(onConfirm).toHaveBeenCalledWith([
-      { method: 10, currency: 1, amount: '10' },
-      { method: 11, currency: 2, amount: '17500' },
-    ])
+    expect(onConfirm).toHaveBeenCalledWith(
+      [
+        { method: 10, currency: 1, amount: '10' },
+        { method: 11, currency: 2, amount: '17500' },
+      ],
+      { dueDate: null },
+    )
   })
 
   it("karta bilan ortiqcha to'lab bo'lmaydi; yetishmasa tugma yopiq", () => {
@@ -71,5 +78,34 @@ describe("to'lov oynasi", () => {
     fireEvent.change(screen.getByTestId('pay-amount-1'), { target: { value: '100000' } })
     expect(text('pay-remaining')).toBe('42 500 UZS')
     expect(screen.getByTestId('pay-confirm')).toBeDisabled()
+  })
+})
+
+describe("to'lov oynasi: nasiya", () => {
+  it("mijoz tanlangan bo'lsa qolgani nasiyaga, muddat bilan", () => {
+    const { onConfirm } = setup({ customerName: 'Aliyev Vali', available4: 10_000_000_000n })
+    fireEvent.change(screen.getByTestId('pay-amount-1'), { target: { value: '20000' } })
+    expect(text('pay-credit')).toBe('122 500 UZS')
+    fireEvent.change(screen.getByTestId('pay-due-date'), { target: { value: '2026-11-30' } })
+    fireEvent.click(screen.getByTestId('pay-confirm'))
+    expect(onConfirm).toHaveBeenCalledWith([{ method: 10, currency: 2, amount: '20000' }], {
+      dueDate: '2026-11-30',
+    })
+  })
+
+  it("to'liq nasiya: to'lov qatori o'chiriladi", () => {
+    const { onConfirm } = setup({ customerName: 'Aliyev Vali', available4: null })
+    fireEvent.click(screen.getByTestId('pay-remove-1'))
+    expect(text('pay-credit')).toBe('142 500 UZS')
+    fireEvent.click(screen.getByTestId('pay-confirm'))
+    expect(onConfirm).toHaveBeenCalledWith([], { dueDate: null })
+  })
+
+  it('kredit limiti yetmasa tugma yopiq', () => {
+    // mavjud 100 000 so'm, nasiya 122 500 bo'ladi
+    setup({ customerName: 'Aliyev Vali', available4: 1_000_000_000n })
+    fireEvent.change(screen.getByTestId('pay-amount-1'), { target: { value: '20000' } })
+    expect(screen.getByTestId('pay-confirm')).toBeDisabled()
+    expect(screen.getByText(/Kredit limiti yetmaydi/)).toBeInTheDocument()
   })
 })

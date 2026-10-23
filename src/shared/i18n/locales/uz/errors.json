@@ -44,5 +44,16 @@
   "no_cash_method": "Faol naqd to'lov turi yo'q",
   "price_type_missing": "Narx turi belgilanmagan",
   "method_inactive": "To'lov turi faol emas",
-  "invalid_amount": "Summa musbat bo'lishi kerak"
+  "invalid_amount": "Summa musbat bo'lishi kerak",
+  "credit_limit_exceeded": "Mijozning kredit limiti yetarli emas",
+  "credit_forbidden": "Nasiyaga sotish huquqi yo'q",
+  "credit_limit_forbidden": "Kredit limitini o'zgartirish huquqi yo'q",
+  "customer_inactive": "Mijoz faol emas",
+  "debt_has_payments": "Qarz bo'yicha to'lov qilingan — avval to'lovni qaytaring",
+  "payment_exceeds_debt": "To'lov summasi qarzdan katta",
+  "no_open_debts": "Mijozning ochiq qarzi yo'q",
+  "shift_closed": "Kassa smenasi ochilmagan",
+  "shift_already_open": "Bu nuqtada smena allaqachon ochiq",
+  "category_not_manual": "Bu turdagi kassa yozuvini qo'lda kiritib bo'lmaydi",
+  "refund_not_allowed": "Bu to'lovni qaytarib bo'lmaydi"
 }

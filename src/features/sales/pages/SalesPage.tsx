@@ -10,6 +10,7 @@ import { formatDateTime } from '@/shared/lib/date'
 import { formatNumber } from '@/shared/lib/money'
 import {
   Button,
+  Checkbox,
   DataTable,
   FormField,
   Input,
@@ -38,6 +39,8 @@ export function SalesPage() {
     status: params.status,
     date_from: params.date_from,
     date_to: params.date_to,
+    customer: params.customer,
+    on_credit: params.credit ? 'true' : undefined,
     branch: branchId ?? undefined,
   })
 
@@ -57,6 +60,23 @@ export function SalesPage() {
       ? [{ key: 'branch', header: t('list.branch'), render: (s: SaleList) => s.branch_name }]
       : []),
     { key: 'seller', header: t('list.seller'), render: (s) => s.seller_name },
+    {
+      key: 'customer',
+      header: t('list.customer'),
+      render: (s) =>
+        s.customer_name ? (
+          <span>
+            {s.customer_name}
+            {Number(s.debt_amount) > 0 && (
+              <span className="ml-1 text-xs font-medium text-amber-700">
+                ({t('list.debt')}: {formatNumber(s.debt_amount, s.currency_decimal_places)})
+              </span>
+            )}
+          </span>
+        ) : (
+          '—'
+        ),
+    },
     {
       key: 'items',
       header: t('list.items'),
@@ -123,6 +143,12 @@ export function SalesPage() {
             onChange={(e) => set({ date_from: e.target.value })}
           />
         </FormField>
+        <Checkbox
+          label={t('list.onlyCredit')}
+          checked={!!params.credit}
+          onChange={(e) => set({ credit: e.target.checked ? '1' : null })}
+          className="h-10"
+        />
         <FormField label={t('list.dateTo')}>
           <Input
             type="date"

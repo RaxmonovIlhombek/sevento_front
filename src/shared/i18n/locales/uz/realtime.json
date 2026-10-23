@@ -23,5 +23,9 @@
     },
     "send": "Yuborish",
     "sent": "Xabar yuborildi"
-  }
+  },
+  "debtOverdue": "Muddati o'tgan qarz: {{customer}}",
+  "debtOverdueText": "{{amount}} {{currency}} — {{days}} kun o'tdi",
+  "creditWarning": "Kredit limitiga yaqin: {{customer}}",
+  "creditWarningText": "{{percent}}% ishlatildi ({{used}} / {{limit}} {{base}})"
 }

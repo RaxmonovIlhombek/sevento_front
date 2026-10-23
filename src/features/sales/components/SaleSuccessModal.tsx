@@ -2,6 +2,7 @@ import { CheckCircle2, ExternalLink, Printer } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 
 import type { SaleDetail } from '@/shared/api/types'
+import { formatDate } from '@/shared/lib/date'
 import { formatNumber } from '@/shared/lib/money'
 import { Button, Modal } from '@/shared/ui'
 
@@ -48,6 +49,22 @@ export function SaleSuccessModal({ sale, onClose }: { sale: SaleDetail; onClose:
         <p className="text-3xl font-bold tabular-nums">
           {formatNumber(sale.total, places)} {sale.currency_code}
         </p>
+        {Number(sale.debt_amount) > 0 && (
+          <div
+            className="rounded-md bg-amber-50 px-4 py-2 text-amber-900"
+            data-testid="success-debt"
+          >
+            <p className="text-lg font-semibold">
+              {t('success.debt', {
+                amount: formatNumber(sale.debt_amount, places),
+                currency: sale.currency_code,
+              })}
+            </p>
+            <p className="text-sm">
+              {sale.customer_name} · {t('success.dueDate', { date: formatDate(sale.due_date) })}
+            </p>
+          </div>
+        )}
         {change > 0 && (
           <p
             className="rounded-md bg-emerald-50 px-4 py-2 text-lg font-semibold text-emerald-800"

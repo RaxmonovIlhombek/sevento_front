@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import type { ApiError } from '@/shared/api/errors'
 import type { Currency, PaymentMethod } from '@/shared/api/types'
 import { cn } from '@/shared/lib/cn'
+import { toIsoDate } from '@/shared/lib/date'
 import { fitsPrecision, formatNumber, parseDecimalInput } from '@/shared/lib/money'
 import { Button, Input, Modal, Select } from '@/shared/ui'
 
@@ -21,6 +22,12 @@ export interface PaymentInput {
   method: number
   currency: number
   amount: string
+}
+
+export interface CreditOptions {
+  customerName: string
+  /** kredit limiti doirasida mavjud summa, savdo valyutasida 4 xona (null — noma'lum) */
+  available4: bigint | null
 }
 
 interface Row {
@@ -41,8 +48,12 @@ interface Props {
   methods: PaymentMethod[]
   loading: boolean
   error: ApiError | null
+  /** mijoz tanlangan va `sales.credit` bor — qolgan summa nasiyaga */
+  credit?: CreditOptions | null
+  /** foydalanuvchi nasiyaga sota oladi (mijoz tanlanmagan bo'lsa — maslahat ko'rsatiladi) */
+  canCredit?: boolean
   onClose: () => void
-  onConfirm: (payments: PaymentInput[]) => void
+  onConfirm: (payments: PaymentInput[], extra: { dueDate: string | null }) => void
 }
 
 /** Ochilganda yangi kalit bilan yaratiladi (holat har safar boshidan). */
@@ -85,7 +96,15 @@ export function PaymentModal(props: Props) {
     computed.filter((c) => c.isCash).reduce((a, c) => a + (c.converted ?? 0n), 0n),
   )
   const allValid = computed.every((c) => c.valid)
-  const canConfirm = allValid && state.remaining4 === 0n && !state.changeNotCash && !props.loading
+  const [dueDate, setDueDate] = useState('')
+  const credit = props.credit ?? null
+  const onCredit = state.remaining4 > 0n && credit !== null
+  const overLimit = onCredit && credit.available4 !== null && state.remaining4 > credit.available4
+  const canConfirm =
+    allValid &&
+    (state.remaining4 === 0n || (onCredit && !overLimit)) &&
+    !state.changeNotCash &&
+    !props.loading
 
   const update = (id: number, patch: Partial<Row>) =>
     setRows((list) => list.map((r) => (r.id === id ? { ...r, ...patch } : r)))
@@ -122,6 +141,7 @@ export function PaymentModal(props: Props) {
         currency: currencies.find((c) => c.code === r.currency)!.id,
         amount: parseDecimalInput(r.amount),
       })),
+      { dueDate: onCredit && dueDate ? dueDate : null },
     )
   }
 
@@ -202,7 +222,7 @@ export function PaymentModal(props: Props) {
                   className="text-right text-base font-semibold"
                   invalid={row.amount !== '' && !valid}
                   aria-label={t('payment.amount')}
-                  autoFocus={row.id === rows[rows.length - 1].id}
+                  autoFocus={row.id === rows[rows.length - 1]?.id}
                   data-testid={`pay-amount-${row.id}`}
                 />
                 {rateMissing ? (
@@ -227,8 +247,9 @@ export function PaymentModal(props: Props) {
               <Button
                 variant="ghost"
                 icon={<Trash2 className="size-4" />}
-                disabled={rows.length === 1}
+                disabled={rows.length === 1 && !credit}
                 onClick={() => setRows((list) => list.filter((r) => r.id !== row.id))}
+                data-testid={`pay-remove-${row.id}`}
                 aria-label={t('pos.remove')}
               />
             </div>
@@ -244,7 +265,7 @@ export function PaymentModal(props: Props) {
           setRows((list) => [
             ...list,
             {
-              id: Math.max(...list.map((r) => r.id)) + 1,
+              id: Math.max(0, ...list.map((r) => r.id)) + 1,
               methodId: methods.find((m) => !m.is_cash)?.id ?? cash?.id ?? 0,
               currency: saleCurrency,
               amount: '',
@@ -261,7 +282,17 @@ export function PaymentModal(props: Props) {
         <dd className="text-right tabular-nums">
           {formatNumber(fromScaled(state.paid4, 4), places)} {saleCurrency}
         </dd>
-        {state.remaining4 > 0n ? (
+        {onCredit ? (
+          <>
+            <dt className="font-semibold text-amber-700">{t('payment.credit')}</dt>
+            <dd
+              className="text-right font-semibold text-amber-700 tabular-nums"
+              data-testid="pay-credit"
+            >
+              {money(ceilToMinor(state.remaining4, places))} {saleCurrency}
+            </dd>
+          </>
+        ) : state.remaining4 > 0n ? (
           <>
             <dt className="font-semibold text-red-700">{t('payment.remaining')}</dt>
             <dd
@@ -286,6 +317,34 @@ export function PaymentModal(props: Props) {
           </>
         )}
       </dl>
+      {onCredit && (
+        <div className="mt-3 grid items-end gap-2 rounded-md bg-amber-50 px-3 py-2 text-sm sm:grid-cols-[1fr_11rem]">
+          <p className="text-amber-800">
+            {t('payment.creditHint', { customer: credit.customerName })}
+            {overLimit && credit.available4 !== null && (
+              <span className="mt-1 block font-medium text-red-700">
+                {t('payment.overLimit', {
+                  amount: formatNumber(fromScaled(credit.available4, 4), places),
+                  base: saleCurrency,
+                })}
+              </span>
+            )}
+          </p>
+          <label className="text-xs text-slate-600">
+            {t('payment.dueDate')}
+            <Input
+              type="date"
+              min={toIsoDate()}
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+              data-testid="pay-due-date"
+            />
+          </label>
+        </div>
+      )}
+      {state.remaining4 > 0n && !credit && props.canCredit && (
+        <p className="mt-2 text-xs text-slate-500">{t('payment.noCustomer')}</p>
+      )}
       {state.changeNotCash && (
         <p className="mt-2 text-sm text-red-600">{t('payment.changeNotCash')}</p>
       )}

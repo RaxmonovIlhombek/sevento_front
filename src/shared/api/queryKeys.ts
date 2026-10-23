@@ -70,6 +70,17 @@ export const queryKeys = {
     categories: ['payments', 'categories'] as const,
     cashboxes: (params: object) => ['payments', 'cashboxes', params] as const,
     transactions: (params: object) => ['payments', 'transactions', params] as const,
+    customers: (params: object) => ['payments', 'customers', params] as const,
+    customer: (id: number | string) => ['payments', 'customer', String(id)] as const,
+    ledger: (id: number | string, params: object) =>
+      ['payments', 'customer', String(id), 'ledger', params] as const,
+    payoff: (id: number | string, currency: string) =>
+      ['payments', 'customer', String(id), 'payoff', currency] as const,
+    debts: (params: object) => ['payments', 'debts', params] as const,
+    payments: (params: object) => ['payments', 'payments', params] as const,
+    payment: (id: number | string) => ['payments', 'payment', String(id)] as const,
+    shifts: (params: object) => ['payments', 'shifts', params] as const,
+    currentShift: (branch: number | null) => ['payments', 'shift-current', branch] as const,
   },
   products: {
     all: ['products'] as const,

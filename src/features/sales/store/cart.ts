@@ -5,7 +5,7 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-import type { PosProduct } from '@/shared/api/types'
+import type { Customer, PosProduct } from '@/shared/api/types'
 
 export interface CartLine {
   product: PosProduct
@@ -18,6 +18,9 @@ interface CartState {
   currency: string
   priceTypeId: number | null
   lines: CartLine[]
+  /** nasiya uchun mijoz (to'liq to'lovda ham tarix uchun) */
+  customer: Customer | null
+  setCustomer: (customer: Customer | null) => void
   setContext: (ctx: {
     branchId: number | null
     currency: string
@@ -43,13 +46,15 @@ export const useCartStore = create<CartState>()(
       currency: '',
       priceTypeId: null,
       lines: [],
+      customer: null,
+      setCustomer: (customer) => set({ customer }),
       setContext: (ctx) =>
         set((state) => {
           const changed =
             state.branchId !== ctx.branchId ||
             state.currency !== ctx.currency ||
             state.priceTypeId !== ctx.priceTypeId
-          return changed ? { ...ctx, lines: [] } : state
+          return changed ? { ...ctx, lines: [], customer: null } : state
         }),
       add: (product, quantity = '1') =>
         set((state) => {
@@ -82,12 +87,12 @@ export const useCartStore = create<CartState>()(
             lines: state.lines.map((l) => ({ ...l, product: byId.get(l.product.id) ?? l.product })),
           }
         }),
-      clear: () => set({ lines: [] }),
+      clear: () => set({ lines: [], customer: null }),
     }),
     {
       name: 'sevento-pos-cart',
       storage: createJSONStorage(() => sessionStorage),
-      version: 1,
+      version: 2,
     },
   ),
 )

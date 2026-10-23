@@ -48,6 +48,15 @@
     "sale.cancelled": "Savdo bekor qilindi",
     "payment.received": "To'lov qabul qilindi",
     "payment.refunded": "Pul qaytarildi",
-    "payment_method.saved": "To'lov turi saqlandi"
+    "payment_method.saved": "To'lov turi saqlandi",
+    "customer.saved": "Mijoz saqlandi",
+    "debt.registered": "Nasiya yozildi",
+    "debt.settled": "Qarz to'liq yopildi",
+    "debt.cancelled": "Qarz bekor qilindi",
+    "debt.overdue": "Qarz muddati o'tdi",
+    "customer.credit_limit_warning": "Kredit limitiga yaqinlashdi",
+    "cash_shift.opened": "Kassa smenasi ochildi",
+    "cash_shift.closed": "Kassa smenasi yopildi",
+    "cash_entry.created": "Kassaga qo'lda yozuv"
   }
 }

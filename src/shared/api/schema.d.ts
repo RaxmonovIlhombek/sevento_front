@@ -605,10 +605,11 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Kassa jurnali (faqat o'qish). */
+        /** @description Kassa jurnali. POST — qo'lda kirim/chiqim (kiritish, inkassatsiya, xarajat). */
         get: operations["payments_cash_transactions_list"];
         put?: never;
-        post?: never;
+        /** @description Kassa jurnali. POST — qo'lda kirim/chiqim (kiritish, inkassatsiya, xarajat). */
+        post: operations["payments_cash_transactions_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -641,6 +642,128 @@ export interface paths {
         };
         /** @description Kassalar (nuqta × valyuta) va qoldiq. Faqat ko'rinadigan nuqtalar. */
         get: operations["payments_cashboxes_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/customers/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mijozlar (barcha nuqtalar uchun umumiy). Kredit limitini — alohida huquq bilan. */
+        get: operations["payments_customers_list"];
+        put?: never;
+        /** @description Mijozlar (barcha nuqtalar uchun umumiy). Kredit limitini — alohida huquq bilan. */
+        post: operations["payments_customers_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/customers/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mijozlar (barcha nuqtalar uchun umumiy). Kredit limitini — alohida huquq bilan. */
+        get: operations["payments_customers_retrieve"];
+        /** @description Mijozlar (barcha nuqtalar uchun umumiy). Kredit limitini — alohida huquq bilan. */
+        put: operations["payments_customers_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** @description Mijozlar (barcha nuqtalar uchun umumiy). Kredit limitini — alohida huquq bilan. */
+        patch: operations["payments_customers_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/payments/customers/{id}/ledger/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mijoz hisobi (akt-sverka): nasiya +, to'lov −, qoldiq valyuta kesimida. */
+        get: operations["payments_customers_ledger_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/customers/{id}/pay/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Qarz to'lovi (Idempotency-Key): eng eski muddatdan boshlab yopiladi. */
+        post: operations["payments_customers_pay_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/customers/{id}/payoff/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qarzni shu valyutada to'liq yopish summasi (joriy kurs, yuqoriga yaxlitlangan). */
+        get: operations["payments_customers_payoff_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/debts/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qarzlar (nuqta bo'yicha). ?overdue=true — muddati o'tganlar. */
+        get: operations["payments_debts_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/debts/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Qarzlar (nuqta bo'yicha). ?overdue=true — muddati o'tganlar. */
+        get: operations["payments_debts_retrieve"];
         put?: never;
         post?: never;
         delete?: never;
@@ -683,6 +806,142 @@ export interface paths {
         head?: never;
         /** @description To'lov turlari (MB da). Ro'yxat — kassir ham ko'radi; o'zgartirish — sozlamalar huquqi. */
         patch: operations["payments_methods_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/payments/payments/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description To'lovlar jurnali (savdo to'lovlari, qaytimlar, qarz to'lovlari, qaytarishlar). */
+        get: operations["payments_payments_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/payments/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description To'lovlar jurnali (savdo to'lovlari, qaytimlar, qarz to'lovlari, qaytarishlar). */
+        get: operations["payments_payments_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/payments/{id}/refund/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Qarz to'lovini qaytarish: qarz qayta ochiladi, naqd kassadan chiqadi. */
+        post: operations["payments_payments_refund_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/shifts/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kassa smenalari: ochish (qoldiq qotiriladi), yopish (sanalgan naqd, farq yoziladi). */
+        get: operations["payments_shifts_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/shifts/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kassa smenalari: ochish (qoldiq qotiriladi), yopish (sanalgan naqd, farq yoziladi). */
+        get: operations["payments_shifts_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/shifts/{id}/close/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Kassa smenalari: ochish (qoldiq qotiriladi), yopish (sanalgan naqd, farq yoziladi). */
+        post: operations["payments_shifts_close_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/shifts/current/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Nuqtadagi ochiq smena (yo'q bo'lsa null). */
+        get: operations["payments_shifts_current_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payments/shifts/open/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Kassa smenalari: ochish (qoldiq qotiriladi), yopish (sanalgan naqd, farq yoziladi). */
+        post: operations["payments_shifts_open_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/api/v1/purchasing/expense-types/": {
@@ -1129,6 +1388,22 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        Allocation: {
+            readonly debt: number;
+            /**
+             * Format: decimal
+             * @description qarz valyutasida
+             */
+            readonly amount: string;
+            /**
+             * Format: decimal
+             * @description to'lov valyutasida
+             */
+            readonly payment_amount: string;
+            readonly currency_code: string;
+            readonly document_id: number;
+            readonly document_number: string;
+        };
         /**
          * @description * `by_value` - Qiymat bo'yicha
          *     * `by_quantity` - Miqdor bo'yicha
@@ -1209,13 +1484,44 @@ export interface components {
             name: string;
             group: string;
         };
+        CashEntryWriteRequest: {
+            branch: number;
+            currency: number;
+            direction: components["schemas"]["PaymentDirectionEnum"];
+            category: string;
+            /** Format: decimal */
+            amount: string;
+            note: string;
+        };
         CashFlowCategory: {
             readonly id: number;
             code: string;
             name: string;
             /** @description in | out | both */
             direction?: string;
+            /** @description Kassaga qo'lda kiritiladimi (kiritish, inkassatsiya, xarajat) */
+            is_manual?: boolean;
         };
+        CashShift: {
+            readonly id: number;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly status: components["schemas"]["CashShiftStatusEnum"];
+            readonly opened_by_name: string;
+            /** Format: date-time */
+            readonly opened_at: string;
+            readonly closed_by_name: string | null;
+            /** Format: date-time */
+            readonly closed_at: string | null;
+            readonly note: string;
+            readonly balances: components["schemas"]["ShiftBalance"][];
+        };
+        /**
+         * @description * `open` - Ochiq
+         *     * `closed` - Yopilgan
+         * @enum {string}
+         */
+        CashShiftStatusEnum: "open" | "closed";
         CashTransaction: {
             readonly id: number;
             readonly cashbox: number;
@@ -1230,6 +1536,7 @@ export interface components {
             /** Format: decimal */
             readonly balance_after: string;
             readonly payment_number: string | null;
+            readonly shift: number | null;
             readonly document_type: string;
             readonly document_id: number | null;
             readonly document_number: string;
@@ -1305,6 +1612,18 @@ export interface components {
             /** Format: decimal */
             landed_unit_cost_base: string;
         };
+        CreditStatus: {
+            /** Format: decimal */
+            limit_base: string;
+            /** Format: decimal */
+            used_base: string;
+            /** Format: decimal */
+            available_base: string;
+            base_currency: string;
+            /** Format: decimal */
+            warning_percent: string;
+            due_days: number;
+        };
         Currency: {
             readonly id: number;
             code: string;
@@ -1319,6 +1638,11 @@ export interface components {
             readonly created_at: string;
             /** Format: date-time */
             readonly updated_at: string;
+        };
+        CurrencyAmount: {
+            currency: string;
+            /** Format: decimal */
+            amount: string;
         };
         CurrencyRequest: {
             code: string;
@@ -1338,6 +1662,79 @@ export interface components {
             /** Format: date-time */
             valid_from: string;
         };
+        CurrentShift: {
+            shift: components["schemas"]["CashShift"] | null;
+        };
+        /** @description Ro'yxat: qarz qoldig'i valyuta kesimida va asosiy valyutada (joriy kurs bilan). */
+        Customer: {
+            readonly id: number;
+            readonly name: string;
+            readonly phone: string;
+            /** @description STIR / JSHSHIR */
+            readonly tin: string;
+            readonly address: string;
+            readonly note: string;
+            /**
+             * Format: decimal
+             * @description Asosiy valyutada; null — sozlamadagi default
+             */
+            readonly credit_limit_base: string | null;
+            /** @description null — sozlamadagi default */
+            readonly default_due_days: number | null;
+            /** Format: decimal */
+            readonly effective_credit_limit: string;
+            readonly is_active: boolean;
+            readonly balances: components["schemas"]["CurrencyAmount"][];
+            /** Format: decimal */
+            readonly debt_base: string;
+            readonly has_overdue: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        /** @description Ro'yxat: qarz qoldig'i valyuta kesimida va asosiy valyutada (joriy kurs bilan). */
+        CustomerDetail: {
+            readonly id: number;
+            readonly name: string;
+            readonly phone: string;
+            /** @description STIR / JSHSHIR */
+            readonly tin: string;
+            readonly address: string;
+            readonly note: string;
+            /**
+             * Format: decimal
+             * @description Asosiy valyutada; null — sozlamadagi default
+             */
+            readonly credit_limit_base: string | null;
+            /** @description null — sozlamadagi default */
+            readonly default_due_days: number | null;
+            /** Format: decimal */
+            readonly effective_credit_limit: string;
+            readonly is_active: boolean;
+            readonly balances: components["schemas"]["CurrencyAmount"][];
+            /** Format: decimal */
+            readonly debt_base: string;
+            readonly has_overdue: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            readonly credit: components["schemas"]["CreditStatus"];
+            readonly open_debts: components["schemas"]["Debt"][];
+        };
+        CustomerWriteRequest: {
+            name: string;
+            /** @default  */
+            phone: string;
+            /** @default  */
+            tin: string;
+            /** @default  */
+            address: string;
+            /** @default  */
+            note: string;
+            /** Format: decimal */
+            credit_limit_base?: string | null;
+            default_due_days?: number | null;
+            /** @default true */
+            is_active: boolean;
+        };
         DailySummary: {
             /** Format: date */
             date: string;
@@ -1353,6 +1750,52 @@ export interface components {
             profit_base: string | null;
             base_currency: string;
         };
+        Debt: {
+            readonly id: number;
+            readonly customer: number;
+            readonly customer_name: string;
+            readonly customer_phone: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly currency: number;
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /** Format: decimal */
+            readonly amount: string;
+            /** Format: decimal */
+            readonly paid_amount: string;
+            /** Format: decimal */
+            readonly remaining: string;
+            /** Format: date */
+            readonly due_date: string;
+            readonly status: components["schemas"]["DebtStatusEnum"];
+            readonly is_overdue: boolean;
+            readonly days_overdue: number;
+            readonly document_type: string;
+            readonly document_id: number;
+            readonly document_number: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly settled_at: string | null;
+        };
+        DebtPaymentWriteRequest: {
+            branch: number;
+            method: number;
+            currency: number;
+            /** Format: decimal */
+            amount: string;
+            debt_ids?: number[];
+            /** @default  */
+            note: string;
+        };
+        /**
+         * @description * `open` - Ochiq
+         *     * `paid` - To'langan
+         *     * `cancelled` - Bekor qilingan
+         * @enum {string}
+         */
+        DebtStatusEnum: "open" | "paid" | "cancelled";
         ErrorBody: {
             code: string;
             message: string;
@@ -1421,6 +1864,34 @@ export interface components {
             date: string | null;
             source: string | null;
         };
+        LedgerEntry: {
+            readonly id: number;
+            readonly type: components["schemas"]["LedgerEntryTypeEnum"];
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /** Format: decimal */
+            readonly amount: string;
+            /** Format: decimal */
+            readonly balance_after: string;
+            readonly debt: number | null;
+            readonly payment: number | null;
+            readonly payment_number: string | null;
+            readonly method_name: string | null;
+            readonly document_type: string;
+            readonly document_id: number | null;
+            readonly document_number: string;
+            readonly created_by_name: string;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        /**
+         * @description * `debt` - Nasiya
+         *     * `payment` - To'lov
+         *     * `refund` - To'lov qaytarildi
+         *     * `cancel` - Qarz bekor qilindi
+         * @enum {string}
+         */
+        LedgerEntryTypeEnum: "debt" | "payment" | "refund" | "cancel";
         /**
          * @description * `info` - info
          *     * `warning` - warning
@@ -1499,6 +1970,17 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["Branch"][];
         };
+        PaginatedCashShiftList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["CashShift"][];
+        };
         PaginatedCashTransactionList: {
             /** @example 120 */
             count: number;
@@ -1510,6 +1992,28 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["CashTransaction"][];
         };
+        PaginatedCustomerList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Customer"][];
+        };
+        PaginatedDebtList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Debt"][];
+        };
         PaginatedExchangeRateList: {
             /** @example 120 */
             count: number;
@@ -1520,6 +2024,28 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["ExchangeRate"][];
+        };
+        PaginatedLedgerEntryList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["LedgerEntry"][];
+        };
+        PaginatedPaymentListList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["PaymentList"][];
         };
         PaginatedProductList: {
             /** @example 120 */
@@ -1706,12 +2232,88 @@ export interface components {
             /** @default true */
             is_active: boolean;
         };
+        /** @description Hujjat ichida ko'rsatish uchun (savdo tafsiloti, chek). */
+        PaymentDetail: {
+            readonly id: number;
+            readonly number: string;
+            readonly kind: components["schemas"]["PaymentKindEnum"];
+            readonly direction: components["schemas"]["PaymentDirectionEnum"];
+            readonly status: components["schemas"]["PaymentStatusEnum"];
+            readonly method: number;
+            readonly method_code: string;
+            readonly method_name: string;
+            readonly is_cash: boolean;
+            readonly currency: number;
+            readonly currency_code: string;
+            /** Format: decimal */
+            readonly amount: string;
+            /** Format: decimal */
+            readonly rate_to_base: string;
+            /** Format: decimal */
+            readonly amount_base: string;
+            readonly received_by_name: string;
+            /** Format: date-time */
+            readonly received_at: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly currency_decimal_places: number;
+            readonly customer: number | null;
+            readonly customer_name: string | null;
+            readonly document_type: string;
+            readonly document_id: number;
+            readonly document_number: string;
+            readonly reversal_of_number: string | null;
+            readonly note: string;
+            readonly allocations: components["schemas"]["Allocation"][];
+            readonly can_refund: boolean;
+        };
         /**
          * @description * `in` - Kirim
          *     * `out` - Chiqim
          * @enum {string}
          */
         PaymentDirectionEnum: "in" | "out";
+        /**
+         * @description * `payment` - To'lov
+         *     * `change` - Qaytim
+         *     * `refund` - Pul qaytarildi
+         *     * `change_return` - Qaytim qaytarildi
+         * @enum {string}
+         */
+        PaymentKindEnum: "payment" | "change" | "refund" | "change_return";
+        /** @description Hujjat ichida ko'rsatish uchun (savdo tafsiloti, chek). */
+        PaymentList: {
+            readonly id: number;
+            readonly number: string;
+            readonly kind: components["schemas"]["PaymentKindEnum"];
+            readonly direction: components["schemas"]["PaymentDirectionEnum"];
+            readonly status: components["schemas"]["PaymentStatusEnum"];
+            readonly method: number;
+            readonly method_code: string;
+            readonly method_name: string;
+            readonly is_cash: boolean;
+            readonly currency: number;
+            readonly currency_code: string;
+            /** Format: decimal */
+            readonly amount: string;
+            /** Format: decimal */
+            readonly rate_to_base: string;
+            /** Format: decimal */
+            readonly amount_base: string;
+            readonly received_by_name: string;
+            /** Format: date-time */
+            readonly received_at: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly currency_decimal_places: number;
+            readonly customer: number | null;
+            readonly customer_name: string | null;
+            readonly document_type: string;
+            readonly document_id: number;
+            readonly document_number: string;
+            readonly reversal_of_number: string | null;
+            readonly note: string;
+        };
         PaymentMethod: {
             readonly id: number;
             code: string;
@@ -1732,6 +2334,17 @@ export interface components {
             is_cash?: boolean;
             is_active?: boolean;
             sort_order?: number;
+        };
+        /**
+         * @description * `completed` - Bajarildi
+         *     * `reversed` - Qaytarildi
+         * @enum {string}
+         */
+        PaymentStatusEnum: "completed" | "reversed";
+        Payoff: {
+            currency: string;
+            /** Format: decimal */
+            amount: string;
         };
         PosConfig: {
             default_currency: string;
@@ -1993,6 +2606,9 @@ export interface components {
             /** Format: date */
             date?: string;
         };
+        ReasonRequest: {
+            reason: string;
+        };
         RefreshResponse: {
             access: string;
         };
@@ -2019,6 +2635,19 @@ export interface components {
         };
         SaleCancelRequest: {
             reason: string;
+        };
+        /** @description Savdo nasiyasining hozirgi holati (payments.Debt). */
+        SaleDebt: {
+            id: number;
+            /** Format: decimal */
+            amount: string;
+            /** Format: decimal */
+            paid_amount: string;
+            /** Format: decimal */
+            remaining: string;
+            /** Format: date */
+            due_date: string;
+            status: string;
         };
         /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
         SaleDetail: {
@@ -2054,6 +2683,15 @@ export interface components {
             readonly paid_total: string;
             /** Format: decimal */
             readonly change_amount: string;
+            readonly customer: number | null;
+            readonly customer_name: string | null;
+            /**
+             * Format: decimal
+             * @description nasiya (savdo valyutasida)
+             */
+            readonly debt_amount: string;
+            /** Format: date */
+            readonly due_date: string | null;
             readonly items_count: number;
             /** Format: date-time */
             readonly completed_at: string;
@@ -2070,6 +2708,7 @@ export interface components {
             readonly payments: components["schemas"]["SalePayment"][];
             readonly base_currency: string;
             readonly can_cancel: boolean;
+            readonly debt: components["schemas"]["SaleDebt"] | null;
         };
         /** @description Tannarx va foyda faqat `inventory.view_cost` huquqi borlarga (sotuvchiga — yo'q). */
         SaleItem: {
@@ -2135,6 +2774,15 @@ export interface components {
             readonly paid_total: string;
             /** Format: decimal */
             readonly change_amount: string;
+            readonly customer: number | null;
+            readonly customer_name: string | null;
+            /**
+             * Format: decimal
+             * @description nasiya (savdo valyutasida)
+             */
+            readonly debt_amount: string;
+            /** Format: date */
+            readonly due_date: string | null;
             readonly items_count: number;
             /** Format: date-time */
             readonly completed_at: string;
@@ -2177,6 +2825,13 @@ export interface components {
             price_type?: number | null;
             items: components["schemas"]["SaleItemWriteRequest"][];
             payments: components["schemas"]["SalePaymentWriteRequest"][];
+            /** @description Nasiya uchun majburiy; to'liq to'lovda ixtiyoriy (mijoz tarixi uchun) */
+            customer?: number | null;
+            /**
+             * Format: date
+             * @description Nasiya muddati; bo'sh — mijoz/sozlama defaulti
+             */
+            due_date?: string | null;
             /** @default  */
             note: string;
             /**
@@ -2196,6 +2851,36 @@ export interface components {
             amount: string;
             /** Format: date-time */
             valid_from?: string;
+        };
+        ShiftActualRequest: {
+            currency: number;
+            /** Format: decimal */
+            amount: string;
+        };
+        ShiftBalance: {
+            readonly cashbox: number;
+            readonly currency_code: string;
+            readonly currency_decimal_places: number;
+            /** Format: decimal */
+            readonly opening_balance: string;
+            /** Format: decimal */
+            readonly current_balance: string;
+            /** Format: decimal */
+            readonly expected_balance: string | null;
+            /** Format: decimal */
+            readonly actual_balance: string | null;
+            /** Format: decimal */
+            readonly difference: string | null;
+        };
+        ShiftCloseRequest: {
+            actual: components["schemas"]["ShiftActualRequest"][];
+            /** @default  */
+            note: string;
+        };
+        ShiftOpenRequest: {
+            branch: number;
+            /** @default  */
+            note: string;
         };
         /**
          * @description * `cbu` - Markaziy bank
@@ -3855,6 +4540,7 @@ export interface operations {
                 page_size?: number;
                 /** @description A search term. */
                 search?: string;
+                shift?: number;
             };
             header?: never;
             path?: never;
@@ -3868,6 +4554,48 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PaginatedCashTransactionList"];
+                };
+            };
+        };
+    };
+    payments_cash_transactions_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CashEntryWriteRequest"];
+                "multipart/form-data": components["schemas"]["CashEntryWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashTransaction"];
+                };
+            };
+            /** @description Xato */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -3917,6 +4645,299 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Cashbox"];
+                };
+            };
+        };
+    };
+    payments_customers_list: {
+        parameters: {
+            query?: {
+                has_debt?: boolean;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                overdue?: boolean;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedCustomerList"];
+                };
+            };
+        };
+    };
+    payments_customers_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CustomerWriteRequest"];
+                "multipart/form-data": components["schemas"]["CustomerWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CustomerDetail"];
+                };
+            };
+        };
+    };
+    payments_customers_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this customer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CustomerDetail"];
+                };
+            };
+        };
+    };
+    payments_customers_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this customer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CustomerWriteRequest"];
+                "multipart/form-data": components["schemas"]["CustomerWriteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CustomerDetail"];
+                };
+            };
+        };
+    };
+    payments_customers_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this customer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Customer"];
+                };
+            };
+        };
+    };
+    payments_customers_ledger_list: {
+        parameters: {
+            query?: {
+                has_debt?: boolean;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                overdue?: boolean;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this customer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedLedgerEntryList"];
+                };
+            };
+        };
+    };
+    payments_customers_pay_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this customer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DebtPaymentWriteRequest"];
+                "multipart/form-data": components["schemas"]["DebtPaymentWriteRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentDetail"];
+                };
+            };
+            /** @description Xato */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    payments_customers_payoff_retrieve: {
+        parameters: {
+            query: {
+                currency: string;
+                /** @description 1,2,3 */
+                debt_ids?: string;
+            };
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this customer. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Payoff"];
+                };
+            };
+        };
+    };
+    payments_debts_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                currency?: string;
+                customer?: number;
+                due_from?: string;
+                due_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                overdue?: boolean;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `open` - Ochiq
+                 *     * `paid` - To'langan
+                 *     * `cancelled` - Bekor qilingan
+                 */
+                status?: "cancelled" | "open" | "paid";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedDebtList"];
+                };
+            };
+        };
+    };
+    payments_debts_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this debt. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Debt"];
                 };
             };
         };
@@ -4021,6 +5042,258 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PaymentMethod"];
+                };
+            };
+        };
+    };
+    payments_payments_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                customer?: number;
+                date_from?: string;
+                date_to?: string;
+                /**
+                 * @description * `in` - Kirim
+                 *     * `out` - Chiqim
+                 */
+                direction?: "in" | "out";
+                document_type?: string;
+                /**
+                 * @description * `payment` - To'lov
+                 *     * `change` - Qaytim
+                 *     * `refund` - Pul qaytarildi
+                 *     * `change_return` - Qaytim qaytarildi
+                 */
+                kind?: "change" | "change_return" | "payment" | "refund";
+                method?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedPaymentListList"];
+                };
+            };
+        };
+    };
+    payments_payments_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentDetail"];
+                };
+            };
+        };
+    };
+    payments_payments_refund_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReasonRequest"];
+                "multipart/form-data": components["schemas"]["ReasonRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaymentDetail"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    payments_shifts_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date_from?: string;
+                date_to?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `open` - Ochiq
+                 *     * `closed` - Yopilgan
+                 */
+                status?: "closed" | "open";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedCashShiftList"];
+                };
+            };
+        };
+    };
+    payments_shifts_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this cash shift. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashShift"];
+                };
+            };
+        };
+    };
+    payments_shifts_close_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this cash shift. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ShiftCloseRequest"];
+                "multipart/form-data": components["schemas"]["ShiftCloseRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashShift"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    payments_shifts_current_retrieve: {
+        parameters: {
+            query: {
+                branch: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CurrentShift"];
+                };
+            };
+        };
+    };
+    payments_shifts_open_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ShiftOpenRequest"];
+                "multipart/form-data": components["schemas"]["ShiftOpenRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CashShift"];
+                };
+            };
+            /** @description Xato */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponse"];
                 };
             };
         };
@@ -4684,8 +5957,10 @@ export interface operations {
             query?: {
                 branch?: number;
                 currency?: string;
+                customer?: number;
                 date_from?: string;
                 date_to?: string;
+                on_credit?: boolean;
                 /** @description Which field to use when ordering the results. */
                 ordering?: string;
                 /** @description A page number within the paginated result set. */
@@ -4864,11 +6139,13 @@ export interface operations {
                 barcode?: string;
                 branch: number;
                 currency: string;
+                customer?: number;
                 date_from?: string;
                 date_to?: string;
                 /** @description vergul bilan: 1,2,3 */
                 ids?: string;
                 limit?: number;
+                on_credit?: boolean;
                 /** @description Which field to use when ordering the results. */
                 ordering?: string;
                 price_type?: number;

@@ -1,14 +1,20 @@
-import { CreditCard, Trash2 } from 'lucide-react'
+import { CreditCard, Trash2, UserPlus } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useAuthStore, useCapability } from '@/features/auth'
 import { usePriceTypes } from '@/features/catalog'
 import { useActiveCurrencies, useLatestRates } from '@/features/currency'
-import { usePaymentMethods } from '@/features/payments'
+import {
+  CustomerFormModal,
+  CustomerPicker,
+  useCustomer,
+  usePaymentMethods,
+} from '@/features/payments'
 import { newIdempotencyKey } from '@/shared/api/client'
 import { isApiError, toApiError, type ApiError } from '@/shared/api/errors'
 import type { SaleDetail } from '@/shared/api/types'
+import { convertTo4 } from '@/shared/lib/decimal'
 import { formatNumber, parseDecimalInput } from '@/shared/lib/money'
 import {
   Button,
@@ -17,13 +23,14 @@ import {
   ConfirmDialog,
   FormField,
   PageHeader,
+  PageSpinner,
   Select,
   toast,
 } from '@/shared/ui'
 
 import { salesApi, useCreateSale, usePosConfig } from '../api/sales.api'
 import { CartTable } from '../components/CartTable'
-import { PaymentModal, type PaymentInput } from '../components/PaymentModal'
+import { PaymentModal, type CreditOptions, type PaymentInput } from '../components/PaymentModal'
 import { ProductSearch } from '../components/ProductSearch'
 import { SaleSuccessModal } from '../components/SaleSuccessModal'
 import { cartIsValid } from '../lib/cart'
@@ -72,12 +79,46 @@ export function PosPage() {
       </div>
     )
   }
-  return <PosTerminal key={branchId} branchId={branchId} />
+  return <PosLoader key={branchId} branchId={branchId} />
 }
 
-function PosTerminal({ branchId }: { branchId: number }) {
+/**
+ * Kassa sozlamalari (boshlang'ich valyuta, narx turi, valyutalar) yuklanmaguncha kassa ochilmaydi:
+ * aks holda tovar bir valyutada olinib, keyin boshqa valyutada ko'rsatilishi mumkin edi.
+ */
+function PosLoader({ branchId }: { branchId: number }) {
+  const { currencies } = useActiveCurrencies()
+  const priceTypes = usePriceTypes()
+  const config = usePosConfig()
+  if (!config.data || !priceTypes.data || currencies.length === 0) return <PageSpinner />
+  const defaultCurrency = currencies.some((c) => c.code === config.data.default_currency)
+    ? config.data.default_currency
+    : currencies[0].code
+  const defaultPriceTypeId =
+    priceTypes.data.find((p) => p.is_default)?.id ?? priceTypes.data[0]?.id ?? null
+  return (
+    <PosTerminal
+      branchId={branchId}
+      defaultCurrency={defaultCurrency}
+      defaultPriceTypeId={defaultPriceTypeId}
+    />
+  )
+}
+
+function PosTerminal({
+  branchId,
+  defaultCurrency,
+  defaultPriceTypeId,
+}: {
+  branchId: number
+  defaultCurrency: string
+  defaultPriceTypeId: number | null
+}) {
   const { t } = useTranslation('sales')
   const canDiscount = useCapability('sales.discount')
+  const canCredit = useCapability('sales.credit')
+  const canCreateCustomer = useCapability('customers.manage')
+  const [newCustomerOpen, setNewCustomerOpen] = useState(false)
   const { currencies, decimals } = useActiveCurrencies()
   const priceTypes = usePriceTypes()
   const methods = usePaymentMethods()
@@ -87,24 +128,16 @@ function PosTerminal({ branchId }: { branchId: number }) {
   const searchRef = useRef<HTMLInputElement | null>(null)
 
   const cart = useCartStore()
-  const defaultCurrency =
-    config.data?.default_currency && currencies.some((c) => c.code === config.data.default_currency)
-      ? config.data.default_currency
-      : (currencies[0]?.code ?? '')
   const currency = cart.currency || defaultCurrency
-  const priceTypeId =
-    cart.priceTypeId ??
-    priceTypes.data?.find((p) => p.is_default)?.id ??
-    priceTypes.data?.[0]?.id ??
-    null
+  const priceTypeId = cart.priceTypeId ?? defaultPriceTypeId
   const places = decimals[currency] ?? 2
 
-  // savat boshqa nuqtaniki bo'lsa — tozalanadi
+  // kontekst savatga qotiriladi (nuqta boshqa bo'lsa savat tozalanadi)
   useEffect(() => {
-    if (cart.branchId !== branchId) {
-      cart.setContext({ branchId, currency: cart.currency, priceTypeId: cart.priceTypeId })
+    if (cart.branchId !== branchId || !cart.currency || cart.priceTypeId === null) {
+      cart.setContext({ branchId, currency, priceTypeId })
     }
-  }, [branchId, cart])
+  }, [branchId, cart, currency, priceTypeId])
 
   const refreshPrices = async () => {
     const lines = useCartStore.getState().lines
@@ -187,7 +220,24 @@ function PosTerminal({ branchId }: { branchId: number }) {
     return () => window.removeEventListener('keydown', onKey)
   })
 
-  const pay = (payments: PaymentInput[]) => {
+  const customerDetail = useCustomer(cart.customer?.id ?? null)
+  const credit: CreditOptions | null = useMemo(() => {
+    if (!canCredit || !cart.customer) return null
+    const info = customerDetail.data?.credit
+    const baseRate = info ? rates[info.base_currency] : undefined
+    const available4 =
+      info && baseRate && rates[currency]
+        ? convertTo4(
+            info.available_base,
+            baseRate,
+            rates[currency]!,
+            info.base_currency === currency,
+          )
+        : null
+    return { customerName: cart.customer.name, available4 }
+  }, [canCredit, cart.customer, customerDetail.data, rates, currency])
+
+  const pay = (payments: PaymentInput[], extra: { dueDate: string | null }) => {
     if (!checkout) return
     const lines = cart.lines
     createSale.mutate(
@@ -203,6 +253,8 @@ function PosTerminal({ branchId }: { branchId: number }) {
             discount_amount: parseDecimalInput(l.discount || '0'),
           })),
           payments,
+          customer: cart.customer?.id ?? null,
+          due_date: extra.dueDate,
           note: '',
           expected_total: minorToString(totals.total, places),
         },
@@ -282,11 +334,7 @@ function PosTerminal({ branchId }: { branchId: number }) {
                 value={currency}
                 disabled={locked}
                 onChange={(e) =>
-                  cart.setContext({
-                    branchId,
-                    currency: e.target.value,
-                    priceTypeId: cart.priceTypeId,
-                  })
+                  cart.setContext({ branchId, currency: e.target.value, priceTypeId })
                 }
                 data-testid="pos-currency"
               >
@@ -302,11 +350,7 @@ function PosTerminal({ branchId }: { branchId: number }) {
                 value={priceTypeId ?? ''}
                 disabled={locked}
                 onChange={(e) =>
-                  cart.setContext({
-                    branchId,
-                    currency: cart.currency,
-                    priceTypeId: Number(e.target.value),
-                  })
+                  cart.setContext({ branchId, currency, priceTypeId: Number(e.target.value) })
                 }
               >
                 {priceTypes.data?.map((p) => (
@@ -316,6 +360,54 @@ function PosTerminal({ branchId }: { branchId: number }) {
                 ))}
               </Select>
             </FormField>
+          </Card>
+
+          <Card className="space-y-2">
+            <div className="flex items-end gap-2">
+              <div className="min-w-0 flex-1">
+                <p className="mb-1 text-sm font-medium text-slate-700">{t('pos.customer')}</p>
+                <CustomerPicker
+                  value={cart.customer}
+                  onChange={cart.setCustomer}
+                  placeholder={t('pos.customerPlaceholder')}
+                />
+              </div>
+              {canCreateCustomer && (
+                <Button
+                  variant="secondary"
+                  icon={<UserPlus className="size-4" />}
+                  onClick={() => setNewCustomerOpen(true)}
+                  aria-label={t('pos.newCustomer')}
+                  data-testid="pos-new-customer"
+                />
+              )}
+            </div>
+            {cart.customer && customerDetail.data && (
+              <div className="text-xs text-slate-500" data-testid="pos-customer-credit">
+                {Number(customerDetail.data.debt_base) > 0 && (
+                  <p className={customerDetail.data.has_overdue ? 'text-red-600' : ''}>
+                    {t('pos.customerDebt', {
+                      amount: formatNumber(
+                        customerDetail.data.debt_base,
+                        decimals[customerDetail.data.credit.base_currency] ?? 2,
+                      ),
+                      base: customerDetail.data.credit.base_currency,
+                    })}
+                  </p>
+                )}
+                {canCredit && (
+                  <p>
+                    {t('pos.creditAvailable', {
+                      amount: formatNumber(
+                        customerDetail.data.credit.available_base,
+                        decimals[customerDetail.data.credit.base_currency] ?? 2,
+                      ),
+                      base: customerDetail.data.credit.base_currency,
+                    })}
+                  </p>
+                )}
+              </div>
+            )}
           </Card>
 
           <Card>
@@ -390,6 +482,8 @@ function PosTerminal({ branchId }: { branchId: number }) {
           methods={activeMethods}
           loading={createSale.isPending}
           error={paymentError}
+          credit={credit}
+          canCredit={canCredit}
           onClose={() => setCheckout(null)}
           onConfirm={pay}
         />
@@ -403,6 +497,11 @@ function PosTerminal({ branchId }: { branchId: number }) {
           }}
         />
       )}
+      <CustomerFormModal
+        open={newCustomerOpen}
+        onClose={() => setNewCustomerOpen(false)}
+        onSaved={(c) => cart.setCustomer(c)}
+      />
       <ConfirmDialog
         open={confirmClear}
         title={t('pos.clear')}

@@ -56,6 +56,42 @@ function handleSideEffects(message: RealtimeMessage) {
       )
       return
     }
+    case 'debt.overdue': {
+      const p = message.payload as {
+        customer_name?: string
+        amount_remaining?: string
+        currency?: string
+        days_overdue?: number
+      }
+      toast.warning(
+        i18n.t('realtime:debtOverdue', { customer: p.customer_name ?? '' }),
+        i18n.t('realtime:debtOverdueText', {
+          amount: formatNumber(p.amount_remaining ?? '0', 2).replace(/,00$/, ''),
+          currency: p.currency ?? '',
+          days: p.days_overdue ?? 0,
+        }),
+      )
+      return
+    }
+    case 'customer.credit_limit_warning': {
+      const p = message.payload as {
+        customer_name?: string
+        percent?: string
+        used_base?: string
+        limit_base?: string
+        base_currency?: string
+      }
+      toast.warning(
+        i18n.t('realtime:creditWarning', { customer: p.customer_name ?? '' }),
+        i18n.t('realtime:creditWarningText', {
+          percent: formatNumber(p.percent ?? '0', 1),
+          used: formatNumber(p.used_base ?? '0', 2),
+          limit: formatNumber(p.limit_base ?? '0', 2),
+          base: p.base_currency ?? '',
+        }),
+      )
+      return
+    }
     case 'system.notice': {
       const level = String(message.payload.level ?? 'info') as 'info' | 'warning' | 'error'
       const show = toast[level] ?? toast.info

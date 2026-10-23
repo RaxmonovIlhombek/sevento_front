@@ -1,11 +1,11 @@
 import { ArrowLeft, Ban, Printer } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 
 import { errorMessage } from '@/shared/api/errors'
 import type { SaleItem, SalePayment } from '@/shared/api/types'
-import { formatDateTime } from '@/shared/lib/date'
+import { formatDate, formatDateTime } from '@/shared/lib/date'
 import { formatNumber } from '@/shared/lib/money'
 import {
   Badge,
@@ -166,6 +166,52 @@ export function SaleDetailPage() {
           })}
           {s.cancel_reason && ` — ${s.cancel_reason}`}
         </p>
+      )}
+
+      {(s.customer || s.debt) && (
+        <Card className="grid gap-3 text-sm sm:grid-cols-4" data-testid="sale-credit">
+          <div>
+            <p className="text-xs text-slate-500 uppercase">{t('detail.customer')}</p>
+            {s.customer ? (
+              <Link
+                to={`/customers/${s.customer}`}
+                className="font-medium text-brand-700 hover:underline"
+              >
+                {s.customer_name}
+              </Link>
+            ) : (
+              '—'
+            )}
+          </div>
+          {s.debt && (
+            <>
+              <div>
+                <p className="text-xs text-slate-500 uppercase">{t('detail.debt')}</p>
+                <p className="font-semibold tabular-nums">
+                  {formatNumber(s.debt.amount, places)} {s.currency_code}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 uppercase">{t('detail.debtRemaining')}</p>
+                <p
+                  className="font-semibold text-amber-700 tabular-nums"
+                  data-testid="sale-debt-remaining"
+                >
+                  {formatNumber(s.debt.remaining, places)} {s.currency_code}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-slate-500 uppercase">{t('detail.dueDate')}</p>
+                <p>
+                  {formatDate(s.debt.due_date)} ·{' '}
+                  <span className="text-slate-500">
+                    {t(`payments:debts.statuses.${s.debt.status}`, { defaultValue: s.debt.status })}
+                  </span>
+                </p>
+              </div>
+            </>
+          )}
+        </Card>
       )}
 
       <Card>

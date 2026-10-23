@@ -45,3 +45,13 @@ describe('activeNavPath', () => {
     expect(activeNavPath('/salesman', navItems)).toBeNull()
   })
 })
+
+describe("to'lovlar menyusi", () => {
+  it("buxgalter mijozlar, qarzlar, to'lovlar va kassani ko'radi; omborchi ko'rmaydi", () => {
+    const accountant = paths(['customers.view', 'debts.view', 'payments.view', 'cashbox.view'])
+    expect(accountant).toEqual(
+      expect.arrayContaining(['/customers', '/debts', '/payments', '/cash']),
+    )
+    expect(paths(['inventory.view', 'purchasing.view'])).not.toContain('/customers')
+  })
+})

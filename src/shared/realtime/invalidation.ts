@@ -40,7 +40,17 @@ export const invalidationRules: Record<string, Rule> = {
     keys: () => [queryKeys.payments.all, queryKeys.sales.lists, queryKeys.sales.summaryAll],
     debounceMs: 1000,
   },
-  // 6-bosqich: 'debt.overdue', 'customer.credit_limit_warning'
+  // nasiya: mijoz kartasi, qarzlar ro'yxati (payments.* kalitlari) va savdolar
+  'debt.changed': {
+    keys: () => [queryKeys.payments.all, queryKeys.sales.lists],
+    debounceMs: 1000,
+  },
+  'debt.overdue': { keys: () => [queryKeys.payments.all], debounceMs: 1000 },
+  'customer.credit_limit_warning': {
+    keys: (p) => [queryKeys.payments.customer(String(p.customer_id ?? ''))],
+  },
+  // kassa smenasi, qo'lda kirim-chiqim
+  'cash.updated': { keys: () => [queryKeys.payments.all], debounceMs: 500 },
   // 7-bosqich: 'transfer.*'; 8-bosqich: 'report.ready' / 'report.failed'
 }
 

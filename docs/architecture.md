@@ -1,6 +1,6 @@
 # Arxitektura (frontend)
 
-> Holat: 1–5-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments}`).
+> Holat: 1–5-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments}`); 6-bosqich: nasiya, mijozlar, smena.
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
@@ -136,6 +136,15 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - To'lov oynasi: bir nechta qator (to'lov turi × valyuta), "Qolganini" tugmasi boshqa valyutada kerakli summani yuqoriga yaxlitlab qo'yadi; ortiqcha summa faqat naqd bo'lsa (qaytim naqd beriladi). Har urinishga bitta `Idempotency-Key` (tarmoq uzilib qayta yuborilsa ikkinchi savdo bo'lmaydi).
 - Chek: PDF `api.blob()` (Authorization bilan) → yashirin iframe → brauzer chop etish oynasi (`shared/lib/print.ts`); "avtomatik chop etish" — har kassir uchun `localStorage` da (qulaylik).
 - Menyu: faol band — eng uzun mos keladigan yo'l (`/sales/pos` da faqat "Kassa").
+- Kassa sozlamalari (boshlang'ich valyuta, narx turi) yuklanmaguncha POS ochilmaydi (`PosLoader`) va tanlangan valyuta savatga qotiriladi — aks holda tovar bir valyutada olinib, boshqasida ko'rsatilishi mumkin edi (e2e da topilgan xato).
+- Nasiya: mijoz `CustomerPicker` (`@/features/payments`) bilan tanlanadi, kredit holati mijoz kartasidan (`useCustomer`). To'lov oynasida qolgan summa nasiyaga ("Nasiyaga"), muddat ixtiyoriy (bugundan oldin emas); mavjud limit savdo valyutasiga BigInt bilan o'tkaziladi va oshsa tugma yopiladi (server baribir 409 qaytaradi).
+
+### Nasiya va kassa (6-bosqich)
+
+- Mijoz kartasi: kredit limiti / ishlatilgan / mavjud (asosiy valyutada), valyuta bo'yicha qarz qoldig'i, ochiq qarzlar, akt-sverka (`CustomerLedgerEntry`).
+- Qarz to'lovi oynasi: "Hammasini" summasini server hisoblaydi (`GET customers/<id>/payoff/`) — boshqa valyutada yaxlitlash xatosi bo'lmasin; har ochilishga bitta `Idempotency-Key`.
+- BigInt yordamchilari `shared/lib/decimal.ts` da (POS va to'lovlar uchun umumiy).
+- Realtime: `payment.received`, `debt.changed`, `cash.updated` → `['payments']` (mijoz kartasi, qarzlar, kassa jonli); `debt.overdue`, `customer.credit_limit_warning` → toast (faqat `debts.manage` huquqi borlarga keladi).
 
 ## 7. i18n
 
