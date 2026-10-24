@@ -218,6 +218,8 @@ function SetRateModal({
           date: '',
         }
       : undefined,
+    // kurslar ro'yxati kech kelsa tanlangan valyuta almashib ketmasin
+    resetOptions: { keepDirtyValues: true },
   })
 
   const close = () => {

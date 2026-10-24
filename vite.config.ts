@@ -63,7 +63,10 @@ const pwa = VitePWA({
     navigateFallbackDenylist: [/^\/api\//, /^\/ws\//, /^\/admin\//, /^\/static\//, /^\/media\//],
     runtimeCaching: [],
     cleanupOutdatedCaches: true,
-    clientsClaim: false,
+    // birinchi tashrifdagi sahifa ham SW nazoratiga o'tadi — aks holda shu sessiyada chiqqan
+    // yangi versiyada «Yangilash» bosilganda controllerchange bo'lmaydi va sahifa yangilanmaydi
+    clientsClaim: true,
+    // yangi versiya faqat foydalanuvchi «Yangilash» ni bosganda faollashadi (prompt)
     skipWaiting: false,
   },
 })

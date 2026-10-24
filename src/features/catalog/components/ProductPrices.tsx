@@ -136,7 +136,7 @@ function SetPriceModal({
   const setPrice = useSetPrice(productId)
 
   const defaultType = priceTypes.data?.find((p) => p.is_default) ?? priceTypes.data?.[0]
-  const { register, handleSubmit, setError, formState } = useForm<FormValues>({
+  const { register, handleSubmit, reset, setError, formState } = useForm<FormValues>({
     resolver: zodResolver(schema),
     values: open
       ? {
@@ -146,7 +146,14 @@ function SetPriceModal({
           amount: '',
         }
       : undefined,
+    // narx turlari/valyutalar kech yuklansa — foydalanuvchi tanlagani (masalan UZS) saqlanib qoladi
+    resetOptions: { keepDirtyValues: true },
   })
+
+  const close = () => {
+    reset()
+    onClose()
+  }
 
   const onSubmit = (values: FormValues) =>
     setPrice.mutate(
@@ -159,7 +166,7 @@ function SetPriceModal({
       {
         onSuccess: () => {
           toast.success(t('prices.saved'))
-          onClose()
+          close()
         },
         onError: (error) =>
           applyServerErrors(error, setError, ['price_type', 'currency', 'branch', 'amount']),
@@ -174,12 +181,12 @@ function SetPriceModal({
   return (
     <Modal
       open={open}
-      onClose={onClose}
+      onClose={close}
       title={t('prices.set')}
       size="sm"
       footer={
         <>
-          <Button variant="secondary" onClick={onClose}>
+          <Button variant="secondary" onClick={close}>
             {tc('actions.cancel')}
           </Button>
           <Button type="submit" form="price-form" loading={setPrice.isPending}>

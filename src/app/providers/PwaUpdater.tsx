@@ -23,6 +23,15 @@ export function PwaUpdater() {
     },
   })
   if (!needRefresh) return null
+
+  const update = () => {
+    // workbox-window faqat sahifa ochilishida SW nazoratida bo'lganda o'zi qayta yuklaydi;
+    // birinchi tashrif sessiyasida ham yangi versiya faollashishi bilan sahifa yangilansin
+    navigator.serviceWorker?.addEventListener('controllerchange', () => window.location.reload(), {
+      once: true,
+    })
+    void updateServiceWorker(true)
+  }
   return (
     <div
       role="alertdialog"
@@ -38,7 +47,7 @@ export function PwaUpdater() {
           </p>
           <p className="mt-0.5 text-sm text-slate-600">{t('pwa.updateText')}</p>
           <div className="mt-3 flex gap-2">
-            <Button size="sm" onClick={() => void updateServiceWorker(true)}>
+            <Button size="sm" onClick={update}>
               {t('pwa.update')}
             </Button>
             <Button size="sm" variant="ghost" onClick={() => setNeedRefresh(false)}>

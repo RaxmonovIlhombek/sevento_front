@@ -15,7 +15,7 @@ React 19 + TypeScript + Vite 8. Backend alohida repoda: [sevento_back](https://g
 | 7. Ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish | ✅ |
 | 8. Hisobotlar (filtrlar, PDF/Excel, fondagi fayllar), rahbar dashboardi (Recharts, jonli) | ✅ |
 | 9. PWA (o'rnatish, oflayn ekran, yangilanish oynasi) va Tauri desktop (Linux, Windows, macOS) | ✅ |
-| 10. Yakun: test qamrovi, e2e, README | ⏳ keyingi |
+| 10. Yakun: brauzer e2e testlari repoda (Playwright, 9 oqim), desktop e2e, CI, hujjatlar | ✅ |
 
 Tuzilma va qoidalar: [docs/architecture.md](docs/architecture.md). Umumiy hujjatlar (arxitektura, ER, hodisalar, WebSocket, huquqlar, bosqichlar) — `sevento_back/docs/`.
 
@@ -40,6 +40,36 @@ Backend lokal ishlab turishi kerak (`sevento_back` README). Boshlang'ich login: 
 | `docker build -t sevento-front .` | Nginx image (`/api`, `/ws` → `backend:8000`); compose backend repoda |
 | `npm run tauri:dev` | desktop ilova (dev): Vite + Tauri oynasi, server `http://localhost:8000` |
 | `npm run tauri:build` | desktop paketlari → `src-tauri/target/release/bundle/` (`VITE_API_URL` majburiy) |
+| `npm run e2e` / `e2e:desktop` | brauzer e2e (Playwright) / desktop e2e (tauri-driver) |
+
+## E2E testlar
+
+Brauzer e2e (`e2e/*.spec.ts`, Playwright Test) ishlab turgan tizimga qarshi ishlaydi va har safar o'z nuqta, foydalanuvchi va tovarlarini yaratadi — **alohida (sinov) bazada** ishga tushiring, ishchi bazada emas (kurs kiritadi, savdo qiladi).
+
+```bash
+# 1) backend: uvicorn + celery worker (hisobot fayllari uchun), `bootstrap` qilingan baza
+# 2) frontend: npm run build && npx vite preview --port 4173   (yoki docker compose: E2E_BASE_URL=http://localhost:3000)
+npx playwright install chromium            # bir marta
+E2E_ADMIN_PASSWORD=<rahbar paroli> npm run e2e
+```
+
+| Fayl | Nimani tekshiradi |
+|---|---|
+| `01-auth-settings` | kirish (refresh — httpOnly cookie, token xotirada), nuqta/foydalanuvchi, audit, huquqlar, chiqish |
+| `02-realtime` | `system.notice` jonli, rol o'zgarsa `session.revoked`, o'chirilsa tizimdan chiqarish |
+| `03-catalog-currency` | kategoriya daraxti, tovar va narx, kurs → boshqa oynada toast |
+| `04-purchasing-stock` | kirim (USD + so'mda xarajat), tannarx, qabul → qoldiq jonli, «Kam qoldi» |
+| `05-pos` | ikki kassa, skaner, qaytim, aralash valyuta, chek PDF, bekor qilish, dashboard jonli |
+| `06-credit-cash` | nasiya, kredit limiti (UI + 409), 80% ogohlantirish, qarz to'lovi jonli, smena |
+| `07-inventory-documents` | ko'chirish ikki nuqtada jonli, kamomad, inventarizatsiya, hisobdan chiqarish, qaytarish |
+| `08-reports-dashboard` | dashboard jonli, hisobotlar API bilan bir xil, PDF/Excel, fondagi hisobot (`report.ready`) |
+| `09-pwa` | o'rnatish (installability), faqat qobiq keshlanadi, oflayn ekran va banner, yangi versiya oynasi |
+
+Backend sinov muhitida login cheklovini yumshating: `THROTTLE_LOGIN=1000/min` (aks holda testlar 429 oladi).
+
+Muhit: `E2E_BASE_URL` (default `http://127.0.0.1:4173`), `E2E_ADMIN_USER` (`admin`), `E2E_ADMIN_PASSWORD` (majburiy), `E2E_CHROMIUM` (o'rnatilgan Chromium yo'li, ixtiyoriy), `E2E_FRONTEND_DIR` («Yangi versiya» testi uchun).
+CI: `.github/workflows/e2e.yml` (qo'lda yoki har kecha) backend repo, Postgres, Redis, Celery bilan to'liq ko'taradi.
+Desktop e2e (haqiqiy Tauri ilovasi, tauri-driver): `npm run e2e:desktop` — talablar fayl boshida (`e2e/desktop/tauri.e2e.mjs`).
 
 ## PWA
 

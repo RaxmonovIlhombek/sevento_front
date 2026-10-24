@@ -51,6 +51,12 @@ export default tseslint.config(
     },
   },
   {
+    // brauzer e2e (Playwright) — Node muhitida ishlaydi
+    files: ['e2e/**/*.ts', 'playwright.config.ts'],
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    rules: { 'react-hooks/rules-of-hooks': 'off' },
+  },
+  {
     files: ['**/*.test.{ts,tsx}', 'src/test/**'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
     rules: { 'no-restricted-imports': 'off' },

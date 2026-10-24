@@ -1,6 +1,6 @@
 # Arxitektura (frontend)
 
-> Holat: 1–9-bosqich amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments,reports}`); 6-bosqich: nasiya, mijozlar, smena; 7-bosqich: ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish; 8-bosqich: hisobotlar (PDF/Excel), rahbar dashboardi (jonli); 9-bosqich: PWA va Tauri desktop.
+> Holat: barcha bosqichlar (1–10) amalga oshirildi (`app/`, `shared/` jumladan `shared/realtime/`, `features/{auth,settings,audit,dashboard,catalog,currency,inventory,purchasing,sales,payments,reports}`); 6-bosqich: nasiya, mijozlar, smena; 7-bosqich: ko'chirish, inventarizatsiya, hisobdan chiqarish, savdo qaytarish; 8-bosqich: hisobotlar (PDF/Excel), rahbar dashboardi (jonli); 9-bosqich: PWA va Tauri desktop; 10-bosqich: e2e testlar repoda (`e2e/`), CI.
 > Umumiy arxitektura, ER, hodisalar va WebSocket hujjatlari backend repoda: `sevento_back/docs/`.
 
 ## 1. Stek
@@ -179,7 +179,7 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 - **Faqat ilova qobig'i keshlanadi** (HTML, JS, CSS, ikonkalar). API javoblari, PDF/Excel, WebSocket — hech qachon (`runtimeCaching: []`); `/api/`, `/ws/`, `/admin/`, `/static/`, `/media/` navigatsiyalari SPA ga aylanmaydi. Ma'lumot manbai doim server.
 - Oflayn: ilova keshdan ochiladi; refresh tarmoq xatosi bilan tugasa auth holati `offline` → "Internet yo'q" ekrani (login emas — sessiya saqlanib turibdi), `online` hodisasida o'zi qayta urinadi. `client.ts` da refresh tarmoq/5xx xatosida chiqarib yubormaydi (`ApiError` tashlaydi), faqat 401 da.
 - Ishlayotganda internet uzilsa — darhol qizil banner (`navigator.onLine`); WebSocket uzilishi banneri avvalgidek 10 s dan keyin. Mutatsiyalar `networkMode: 'always'`: oflayn bo'lsa darhol "Server bilan aloqa yo'q" xatosi — navbatga qo'yilmaydi (savdo aloqa tiklanganda kassir bilmagan holda "o'zi" yuborilmasin).
-- Yangi versiya: `registerType: 'prompt'` — "Yangi versiya tayyor · Yangilash / Keyinroq" oynasi; sahifa o'zi qayta yuklanmaydi (kassir savdo o'rtasida bo'lishi mumkin). Ochiq oynalar har soatda yangilanishni tekshiradi.
+- Yangi versiya: `registerType: 'prompt'` — "Yangi versiya tayyor · Yangilash / Keyinroq" oynasi; sahifa o'zi qayta yuklanmaydi (kassir savdo o'rtasida bo'lishi mumkin). Ochiq oynalar har soatda yangilanishni tekshiradi. `clientsClaim: true` va `controllerchange` da qayta yuklash — birinchi tashrif sessiyasida ham «Yangilash» ishlaydi (e2e topgan xato).
 - Nginx: `sw.js`, `manifest.webmanifest`, `index.html` — `no-cache`; `assets/` — 1 yil `immutable`. O'rnatish uchun HTTPS kerak (localhost bundan mustasno).
 
 ### Tauri desktop (`src-tauri/`, `src/shared/platform/`)
@@ -203,6 +203,8 @@ Batafsil: `sevento_back/docs/realtime.md`. Frontend tomonida:
 | `npm run gen:api` | `openapi-typescript` → `src/shared/api/schema.d.ts` (manba: `OPENAPI_URL` yoki `../sevento_back/docs/api/openapi.yaml`) |
 | `npm run typecheck` / `lint` / `test` | tsc, eslint, vitest |
 | `npm run build` | production build (Docker da Nginx tarqatadi) |
+| `npm run e2e` | brauzer e2e (Playwright Test, `e2e/*.spec.ts`; ishlab turgan backend va frontend, `E2E_ADMIN_PASSWORD`) |
+| `npm run e2e:desktop` | desktop e2e (tauri-driver + WebKitWebDriver, Xvfb) |
 | `npm run tauri:dev` / `tauri:build` | desktop ilova (`scripts/tauri.mjs` → `VITE_API_URL` dan capability va CSP, keyin Tauri CLI) |
 
 Docker: ko'p bosqichli `Dockerfile` (node build → nginx), `nginx.conf` `/api/` va `/ws/` ni `backend:8000` ga proxy qiladi (WS upgrade bilan). Backend repodagi `docker-compose.yml` shu Dockerfile ni ishlatadi.
