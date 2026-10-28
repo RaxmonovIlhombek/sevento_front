@@ -1,0 +1,14 @@
+[build]
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_API_URL = "https://sevento-backend.onrender.com"
+  VITE_WS_URL  = "wss://sevento-backend.onrender.com"
+  NODE_VERSION = "22"
+
+# SPA uchun — barcha yo'llar index.html ga qaytsin
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
