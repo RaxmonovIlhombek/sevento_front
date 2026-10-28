@@ -17,6 +17,7 @@ import {
   Modal,
   PageHeader,
   PageSpinner,
+  PhoneInput,
   Select,
   Switch,
   toast,
@@ -177,7 +178,17 @@ export function UserFormPage() {
               <Input {...register('full_name')} invalid={!!formState.errors.full_name} />
             </FormField>
             <FormField label={t('users.phone')} error={formState.errors.phone?.message}>
-              <Input placeholder="+998 90 123 45 67" {...register('phone')} />
+              <Controller
+                name="phone"
+                control={control}
+                render={({ field }) => (
+                  <PhoneInput
+                    value={field.value}
+                    onChange={field.onChange}
+                    invalid={!!formState.errors.phone}
+                  />
+                )}
+              />
             </FormField>
             <FormField label={t('users.role')} error={formState.errors.role?.message}>
               <Select {...register('role')}>

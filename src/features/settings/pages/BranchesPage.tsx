@@ -19,6 +19,7 @@ import {
   Modal,
   PageHeader,
   Pagination,
+  PhoneInput,
   SearchInput,
   Select,
   Switch,
@@ -247,7 +248,17 @@ function BranchFormModal({
           <Input {...register('name')} invalid={!!formState.errors.name} />
         </FormField>
         <FormField label={tc('fields.phone')} error={formState.errors.phone?.message}>
-          <Input {...register('phone')} />
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <PhoneInput
+                value={field.value}
+                onChange={field.onChange}
+                invalid={!!formState.errors.phone}
+              />
+            )}
+          />
         </FormField>
         <FormField label={tc('fields.address')} error={formState.errors.address?.message}>
           <Input {...register('address')} />

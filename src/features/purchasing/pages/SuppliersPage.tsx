@@ -18,6 +18,7 @@ import {
   Modal,
   PageHeader,
   Pagination,
+  PhoneInput,
   SearchInput,
   Switch,
   Textarea,
@@ -172,7 +173,17 @@ function SupplierModal({
         </FormField>
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField label={t('suppliers.phone')} error={formState.errors.phone?.message}>
-            <Input {...register('phone')} placeholder="+998 90 123 45 67" />
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <PhoneInput
+                  value={field.value}
+                  onChange={field.onChange}
+                  invalid={!!formState.errors.phone}
+                />
+              )}
+            />
           </FormField>
           <FormField label={t('suppliers.tin')} error={formState.errors.tin?.message}>
             <Input {...register('tin')} inputMode="numeric" />

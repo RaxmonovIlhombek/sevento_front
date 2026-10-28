@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 
 import { useCapability } from '@/features/auth'
@@ -8,7 +8,7 @@ import type { CustomerDetail } from '@/shared/api/types'
 import { applyServerErrors } from '@/shared/forms/serverErrors'
 import { z } from '@/shared/forms/zod'
 import { parseDecimalInput, toDecimalInput } from '@/shared/lib/money'
-import { Button, FormField, Input, Modal, Textarea, toast } from '@/shared/ui'
+import { Button, FormField, Input, Modal, PhoneInput, Textarea, toast } from '@/shared/ui'
 
 import { useSaveCustomer } from '../api/payments.api'
 
@@ -42,7 +42,7 @@ export function CustomerFormModal({ customer, open, onClose, onSaved }: Props) {
   const canLimit = useCapability('customers.credit_limit.manage')
   const { base } = useActiveCurrencies()
   const save = useSaveCustomer()
-  const { register, handleSubmit, setError, formState } = useForm<FormValues>({
+  const { register, control, handleSubmit, setError, formState } = useForm<FormValues>({
     resolver: zodResolver(schema),
     values: open
       ? {
@@ -114,7 +114,17 @@ export function CustomerFormModal({ customer, open, onClose, onSaved }: Props) {
         </FormField>
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField label={t('customers.phone')} error={formState.errors.phone?.message}>
-            <Input {...register('phone')} placeholder="+998 90 123 45 67" />
+            <Controller
+              name="phone"
+              control={control}
+              render={({ field }) => (
+                <PhoneInput
+                  value={field.value}
+                  onChange={field.onChange}
+                  invalid={!!formState.errors.phone}
+                />
+              )}
+            />
           </FormField>
           <FormField label={t('customers.tin')} error={formState.errors.tin?.message}>
             <Input {...register('tin')} inputMode="numeric" />
