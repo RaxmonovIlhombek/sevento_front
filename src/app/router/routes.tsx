@@ -28,6 +28,27 @@ const ReferencesPage = lazy(() => catalog().then((m) => ({ default: m.References
 const currency = () => import('@/features/currency')
 const CurrencyRatesPage = lazy(() => currency().then((m) => ({ default: m.CurrencyRatesPage })))
 const CurrenciesPage = lazy(() => currency().then((m) => ({ default: m.CurrenciesPage })))
+const accounting = () => import('@/features/accounting')
+const AccountsPage = lazy(() => accounting().then((m) => ({ default: m.AccountsPage })))
+const JournalEntriesPage = lazy(() => accounting().then((m) => ({ default: m.JournalEntriesPage })))
+const TrialBalancePage = lazy(() => accounting().then((m) => ({ default: m.TrialBalancePage })))
+const hr = () => import('@/features/hr')
+const HrEmployeesPage = lazy(() => hr().then((m) => ({ default: m.EmployeesPage })))
+const HrDepartmentsPage = lazy(() => hr().then((m) => ({ default: m.DepartmentsPage })))
+const crm = () => import('@/features/crm')
+const CrmLeadsPage = lazy(() => crm().then((m) => ({ default: m.LeadsPage })))
+const CrmDealsPage = lazy(() => crm().then((m) => ({ default: m.DealsPage })))
+const manufacturing = () => import('@/features/manufacturing')
+const ManufacturingBomsPage = lazy(() => manufacturing().then((m) => ({ default: m.BomsPage })))
+const ManufacturingOrdersPage = lazy(() => manufacturing().then((m) => ({ default: m.ProductionOrdersPage })))
+const notifications = () => import('@/features/notifications')
+const NotificationsPage = lazy(() => notifications().then((m) => ({ default: m.NotificationsPage })))
+const workflow = () => import('@/features/workflow')
+const WorkflowApprovalsPage = lazy(() => workflow().then((m) => ({ default: m.ApprovalsPage })))
+const payroll = () => import('@/features/payroll')
+const PayrollRunsPage = lazy(() => payroll().then((m) => ({ default: m.PayrollRunsPage })))
+const security = () => import('@/features/security')
+const SecurityTwoFactorPage = lazy(() => security().then((m) => ({ default: m.TwoFactorPage })))
 const inventory = () => import('@/features/inventory')
 const StockPage = lazy(() => inventory().then((m) => ({ default: m.StockPage })))
 const MovementsPage = lazy(() => inventory().then((m) => ({ default: m.MovementsPage })))
@@ -188,6 +209,19 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      { path: 'accounting', element: guarded('settings.manage', <AccountsPage />) },
+      { path: 'accounting/journal', element: guarded('settings.manage', <JournalEntriesPage />) },
+      { path: 'accounting/trial-balance', element: guarded('settings.manage', <TrialBalancePage />) },
+      { path: 'hr', element: guarded('settings.manage', <HrEmployeesPage />) },
+      { path: 'hr/departments', element: guarded('settings.manage', <HrDepartmentsPage />) },
+      { path: 'crm', element: guarded('settings.manage', <CrmLeadsPage />) },
+      { path: 'crm/deals', element: guarded('settings.manage', <CrmDealsPage />) },
+      { path: 'manufacturing', element: guarded('settings.manage', <ManufacturingBomsPage />) },
+      { path: 'manufacturing/orders', element: guarded('settings.manage', <ManufacturingOrdersPage />) },
+      { path: 'notifications', element: guarded('settings.manage', <NotificationsPage />) },
+      { path: 'workflow', element: guarded('settings.manage', <WorkflowApprovalsPage />) },
+      { path: 'payroll', element: guarded('settings.manage', <PayrollRunsPage />) },
+      { path: 'security', element: guarded('settings.manage', <SecurityTwoFactorPage />) },
       { path: 'audit', element: guarded('audit.view', <AuditPage />) },
       { path: '403', element: <ForbiddenPage /> },
       { path: '*', element: <NotFoundPage /> },

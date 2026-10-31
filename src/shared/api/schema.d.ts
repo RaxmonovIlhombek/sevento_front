@@ -4,6 +4,182 @@
  */
 
 export interface paths {
+    "/api/v1/accounting/accounts/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_accounts_list"];
+        put?: never;
+        post: operations["accounting_accounts_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/accounting/accounts/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_accounts_retrieve"];
+        put: operations["accounting_accounts_update"];
+        post?: never;
+        delete: operations["accounting_accounts_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["accounting_accounts_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/accounting/fiscal-periods/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_fiscal_periods_list"];
+        put?: never;
+        post: operations["accounting_fiscal_periods_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/accounting/fiscal-periods/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_fiscal_periods_retrieve"];
+        put: operations["accounting_fiscal_periods_update"];
+        post?: never;
+        delete: operations["accounting_fiscal_periods_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["accounting_fiscal_periods_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/accounting/fiscal-years/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_fiscal_years_list"];
+        put?: never;
+        post: operations["accounting_fiscal_years_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/accounting/fiscal-years/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_fiscal_years_retrieve"];
+        put: operations["accounting_fiscal_years_update"];
+        post?: never;
+        delete: operations["accounting_fiscal_years_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["accounting_fiscal_years_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/accounting/journal-entries/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_journal_entries_list"];
+        put?: never;
+        post: operations["accounting_journal_entries_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/accounting/journal-entries/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_journal_entries_retrieve"];
+        put: operations["accounting_journal_entries_update"];
+        post?: never;
+        delete: operations["accounting_journal_entries_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["accounting_journal_entries_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/accounting/journal-entries/{id}/post/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["accounting_journal_entries_post_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/accounting/journal-entries/{id}/reverse/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["accounting_journal_entries_reverse_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/accounting/journal-entries/trial_balance/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["accounting_journal_entries_trial_balance_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/audit/": {
         parameters: {
             query?: never;
@@ -373,6 +549,102 @@ export interface paths {
         patch: operations["catalog_units_partial_update"];
         trace?: never;
     };
+    "/api/v1/crm/activities/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["crm_activities_list"];
+        put?: never;
+        post: operations["crm_activities_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/crm/activities/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["crm_activities_retrieve"];
+        put: operations["crm_activities_update"];
+        post?: never;
+        delete: operations["crm_activities_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["crm_activities_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/crm/deals/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["crm_deals_list"];
+        put?: never;
+        post: operations["crm_deals_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/crm/deals/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["crm_deals_retrieve"];
+        put: operations["crm_deals_update"];
+        post?: never;
+        delete: operations["crm_deals_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["crm_deals_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/crm/leads/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["crm_leads_list"];
+        put?: never;
+        post: operations["crm_leads_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/crm/leads/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["crm_leads_retrieve"];
+        put: operations["crm_leads_update"];
+        post?: never;
+        delete: operations["crm_leads_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["crm_leads_partial_update"];
+        trace?: never;
+    };
     "/api/v1/currencies/": {
         parameters: {
             query?: never;
@@ -476,6 +748,102 @@ export interface paths {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/api/v1/hr/departments/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["hr_departments_list"];
+        put?: never;
+        post: operations["hr_departments_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/hr/departments/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["hr_departments_retrieve"];
+        put: operations["hr_departments_update"];
+        post?: never;
+        delete: operations["hr_departments_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["hr_departments_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/hr/employees/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["hr_employees_list"];
+        put?: never;
+        post: operations["hr_employees_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/hr/employees/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["hr_employees_retrieve"];
+        put: operations["hr_employees_update"];
+        post?: never;
+        delete: operations["hr_employees_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["hr_employees_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/hr/positions/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["hr_positions_list"];
+        put?: never;
+        post: operations["hr_positions_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/hr/positions/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["hr_positions_retrieve"];
+        put: operations["hr_positions_update"];
+        post?: never;
+        delete: operations["hr_positions_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["hr_positions_partial_update"];
         trace?: never;
     };
     "/api/v1/inventory/batches/": {
@@ -922,6 +1290,166 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/manufacturing/boms/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["manufacturing_boms_list"];
+        put?: never;
+        post: operations["manufacturing_boms_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/manufacturing/boms/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["manufacturing_boms_retrieve"];
+        put: operations["manufacturing_boms_update"];
+        post?: never;
+        delete: operations["manufacturing_boms_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["manufacturing_boms_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/manufacturing/orders/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["manufacturing_orders_list"];
+        put?: never;
+        post: operations["manufacturing_orders_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/manufacturing/orders/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["manufacturing_orders_retrieve"];
+        put: operations["manufacturing_orders_update"];
+        post?: never;
+        delete: operations["manufacturing_orders_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["manufacturing_orders_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/manufacturing/orders/{id}/complete/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["manufacturing_orders_complete_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/manufacturing/orders/{id}/release/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["manufacturing_orders_release_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["notifications_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["notifications_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/{id}/read/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["notifications_read_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/notifications/read_all/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["notifications_read_all_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/payments/cash-categories/": {
         parameters: {
             query?: never;
@@ -1279,6 +1807,70 @@ export interface paths {
         put?: never;
         /** @description Kassa smenalari: ochish (qoldiq qotiriladi), yopish (sanalgan naqd, farq yoziladi). */
         post: operations["payments_shifts_open_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payroll/runs/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["payroll_runs_list"];
+        put?: never;
+        post: operations["payroll_runs_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payroll/runs/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["payroll_runs_retrieve"];
+        put: operations["payroll_runs_update"];
+        post?: never;
+        delete: operations["payroll_runs_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["payroll_runs_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/payroll/runs/{id}/calculate/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["payroll_runs_calculate_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/payroll/runs/{id}/pay/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["payroll_runs_pay_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1806,6 +2398,71 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/security/2fa/disable/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["security_2fa_disable_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/security/2fa/setup/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Initialize attributes shared by all view methods. */
+        post: operations["security_2fa_setup_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/security/2fa/status/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["security_2fa_status_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/security/2fa/verify/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["security_2fa_verify_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/settings/": {
         parameters: {
             query?: never;
@@ -1893,10 +2550,179 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/workflow/instances/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["workflow_instances_list"];
+        put?: never;
+        post: operations["workflow_instances_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/workflow/instances/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["workflow_instances_retrieve"];
+        put: operations["workflow_instances_update"];
+        post?: never;
+        delete: operations["workflow_instances_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["workflow_instances_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/workflow/instances/{id}/approve/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["workflow_instances_approve_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/workflow/instances/{id}/reject/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["workflow_instances_reject_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/workflow/rules/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["workflow_rules_list"];
+        put?: never;
+        post: operations["workflow_rules_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/workflow/rules/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["workflow_rules_retrieve"];
+        put: operations["workflow_rules_update"];
+        post?: never;
+        delete: operations["workflow_rules_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["workflow_rules_partial_update"];
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        Account: {
+            readonly id: number;
+            code: string;
+            name: string;
+            account_type: components["schemas"]["AccountTypeEnum"];
+            normal_balance?: components["schemas"]["NormalBalanceEnum"];
+            parent?: number | null;
+            readonly parent_code: string;
+            is_active?: boolean;
+            /** @description Faqat barg (leaf) hisoblar ga yozuv mumkin */
+            is_postable?: boolean;
+            description?: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        AccountRequest: {
+            code: string;
+            name: string;
+            account_type: components["schemas"]["AccountTypeEnum"];
+            normal_balance?: components["schemas"]["NormalBalanceEnum"];
+            parent?: number | null;
+            is_active?: boolean;
+            /** @description Faqat barg (leaf) hisoblar ga yozuv mumkin */
+            is_postable?: boolean;
+            description?: string;
+        };
+        /**
+         * @description * `asset` - Aktiv
+         *     * `liability` - Passiv
+         *     * `equity` - Kapital
+         *     * `income` - Daromad
+         *     * `expense` - Xarajat
+         * @enum {string}
+         */
+        AccountTypeEnum: "asset" | "liability" | "equity" | "income" | "expense";
+        Activity: {
+            readonly id: number;
+            activity_type?: components["schemas"]["ActivityTypeEnum"];
+            subject: string;
+            description?: string;
+            /** Format: date-time */
+            due_date?: string | null;
+            completed?: boolean;
+            lead?: number | null;
+            deal?: number | null;
+            owner?: number | null;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        ActivityRequest: {
+            activity_type?: components["schemas"]["ActivityTypeEnum"];
+            subject: string;
+            description?: string;
+            /** Format: date-time */
+            due_date?: string | null;
+            completed?: boolean;
+            lead?: number | null;
+            deal?: number | null;
+            owner?: number | null;
+        };
+        /**
+         * @description * `call` - Qo'ng'iroq
+         *     * `email` - Email
+         *     * `meeting` - Uchrashuv
+         *     * `note` - Eslatma
+         *     * `task` - Vazifa
+         * @enum {string}
+         */
+        ActivityTypeEnum: "call" | "email" | "meeting" | "note" | "task";
         Allocation: {
             readonly debt: number;
             /**
@@ -1919,6 +2745,92 @@ export interface components {
          * @enum {string}
          */
         AllocationMethodEnum: "by_value" | "by_quantity";
+        ApprovalInstance: {
+            readonly id: number;
+            entity_type: string;
+            /** Format: int64 */
+            entity_id: number;
+            readonly status: components["schemas"]["ApprovalInstanceStatusEnum"];
+            requested_by: number;
+            readonly requested_by_name: string;
+            branch?: number | null;
+            /** Format: decimal */
+            amount?: string;
+            /** Format: date-time */
+            readonly decided_at: string | null;
+            notes?: string;
+            readonly steps: components["schemas"]["ApprovalStep"][];
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        ApprovalInstanceRequest: {
+            entity_type: string;
+            /** Format: int64 */
+            entity_id: number;
+            requested_by: number;
+            branch?: number | null;
+            /** Format: decimal */
+            amount?: string;
+            notes?: string;
+        };
+        /**
+         * @description * `pending` - Kutilmoqda
+         *     * `approved` - Tasdiqlandi
+         *     * `rejected` - Rad etildi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        ApprovalInstanceStatusEnum: "pending" | "approved" | "rejected" | "cancelled";
+        ApprovalRule: {
+            readonly id: number;
+            entity_type: string;
+            /** Format: decimal */
+            min_amount?: string;
+            /** Format: decimal */
+            max_amount?: string | null;
+            branch?: number | null;
+            approver: number;
+            readonly approver_name: string;
+            sequence?: number;
+            is_active?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        ApprovalRuleRequest: {
+            entity_type: string;
+            /** Format: decimal */
+            min_amount?: string;
+            /** Format: decimal */
+            max_amount?: string | null;
+            branch?: number | null;
+            approver: number;
+            sequence?: number;
+            is_active?: boolean;
+        };
+        ApprovalStep: {
+            readonly id: number;
+            approver: number;
+            readonly approver_name: string;
+            sequence?: number;
+            decision?: components["schemas"]["DecisionEnum"];
+            /** Format: date-time */
+            decided_at?: string | null;
+            comment?: string;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
+        ApprovalStepRequest: {
+            approver: number;
+            sequence?: number;
+            decision?: components["schemas"]["DecisionEnum"];
+            /** Format: date-time */
+            decided_at?: string | null;
+            comment?: string;
+        };
         AuditLog: {
             readonly id: number;
             readonly event_name: string;
@@ -1934,6 +2846,30 @@ export interface components {
             readonly request_id: string;
             /** Format: date-time */
             readonly created_at: string;
+        };
+        BOMItem: {
+            readonly id: number;
+            component: number;
+            readonly component_name: string;
+            /** Format: decimal */
+            quantity: string;
+            unit: number;
+            /**
+             * Format: decimal
+             * @description Brak foizi
+             */
+            scrap_rate?: string;
+        };
+        BOMItemRequest: {
+            component: number;
+            /** Format: decimal */
+            quantity: string;
+            unit: number;
+            /**
+             * Format: decimal
+             * @description Brak foizi
+             */
+            scrap_rate?: string;
         };
         Batch: {
             readonly id: number;
@@ -1954,6 +2890,47 @@ export interface components {
             /** Format: decimal */
             readonly unit_cost_base: string;
         };
+        BillOfMaterials: {
+            readonly id: number;
+            product: number;
+            readonly product_name: string;
+            name: string;
+            /** @default 1.0 */
+            version: string;
+            status?: components["schemas"]["BillOfMaterialsStatusEnum"];
+            /**
+             * Format: decimal
+             * @description Tayyor mahsulot miqdori
+             */
+            quantity?: string;
+            notes?: string;
+            items?: components["schemas"]["BOMItem"][];
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        BillOfMaterialsRequest: {
+            product: number;
+            name: string;
+            /** @default 1.0 */
+            version: string;
+            status?: components["schemas"]["BillOfMaterialsStatusEnum"];
+            /**
+             * Format: decimal
+             * @description Tayyor mahsulot miqdori
+             */
+            quantity?: string;
+            notes?: string;
+            items?: components["schemas"]["BOMItemRequest"][];
+        };
+        /**
+         * @description * `draft` - Qoralama
+         *     * `active` - Faol
+         *     * `archived` - Arxivlangan
+         * @enum {string}
+         */
+        BillOfMaterialsStatusEnum: "draft" | "active" | "archived";
         Branch: {
             readonly id: number;
             /** @description Hujjat raqamlarida ishlatiladi */
@@ -2320,6 +3297,39 @@ export interface components {
             average_check: components["schemas"]["Kpi"];
             returns: components["schemas"]["Kpi"];
         };
+        Deal: {
+            readonly id: number;
+            name: string;
+            lead?: number | null;
+            customer?: number | null;
+            owner?: number | null;
+            branch?: number | null;
+            stage?: components["schemas"]["StageEnum"];
+            /** Format: decimal */
+            amount?: string;
+            currency?: number | null;
+            /** Format: date */
+            expected_close_date?: string | null;
+            notes?: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        DealRequest: {
+            name: string;
+            lead?: number | null;
+            customer?: number | null;
+            owner?: number | null;
+            branch?: number | null;
+            stage?: components["schemas"]["StageEnum"];
+            /** Format: decimal */
+            amount?: string;
+            currency?: number | null;
+            /** Format: date */
+            expected_close_date?: string | null;
+            notes?: string;
+        };
         Debt: {
             readonly id: number;
             readonly customer: number;
@@ -2378,10 +3388,85 @@ export interface components {
             overdue: string;
             overdue_count: number;
         };
+        /**
+         * @description * `pending` - Kutilmoqda
+         *     * `approved` - Tasdiqlandi
+         *     * `rejected` - Rad etildi
+         * @enum {string}
+         */
+        DecisionEnum: "pending" | "approved" | "rejected";
+        Department: {
+            readonly id: number;
+            name: string;
+            parent?: number | null;
+            branch?: number | null;
+            is_active?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        DepartmentRequest: {
+            name: string;
+            parent?: number | null;
+            branch?: number | null;
+            is_active?: boolean;
+        };
         DocumentRef: {
             id: number;
             number: string;
         };
+        Employee: {
+            readonly id: number;
+            user: number;
+            readonly user_username: string;
+            readonly user_full_name: string;
+            employee_number: string;
+            department: number;
+            readonly department_name: string;
+            position: number;
+            readonly position_name: string;
+            branch: number;
+            readonly branch_name: string;
+            /** Format: date */
+            hire_date: string;
+            /** Format: date */
+            termination_date?: string | null;
+            status?: components["schemas"]["EmployeeStatusEnum"];
+            /** Format: decimal */
+            base_salary?: string;
+            phone?: string;
+            address?: string;
+            notes?: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        EmployeeRequest: {
+            user: number;
+            employee_number: string;
+            department: number;
+            position: number;
+            branch: number;
+            /** Format: date */
+            hire_date: string;
+            /** Format: date */
+            termination_date?: string | null;
+            status?: components["schemas"]["EmployeeStatusEnum"];
+            /** Format: decimal */
+            base_salary?: string;
+            phone?: string;
+            address?: string;
+            notes?: string;
+        };
+        /**
+         * @description * `active` - Faol
+         *     * `on_leave` - Ta'tilda
+         *     * `terminated` - Ishdan bo'shatilgan
+         * @enum {string}
+         */
+        EmployeeStatusEnum: "active" | "on_leave" | "terminated";
         ErrorBody: {
             code: string;
             message: string;
@@ -2447,6 +3532,51 @@ export interface components {
             readonly choices: components["schemas"]["Choice"][];
             readonly default: string | null;
         };
+        FiscalPeriod: {
+            readonly id: number;
+            fiscal_year: number;
+            readonly fiscal_year_value: number;
+            number: number;
+            /** Format: date */
+            start_date: string;
+            /** Format: date */
+            end_date: string;
+            is_closed?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        FiscalPeriodRequest: {
+            fiscal_year: number;
+            number: number;
+            /** Format: date */
+            start_date: string;
+            /** Format: date */
+            end_date: string;
+            is_closed?: boolean;
+        };
+        FiscalYear: {
+            readonly id: number;
+            year: number;
+            /** Format: date */
+            start_date: string;
+            /** Format: date */
+            end_date: string;
+            is_closed?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        FiscalYearRequest: {
+            year: number;
+            /** Format: date */
+            start_date: string;
+            /** Format: date */
+            end_date: string;
+            is_closed?: boolean;
+        };
         /**
          * @description * `pdf` - PDF
          *     * `xlsx` - Excel
@@ -2469,6 +3599,61 @@ export interface components {
             /** Format: decimal */
             stock_value: string | null;
             incoming_transfers: number;
+        };
+        JournalEntry: {
+            readonly id: number;
+            readonly number: string;
+            /** Format: date */
+            date: string;
+            fiscal_period: number;
+            branch?: number | null;
+            readonly branch_name: string;
+            description?: string;
+            readonly status: components["schemas"]["JournalEntryStatusEnum"];
+            /** Format: date-time */
+            readonly posted_at: string | null;
+            readonly posted_by: number | null;
+            readonly reversed_by_entry: number | null;
+            readonly created_by: number;
+            lines: components["schemas"]["JournalLine"][];
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        JournalEntryRequest: {
+            /** Format: date */
+            date: string;
+            fiscal_period: number;
+            branch?: number | null;
+            description?: string;
+            lines: components["schemas"]["JournalLineRequest"][];
+        };
+        /**
+         * @description * `draft` - Qoralama
+         *     * `posted` - O'tkazildi
+         *     * `reversed` - Bekor qilindi
+         * @enum {string}
+         */
+        JournalEntryStatusEnum: "draft" | "posted" | "reversed";
+        JournalLine: {
+            readonly id: number;
+            account: number;
+            readonly account_code: string;
+            readonly account_name: string;
+            description?: string;
+            /** Format: decimal */
+            debit?: string;
+            /** Format: decimal */
+            credit?: string;
+        };
+        JournalLineRequest: {
+            account: number;
+            description?: string;
+            /** Format: decimal */
+            debit?: string;
+            /** Format: decimal */
+            credit?: string;
         };
         Kpi: {
             /** Format: decimal */
@@ -2493,6 +3678,44 @@ export interface components {
             date: string | null;
             source: string | null;
         };
+        Lead: {
+            readonly id: number;
+            name: string;
+            company?: string;
+            phone?: string;
+            /** Format: email */
+            email?: string;
+            source?: string;
+            status?: components["schemas"]["LeadStatusEnum"];
+            owner?: number | null;
+            branch?: number | null;
+            notes?: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        LeadRequest: {
+            name: string;
+            company?: string;
+            phone?: string;
+            /** Format: email */
+            email?: string;
+            source?: string;
+            status?: components["schemas"]["LeadStatusEnum"];
+            owner?: number | null;
+            branch?: number | null;
+            notes?: string;
+        };
+        /**
+         * @description * `new` - Yangi
+         *     * `contacted` - Aloqa qilindi
+         *     * `qualified` - Malakali
+         *     * `lost` - Yo'qotildi
+         *     * `converted` - Mijozga aylantirildi
+         * @enum {string}
+         */
+        LeadStatusEnum: "new" | "contacted" | "qualified" | "lost" | "converted";
         LedgerEntry: {
             readonly id: number;
             readonly type: components["schemas"]["LedgerEntryTypeEnum"];
@@ -2575,10 +3798,86 @@ export interface components {
          * @enum {string}
          */
         MovementTypeEnum: "purchase_in" | "purchase_cancel" | "sale_out" | "sale_cancel" | "sale_return_in" | "sale_return_cancel" | "transfer_out" | "transfer_in" | "transfer_cancel" | "count_surplus" | "count_shortage" | "write_off" | "write_off_cancel";
+        /**
+         * @description * `debit` - Debet
+         *     * `credit` - Kredit
+         * @enum {string}
+         */
+        NormalBalanceEnum: "debit" | "credit";
         NoticeRequest: {
             /** @default info */
             level: components["schemas"]["LevelEnum"];
             message: string;
+        };
+        Notification: {
+            readonly id: number;
+            readonly title: string;
+            readonly message: string;
+            readonly notification_type: components["schemas"]["NotificationTypeEnum"];
+            is_read?: boolean;
+            /** Format: date-time */
+            readonly read_at: string | null;
+            readonly link: string;
+            readonly source: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        NotificationRequest: {
+            is_read?: boolean;
+        };
+        /**
+         * @description * `info` - Ma'lumot
+         *     * `warning` - Ogohlantirish
+         *     * `error` - Xato
+         *     * `success` - Muvaffaqiyat
+         * @enum {string}
+         */
+        NotificationTypeEnum: "info" | "warning" | "error" | "success";
+        PaginatedAccountList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Account"][];
+        };
+        PaginatedActivityList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Activity"][];
+        };
+        PaginatedApprovalInstanceList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["ApprovalInstance"][];
+        };
+        PaginatedApprovalRuleList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["ApprovalRule"][];
         };
         PaginatedAuditLogList: {
             /** @example 120 */
@@ -2601,6 +3900,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["Batch"][];
+        };
+        PaginatedBillOfMaterialsList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["BillOfMaterials"][];
         };
         PaginatedBranchList: {
             /** @example 120 */
@@ -2646,6 +3956,17 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["Customer"][];
         };
+        PaginatedDealList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Deal"][];
+        };
         PaginatedDebtList: {
             /** @example 120 */
             count: number;
@@ -2656,6 +3977,28 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["Debt"][];
+        };
+        PaginatedDepartmentList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Department"][];
+        };
+        PaginatedEmployeeList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Employee"][];
         };
         PaginatedExchangeRateList: {
             /** @example 120 */
@@ -2668,6 +4011,50 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["ExchangeRate"][];
         };
+        PaginatedFiscalPeriodList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["FiscalPeriod"][];
+        };
+        PaginatedFiscalYearList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["FiscalYear"][];
+        };
+        PaginatedJournalEntryList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["JournalEntry"][];
+        };
+        PaginatedLeadList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Lead"][];
+        };
         PaginatedLedgerEntryList: {
             /** @example 120 */
             count: number;
@@ -2678,6 +4065,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["LedgerEntry"][];
+        };
+        PaginatedNotificationList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Notification"][];
         };
         PaginatedPaymentListList: {
             /** @example 120 */
@@ -2690,6 +4088,28 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["PaymentList"][];
         };
+        PaginatedPayrollRunList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["PayrollRun"][];
+        };
+        PaginatedPositionList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Position"][];
+        };
         PaginatedProductList: {
             /** @example 120 */
             count: number;
@@ -2700,6 +4120,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["Product"][];
+        };
+        PaginatedProductionOrderList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["ProductionOrder"][];
         };
         PaginatedPurchaseListList: {
             /** @example 120 */
@@ -2833,6 +4264,63 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["WriteOffList"][];
         };
+        PatchedAccountRequest: {
+            code?: string;
+            name?: string;
+            account_type?: components["schemas"]["AccountTypeEnum"];
+            normal_balance?: components["schemas"]["NormalBalanceEnum"];
+            parent?: number | null;
+            is_active?: boolean;
+            /** @description Faqat barg (leaf) hisoblar ga yozuv mumkin */
+            is_postable?: boolean;
+            description?: string;
+        };
+        PatchedActivityRequest: {
+            activity_type?: components["schemas"]["ActivityTypeEnum"];
+            subject?: string;
+            description?: string;
+            /** Format: date-time */
+            due_date?: string | null;
+            completed?: boolean;
+            lead?: number | null;
+            deal?: number | null;
+            owner?: number | null;
+        };
+        PatchedApprovalInstanceRequest: {
+            entity_type?: string;
+            /** Format: int64 */
+            entity_id?: number;
+            requested_by?: number;
+            branch?: number | null;
+            /** Format: decimal */
+            amount?: string;
+            notes?: string;
+        };
+        PatchedApprovalRuleRequest: {
+            entity_type?: string;
+            /** Format: decimal */
+            min_amount?: string;
+            /** Format: decimal */
+            max_amount?: string | null;
+            branch?: number | null;
+            approver?: number;
+            sequence?: number;
+            is_active?: boolean;
+        };
+        PatchedBillOfMaterialsRequest: {
+            product?: number;
+            name?: string;
+            /** @default 1.0 */
+            version: string;
+            status?: components["schemas"]["BillOfMaterialsStatusEnum"];
+            /**
+             * Format: decimal
+             * @description Tayyor mahsulot miqdori
+             */
+            quantity?: string;
+            notes?: string;
+            items?: components["schemas"]["BOMItemRequest"][];
+        };
         PatchedBranchRequest: {
             /** @description Hujjat raqamlarida ishlatiladi */
             code?: string;
@@ -2857,11 +4345,85 @@ export interface components {
             is_active?: boolean;
             sort_order?: number;
         };
+        PatchedDealRequest: {
+            name?: string;
+            lead?: number | null;
+            customer?: number | null;
+            owner?: number | null;
+            branch?: number | null;
+            stage?: components["schemas"]["StageEnum"];
+            /** Format: decimal */
+            amount?: string;
+            currency?: number | null;
+            /** Format: date */
+            expected_close_date?: string | null;
+            notes?: string;
+        };
+        PatchedDepartmentRequest: {
+            name?: string;
+            parent?: number | null;
+            branch?: number | null;
+            is_active?: boolean;
+        };
+        PatchedEmployeeRequest: {
+            user?: number;
+            employee_number?: string;
+            department?: number;
+            position?: number;
+            branch?: number;
+            /** Format: date */
+            hire_date?: string;
+            /** Format: date */
+            termination_date?: string | null;
+            status?: components["schemas"]["EmployeeStatusEnum"];
+            /** Format: decimal */
+            base_salary?: string;
+            phone?: string;
+            address?: string;
+            notes?: string;
+        };
         PatchedExpenseTypeRequest: {
             code?: string;
             name?: string;
             default_allocation?: components["schemas"]["AllocationMethodEnum"];
             is_active?: boolean;
+        };
+        PatchedFiscalPeriodRequest: {
+            fiscal_year?: number;
+            number?: number;
+            /** Format: date */
+            start_date?: string;
+            /** Format: date */
+            end_date?: string;
+            is_closed?: boolean;
+        };
+        PatchedFiscalYearRequest: {
+            year?: number;
+            /** Format: date */
+            start_date?: string;
+            /** Format: date */
+            end_date?: string;
+            is_closed?: boolean;
+        };
+        PatchedJournalEntryRequest: {
+            /** Format: date */
+            date?: string;
+            fiscal_period?: number;
+            branch?: number | null;
+            description?: string;
+            lines?: components["schemas"]["JournalLineRequest"][];
+        };
+        PatchedLeadRequest: {
+            name?: string;
+            company?: string;
+            phone?: string;
+            /** Format: email */
+            email?: string;
+            source?: string;
+            status?: components["schemas"]["LeadStatusEnum"];
+            owner?: number | null;
+            branch?: number | null;
+            notes?: string;
         };
         PatchedMinQuantityRequest: {
             /** Format: decimal */
@@ -2876,6 +4438,18 @@ export interface components {
             is_cash?: boolean;
             is_active?: boolean;
             sort_order?: number;
+        };
+        PatchedPayrollRunRequest: {
+            /** Format: date */
+            period_start?: string;
+            /** Format: date */
+            period_end?: string;
+            branch?: number;
+        };
+        PatchedPositionRequest: {
+            name?: string;
+            department?: number;
+            is_active?: boolean;
         };
         PatchedPriceTypeRequest: {
             code?: string;
@@ -2896,6 +4470,17 @@ export interface components {
             min_quantity?: string | null;
             description?: string;
             is_active?: boolean;
+        };
+        PatchedProductionOrderRequest: {
+            product?: number;
+            bom?: number;
+            branch?: number;
+            /** Format: decimal */
+            quantity?: string;
+            /** Format: date */
+            planned_start?: string | null;
+            /** Format: date */
+            planned_end?: string | null;
         };
         PatchedRoleRequest: {
             code?: string;
@@ -3049,6 +4634,88 @@ export interface components {
             /** Format: decimal */
             amount: string;
         };
+        PayrollRun: {
+            readonly id: number;
+            /** Format: date */
+            period_start: string;
+            /** Format: date */
+            period_end: string;
+            branch: number;
+            readonly branch_name: string;
+            readonly status: components["schemas"]["PayrollRunStatusEnum"];
+            /** Format: decimal */
+            readonly total_gross: string;
+            /** Format: decimal */
+            readonly total_net: string;
+            readonly created_by: number;
+            /** Format: date-time */
+            readonly paid_at: string | null;
+            readonly payslips: components["schemas"]["Payslip"][];
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        PayrollRunRequest: {
+            /** Format: date */
+            period_start: string;
+            /** Format: date */
+            period_end: string;
+            branch: number;
+        };
+        /**
+         * @description * `draft` - Qoralama
+         *     * `calculated` - Hisoblandi
+         *     * `paid` - To'landi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        PayrollRunStatusEnum: "draft" | "calculated" | "paid" | "cancelled";
+        Payslip: {
+            readonly id: number;
+            run: number;
+            employee: number;
+            readonly employee_number: string;
+            readonly employee_name: string;
+            /** Format: decimal */
+            base_salary?: string;
+            /** Format: decimal */
+            bonus?: string;
+            /** Format: decimal */
+            allowance?: string;
+            /** Format: decimal */
+            deduction?: string;
+            /** Format: decimal */
+            tax?: string;
+            /** Format: decimal */
+            gross?: string;
+            /** Format: decimal */
+            net?: string;
+            notes?: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        PayslipRequest: {
+            run: number;
+            employee: number;
+            /** Format: decimal */
+            base_salary?: string;
+            /** Format: decimal */
+            bonus?: string;
+            /** Format: decimal */
+            allowance?: string;
+            /** Format: decimal */
+            deduction?: string;
+            /** Format: decimal */
+            tax?: string;
+            /** Format: decimal */
+            gross?: string;
+            /** Format: decimal */
+            net?: string;
+            notes?: string;
+        };
         Period: {
             key: string;
             /** Format: date */
@@ -3075,6 +4742,22 @@ export interface components {
             price: string | null;
             /** Format: decimal */
             stock: string;
+        };
+        Position: {
+            readonly id: number;
+            name: string;
+            department: number;
+            readonly department_name: string;
+            is_active?: boolean;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        PositionRequest: {
+            name: string;
+            department: number;
+            is_active?: boolean;
         };
         PriceType: {
             readonly id: number;
@@ -3163,6 +4846,52 @@ export interface components {
             description?: string;
             is_active?: boolean;
         };
+        ProductionOrder: {
+            readonly id: number;
+            readonly number: string;
+            product: number;
+            readonly product_name: string;
+            bom: number;
+            readonly bom_name: string;
+            branch: number;
+            readonly branch_name: string;
+            /** Format: decimal */
+            quantity: string;
+            readonly status: components["schemas"]["ProductionOrderStatusEnum"];
+            /** Format: date */
+            planned_start?: string | null;
+            /** Format: date */
+            planned_end?: string | null;
+            /** Format: date-time */
+            readonly actual_start: string | null;
+            /** Format: date-time */
+            readonly actual_end: string | null;
+            readonly created_by: number;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        ProductionOrderRequest: {
+            product: number;
+            bom: number;
+            branch: number;
+            /** Format: decimal */
+            quantity: string;
+            /** Format: date */
+            planned_start?: string | null;
+            /** Format: date */
+            planned_end?: string | null;
+        };
+        /**
+         * @description * `draft` - Qoralama
+         *     * `released` - Ishga tushirildi
+         *     * `in_progress` - Jarayonda
+         *     * `completed` - Yakunlandi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        ProductionOrderStatusEnum: "draft" | "released" | "in_progress" | "completed" | "cancelled";
         /**
          * @description * `manual` - Qo'lda (naqd, terminal, o'tkazma)
          * @enum {string}
@@ -3804,6 +5533,16 @@ export interface components {
          * @enum {string}
          */
         SourceEnum: "cbu" | "manual";
+        /**
+         * @description * `prospecting` - Izlash
+         *     * `qualification` - Malakalash
+         *     * `proposal` - Taklif
+         *     * `negotiation` - Muzokara
+         *     * `won` - Yutildi
+         *     * `lost` - Yo'qotildi
+         * @enum {string}
+         */
+        StageEnum: "prospecting" | "qualification" | "proposal" | "negotiation" | "won" | "lost";
         StockCountCreateRequest: {
             branch: number;
             category?: number | null;
@@ -4098,6 +5837,21 @@ export interface components {
             note: string;
             items: components["schemas"]["LineWriteRequest"][];
         };
+        TwoFactorCodeRequest: {
+            code: string;
+        };
+        TwoFactorSetup: {
+            id: number;
+            is_verified: boolean;
+            secret: string;
+            provisioning_uri: string;
+        };
+        TwoFactorStatus: {
+            enabled: boolean;
+        };
+        TwoFactorStatusRequest: {
+            enabled: boolean;
+        };
         Unit: {
             readonly id: number;
             code: string;
@@ -4278,6 +6032,696 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    accounting_accounts_list: {
+        parameters: {
+            query?: {
+                /**
+                 * @description * `asset` - Aktiv
+                 *     * `liability` - Passiv
+                 *     * `equity` - Kapital
+                 *     * `income` - Daromad
+                 *     * `expense` - Xarajat
+                 */
+                account_type?: "asset" | "equity" | "expense" | "income" | "liability";
+                is_active?: boolean;
+                is_postable?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                parent?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedAccountList"];
+                };
+            };
+        };
+    };
+    accounting_accounts_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountRequest"];
+                "multipart/form-data": components["schemas"]["AccountRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Account"];
+                };
+            };
+        };
+    };
+    accounting_accounts_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this account. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Account"];
+                };
+            };
+        };
+    };
+    accounting_accounts_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this account. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountRequest"];
+                "multipart/form-data": components["schemas"]["AccountRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Account"];
+                };
+            };
+        };
+    };
+    accounting_accounts_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this account. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    accounting_accounts_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this account. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedAccountRequest"];
+                "multipart/form-data": components["schemas"]["PatchedAccountRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Account"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_periods_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedFiscalPeriodList"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_periods_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FiscalPeriodRequest"];
+                "multipart/form-data": components["schemas"]["FiscalPeriodRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalPeriod"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_periods_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal period. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalPeriod"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_periods_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal period. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FiscalPeriodRequest"];
+                "multipart/form-data": components["schemas"]["FiscalPeriodRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalPeriod"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_periods_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal period. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    accounting_fiscal_periods_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal period. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedFiscalPeriodRequest"];
+                "multipart/form-data": components["schemas"]["PatchedFiscalPeriodRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalPeriod"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_years_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedFiscalYearList"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_years_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FiscalYearRequest"];
+                "multipart/form-data": components["schemas"]["FiscalYearRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYear"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_years_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal year. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYear"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_years_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal year. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FiscalYearRequest"];
+                "multipart/form-data": components["schemas"]["FiscalYearRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYear"];
+                };
+            };
+        };
+    };
+    accounting_fiscal_years_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal year. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    accounting_fiscal_years_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fiscal year. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedFiscalYearRequest"];
+                "multipart/form-data": components["schemas"]["PatchedFiscalYearRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FiscalYear"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                date_from?: string;
+                date_to?: string;
+                fiscal_period?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `draft` - Qoralama
+                 *     * `posted` - O'tkazildi
+                 *     * `reversed` - Bekor qilindi
+                 */
+                status?: "draft" | "posted" | "reversed";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedJournalEntryList"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["JournalEntryRequest"];
+                "multipart/form-data": components["schemas"]["JournalEntryRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntry"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this journal entry. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntry"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this journal entry. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["JournalEntryRequest"];
+                "multipart/form-data": components["schemas"]["JournalEntryRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntry"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this journal entry. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    accounting_journal_entries_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this journal entry. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedJournalEntryRequest"];
+                "multipart/form-data": components["schemas"]["PatchedJournalEntryRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntry"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_post_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this journal entry. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["JournalEntryRequest"];
+                "multipart/form-data": components["schemas"]["JournalEntryRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntry"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_reverse_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this journal entry. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["JournalEntryRequest"];
+                "multipart/form-data": components["schemas"]["JournalEntryRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntry"];
+                };
+            };
+        };
+    };
+    accounting_journal_entries_trial_balance_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JournalEntry"];
+                };
+            };
+        };
+    };
     audit_list: {
         parameters: {
             query?: {
@@ -5221,6 +7665,486 @@ export interface operations {
             };
         };
     };
+    crm_activities_list: {
+        parameters: {
+            query?: {
+                /**
+                 * @description * `call` - Qo'ng'iroq
+                 *     * `email` - Email
+                 *     * `meeting` - Uchrashuv
+                 *     * `note` - Eslatma
+                 *     * `task` - Vazifa
+                 */
+                activity_type?: "call" | "email" | "meeting" | "note" | "task";
+                completed?: boolean;
+                deal?: number;
+                lead?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedActivityList"];
+                };
+            };
+        };
+    };
+    crm_activities_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ActivityRequest"];
+                "multipart/form-data": components["schemas"]["ActivityRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Activity"];
+                };
+            };
+        };
+    };
+    crm_activities_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this activity. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Activity"];
+                };
+            };
+        };
+    };
+    crm_activities_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this activity. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ActivityRequest"];
+                "multipart/form-data": components["schemas"]["ActivityRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Activity"];
+                };
+            };
+        };
+    };
+    crm_activities_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this activity. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    crm_activities_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this activity. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedActivityRequest"];
+                "multipart/form-data": components["schemas"]["PatchedActivityRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Activity"];
+                };
+            };
+        };
+    };
+    crm_deals_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                lead?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                owner?: number;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `prospecting` - Izlash
+                 *     * `qualification` - Malakalash
+                 *     * `proposal` - Taklif
+                 *     * `negotiation` - Muzokara
+                 *     * `won` - Yutildi
+                 *     * `lost` - Yo'qotildi
+                 */
+                stage?: "lost" | "negotiation" | "proposal" | "prospecting" | "qualification" | "won";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedDealList"];
+                };
+            };
+        };
+    };
+    crm_deals_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DealRequest"];
+                "multipart/form-data": components["schemas"]["DealRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Deal"];
+                };
+            };
+        };
+    };
+    crm_deals_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this deal. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Deal"];
+                };
+            };
+        };
+    };
+    crm_deals_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this deal. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DealRequest"];
+                "multipart/form-data": components["schemas"]["DealRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Deal"];
+                };
+            };
+        };
+    };
+    crm_deals_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this deal. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    crm_deals_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this deal. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedDealRequest"];
+                "multipart/form-data": components["schemas"]["PatchedDealRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Deal"];
+                };
+            };
+        };
+    };
+    crm_leads_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                owner?: number;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `new` - Yangi
+                 *     * `contacted` - Aloqa qilindi
+                 *     * `qualified` - Malakali
+                 *     * `lost` - Yo'qotildi
+                 *     * `converted` - Mijozga aylantirildi
+                 */
+                status?: "contacted" | "converted" | "lost" | "new" | "qualified";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedLeadList"];
+                };
+            };
+        };
+    };
+    crm_leads_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LeadRequest"];
+                "multipart/form-data": components["schemas"]["LeadRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Lead"];
+                };
+            };
+        };
+    };
+    crm_leads_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this lead. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Lead"];
+                };
+            };
+        };
+    };
+    crm_leads_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this lead. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LeadRequest"];
+                "multipart/form-data": components["schemas"]["LeadRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Lead"];
+                };
+            };
+        };
+    };
+    crm_leads_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this lead. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    crm_leads_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this lead. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedLeadRequest"];
+                "multipart/form-data": components["schemas"]["PatchedLeadRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Lead"];
+                };
+            };
+        };
+    };
     currencies_list: {
         parameters: {
             query?: {
@@ -5474,6 +8398,467 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    hr_departments_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                parent?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedDepartmentList"];
+                };
+            };
+        };
+    };
+    hr_departments_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepartmentRequest"];
+                "multipart/form-data": components["schemas"]["DepartmentRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Department"];
+                };
+            };
+        };
+    };
+    hr_departments_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this department. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Department"];
+                };
+            };
+        };
+    };
+    hr_departments_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this department. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DepartmentRequest"];
+                "multipart/form-data": components["schemas"]["DepartmentRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Department"];
+                };
+            };
+        };
+    };
+    hr_departments_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this department. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    hr_departments_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this department. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedDepartmentRequest"];
+                "multipart/form-data": components["schemas"]["PatchedDepartmentRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Department"];
+                };
+            };
+        };
+    };
+    hr_employees_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                department?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                position?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `active` - Faol
+                 *     * `on_leave` - Ta'tilda
+                 *     * `terminated` - Ishdan bo'shatilgan
+                 */
+                status?: "active" | "on_leave" | "terminated";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedEmployeeList"];
+                };
+            };
+        };
+    };
+    hr_employees_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeRequest"];
+                "multipart/form-data": components["schemas"]["EmployeeRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Employee"];
+                };
+            };
+        };
+    };
+    hr_employees_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this employee. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Employee"];
+                };
+            };
+        };
+    };
+    hr_employees_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this employee. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EmployeeRequest"];
+                "multipart/form-data": components["schemas"]["EmployeeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Employee"];
+                };
+            };
+        };
+    };
+    hr_employees_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this employee. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    hr_employees_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this employee. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedEmployeeRequest"];
+                "multipart/form-data": components["schemas"]["PatchedEmployeeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Employee"];
+                };
+            };
+        };
+    };
+    hr_positions_list: {
+        parameters: {
+            query?: {
+                department?: number;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedPositionList"];
+                };
+            };
+        };
+    };
+    hr_positions_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PositionRequest"];
+                "multipart/form-data": components["schemas"]["PositionRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Position"];
+                };
+            };
+        };
+    };
+    hr_positions_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this position. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Position"];
+                };
+            };
+        };
+    };
+    hr_positions_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this position. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PositionRequest"];
+                "multipart/form-data": components["schemas"]["PositionRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Position"];
+                };
+            };
+        };
+    };
+    hr_positions_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this position. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    hr_positions_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this position. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedPositionRequest"];
+                "multipart/form-data": components["schemas"]["PatchedPositionRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Position"];
                 };
             };
         };
@@ -6436,6 +9821,472 @@ export interface operations {
             };
         };
     };
+    manufacturing_boms_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                product?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `draft` - Qoralama
+                 *     * `active` - Faol
+                 *     * `archived` - Arxivlangan
+                 */
+                status?: "active" | "archived" | "draft";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedBillOfMaterialsList"];
+                };
+            };
+        };
+    };
+    manufacturing_boms_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BillOfMaterialsRequest"];
+                "multipart/form-data": components["schemas"]["BillOfMaterialsRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BillOfMaterials"];
+                };
+            };
+        };
+    };
+    manufacturing_boms_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this bill of materials. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BillOfMaterials"];
+                };
+            };
+        };
+    };
+    manufacturing_boms_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this bill of materials. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BillOfMaterialsRequest"];
+                "multipart/form-data": components["schemas"]["BillOfMaterialsRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BillOfMaterials"];
+                };
+            };
+        };
+    };
+    manufacturing_boms_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this bill of materials. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    manufacturing_boms_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this bill of materials. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedBillOfMaterialsRequest"];
+                "multipart/form-data": components["schemas"]["PatchedBillOfMaterialsRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BillOfMaterials"];
+                };
+            };
+        };
+    };
+    manufacturing_orders_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                product?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `draft` - Qoralama
+                 *     * `released` - Ishga tushirildi
+                 *     * `in_progress` - Jarayonda
+                 *     * `completed` - Yakunlandi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: "cancelled" | "completed" | "draft" | "in_progress" | "released";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedProductionOrderList"];
+                };
+            };
+        };
+    };
+    manufacturing_orders_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductionOrderRequest"];
+                "multipart/form-data": components["schemas"]["ProductionOrderRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductionOrder"];
+                };
+            };
+        };
+    };
+    manufacturing_orders_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this production order. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductionOrder"];
+                };
+            };
+        };
+    };
+    manufacturing_orders_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this production order. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductionOrderRequest"];
+                "multipart/form-data": components["schemas"]["ProductionOrderRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductionOrder"];
+                };
+            };
+        };
+    };
+    manufacturing_orders_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this production order. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    manufacturing_orders_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this production order. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedProductionOrderRequest"];
+                "multipart/form-data": components["schemas"]["PatchedProductionOrderRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductionOrder"];
+                };
+            };
+        };
+    };
+    manufacturing_orders_complete_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this production order. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductionOrderRequest"];
+                "multipart/form-data": components["schemas"]["ProductionOrderRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductionOrder"];
+                };
+            };
+        };
+    };
+    manufacturing_orders_release_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this production order. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductionOrderRequest"];
+                "multipart/form-data": components["schemas"]["ProductionOrderRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductionOrder"];
+                };
+            };
+        };
+    };
+    notifications_list: {
+        parameters: {
+            query?: {
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedNotificationList"];
+                };
+            };
+        };
+    };
+    notifications_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Notification"];
+                };
+            };
+        };
+    };
+    notifications_read_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["NotificationRequest"];
+                "multipart/form-data": components["schemas"]["NotificationRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Notification"];
+                };
+            };
+        };
+    };
+    notifications_read_all_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["NotificationRequest"];
+                "multipart/form-data": components["schemas"]["NotificationRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Notification"];
+                };
+            };
+        };
+    };
     payments_cash_categories_list: {
         parameters: {
             query?: {
@@ -7235,6 +11086,215 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    payroll_runs_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /**
+                 * @description * `draft` - Qoralama
+                 *     * `calculated` - Hisoblandi
+                 *     * `paid` - To'landi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: "calculated" | "cancelled" | "draft" | "paid";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedPayrollRunList"];
+                };
+            };
+        };
+    };
+    payroll_runs_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PayrollRunRequest"];
+                "multipart/form-data": components["schemas"]["PayrollRunRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PayrollRun"];
+                };
+            };
+        };
+    };
+    payroll_runs_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payroll run. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PayrollRun"];
+                };
+            };
+        };
+    };
+    payroll_runs_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payroll run. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PayrollRunRequest"];
+                "multipart/form-data": components["schemas"]["PayrollRunRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PayrollRun"];
+                };
+            };
+        };
+    };
+    payroll_runs_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payroll run. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    payroll_runs_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payroll run. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedPayrollRunRequest"];
+                "multipart/form-data": components["schemas"]["PatchedPayrollRunRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PayrollRun"];
+                };
+            };
+        };
+    };
+    payroll_runs_calculate_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payroll run. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PayrollRunRequest"];
+                "multipart/form-data": components["schemas"]["PayrollRunRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PayrollRun"];
+                };
+            };
+        };
+    };
+    payroll_runs_pay_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this payroll run. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PayrollRunRequest"];
+                "multipart/form-data": components["schemas"]["PayrollRunRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PayrollRun"];
                 };
             };
         };
@@ -8437,6 +12497,97 @@ export interface operations {
             };
         };
     };
+    security_2fa_disable_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TwoFactorCodeRequest"];
+                "multipart/form-data": components["schemas"]["TwoFactorCodeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TwoFactorStatus"];
+                };
+            };
+        };
+    };
+    security_2fa_setup_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TwoFactorStatusRequest"];
+                "multipart/form-data": components["schemas"]["TwoFactorStatusRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TwoFactorSetup"];
+                };
+            };
+        };
+    };
+    security_2fa_status_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TwoFactorStatus"];
+                };
+            };
+        };
+    };
+    security_2fa_verify_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TwoFactorCodeRequest"];
+                "multipart/form-data": components["schemas"]["TwoFactorCodeRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TwoFactorStatus"];
+                };
+            };
+        };
+    };
     settings_list: {
         parameters: {
             query?: never;
@@ -8676,6 +12827,365 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    workflow_instances_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                entity_type?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /**
+                 * @description * `pending` - Kutilmoqda
+                 *     * `approved` - Tasdiqlandi
+                 *     * `rejected` - Rad etildi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: "approved" | "cancelled" | "pending" | "rejected";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedApprovalInstanceList"];
+                };
+            };
+        };
+    };
+    workflow_instances_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApprovalInstanceRequest"];
+                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalInstance"];
+                };
+            };
+        };
+    };
+    workflow_instances_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval instance. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalInstance"];
+                };
+            };
+        };
+    };
+    workflow_instances_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval instance. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApprovalInstanceRequest"];
+                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalInstance"];
+                };
+            };
+        };
+    };
+    workflow_instances_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval instance. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    workflow_instances_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval instance. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedApprovalInstanceRequest"];
+                "multipart/form-data": components["schemas"]["PatchedApprovalInstanceRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalInstance"];
+                };
+            };
+        };
+    };
+    workflow_instances_approve_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval instance. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApprovalInstanceRequest"];
+                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalInstance"];
+                };
+            };
+        };
+    };
+    workflow_instances_reject_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval instance. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApprovalInstanceRequest"];
+                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalInstance"];
+                };
+            };
+        };
+    };
+    workflow_rules_list: {
+        parameters: {
+            query?: {
+                entity_type?: string;
+                is_active?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedApprovalRuleList"];
+                };
+            };
+        };
+    };
+    workflow_rules_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApprovalRuleRequest"];
+                "multipart/form-data": components["schemas"]["ApprovalRuleRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalRule"];
+                };
+            };
+        };
+    };
+    workflow_rules_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval rule. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalRule"];
+                };
+            };
+        };
+    };
+    workflow_rules_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval rule. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ApprovalRuleRequest"];
+                "multipart/form-data": components["schemas"]["ApprovalRuleRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalRule"];
+                };
+            };
+        };
+    };
+    workflow_rules_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval rule. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    workflow_rules_partial_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this approval rule. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["PatchedApprovalRuleRequest"];
+                "multipart/form-data": components["schemas"]["PatchedApprovalRuleRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApprovalRule"];
+                };
             };
         };
     };

@@ -16,6 +16,7 @@ export class ApiError extends Error {
     message: string,
     readonly details: ApiErrorDetail[] = [],
     readonly requestId = '',
+    readonly retryAfter?: number,
   ) {
     super(message)
   }

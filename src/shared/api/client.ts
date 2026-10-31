@@ -63,7 +63,7 @@ function buildUrl(path: string, query?: QueryParams): string {
 }
 
 type ErrorBody = {
-  error?: { code?: string; message?: string; details?: unknown; request_id?: string }
+  error?: { code?: string; message?: string; details?: unknown; request_id?: string; retry_after?: number }
 }
 
 async function readJson(response: Response): Promise<ErrorBody | null> {
@@ -84,6 +84,7 @@ async function parseError(response: Response): Promise<ApiError> {
       localizeErrorCode(error.code, error.message),
       Array.isArray(error.details) ? (error.details as ApiError['details']) : [],
       error.request_id ?? '',
+      typeof error.retry_after === 'number' ? error.retry_after : undefined,
     )
   }
   const code = response.status >= 500 ? 'server_error' : 'unknown_error'

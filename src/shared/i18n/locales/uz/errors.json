@@ -4,6 +4,7 @@
   "server_error": "Server xatosi. Birozdan keyin urinib ko'ring",
   "not_authenticated": "Avtorizatsiya talab qilinadi",
   "authentication_failed": "Login yoki parol noto'g'ri",
+  "account_locked": "Hisob vaqtincha qulflangan. Keyinroq urinib ko'ring",
   "token_not_valid": "Sessiya muddati tugagan",
   "user_inactive": "Foydalanuvchi faol emas",
   "permission_denied": "Bu amal uchun ruxsatingiz yo'q",

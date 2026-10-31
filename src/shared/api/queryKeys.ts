@@ -105,6 +105,43 @@ export const queryKeys = {
     all: ['dashboard'] as const,
     data: (params: object) => ['dashboard', params] as const,
   },
+  accounting: {
+    all: ['accounting'] as const,
+    accounts: ['accounting', 'accounts'] as const,
+    fiscalYears: ['accounting', 'fiscal-years'] as const,
+    fiscalPeriods: ['accounting', 'fiscal-periods'] as const,
+    journalEntries: (params: object) => ['accounting', 'journal-entries', params] as const,
+    trialBalance: (params: object) => ['accounting', 'trial-balance', params] as const,
+  },
+  hr: {
+    all: ['hr'] as const,
+    departments: ['hr', 'departments'] as const,
+    positions: ['hr', 'positions'] as const,
+    employees: (params: object) => ['hr', 'employees', params] as const,
+  },
+  crm: {
+    all: ['crm'] as const,
+    leads: ['crm', 'leads'] as const,
+    deals: (params: object) => ['crm', 'deals', params] as const,
+    activities: (params: object) => ['crm', 'activities', params] as const,
+  },
+  manufacturing: {
+    all: ['manufacturing'] as const,
+    boms: ['manufacturing', 'boms'] as const,
+    orders: (params: object) => ['manufacturing', 'orders', params] as const,
+  },
+  notifications: {
+    all: ['notifications'] as const,
+    list: ['notifications', 'list'] as const,
+  },
+  workflow: {
+    all: ['workflow'] as const,
+    instances: ['workflow', 'instances'] as const,
+  },
+  payroll: {
+    all: ['payroll'] as const,
+    runs: ['payroll', 'runs'] as const,
+  },
   products: {
     all: ['products'] as const,
     list: (params: object) => ['products', 'list', params] as const,
