@@ -35,5 +35,9 @@
   "counts": "Inventarizatsiya",
   "writeOffs": "Hisobdan chiqarish",
   "writeOffReasons": "Chiqarish sabablari",
-  "returns": "Qaytarishlar"
+  "returns": "Qaytarishlar",
+  "readyProducts": "Tayyor tovarlar",
+  "workflow": "Jarayonlar",
+  "approvals": "Tasdiqlar",
+  "practices": "Amaliyotlar"
 }

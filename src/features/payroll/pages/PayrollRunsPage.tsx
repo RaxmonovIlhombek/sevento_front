@@ -19,7 +19,9 @@ export function PayrollRunsPage() {
         <tbody>
           {(data ?? []).map((r) => (
             <tr key={r.id}>
-              <td className="border px-2">{r.period_start} — {r.period_end}</td>
+              <td className="border px-2">
+                {r.period_start} — {r.period_end}
+              </td>
               <td className="border px-2">{r.branch_name}</td>
               <td className="border px-2">{r.status}</td>
               <td className="border px-2">{r.total_gross}</td>

@@ -58,6 +58,19 @@
     "onlyDebtors": "Faqat qarzdorlar",
     "onlyOverdue": "Muddati o'tganlar",
     "saved": "Mijoz saqlandi",
+    "primaryBranch": "Biriktirilgan Baza/Filial",
+    "allBranches": "Barcha bazalar",
+    "channel": "Mijoz toifasi (Kanal)",
+    "channels": {
+      "retail": "Chakana do'kon",
+      "market": "Bozor rastasi",
+      "wholesale": "Ulgurji xaridor",
+      "horeca": "Restoran / Oshxona",
+      "other": "Boshqa"
+    },
+    "contactPerson": "Mas'ul shaxs / do'kondor",
+    "promisePayDate": "To'lov va'dasi sanasi",
+    "promiseAmount": "Va'da qilingan summa",
     "empty": "Mijoz topilmadi",
     "sales": "Savdolari"
   },

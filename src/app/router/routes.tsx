@@ -40,9 +40,13 @@ const CrmLeadsPage = lazy(() => crm().then((m) => ({ default: m.LeadsPage })))
 const CrmDealsPage = lazy(() => crm().then((m) => ({ default: m.DealsPage })))
 const manufacturing = () => import('@/features/manufacturing')
 const ManufacturingBomsPage = lazy(() => manufacturing().then((m) => ({ default: m.BomsPage })))
-const ManufacturingOrdersPage = lazy(() => manufacturing().then((m) => ({ default: m.ProductionOrdersPage })))
+const ManufacturingOrdersPage = lazy(() =>
+  manufacturing().then((m) => ({ default: m.ProductionOrdersPage })),
+)
 const notifications = () => import('@/features/notifications')
-const NotificationsPage = lazy(() => notifications().then((m) => ({ default: m.NotificationsPage })))
+const NotificationsPage = lazy(() =>
+  notifications().then((m) => ({ default: m.NotificationsPage })),
+)
 const workflow = () => import('@/features/workflow')
 const WorkflowApprovalsPage = lazy(() => workflow().then((m) => ({ default: m.ApprovalsPage })))
 const payroll = () => import('@/features/payroll')
@@ -64,6 +68,8 @@ const WriteOffReasonsPage = lazy(() =>
 )
 const sales = () => import('@/features/sales')
 const PosPage = lazy(() => sales().then((m) => ({ default: m.PosPage })))
+const ReadyProductsPage = lazy(() => sales().then((m) => ({ default: m.ReadyProductsPage })))
+const PracticesPage = lazy(() => workflow().then((m) => ({ default: m.PracticesPage })))
 const SalesPage = lazy(() => sales().then((m) => ({ default: m.SalesPage })))
 const SaleDetailPage = lazy(() => sales().then((m) => ({ default: m.SaleDetailPage })))
 const ReturnsPage = lazy(() => sales().then((m) => ({ default: m.ReturnsPage })))
@@ -132,6 +138,7 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: guarded('sales.view', <SalesPage />) },
           { path: 'pos', element: guarded('sales.create', <PosPage />) },
+          { path: 'ready-products', element: guarded('sales.view', <ReadyProductsPage />) },
           { path: 'returns', element: guarded('sales.view', <ReturnsPage />) },
           { path: 'returns/:id', element: guarded('sales.view', <ReturnDetailPage />) },
           { path: ':id', element: guarded('sales.view', <SaleDetailPage />) },
@@ -211,15 +218,28 @@ export const router = createBrowserRouter([
       },
       { path: 'accounting', element: guarded('settings.manage', <AccountsPage />) },
       { path: 'accounting/journal', element: guarded('settings.manage', <JournalEntriesPage />) },
-      { path: 'accounting/trial-balance', element: guarded('settings.manage', <TrialBalancePage />) },
+      {
+        path: 'accounting/trial-balance',
+        element: guarded('settings.manage', <TrialBalancePage />),
+      },
       { path: 'hr', element: guarded('settings.manage', <HrEmployeesPage />) },
       { path: 'hr/departments', element: guarded('settings.manage', <HrDepartmentsPage />) },
       { path: 'crm', element: guarded('settings.manage', <CrmLeadsPage />) },
       { path: 'crm/deals', element: guarded('settings.manage', <CrmDealsPage />) },
       { path: 'manufacturing', element: guarded('settings.manage', <ManufacturingBomsPage />) },
-      { path: 'manufacturing/orders', element: guarded('settings.manage', <ManufacturingOrdersPage />) },
+      {
+        path: 'manufacturing/orders',
+        element: guarded('settings.manage', <ManufacturingOrdersPage />),
+      },
       { path: 'notifications', element: guarded('settings.manage', <NotificationsPage />) },
-      { path: 'workflow', element: guarded('settings.manage', <WorkflowApprovalsPage />) },
+      {
+        path: 'workflow',
+        children: [
+          { index: true, element: <Navigate to="/workflow/approvals" replace /> },
+          { path: 'approvals', element: guarded('settings.manage', <WorkflowApprovalsPage />) },
+          { path: 'practices', element: guarded('settings.manage', <PracticesPage />) },
+        ],
+      },
       { path: 'payroll', element: guarded('settings.manage', <PayrollRunsPage />) },
       { path: 'security', element: guarded('settings.manage', <SecurityTwoFactorPage />) },
       { path: 'audit', element: guarded('audit.view', <AuditPage />) },

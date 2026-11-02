@@ -18,5 +18,8 @@ export function useBoms() {
 }
 
 export function useProductionOrders(params: Record<string, string | number | boolean | undefined>) {
-  return useQuery({ queryKey: queryKeys.manufacturing.orders(params), queryFn: () => manufacturingApi.orders(params) })
+  return useQuery({
+    queryKey: queryKeys.manufacturing.orders(params),
+    queryFn: () => manufacturingApi.orders(params),
+  })
 }

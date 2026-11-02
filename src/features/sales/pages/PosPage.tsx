@@ -22,6 +22,7 @@ import {
   Checkbox,
   ConfirmDialog,
   FormField,
+  Input,
   PageHeader,
   PageSpinner,
   Select,
@@ -30,11 +31,13 @@ import {
 
 import { salesApi, useCreateSale, usePosConfig } from '../api/sales.api'
 import { CartTable } from '../components/CartTable'
+import { DraftCartModal } from '../components/DraftCartModal'
 import { PaymentModal, type CreditOptions, type PaymentInput } from '../components/PaymentModal'
 import { ProductSearch } from '../components/ProductSearch'
 import { SaleSuccessModal } from '../components/SaleSuccessModal'
 import { cartIsValid } from '../lib/cart'
 import { cartTotals, minorToString } from '../lib/money'
+import { saveDraft as saveDraftLib, type DraftCart } from '../lib/draft'
 import { printReceipt } from '../lib/receipt'
 import { useCartStore, type CartLine } from '../store/cart'
 
@@ -94,6 +97,7 @@ function PosLoader({ branchId }: { branchId: number }) {
   const defaultCurrency = currencies.some((c) => c.code === config.data.default_currency)
     ? config.data.default_currency
     : currencies[0].code
+
   const defaultPriceTypeId =
     priceTypes.data.find((p) => p.is_default)?.id ?? priceTypes.data[0]?.id ?? null
   return (
@@ -198,6 +202,47 @@ function PosTerminal({
     lines: [],
     byIndex: {},
   })
+
+  const [draftsOpen, setDraftsOpen] = useState(false)
+  const [draftName, setDraftName] = useState('')
+  const [reprintId, setReprintId] = useState('')
+
+  const handleSaveDraft = () => {
+    if (!cart.lines.length) return
+    saveDraftLib({
+      name: draftName.trim() || t('pos.draftDefaultName'),
+      branchId,
+      currency,
+      priceTypeId,
+      customer: cart.customer,
+      lines: cart.lines,
+    })
+    setDraftName('')
+    toast.success(t('pos.draftSaved'))
+  }
+
+  const handleLoadDraft = (draft: DraftCart) => {
+    cart.clear()
+    cart.setContext({
+      branchId: draft.branchId,
+      currency: draft.currency,
+      priceTypeId: draft.priceTypeId,
+    })
+    cart.setCustomer(draft.customer)
+    for (const line of draft.lines) {
+      cart.add(line.product, line.quantity)
+      if (line.discount) cart.setDiscount(line.product.id, line.discount)
+    }
+    setDraftsOpen(false)
+    toast.success(t('pos.draftLoaded'))
+  }
+
+  const handleReprint = () => {
+    const id = Number(reprintId)
+    if (!Number.isFinite(id) || id <= 0) return
+    void printReceipt(id)
+    setReprintId('')
+  }
 
   const openCheckout = () => {
     if (!valid || checkout) return
@@ -429,6 +474,25 @@ function PosTerminal({
                 </dd>
               </div>
             </dl>
+            <div className="mt-4 pt-4 border-t border-slate-200">
+              <div className="flex items-center justify-between gap-2">
+                <Button className="flex-1" disabled={!cart.lines.length} onClick={handleSaveDraft}>
+                  {t('pos.saveDraft')}
+                </Button>
+                <Button variant="secondary" onClick={() => setDraftsOpen(true)}>
+                  {t('pos.drafts')}
+                </Button>
+              </div>
+              <div className="mt-2 flex items-end gap-2">
+                <label className="text-xs text-slate-500 shrink-0">{t('pos.draftName')}</label>
+                <Input
+                  value={draftName}
+                  onChange={(e) => setDraftName(e.target.value)}
+                  placeholder={t('pos.draftPlaceholder')}
+                  className="flex-1 min-w-0"
+                />
+              </div>
+            </div>
             {config.data?.max_discount_percent && canDiscount && (
               <p className="mt-1 text-xs text-slate-400">
                 {t('pos.discount')}: ≤ {formatNumber(config.data.max_discount_percent, 0)}%
@@ -468,7 +532,28 @@ function PosTerminal({
             </div>
           </Card>
         </aside>
+
+        <div className="mt-4 pt-4 border-t border-slate-200">
+          <div className="flex flex-col sm:flex-row gap-2 items-end">
+            <label className="text-xs text-slate-500 shrink-0">{t('pos.reprintTitle')}</label>
+            <div className="flex-1 min-w-0">
+              <Input
+                value={reprintId}
+                onChange={(e) => setReprintId(e.target.value)}
+                placeholder={t('pos.reprintPlaceholder')}
+              />
+            </div>
+            <Button onClick={handleReprint}>{t('pos.reprint')}</Button>
+          </div>
+        </div>
       </div>
+
+      <DraftCartModal
+        open={draftsOpen}
+        onClose={() => setDraftsOpen(false)}
+        onLoad={handleLoadDraft}
+        currencies={currencies}
+      />
 
       {checkout && (
         <PaymentModal

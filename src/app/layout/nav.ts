@@ -58,6 +58,12 @@ export const navItems: NavItem[] = [
     icon: ShoppingCart,
     children: [
       { to: '/sales/pos', labelKey: 'pos', icon: ShoppingCart, capability: 'sales.create' },
+      {
+        to: '/sales/ready-products',
+        labelKey: 'readyProducts',
+        icon: Boxes,
+        capability: 'sales.view',
+      },
       { to: '/sales', labelKey: 'salesList', icon: Receipt, capability: 'sales.view' },
       { to: '/sales/returns', labelKey: 'returns', icon: Undo2, capability: 'sales.view' },
     ],
@@ -187,6 +193,24 @@ export const navItems: NavItem[] = [
         to: '/settings/system',
         labelKey: 'system',
         icon: SlidersHorizontal,
+        capability: 'settings.manage',
+      },
+    ],
+  },
+  {
+    labelKey: 'workflow',
+    icon: ClipboardCheck,
+    children: [
+      {
+        to: '/workflow/approvals',
+        labelKey: 'approvals',
+        icon: ClipboardCheck,
+        capability: 'settings.manage',
+      },
+      {
+        to: '/workflow/practices',
+        labelKey: 'practices',
+        icon: ClipboardList,
         capability: 'settings.manage',
       },
     ],

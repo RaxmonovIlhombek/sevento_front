@@ -16,7 +16,8 @@ export const accountingApi = {
   fiscalPeriods: () => api.get<FiscalPeriod[]>('/accounting/fiscal-periods/'),
   journalEntries: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<{ count: number; results: JournalEntry[] }>('/accounting/journal-entries/', params),
-  createJournalEntry: (body: unknown) => api.post<JournalEntry>('/accounting/journal-entries/', body),
+  createJournalEntry: (body: unknown) =>
+    api.post<JournalEntry>('/accounting/journal-entries/', body),
   postEntry: (id: number) => api.post<JournalEntry>(`/accounting/journal-entries/${id}/post/`),
   trialBalance: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<unknown[]>('/accounting/journal-entries/trial_balance/', params),
@@ -27,7 +28,10 @@ export function useAccounts() {
 }
 
 export function useFiscalPeriods() {
-  return useQuery({ queryKey: queryKeys.accounting.fiscalPeriods, queryFn: accountingApi.fiscalPeriods })
+  return useQuery({
+    queryKey: queryKeys.accounting.fiscalPeriods,
+    queryFn: accountingApi.fiscalPeriods,
+  })
 }
 
 export function useJournalEntries(params: Record<string, string | number | boolean | undefined>) {

@@ -25,7 +25,7 @@ export function TrialBalancePage() {
           </tr>
         </thead>
         <tbody>
-          {(data as TrialBalanceRow[] ?? []).map((r, i) => (
+          {((data as TrialBalanceRow[]) ?? []).map((r, i) => (
             <tr key={i}>
               <td className="border px-2">{r.account}</td>
               <td className="border px-2">{r.name}</td>

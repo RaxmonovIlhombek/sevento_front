@@ -32,4 +32,3 @@ export function formatUzPhone(input: string): string {
 
   return formatted
 }
-

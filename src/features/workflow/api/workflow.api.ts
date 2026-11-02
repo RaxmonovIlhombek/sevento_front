@@ -8,8 +8,10 @@ export type ApprovalInstance = Schemas['ApprovalInstance']
 
 export const workflowApi = {
   instances: () => api.get<ApprovalInstance[]>('/workflow/instances/'),
-  approve: (id: number, comment?: string) => api.post<ApprovalInstance>(`/workflow/instances/${id}/approve/`, { comment }),
-  reject: (id: number, comment?: string) => api.post<ApprovalInstance>(`/workflow/instances/${id}/reject/`, { comment }),
+  approve: (id: number, comment?: string) =>
+    api.post<ApprovalInstance>(`/workflow/instances/${id}/approve/`, { comment }),
+  reject: (id: number, comment?: string) =>
+    api.post<ApprovalInstance>(`/workflow/instances/${id}/reject/`, { comment }),
 }
 
 export function useApprovalInstances() {

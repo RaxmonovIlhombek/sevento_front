@@ -174,7 +174,8 @@ export function AppShell() {
         {activeGroup?.children && activeGroup.children.length > 0 && (
           <div className="flex items-center gap-1.5 overflow-x-auto border-b border-slate-200 bg-slate-50/90 px-4 py-2 text-sm backdrop-blur">
             {activeGroup.children.map((child) => {
-              const isActive = child.to === activePath || (child.to && pathname.startsWith(`${child.to}/`))
+              const isActive =
+                child.to === activePath || (child.to && pathname.startsWith(`${child.to}/`))
               const badgeCount = child.badge ? badges[child.badge] : 0
               return (
                 <Link

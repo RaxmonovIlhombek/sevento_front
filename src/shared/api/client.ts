@@ -63,7 +63,13 @@ function buildUrl(path: string, query?: QueryParams): string {
 }
 
 type ErrorBody = {
-  error?: { code?: string; message?: string; details?: unknown; request_id?: string; retry_after?: number }
+  error?: {
+    code?: string
+    message?: string
+    details?: unknown
+    request_id?: string
+    retry_after?: number
+  }
 }
 
 async function readJson(response: Response): Promise<ErrorBody | null> {

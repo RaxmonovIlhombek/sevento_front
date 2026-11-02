@@ -25,10 +25,16 @@ export function usePositions() {
 }
 
 export function useEmployees(params: Record<string, string | number | boolean | undefined>) {
-  return useQuery({ queryKey: queryKeys.hr.employees(params), queryFn: () => hrApi.employees(params) })
+  return useQuery({
+    queryKey: queryKeys.hr.employees(params),
+    queryFn: () => hrApi.employees(params),
+  })
 }
 
 export function useCreateEmployee() {
   const qc = useQueryClient()
-  return useMutation({ mutationFn: hrApi.createEmployee, onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }) })
+  return useMutation({
+    mutationFn: hrApi.createEmployee,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
 }

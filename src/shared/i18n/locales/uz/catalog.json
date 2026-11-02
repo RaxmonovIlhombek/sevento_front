@@ -19,7 +19,21 @@
     "created": "Tovar yaratildi",
     "updated": "Tovar saqlandi",
     "readOnly": "Ko'rish rejimi — tahrirlash huquqi yo'q",
-    "stockLink": "Qoldiq va harakatlar"
+    "stockLink": "Qoldiq va harakatlar",
+    "packaging": "Qadoqlash (Xostavar / Posuda)",
+    "boxName": "Qadoq turi",
+    "boxNamePlaceholder": "Karobka, Blok, Qop, Palet",
+    "unitsPerBox": "1 qadoqda necha dona",
+    "boxBarcode": "Karobka shtrix-kodi",
+    "allowSplitBox": "Karobkani ochib donalab sotish mumkin",
+    "dimensions": "O'lchamlar, Kubatura (m³) va Og'irlik",
+    "lengthCm": "Uzunligi (sm)",
+    "widthCm": "Kengligi (sm)",
+    "heightCm": "Balandligi (sm)",
+    "calculatedVolume": "Hisoblangan hajm",
+    "weightKg": "Og'irligi (kg)",
+    "isFragile": "Sinuvchan / Nozik tovar (chinni, shisha, posuda)",
+    "fragile": "Sinuvchan"
   },
   "prices": {
     "title": "Joriy narxlar",

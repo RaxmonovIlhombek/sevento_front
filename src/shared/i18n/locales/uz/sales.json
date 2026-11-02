@@ -35,7 +35,23 @@
     "customerPlaceholder": "Mijoz (ixtiyoriy): ism yoki telefon",
     "newCustomer": "Yangi mijoz",
     "creditAvailable": "Kredit: mavjud {{amount}} {{base}}",
-    "customerDebt": "Qarzi: {{amount}} {{base}}"
+    "customerDebt": "Qarzi: {{amount}} {{base}}",
+    "saveDraft": "Savatni saqlash",
+    "drafts": "Saqlangan savatlar",
+    "draftDefaultName": "Yangi savat",
+    "draftSaved": "Savat saqlandi",
+    "draftLoaded": "Savat ochildi",
+    "draftDeleted": "Savat o'chirildi",
+    "draftsEmpty": "Saqlangan savatlar yo'q",
+    "draftLinesCount": "{{count}} qator",
+    "load": "Ochish",
+    "deleteDraft": "Savatni o'chirish",
+    "deleteDraftConfirm": "Savatni o'chirmoqchimisiz?",
+    "reprintTitle": "Chekni qayta chop etish",
+    "reprintPlaceholder": "Chek raqami",
+    "reprint": "Chop etish",
+    "draftName": "Savat nomi",
+    "draftPlaceholder": "Savat nomini kiriting"
   },
   "payment": {
     "title": "To'lov",
@@ -136,6 +152,25 @@
   "returnState": {
     "partial": "Qisman qaytarilgan",
     "full": "To'liq qaytarilgan"
+  },
+  "readyProducts": {
+    "title": "Tayyor tavarlar",
+    "searchPlaceholder": "Tovarni qidirish",
+    "add": "Savatga qo'shish",
+    "empty": "Tayyor tavarlar topilmadi"
+  },
+  "practices": {
+    "title": "Amaliy jarayonlar",
+    "type": "Turi",
+    "status": "Holat",
+    "requestedBy": "So'rovchi",
+    "approve": "Tasdiqlash",
+    "reject": "Rad etish",
+    "approved": "Tasdiqlandi",
+    "rejected": "Rad etildi",
+    "empty": "Amaliy jarayonlar yo'q",
+    "confirm": "Amalni bajarmoqchimisiz?",
+    "error": "Amal bajarishda xatolik yuz berdi"
   },
   "returns": {
     "title": "Qaytarishlar",

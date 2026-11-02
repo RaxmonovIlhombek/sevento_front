@@ -13,7 +13,11 @@ export interface PhoneInputProps extends Omit<ComponentProps<'input'>, 'onChange
 export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
   ({ value = '', onChange, invalid, className, ...rest }, ref) => {
     // Agar qiymat bo'sh bo'lsa boshlang'ich '+998 ' qilib olamiz
-    const displayValue = value ? (value.startsWith('+998') ? formatUzPhone(value) : formatUzPhone('+998' + value)) : '+998 '
+    const displayValue = value
+      ? value.startsWith('+998')
+        ? formatUzPhone(value)
+        : formatUzPhone('+998' + value)
+      : '+998 '
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const raw = e.target.value
@@ -55,12 +59,12 @@ export const PhoneInput = forwardRef<HTMLInputElement, PhoneInputProps>(
             invalid
               ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
               : 'border-gray-300 focus:border-primary-500 focus:ring-primary-100',
-            className
+            className,
           )}
         />
       </div>
     )
-  }
+  },
 )
 
 PhoneInput.displayName = 'PhoneInput'

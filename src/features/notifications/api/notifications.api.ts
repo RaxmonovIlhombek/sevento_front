@@ -18,10 +18,16 @@ export function useNotifications() {
 
 export function useMarkRead() {
   const qc = useQueryClient()
-  return useMutation({ mutationFn: notificationsApi.read, onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.notifications.all }) })
+  return useMutation({
+    mutationFn: notificationsApi.read,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.notifications.all }),
+  })
 }
 
 export function useMarkAllRead() {
   const qc = useQueryClient()
-  return useMutation({ mutationFn: notificationsApi.readAll, onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.notifications.all }) })
+  return useMutation({
+    mutationFn: notificationsApi.readAll,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.notifications.all }),
+  })
 }

@@ -2793,6 +2793,7 @@ export interface components {
             branch?: number | null;
             approver: number;
             readonly approver_name: string;
+            /** Format: int64 */
             sequence?: number;
             is_active?: boolean;
             /** Format: date-time */
@@ -2808,6 +2809,7 @@ export interface components {
             max_amount?: string | null;
             branch?: number | null;
             approver: number;
+            /** Format: int64 */
             sequence?: number;
             is_active?: boolean;
         };
@@ -2815,6 +2817,7 @@ export interface components {
             readonly id: number;
             approver: number;
             readonly approver_name: string;
+            /** Format: int64 */
             sequence?: number;
             decision?: components["schemas"]["DecisionEnum"];
             /** Format: date-time */
@@ -2825,6 +2828,7 @@ export interface components {
         };
         ApprovalStepRequest: {
             approver: number;
+            /** Format: int64 */
             sequence?: number;
             decision?: components["schemas"]["DecisionEnum"];
             /** Format: date-time */
@@ -3067,6 +3071,7 @@ export interface components {
             name: string;
             parent?: number | null;
             readonly parent_name: string | null;
+            /** Format: int64 */
             sort_order?: number;
             is_active?: boolean;
             /** Format: date-time */
@@ -3077,6 +3082,7 @@ export interface components {
         CategoryRequest: {
             name: string;
             parent?: number | null;
+            /** Format: int64 */
             sort_order?: number;
             is_active?: boolean;
         };
@@ -3152,8 +3158,10 @@ export interface components {
             code: string;
             name: string;
             symbol?: string;
+            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
+            /** Format: int64 */
             sort_order?: number;
             /** @description Tannarx, foyda va kredit limiti shu valyutada (sozlama currency.base_code). */
             readonly is_base: boolean;
@@ -3171,8 +3179,10 @@ export interface components {
             code: string;
             name: string;
             symbol?: string;
+            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
+            /** Format: int64 */
             sort_order?: number;
         };
         CurrentPrice: {
@@ -3206,6 +3216,23 @@ export interface components {
             readonly default_due_days: number | null;
             /** Format: decimal */
             readonly effective_credit_limit: string;
+            /** @description Asosiy biriktirilgan baza/filial */
+            readonly primary_branch: number | null;
+            readonly primary_branch_name: string | null;
+            /** @description Mijoz kanali (do'kon, bozor, ulgurji, horeca) */
+            readonly channel: string;
+            /** @description Mas'ul shaxs / do'kondor ismi */
+            readonly contact_person: string;
+            /**
+             * Format: date
+             * @description Mijoz to'lov va'dasi sanasi
+             */
+            readonly promise_pay_date: string | null;
+            /**
+             * Format: decimal
+             * @description Va'da qilingan to'lov summasi
+             */
+            readonly promise_amount: string | null;
             readonly is_active: boolean;
             readonly balances: components["schemas"]["CurrencyAmount"][];
             /** Format: decimal */
@@ -3232,6 +3259,23 @@ export interface components {
             readonly default_due_days: number | null;
             /** Format: decimal */
             readonly effective_credit_limit: string;
+            /** @description Asosiy biriktirilgan baza/filial */
+            readonly primary_branch: number | null;
+            readonly primary_branch_name: string | null;
+            /** @description Mijoz kanali (do'kon, bozor, ulgurji, horeca) */
+            readonly channel: string;
+            /** @description Mas'ul shaxs / do'kondor ismi */
+            readonly contact_person: string;
+            /**
+             * Format: date
+             * @description Mijoz to'lov va'dasi sanasi
+             */
+            readonly promise_pay_date: string | null;
+            /**
+             * Format: decimal
+             * @description Va'da qilingan to'lov summasi
+             */
+            readonly promise_amount: string | null;
             readonly is_active: boolean;
             readonly balances: components["schemas"]["CurrencyAmount"][];
             /** Format: decimal */
@@ -3255,6 +3299,15 @@ export interface components {
             /** Format: decimal */
             credit_limit_base?: string | null;
             default_due_days?: number | null;
+            primary_branch?: number | null;
+            /** @default retail */
+            channel: string;
+            /** @default  */
+            contact_person: string;
+            /** Format: date */
+            promise_pay_date?: string | null;
+            /** Format: decimal */
+            promise_amount?: string | null;
             /** @default true */
             is_active: boolean;
         };
@@ -3536,6 +3589,7 @@ export interface components {
             readonly id: number;
             fiscal_year: number;
             readonly fiscal_year_value: number;
+            /** Format: int64 */
             number: number;
             /** Format: date */
             start_date: string;
@@ -3549,6 +3603,7 @@ export interface components {
         };
         FiscalPeriodRequest: {
             fiscal_year: number;
+            /** Format: int64 */
             number: number;
             /** Format: date */
             start_date: string;
@@ -3558,6 +3613,7 @@ export interface components {
         };
         FiscalYear: {
             readonly id: number;
+            /** Format: int64 */
             year: number;
             /** Format: date */
             start_date: string;
@@ -3570,6 +3626,7 @@ export interface components {
             readonly updated_at: string;
         };
         FiscalYearRequest: {
+            /** Format: int64 */
             year: number;
             /** Format: date */
             start_date: string;
@@ -4304,6 +4361,7 @@ export interface components {
             max_amount?: string | null;
             branch?: number | null;
             approver?: number;
+            /** Format: int64 */
             sequence?: number;
             is_active?: boolean;
         };
@@ -4334,6 +4392,7 @@ export interface components {
         PatchedCategoryRequest: {
             name?: string;
             parent?: number | null;
+            /** Format: int64 */
             sort_order?: number;
             is_active?: boolean;
         };
@@ -4341,8 +4400,10 @@ export interface components {
             code?: string;
             name?: string;
             symbol?: string;
+            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
+            /** Format: int64 */
             sort_order?: number;
         };
         PatchedDealRequest: {
@@ -4390,6 +4451,7 @@ export interface components {
         };
         PatchedFiscalPeriodRequest: {
             fiscal_year?: number;
+            /** Format: int64 */
             number?: number;
             /** Format: date */
             start_date?: string;
@@ -4398,6 +4460,7 @@ export interface components {
             is_closed?: boolean;
         };
         PatchedFiscalYearRequest: {
+            /** Format: int64 */
             year?: number;
             /** Format: date */
             start_date?: string;
@@ -4437,6 +4500,7 @@ export interface components {
             /** @description Kassa qoldig'iga ta'sir qiladimi */
             is_cash?: boolean;
             is_active?: boolean;
+            /** Format: int64 */
             sort_order?: number;
         };
         PatchedPayrollRunRequest: {
@@ -4455,6 +4519,7 @@ export interface components {
             code?: string;
             name?: string;
             is_default?: boolean;
+            /** Format: int64 */
             sort_order?: number;
         };
         PatchedProductWriteRequest: {
@@ -4470,6 +4535,44 @@ export interface components {
             min_quantity?: string | null;
             description?: string;
             is_active?: boolean;
+            /** @description Karobka/blok shtrix-kodi */
+            box_barcode?: string;
+            /**
+             * Format: int64
+             * @description 1 karobkada necha dona (qadoq soni)
+             */
+            units_per_box?: number;
+            /** @description Qadoq turi (Karobka, Blok, Qop, Palet) */
+            box_name?: string;
+            /** @description Karobkani ochib donalab sotish mumkin */
+            allow_split_box?: boolean;
+            /**
+             * Format: decimal
+             * @description Uzunligi (sm)
+             */
+            length_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Kengligi (sm)
+             */
+            width_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Balandligi (sm)
+             */
+            height_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Kubaturasi (m³)
+             */
+            volume_m3?: string | null;
+            /**
+             * Format: decimal
+             * @description Og'irligi (kg)
+             */
+            weight_kg?: string | null;
+            /** @description Sinuvchan / Nozik tovar (chinni, shisha, posuda) */
+            is_fragile?: boolean;
         };
         PatchedProductionOrderRequest: {
             product?: number;
@@ -4500,6 +4603,7 @@ export interface components {
         PatchedUnitRequest: {
             code?: string;
             name?: string;
+            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
         };
@@ -4611,6 +4715,7 @@ export interface components {
             /** @description Kassa qoldig'iga ta'sir qiladimi */
             is_cash?: boolean;
             is_active?: boolean;
+            /** Format: int64 */
             sort_order?: number;
         };
         PaymentMethodRequest: {
@@ -4621,6 +4726,7 @@ export interface components {
             /** @description Kassa qoldig'iga ta'sir qiladimi */
             is_cash?: boolean;
             is_active?: boolean;
+            /** Format: int64 */
             sort_order?: number;
         };
         /**
@@ -4764,6 +4870,7 @@ export interface components {
             code: string;
             name: string;
             is_default?: boolean;
+            /** Format: int64 */
             sort_order?: number;
             /** Format: date-time */
             readonly created_at: string;
@@ -4774,6 +4881,7 @@ export interface components {
             code: string;
             name: string;
             is_default?: boolean;
+            /** Format: int64 */
             sort_order?: number;
         };
         Product: {
@@ -4794,6 +4902,41 @@ export interface components {
             readonly min_quantity: string | null;
             readonly description: string;
             readonly is_active: boolean;
+            /** @description Karobka/blok shtrix-kodi */
+            readonly box_barcode: string;
+            /** @description 1 karobkada necha dona (qadoq soni) */
+            readonly units_per_box: number;
+            /** @description Qadoq turi (Karobka, Blok, Qop, Palet) */
+            readonly box_name: string;
+            /** @description Karobkani ochib donalab sotish mumkin */
+            readonly allow_split_box: boolean;
+            /**
+             * Format: decimal
+             * @description Uzunligi (sm)
+             */
+            readonly length_cm: string | null;
+            /**
+             * Format: decimal
+             * @description Kengligi (sm)
+             */
+            readonly width_cm: string | null;
+            /**
+             * Format: decimal
+             * @description Balandligi (sm)
+             */
+            readonly height_cm: string | null;
+            /**
+             * Format: decimal
+             * @description Kubaturasi (m³)
+             */
+            readonly volume_m3: string | null;
+            /**
+             * Format: decimal
+             * @description Og'irligi (kg)
+             */
+            readonly weight_kg: string | null;
+            /** @description Sinuvchan / Nozik tovar (chinni, shisha, posuda) */
+            readonly is_fragile: boolean;
             readonly prices: components["schemas"]["CurrentPrice"][];
             /** Format: date-time */
             readonly created_at: string;
@@ -4831,6 +4974,44 @@ export interface components {
             min_quantity?: string | null;
             description?: string;
             is_active?: boolean;
+            /** @description Karobka/blok shtrix-kodi */
+            box_barcode?: string;
+            /**
+             * Format: int64
+             * @description 1 karobkada necha dona (qadoq soni)
+             */
+            units_per_box?: number;
+            /** @description Qadoq turi (Karobka, Blok, Qop, Palet) */
+            box_name?: string;
+            /** @description Karobkani ochib donalab sotish mumkin */
+            allow_split_box?: boolean;
+            /**
+             * Format: decimal
+             * @description Uzunligi (sm)
+             */
+            length_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Kengligi (sm)
+             */
+            width_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Balandligi (sm)
+             */
+            height_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Kubaturasi (m³)
+             */
+            volume_m3?: string | null;
+            /**
+             * Format: decimal
+             * @description Og'irligi (kg)
+             */
+            weight_kg?: string | null;
+            /** @description Sinuvchan / Nozik tovar (chinni, shisha, posuda) */
+            is_fragile?: boolean;
         };
         ProductWriteRequest: {
             sku: string;
@@ -4845,6 +5026,44 @@ export interface components {
             min_quantity?: string | null;
             description?: string;
             is_active?: boolean;
+            /** @description Karobka/blok shtrix-kodi */
+            box_barcode?: string;
+            /**
+             * Format: int64
+             * @description 1 karobkada necha dona (qadoq soni)
+             */
+            units_per_box?: number;
+            /** @description Qadoq turi (Karobka, Blok, Qop, Palet) */
+            box_name?: string;
+            /** @description Karobkani ochib donalab sotish mumkin */
+            allow_split_box?: boolean;
+            /**
+             * Format: decimal
+             * @description Uzunligi (sm)
+             */
+            length_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Kengligi (sm)
+             */
+            width_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Balandligi (sm)
+             */
+            height_cm?: string | null;
+            /**
+             * Format: decimal
+             * @description Kubaturasi (m³)
+             */
+            volume_m3?: string | null;
+            /**
+             * Format: decimal
+             * @description Og'irligi (kg)
+             */
+            weight_kg?: string | null;
+            /** @description Sinuvchan / Nozik tovar (chinni, shisha, posuda) */
+            is_fragile?: boolean;
         };
         ProductionOrder: {
             readonly id: number;
@@ -5856,6 +6075,7 @@ export interface components {
             readonly id: number;
             code: string;
             name: string;
+            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
             /** Format: date-time */
@@ -5866,6 +6086,7 @@ export interface components {
         UnitRequest: {
             code: string;
             name: string;
+            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
         };

@@ -1,6 +1,7 @@
 export { useDailySummary } from './api/sales.api'
 export { TodaySales } from './components/TodaySales'
 export { PosPage } from './pages/PosPage'
+export { ReadyProductsPage } from './pages/ReadyProductsPage'
 export { ReturnDetailPage } from './pages/ReturnDetailPage'
 export { ReturnsPage } from './pages/ReturnsPage'
 export { SaleDetailPage } from './pages/SaleDetailPage'

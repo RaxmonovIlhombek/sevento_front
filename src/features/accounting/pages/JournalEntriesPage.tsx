@@ -26,10 +26,7 @@ export function JournalEntriesPage() {
               <td className="border px-2">{e.status}</td>
               <td className="border px-2">
                 {e.status === 'draft' && (
-                  <button
-                    className="text-blue-600"
-                    onClick={() => post.mutate(e.id)}
-                  >
+                  <button className="text-blue-600" onClick={() => post.mutate(e.id)}>
                     O'tkazish
                   </button>
                 )}

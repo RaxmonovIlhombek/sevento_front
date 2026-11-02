@@ -16,13 +16,29 @@ export function AccountsPage() {
         className="flex gap-2 mb-4"
         onSubmit={(e) => {
           e.preventDefault()
-          create.mutate({ code, name, account_type: type, normal_balance: 'debit', is_postable: true } as never)
+          create.mutate({
+            code,
+            name,
+            account_type: type,
+            normal_balance: 'debit',
+            is_postable: true,
+          } as never)
           setCode('')
           setName('')
         }}
       >
-        <input className="border px-2 py-1" placeholder="Kod" value={code} onChange={(e) => setCode(e.target.value)} />
-        <input className="border px-2 py-1" placeholder="Nomi" value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          className="border px-2 py-1"
+          placeholder="Kod"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+        />
+        <input
+          className="border px-2 py-1"
+          placeholder="Nomi"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <select className="border px-2 py-1" value={type} onChange={(e) => setType(e.target.value)}>
           <option value="asset">Aktiv</option>
           <option value="liability">Passiv</option>

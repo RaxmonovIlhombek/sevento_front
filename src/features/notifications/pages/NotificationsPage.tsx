@@ -15,7 +15,10 @@ export function NotificationsPage() {
       {isPending && <p>Yuklanmoqda...</p>}
       <ul className="space-y-2">
         {(data ?? []).map((n) => (
-          <li key={n.id} className={`border p-3 rounded ${n.is_read ? 'opacity-60' : 'bg-blue-50'}`}>
+          <li
+            key={n.id}
+            className={`border p-3 rounded ${n.is_read ? 'opacity-60' : 'bg-blue-50'}`}
+          >
             <div className="font-semibold">{n.title}</div>
             <div className="text-sm text-gray-600">{n.message}</div>
             {!n.is_read && (

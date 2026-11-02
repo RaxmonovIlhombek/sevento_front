@@ -47,10 +47,18 @@ export function ProductsPage() {
       header: t('products.name'),
       render: (p) => (
         <div>
-          <div className="font-medium">{p.name}</div>
+          <div className="flex items-center gap-2">
+            <span className="font-medium">{p.name}</span>
+            {p.is_fragile && (
+              <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800">
+                {t('products.fragile')}
+              </span>
+            )}
+          </div>
           <div className="text-xs text-slate-500">
             {p.sku}
             {p.barcode && ` · ${p.barcode}`}
+            {p.box_barcode && ` · 📦 ${p.box_barcode}`}
           </div>
         </div>
       ),
@@ -61,7 +69,28 @@ export function ProductsPage() {
       render: (p) =>
         p.category_name ?? <span className="text-slate-400">{t('products.noCategory')}</span>,
     },
-    { key: 'unit', header: t('products.unit'), render: (p) => p.unit_name },
+    {
+      key: 'unit',
+      header: t('products.packaging'),
+      render: (p) => (
+        <div className="text-xs">
+          <span className="font-medium">
+            {p.units_per_box ?? 1} {p.unit_name}
+          </span>
+          <span className="text-slate-500"> / {p.box_name || 'Karobka'}</span>
+        </div>
+      ),
+    },
+    {
+      key: 'volume_m3',
+      header: 'm³ / kg',
+      render: (p) => (
+        <div className="text-xs text-slate-600">
+          {p.volume_m3 ? `${Number(p.volume_m3).toFixed(4)} m³` : '—'}
+          {p.weight_kg ? ` · ${Number(p.weight_kg).toFixed(2)} kg` : ''}
+        </div>
+      ),
+    },
     {
       key: 'price',
       header: defaultType ? `${t('products.price')} (${defaultType.name})` : t('products.price'),
