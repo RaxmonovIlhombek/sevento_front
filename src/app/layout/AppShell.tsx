@@ -5,7 +5,7 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router'
 
 import { ChangePasswordModal, useAuthStore } from '@/features/auth'
 import { cn } from '@/shared/lib/cn'
-import { Button, toast } from '@/shared/ui'
+import { Avatar, Button, toast } from '@/shared/ui'
 
 import { BranchSwitcher } from './BranchSwitcher'
 import { ConnectionIndicator, OfflineBanner } from './ConnectionIndicator'
@@ -94,10 +94,15 @@ export function AppShell() {
         to="/account"
         onClick={() => setMobileOpen(false)}
         title={t('nav:account')}
-        className="block rounded-md px-1 py-1 hover:bg-slate-800/80"
+        className="flex items-center gap-3 rounded-md px-1 py-1 hover:bg-slate-800/80"
       >
-        <p className="truncate text-sm font-medium text-white">{user?.full_name}</p>
-        <p className="truncate text-xs text-slate-400">{user?.role?.name ?? user?.username}</p>
+        <Avatar src={user?.avatar} name={user?.full_name ?? ''} size="md" />
+        <span className="min-w-0">
+          <span className="block truncate text-sm font-medium text-white">{user?.full_name}</span>
+          <span className="block truncate text-xs text-slate-400">
+            {user?.role?.name ?? user?.username}
+          </span>
+        </span>
       </Link>
       <div className="mt-2 grid grid-cols-2 gap-1">
         <Button

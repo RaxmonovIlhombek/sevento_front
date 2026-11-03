@@ -12,6 +12,8 @@ const me: Me = {
   username: 'sotuvchi',
   full_name: 'Sotuvchi',
   phone: '',
+  avatar: null,
+  date_joined: '2026-01-01T00:00:00Z',
   is_superuser: false,
   role: { code: 'seller', name: 'Sotuvchi' },
   capabilities: ['sales.create'],

@@ -3827,6 +3827,9 @@ export interface components {
             username: string;
             full_name: string;
             phone: string;
+            avatar: string | null;
+            /** Format: date-time */
+            date_joined: string;
             is_superuser: boolean;
             role: components["schemas"]["RoleBrief"] | null;
             capabilities: string[];

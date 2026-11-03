@@ -1,3 +1,4 @@
+export { authApi } from './api/auth.api'
 export { useCapabilities } from './api/hooks'
 export { ChangePasswordModal } from './components/ChangePasswordModal'
 export { useCapability, useHasAnyCapability } from './hooks/useCapability'

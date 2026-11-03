@@ -9,6 +9,8 @@ const base: Me = {
   username: 'omborchi2',
   full_name: 'Omborchi 2',
   phone: '',
+  avatar: null,
+  date_joined: '2026-01-01T00:00:00Z',
   is_superuser: false,
   role: { code: 'storekeeper', name: 'Omborchi' },
   capabilities: [
