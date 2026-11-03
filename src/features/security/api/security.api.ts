@@ -66,3 +66,25 @@ export function useLoginSummary() {
     queryFn: loginHistoryApi.summary,
   })
 }
+
+export interface CurrentDevice {
+  ip: string
+  browser: string
+  os: string
+  device_type: string
+}
+
+export function useCurrentDevice() {
+  return useQuery({
+    queryKey: ['security', 'logins', 'current'],
+    queryFn: () => api.get<CurrentDevice>('/security/logins/current/'),
+    staleTime: Infinity,
+  })
+}
+
+export function useMyLogins() {
+  return useQuery({
+    queryKey: ['security', 'logins', 'mine'],
+    queryFn: () => api.get<LoginEvent[]>('/security/logins/mine/'),
+  })
+}

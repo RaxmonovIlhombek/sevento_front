@@ -90,8 +90,15 @@ export function AppShell() {
 
   const userBlock = (
     <div className="border-t border-slate-800 p-3">
-      <p className="truncate text-sm font-medium text-white">{user?.full_name}</p>
-      <p className="truncate text-xs text-slate-400">{user?.role?.name ?? user?.username}</p>
+      <Link
+        to="/account"
+        onClick={() => setMobileOpen(false)}
+        title={t('nav:account')}
+        className="block rounded-md px-1 py-1 hover:bg-slate-800/80"
+      >
+        <p className="truncate text-sm font-medium text-white">{user?.full_name}</p>
+        <p className="truncate text-xs text-slate-400">{user?.role?.name ?? user?.username}</p>
+      </Link>
       <div className="mt-2 grid grid-cols-2 gap-1">
         <Button
           size="sm"

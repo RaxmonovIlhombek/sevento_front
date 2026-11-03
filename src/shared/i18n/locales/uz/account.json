@@ -1,0 +1,32 @@
+{
+  "title": "Mening akkauntim",
+  "subtitle": "Shaxsiy ma'lumotlar, huquqlar, qurilma va xavfsizlik",
+  "superuser": "Bosh administrator",
+  "phone": "Telefon",
+  "branches": "Nuqtalar",
+  "allBranches": "Barcha nuqtalar",
+  "lastLogin": "Oxirgi kirish",
+  "thisDevice": "Hozirgi qurilma",
+  "unknown": "Noma'lum qurilma",
+  "deviceType": {
+    "desktop": "Kompyuter",
+    "mobile": "Telefon",
+    "tablet": "Planshet",
+    "bot": "Dastur/bot"
+  },
+  "security": "Xavfsizlik",
+  "changePassword": "Parolni o'zgartirish",
+  "twoFactor": "Ikki bosqichli himoya (2FA)",
+  "on": "Yoqilgan",
+  "off": "O'chirilgan",
+  "permissions": "Mening huquqlarim",
+  "noPermissions": "Huquqlar berilmagan",
+  "myLogins": "Mening kirishlarim",
+  "when": "Vaqt",
+  "device": "Qurilma",
+  "ip": "IP manzil",
+  "result": "Natija",
+  "ok": "Muvaffaqiyatli",
+  "failed": "Xato",
+  "empty": "Kirishlar topilmadi"
+}

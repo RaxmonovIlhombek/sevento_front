@@ -1,6 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
+import account from './locales/uz/account.json'
 import audit from './locales/uz/audit.json'
 import auth from './locales/uz/auth.json'
 import catalog from './locales/uz/catalog.json'
@@ -23,6 +24,7 @@ export const resources = {
   uz: {
     common,
     nav,
+    account,
     auth,
     settings,
     audit,
