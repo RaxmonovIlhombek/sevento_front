@@ -1,0 +1,102 @@
+{
+  "title": "Jarayonlar",
+  "subtitle": "Xarajat, chegirma, hisobdan chiqarish kabi muhim amallar rahbar belgilagan tartibda tasdiqdan o'tadi",
+  "currency": "so'm",
+  "cancel": "Yopish",
+  "save": "Saqlash",
+  "approve": "Tasdiqlash",
+  "reject": "Rad etish",
+  "cancelRequest": "So'rovni bekor qilish",
+  "cancelled": "So'rov bekor qilindi",
+  "waitingFor": "navbat: {{name}}",
+  "tabs": {
+    "assigned": "Menga kelgan",
+    "mine": "Mening so'rovlarim",
+    "all": "Hammasi",
+    "rules": "Qoidalar"
+  },
+  "status": {
+    "pending": "Kutilmoqda",
+    "approved": "Tasdiqlandi",
+    "rejected": "Rad etildi",
+    "cancelled": "Bekor qilindi"
+  },
+  "step": {
+    "pending": "Kutilmoqda",
+    "approved": "Tasdiqladi",
+    "rejected": "Rad etdi"
+  },
+  "filter": {
+    "status": "Holat",
+    "all": "Barcha holatlar"
+  },
+  "types": {
+    "discount": "Chegirma",
+    "writeoff": "Hisobdan chiqarish",
+    "expense": "Xarajat",
+    "refund": "Pul qaytarish",
+    "purchase": "Xarid",
+    "other": "Boshqa"
+  },
+  "empty": {
+    "assigned": {
+      "title": "Tasdiqlashni kutayotgan so'rov yo'q",
+      "text": "Sizning navbatingizdagi so'rovlar shu yerda paydo bo'ladi va bildirishnoma keladi."
+    },
+    "mine": {
+      "title": "Siz hali so'rov yubormagansiz",
+      "text": "«Yangi so'rov» tugmasi orqali tasdiqlash uchun so'rov yuboring."
+    },
+    "all": {
+      "title": "So'rovlar topilmadi",
+      "text": "Hozircha bunday so'rov yo'q."
+    }
+  },
+  "new": {
+    "title": "Yangi so'rov",
+    "help": "So'rov rahbar belgilagan qoidalar bo'yicha tasdiqlovchilarga avtomatik yuboriladi. Ular qaror qilgach, sizga bildirishnoma keladi.",
+    "type": "So'rov turi",
+    "what": "Nima uchun",
+    "whatPlaceholder": "Masalan: ofis uchun suv va choy",
+    "amount": "Summa",
+    "branch": "Nuqta",
+    "notes": "Izoh",
+    "submit": "Yuborish",
+    "sent": "So'rov yuborildi",
+    "failed": "Amalni bajarib bo'lmadi. Qayta urinib ko'ring",
+    "titleRequired": "Nima uchun ekanini yozing",
+    "amountInvalid": "Summani to'g'ri kiriting"
+  },
+  "decision": {
+    "approveTitle": "So'rovni tasdiqlash",
+    "rejectTitle": "So'rovni rad etish",
+    "commentOptional": "Izoh (ixtiyoriy)",
+    "reason": "Rad etish sababi",
+    "reasonRequired": "Rad etish sababini yozing",
+    "approved": "Tasdiqlandi",
+    "rejected": "Rad etildi"
+  },
+  "rules": {
+    "help": "Qoida: qaysi turdagi va qaysi summadagi so'rovni kim tasdiqlaydi. Bir so'rov uchun bir nechta qoida mos kelsa, tasdiqlovchilar «Tartib» bo'yicha navbat bilan qaror qiladi.",
+    "add": "Qoida qo'shish",
+    "edit": "Qoidani tahrirlash",
+    "delete": "O'chirish",
+    "deleteConfirm": "Bu qoida o'chiriladi. Avval yuborilgan so'rovlarga ta'sir qilmaydi.",
+    "deleted": "Qoida o'chirildi",
+    "saved": "Qoida saqlandi",
+    "empty": "Hali qoida yo'q. Qoida qo'shmaguncha hech kim so'rov yubora olmaydi.",
+    "amountRange": "Summa oralig'i",
+    "orMore": "{{from}} dan boshlab",
+    "from": "Dan",
+    "to": "Gacha",
+    "toHint": "Bo'sh qoldirsangiz — cheklovsiz",
+    "approver": "Tasdiqlovchi",
+    "approverRequired": "Tasdiqlovchini tanlang",
+    "sequence": "Tartib",
+    "sequenceHint": "1 — birinchi bo'lib tasdiqlaydi",
+    "allBranches": "Barcha nuqtalar",
+    "branchHint": "Tanlansa — faqat shu nuqta uchun",
+    "active": "Qoida faol",
+    "off": "O'chirilgan"
+  }
+}

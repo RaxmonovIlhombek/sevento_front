@@ -21,5 +21,14 @@ export function useNavBadges(): Record<NonNullable<NavItem['badge']>, number> {
     staleTime: 60_000,
     meta: { pollWhenOffline: true },
   })
-  return { incomingTransfers: incoming.data?.count ?? 0 }
+  const approvals = useQuery({
+    queryKey: queryKeys.workflow.summary,
+    queryFn: () => api.get<{ assigned: number }>('/workflow/instances/summary/'),
+    staleTime: 30_000,
+    refetchInterval: 60_000,
+  })
+  return {
+    incomingTransfers: incoming.data?.count ?? 0,
+    approvalsAssigned: approvals.data?.assigned ?? 0,
+  }
 }

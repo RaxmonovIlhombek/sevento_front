@@ -48,7 +48,7 @@ const NotificationsPage = lazy(() =>
   notifications().then((m) => ({ default: m.NotificationsPage })),
 )
 const workflow = () => import('@/features/workflow')
-const WorkflowApprovalsPage = lazy(() => workflow().then((m) => ({ default: m.ApprovalsPage })))
+const WorkflowPage = lazy(() => workflow().then((m) => ({ default: m.WorkflowPage })))
 const payroll = () => import('@/features/payroll')
 const PayrollRunsPage = lazy(() => payroll().then((m) => ({ default: m.PayrollRunsPage })))
 const security = () => import('@/features/security')
@@ -72,7 +72,6 @@ const WriteOffReasonsPage = lazy(() =>
 const sales = () => import('@/features/sales')
 const PosPage = lazy(() => sales().then((m) => ({ default: m.PosPage })))
 const ReadyProductsPage = lazy(() => sales().then((m) => ({ default: m.ReadyProductsPage })))
-const PracticesPage = lazy(() => workflow().then((m) => ({ default: m.PracticesPage })))
 const SalesPage = lazy(() => sales().then((m) => ({ default: m.SalesPage })))
 const SaleDetailPage = lazy(() => sales().then((m) => ({ default: m.SaleDetailPage })))
 const ReturnsPage = lazy(() => sales().then((m) => ({ default: m.ReturnsPage })))
@@ -235,14 +234,8 @@ export const router = createBrowserRouter([
         element: guarded('settings.manage', <ManufacturingOrdersPage />),
       },
       { path: 'notifications', element: guarded('settings.manage', <NotificationsPage />) },
-      {
-        path: 'workflow',
-        children: [
-          { index: true, element: <Navigate to="/workflow/approvals" replace /> },
-          { path: 'approvals', element: guarded('settings.manage', <WorkflowApprovalsPage />) },
-          { path: 'practices', element: guarded('settings.manage', <PracticesPage />) },
-        ],
-      },
+      { path: 'workflow', element: lazyPage(<WorkflowPage />) },
+      { path: 'workflow/*', element: <Navigate to="/workflow" replace /> },
       { path: 'payroll', element: guarded('settings.manage', <PayrollRunsPage />) },
       { path: 'account', element: lazyPage(<AccountPage />) },
       { path: 'security', element: guarded('settings.manage', <SecurityTwoFactorPage />) },

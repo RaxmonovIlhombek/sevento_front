@@ -1,11 +1,11 @@
-import { KeyRound, LogOut, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link, Outlet, useLocation, useNavigate } from 'react-router'
+import { Link, Outlet, useLocation } from 'react-router'
 
-import { ChangePasswordModal, useAuthStore } from '@/features/auth'
+import { useAuthStore } from '@/features/auth'
 import { cn } from '@/shared/lib/cn'
-import { Avatar, Button, toast } from '@/shared/ui'
+import { Avatar } from '@/shared/ui'
 
 import { BranchSwitcher } from './BranchSwitcher'
 import { ConnectionIndicator, OfflineBanner } from './ConnectionIndicator'
@@ -14,11 +14,8 @@ import { useNavBadges } from './useNavBadges'
 
 export function AppShell() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [passwordOpen, setPasswordOpen] = useState(false)
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const user = useAuthStore((s) => s.user)
-  const logout = useAuthStore((s) => s.logout)
 
   const items = filterNav(navItems, user?.capabilities ?? [])
   const { pathname } = useLocation()
@@ -32,12 +29,6 @@ export function AppShell() {
       (child) => child.to === activePath || (child.to && pathname.startsWith(`${child.to}/`)),
     ),
   )
-
-  const onLogout = async () => {
-    await logout()
-    toast.info(t('auth:loggedOut'))
-    navigate('/login', { replace: true })
-  }
 
   const nav = (
     <nav className="flex-1 space-y-1.5 px-3 py-4">
@@ -81,6 +72,7 @@ export function AppShell() {
             active={item.to === activePath}
             icon={item.icon}
             label={t(`nav:${item.labelKey}`)}
+            badge={item.badge ? badges[item.badge] : 0}
             onClick={() => setMobileOpen(false)}
           />
         )
@@ -104,28 +96,6 @@ export function AppShell() {
           </span>
         </span>
       </Link>
-      <div className="mt-2 grid grid-cols-2 gap-1">
-        <Button
-          size="sm"
-          variant="sidebar"
-          className="justify-start"
-          icon={<KeyRound className="size-4" />}
-          onClick={() => setPasswordOpen(true)}
-          title={t('nav:changePassword')}
-        >
-          {t('nav:password')}
-        </Button>
-        <Button
-          size="sm"
-          variant="sidebar"
-          className="justify-start"
-          icon={<LogOut className="size-4" />}
-          onClick={onLogout}
-          aria-label={t('actions.logout')}
-        >
-          {t('actions.logout')}
-        </Button>
-      </div>
     </div>
   )
 
@@ -222,8 +192,6 @@ export function AppShell() {
           <Outlet />
         </main>
       </div>
-
-      <ChangePasswordModal open={passwordOpen} onClose={() => setPasswordOpen(false)} />
     </div>
   )
 }

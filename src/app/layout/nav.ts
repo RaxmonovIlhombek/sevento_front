@@ -40,7 +40,7 @@ export interface NavItem {
   /** Bitta huquq yoki ro'yxat (birortasi yetarli) */
   capability?: string | readonly string[]
   /** Menyuda son ko'rsatkichi (masalan qabul qilinishi kutilayotgan ko'chirishlar) */
-  badge?: 'incomingTransfers'
+  badge?: 'incomingTransfers' | 'approvalsAssigned'
   children?: NavItem[]
 }
 
@@ -198,24 +198,7 @@ export const navItems: NavItem[] = [
       },
     ],
   },
-  {
-    labelKey: 'workflow',
-    icon: ClipboardCheck,
-    children: [
-      {
-        to: '/workflow/approvals',
-        labelKey: 'approvals',
-        icon: ClipboardCheck,
-        capability: 'settings.manage',
-      },
-      {
-        to: '/workflow/practices',
-        labelKey: 'practices',
-        icon: ClipboardList,
-        capability: 'settings.manage',
-      },
-    ],
-  },
+  { to: '/workflow', labelKey: 'workflow', icon: ClipboardCheck, badge: 'approvalsAssigned' },
   { to: '/audit', labelKey: 'audit', icon: ScrollText, capability: 'audit.view' },
   { to: '/security/logins', labelKey: 'loginHistory', icon: History, capability: 'users.manage' },
 ]

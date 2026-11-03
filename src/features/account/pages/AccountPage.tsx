@@ -6,6 +6,7 @@ import {
   Clock,
   KeyRound,
   Laptop,
+  LogOut,
   Phone,
   ShieldCheck,
   Smartphone,
@@ -16,6 +17,7 @@ import {
 } from 'lucide-react'
 import { useRef, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router'
 
 import { authApi, ChangePasswordModal, useAuthStore } from '@/features/auth'
 import { use2FAStatus, useCurrentDevice, useMyLogins, type LoginEvent } from '@/features/security'
@@ -79,6 +81,9 @@ function InfoRow({
 /** Shaxsiy akkaunt: rasm, ism-familiya, rol, xavfsizlik, qurilma va kirishlar. */
 export function AccountPage() {
   const { t } = useTranslation('account')
+  const { t: tc } = useTranslation()
+  const navigate = useNavigate()
+  const logout = useAuthStore((s) => s.logout)
   const user = useAuthStore((s) => s.user)
   const setUser = useAuthStore((s) => s.setUser)
   const device = useCurrentDevice()
@@ -105,6 +110,12 @@ export function AccountPage() {
       setBusy(false)
       if (fileRef.current) fileRef.current.value = ''
     }
+  }
+
+  const onLogout = async () => {
+    await logout()
+    toast.info(tc('auth:loggedOut'))
+    navigate('/login', { replace: true })
   }
 
   const onRemove = async () => {
@@ -312,6 +323,14 @@ export function AccountPage() {
               onClick={() => setPasswordOpen(true)}
             >
               {t('changePassword')}
+            </Button>
+            <Button
+              variant="ghost"
+              className="w-full text-red-600 hover:bg-red-50"
+              icon={<LogOut className="size-4" />}
+              onClick={() => void onLogout()}
+            >
+              {t('logout')}
             </Button>
           </div>
         </Card>

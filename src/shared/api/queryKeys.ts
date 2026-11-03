@@ -137,6 +137,8 @@ export const queryKeys = {
   workflow: {
     all: ['workflow'] as const,
     instances: ['workflow', 'instances'] as const,
+    summary: ['workflow', 'summary'] as const,
+    rules: ['workflow', 'rules'] as const,
   },
   payroll: {
     all: ['payroll'] as const,
