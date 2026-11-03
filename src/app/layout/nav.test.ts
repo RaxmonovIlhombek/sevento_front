@@ -78,3 +78,37 @@ describe('ombor hujjatlari va qaytarish menyusi', () => {
     expect(activeNavPath('/inventory/transfers/new', navItems)).toBe('/inventory/transfers')
   })
 })
+
+describe("Xodimlar, dastavchiklar va moliya bo'limlari", () => {
+  it("HR bo'limi faqat HR huquqi bilan ko'rinadi, savdoga aralashmaydi", () => {
+    const hr = paths(['hr.view'])
+    expect(hr).toEqual(expect.arrayContaining(['/hr', '/hr/departments']))
+    expect(hr).not.toContain('/sales/pos')
+    expect(hr).not.toContain('/inventory/stock')
+  })
+
+  it("dastavchiklar menejeri o'z bo'limini ko'radi, mijozlar va savdo ko'rinmaydi", () => {
+    const sup = paths(['purchasing.view', 'purchasing.manage'])
+    expect(sup).toEqual(
+      expect.arrayContaining([
+        '/purchasing/suppliers',
+        '/purchasing/purchases',
+        '/purchasing/expense-types',
+      ]),
+    )
+    expect(sup).not.toContain('/customers')
+    expect(sup).not.toContain('/sales')
+  })
+
+  it("moliya bo'limi buxgalterga ochiq, omborchiga yopiq", () => {
+    expect(paths(['accounting.view'])).toEqual(
+      expect.arrayContaining(['/accounting', '/accounting/journal', '/accounting/trial-balance']),
+    )
+    expect(paths(['inventory.view'])).not.toContain('/accounting')
+  })
+
+  it("eski settings.manage foydalanuvchisi HR va buxgalteriyani hali ham ko'radi (orqaga moslik)", () => {
+    const legacy = paths(['settings.manage'])
+    expect(legacy).toEqual(expect.arrayContaining(['/hr', '/accounting', '/crm']))
+  })
+})
