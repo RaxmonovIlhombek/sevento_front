@@ -112,3 +112,22 @@ describe("Xodimlar, dastavchiklar va moliya bo'limlari", () => {
     expect(legacy).toEqual(expect.arrayContaining(['/hr', '/accounting', '/crm']))
   })
 })
+
+describe('rol shablonlari', () => {
+  it("kuryer telefonda faqat yetkazishlarni ko'radi, savdo va qoldiq ko'rinmaydi", () => {
+    const courier = paths(['deliveries.view', 'deliveries.update'])
+    expect(courier).toContain('/deliveries')
+    expect(courier).not.toContain('/sales/pos')
+    expect(courier).not.toContain('/inventory/stock')
+    expect(courier).not.toContain('/hr')
+    expect(courier).not.toContain('/accounting')
+    expect(courier).not.toContain('/settings/users')
+  })
+
+  it("HR roli alohida: savdo, qoldiq yoki dastavka ko'rinmaydi", () => {
+    const hr = paths(['hr.view', 'hr.manage', 'payroll.view'])
+    expect(hr).toEqual(expect.arrayContaining(['/hr', '/payroll']))
+    expect(hr).not.toContain('/deliveries')
+    expect(hr).not.toContain('/sales/pos')
+  })
+})

@@ -116,6 +116,15 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
     ],
   },
   {
+    code: 'courier',
+    name: 'Dastavka (kuryer)',
+    description:
+      "Telefonda ishlaydi. Faqat o'ziga biriktirilgan yetkazishlarni ko'radi va holatini yangilaydi. Narx va qoldiq ko'rinmaydi.",
+    home: '/deliveries',
+    scope: 'branch',
+    capabilities: ['deliveries.view', 'deliveries.update'],
+  },
+  {
     code: 'hr_manager',
     name: 'Kadrlar bo‘limi (HR)',
     description: "Xodimlar, bo'limlar, lavozimlar va ish haqi. Savdo va qoldiq ko'rinmaydi.",

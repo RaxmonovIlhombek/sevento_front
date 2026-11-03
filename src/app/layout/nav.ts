@@ -167,6 +167,20 @@ export const navItems: NavItem[] = [
     ],
   },
 
+  // Dastavka — kuryerlar uchun (telefonda ham qulay)
+  {
+    labelKey: 'delivery',
+    icon: Truck,
+    children: [
+      {
+        to: '/deliveries',
+        labelKey: 'deliveries',
+        icon: Truck,
+        capability: ['deliveries.view', 'deliveries.manage'],
+      },
+    ],
+  },
+
   // 5. Katalog
   {
     labelKey: 'catalog',
