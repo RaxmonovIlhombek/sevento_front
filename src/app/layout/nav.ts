@@ -4,9 +4,15 @@ import {
   Boxes,
   ArrowLeftRight,
   ArrowRightLeft,
+  Briefcase,
+  Building,
+  BadgeCheck,
+  CalendarCheck,
   ClipboardCheck,
   FileBarChart,
+  Factory,
   ListX,
+  Megaphone,
   PackageX,
   Undo2,
   Building2,
@@ -15,10 +21,12 @@ import {
   CreditCard,
   FolderTree,
   HandCoins,
+  Landmark,
   Package,
   PackageCheck,
   Receipt,
   ShoppingCart,
+  Target,
   Truck,
   Warehouse,
   LayoutDashboard,
@@ -51,9 +59,21 @@ export const TRANSFER_VIEW_CAPS = [
   'inventory.view_cost',
 ] as const
 
-/** Menyu. capability berilmagan band hammaga ko'rinadi; bolalari bo'sh qolgan guruh yashiriladi. */
+/** Xodimlar (HR) bo'limini ko'rish: yangi `hr.view`, yoki eski `settings.manage` (orqaga moslik). */
+export const HR_VIEW_CAPS = ['hr.view', 'settings.manage'] as const
+export const ACCOUNTING_VIEW_CAPS = ['accounting.view', 'settings.manage'] as const
+export const PAYROLL_VIEW_CAPS = ['payroll.view', 'settings.manage'] as const
+export const CRM_VIEW_CAPS = ['crm.view', 'settings.manage'] as const
+export const MANUFACTURING_VIEW_CAPS = ['manufacturing.view', 'settings.manage'] as const
+
+/**
+ * Menyu guruhlari tartibi: ish jarayoniga qarab.
+ * Guruh bo'sh qolsa (huquq yo'q) yashiriladi.
+ */
 export const navItems: NavItem[] = [
   { to: '/dashboard', labelKey: 'dashboard', icon: LayoutDashboard },
+
+  // 1. Kassa va savdo
   {
     labelKey: 'sales',
     icon: ShoppingCart,
@@ -69,6 +89,8 @@ export const navItems: NavItem[] = [
       { to: '/sales/returns', labelKey: 'returns', icon: Undo2, capability: 'sales.view' },
     ],
   },
+
+  // 2. Mijozlar va pul oqimi
   {
     labelKey: 'payments',
     icon: HandCoins,
@@ -79,6 +101,8 @@ export const navItems: NavItem[] = [
       { to: '/cash', labelKey: 'cash', icon: Wallet, capability: 'cashbox.view' },
     ],
   },
+
+  // 3. Ombor
   {
     labelKey: 'inventory',
     icon: Warehouse,
@@ -114,16 +138,24 @@ export const navItems: NavItem[] = [
         icon: PackageX,
         capability: ['inventory.writeoffs.manage', 'inventory.view_cost'],
       },
-      {
-        to: '/purchasing/purchases',
-        labelKey: 'purchases',
-        icon: ClipboardList,
-        capability: 'purchasing.view',
-      },
+    ],
+  },
+
+  // 4. Dastavchiklar — alohida bo'lim: yetkazib beruvchilar, kirimlar, xarajatlar
+  {
+    labelKey: 'suppliersGroup',
+    icon: Truck,
+    children: [
       {
         to: '/purchasing/suppliers',
         labelKey: 'suppliers',
         icon: Truck,
+        capability: 'purchasing.view',
+      },
+      {
+        to: '/purchasing/purchases',
+        labelKey: 'purchases',
+        icon: ClipboardList,
         capability: 'purchasing.view',
       },
       {
@@ -134,12 +166,8 @@ export const navItems: NavItem[] = [
       },
     ],
   },
-  {
-    to: '/reports',
-    labelKey: 'reports',
-    icon: FileBarChart,
-    capability: ['reports.view', 'reports.financial'],
-  },
+
+  // 5. Katalog
   {
     labelKey: 'catalog',
     icon: Boxes,
@@ -160,6 +188,73 @@ export const navItems: NavItem[] = [
       { to: '/currency', labelKey: 'currencyRates', icon: Banknote },
     ],
   },
+
+  // 6. Xodimlar (HR) — alohida bo'lim
+  {
+    labelKey: 'hr',
+    icon: Briefcase,
+    children: [
+      { to: '/hr', labelKey: 'employees', icon: Users, capability: HR_VIEW_CAPS },
+      { to: '/hr/departments', labelKey: 'departments', icon: Building, capability: HR_VIEW_CAPS },
+      { to: '/payroll', labelKey: 'payroll', icon: Coins, capability: PAYROLL_VIEW_CAPS },
+    ],
+  },
+
+  // 7. Moliya va buxgalteriya
+  {
+    labelKey: 'finance',
+    icon: Landmark,
+    children: [
+      {
+        to: '/accounting',
+        labelKey: 'accounts',
+        icon: BookOpen,
+        capability: ACCOUNTING_VIEW_CAPS,
+      },
+      {
+        to: '/accounting/journal',
+        labelKey: 'journal',
+        icon: NotebookPen,
+        capability: ACCOUNTING_VIEW_CAPS,
+      },
+      {
+        to: '/accounting/trial-balance',
+        labelKey: 'trialBalance',
+        icon: ClipboardCheck,
+        capability: ACCOUNTING_VIEW_CAPS,
+      },
+      {
+        to: '/reports',
+        labelKey: 'reports',
+        icon: FileBarChart,
+        capability: ['reports.view', 'reports.financial'],
+      },
+    ],
+  },
+
+  // 8. Sotuv va ishlab chiqarish (kengaytirilgan modullar)
+  {
+    labelKey: 'growth',
+    icon: Target,
+    children: [
+      { to: '/crm', labelKey: 'leads', icon: Megaphone, capability: CRM_VIEW_CAPS },
+      { to: '/crm/deals', labelKey: 'deals', icon: Target, capability: CRM_VIEW_CAPS },
+      {
+        to: '/manufacturing',
+        labelKey: 'boms',
+        icon: Factory,
+        capability: MANUFACTURING_VIEW_CAPS,
+      },
+      {
+        to: '/manufacturing/orders',
+        labelKey: 'productionOrders',
+        icon: Factory,
+        capability: MANUFACTURING_VIEW_CAPS,
+      },
+    ],
+  },
+
+  // 9. Sozlamalar (faqat admin)
   {
     labelKey: 'settings',
     icon: Settings,
@@ -198,9 +293,17 @@ export const navItems: NavItem[] = [
       },
     ],
   },
-  { to: '/workflow', labelKey: 'workflow', icon: ClipboardCheck, badge: 'approvalsAssigned' },
+
+  // 10. Nazorat va xavfsizlik
+  { to: '/workflow', labelKey: 'workflow', icon: CalendarCheck, badge: 'approvalsAssigned' },
   { to: '/audit', labelKey: 'audit', icon: ScrollText, capability: 'audit.view' },
   { to: '/security/logins', labelKey: 'loginHistory', icon: History, capability: 'users.manage' },
+  {
+    to: '/notifications',
+    labelKey: 'notifications',
+    icon: BadgeCheck,
+    capability: 'settings.manage',
+  },
 ]
 
 export function hasCapability(

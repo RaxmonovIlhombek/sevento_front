@@ -7,7 +7,14 @@ import { DashboardPage } from '@/features/dashboard'
 import { PageSpinner } from '@/shared/ui'
 
 import { AppShell } from '../layout/AppShell'
-import { TRANSFER_VIEW_CAPS } from '../layout/nav'
+import {
+  ACCOUNTING_VIEW_CAPS,
+  CRM_VIEW_CAPS,
+  HR_VIEW_CAPS,
+  MANUFACTURING_VIEW_CAPS,
+  PAYROLL_VIEW_CAPS,
+  TRANSFER_VIEW_CAPS,
+} from '../layout/nav'
 import { ErrorPage, ForbiddenPage, NotFoundPage } from '../pages/StatusPages'
 import { RedirectIfAuthed, RequireAuth, RequireCapability } from './guards'
 
@@ -218,25 +225,31 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      { path: 'accounting', element: guarded('settings.manage', <AccountsPage />) },
-      { path: 'accounting/journal', element: guarded('settings.manage', <JournalEntriesPage />) },
+      { path: 'accounting', element: guarded(ACCOUNTING_VIEW_CAPS, <AccountsPage />) },
+      {
+        path: 'accounting/journal',
+        element: guarded(ACCOUNTING_VIEW_CAPS, <JournalEntriesPage />),
+      },
       {
         path: 'accounting/trial-balance',
-        element: guarded('settings.manage', <TrialBalancePage />),
+        element: guarded(ACCOUNTING_VIEW_CAPS, <TrialBalancePage />),
       },
-      { path: 'hr', element: guarded('settings.manage', <HrEmployeesPage />) },
-      { path: 'hr/departments', element: guarded('settings.manage', <HrDepartmentsPage />) },
-      { path: 'crm', element: guarded('settings.manage', <CrmLeadsPage />) },
-      { path: 'crm/deals', element: guarded('settings.manage', <CrmDealsPage />) },
-      { path: 'manufacturing', element: guarded('settings.manage', <ManufacturingBomsPage />) },
+      { path: 'hr', element: guarded(HR_VIEW_CAPS, <HrEmployeesPage />) },
+      { path: 'hr/departments', element: guarded(HR_VIEW_CAPS, <HrDepartmentsPage />) },
+      { path: 'crm', element: guarded(CRM_VIEW_CAPS, <CrmLeadsPage />) },
+      { path: 'crm/deals', element: guarded(CRM_VIEW_CAPS, <CrmDealsPage />) },
+      {
+        path: 'manufacturing',
+        element: guarded(MANUFACTURING_VIEW_CAPS, <ManufacturingBomsPage />),
+      },
       {
         path: 'manufacturing/orders',
-        element: guarded('settings.manage', <ManufacturingOrdersPage />),
+        element: guarded(MANUFACTURING_VIEW_CAPS, <ManufacturingOrdersPage />),
       },
       { path: 'notifications', element: guarded('settings.manage', <NotificationsPage />) },
       { path: 'workflow', element: lazyPage(<WorkflowPage />) },
       { path: 'workflow/*', element: <Navigate to="/workflow" replace /> },
-      { path: 'payroll', element: guarded('settings.manage', <PayrollRunsPage />) },
+      { path: 'payroll', element: guarded(PAYROLL_VIEW_CAPS, <PayrollRunsPage />) },
       { path: 'account', element: lazyPage(<AccountPage />) },
       { path: 'security', element: guarded('settings.manage', <SecurityTwoFactorPage />) },
       { path: 'security/logins', element: guarded('users.manage', <LoginHistoryPage />) },
