@@ -53,6 +53,7 @@ const payroll = () => import('@/features/payroll')
 const PayrollRunsPage = lazy(() => payroll().then((m) => ({ default: m.PayrollRunsPage })))
 const security = () => import('@/features/security')
 const SecurityTwoFactorPage = lazy(() => security().then((m) => ({ default: m.TwoFactorPage })))
+const LoginHistoryPage = lazy(() => security().then((m) => ({ default: m.LoginHistoryPage })))
 const inventory = () => import('@/features/inventory')
 const StockPage = lazy(() => inventory().then((m) => ({ default: m.StockPage })))
 const MovementsPage = lazy(() => inventory().then((m) => ({ default: m.MovementsPage })))
@@ -242,6 +243,7 @@ export const router = createBrowserRouter([
       },
       { path: 'payroll', element: guarded('settings.manage', <PayrollRunsPage />) },
       { path: 'security', element: guarded('settings.manage', <SecurityTwoFactorPage />) },
+      { path: 'security/logins', element: guarded('users.manage', <LoginHistoryPage />) },
       { path: 'audit', element: guarded('audit.view', <AuditPage />) },
       { path: '403', element: <ForbiddenPage /> },
       { path: '*', element: <NotFoundPage /> },

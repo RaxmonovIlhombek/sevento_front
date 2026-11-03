@@ -24,6 +24,7 @@ import {
   LayoutDashboard,
   NotebookPen,
   ScrollText,
+  History,
   Settings,
   ShieldCheck,
   SlidersHorizontal,
@@ -216,6 +217,7 @@ export const navItems: NavItem[] = [
     ],
   },
   { to: '/audit', labelKey: 'audit', icon: ScrollText, capability: 'audit.view' },
+  { to: '/security/logins', labelKey: 'loginHistory', icon: History, capability: 'users.manage' },
 ]
 
 export function hasCapability(

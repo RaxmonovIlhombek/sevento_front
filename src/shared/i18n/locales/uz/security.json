@@ -1,0 +1,40 @@
+{
+  "title": "Kirish tarixi",
+  "subtitle": "Kim, qachon va qaysi qurilmadan tizimga kirganini ko'ring",
+  "tabs": {
+    "users": "Foydalanuvchilar",
+    "events": "Barcha kirishlar"
+  },
+  "user": "Foydalanuvchi",
+  "role": "Rol",
+  "lastLogin": "Oxirgi kirish",
+  "never": "Hali kirmagan",
+  "device": "Qurilma",
+  "ip": "IP manzil",
+  "logins30d": "Kirishlar (30 kun)",
+  "failed30d": "Xato urinishlar (30 kun)",
+  "when": "Vaqt",
+  "result": "Natija",
+  "ok": "Muvaffaqiyatli",
+  "failed": "Xato",
+  "inactive": "Faol emas",
+  "unknown": "Noma'lum",
+  "reason": {
+    "bad_credentials": "Login yoki parol xato",
+    "inactive": "Hisob o'chirilgan"
+  },
+  "deviceType": {
+    "desktop": "Kompyuter",
+    "mobile": "Telefon",
+    "tablet": "Planshet",
+    "bot": "Dastur/bot"
+  },
+  "filters": {
+    "search": "Qidirish (login, ism, IP)",
+    "status": "Natija",
+    "all": "Hammasi",
+    "dateFrom": "Sanadan",
+    "dateTo": "Sanagacha"
+  },
+  "empty": "Kirishlar topilmadi"
+}

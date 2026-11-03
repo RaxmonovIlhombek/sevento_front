@@ -14,6 +14,7 @@ import purchasing from './locales/uz/purchasing.json'
 import realtime from './locales/uz/realtime.json'
 import reports from './locales/uz/reports.json'
 import sales from './locales/uz/sales.json'
+import security from './locales/uz/security.json'
 import settings from './locales/uz/settings.json'
 import validation from './locales/uz/validation.json'
 
@@ -35,6 +36,7 @@ export const resources = {
     sales,
     payments,
     reports,
+    security,
   },
 } as const
 
