@@ -54,5 +54,7 @@
   "deals": "Bitimlar",
   "boms": "Retseptlar (BOM)",
   "productionOrders": "Ishlab chiqarish buyurtmalari",
-  "notifications": "Bildirishnomalar"
+  "notifications": "Bildirishnomalar",
+  "delivery": "Dastavka",
+  "deliveries": "Yetkazishlar"
 }

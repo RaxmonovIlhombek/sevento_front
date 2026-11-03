@@ -99,6 +99,9 @@ const PurchaseFormPage = lazy(() => purchasing().then((m) => ({ default: m.Purch
 const SuppliersPage = lazy(() => purchasing().then((m) => ({ default: m.SuppliersPage })))
 const ExpenseTypesPage = lazy(() => purchasing().then((m) => ({ default: m.ExpenseTypesPage })))
 
+const deliveries = () => import('@/features/deliveries')
+const DeliveriesPage = lazy(() => deliveries().then((m) => ({ default: m.DeliveriesPage })))
+
 const lazyPage = (element: ReactNode) => <Suspense fallback={<PageSpinner />}>{element}</Suspense>
 
 const REPORTS_VIEW = ['reports.view', 'reports.financial'] as const
@@ -152,6 +155,10 @@ export const router = createBrowserRouter([
           { path: 'returns/:id', element: guarded('sales.view', <ReturnDetailPage />) },
           { path: ':id', element: guarded('sales.view', <SaleDetailPage />) },
         ],
+      },
+      {
+        path: 'deliveries',
+        element: guarded(['deliveries.view', 'deliveries.manage'], <DeliveriesPage />),
       },
       { path: 'cash', element: guarded('cashbox.view', <CashPage />) },
       { path: 'customers', element: guarded('customers.view', <CustomersPage />) },
