@@ -78,6 +78,14 @@ describe('ombor xabarlari', () => {
   })
 })
 
+describe('buyurtma jarayoni xabari', () => {
+  it("fulfillment.status_changed butun 'fulfillment' keshini yangilaydi", () => {
+    expect(invalidationRules['fulfillment.status_changed'].keys({})).toContainEqual(
+      queryKeys.fulfillment.all,
+    )
+  })
+})
+
 describe("savdo va to'lov xabarlari", () => {
   it('stock.changed kassa qidiruvidagi qoldiqni ham yangilaydi', () => {
     expect(invalidationRules['stock.changed'].keys({})).toContainEqual(queryKeys.sales.posAll)

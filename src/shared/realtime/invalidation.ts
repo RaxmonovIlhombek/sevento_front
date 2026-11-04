@@ -60,6 +60,8 @@ export const invalidationRules: Record<string, Rule> = {
     keys: () => [queryKeys.sales.all, queryKeys.payments.all],
     debounceMs: 500,
   },
+  // buyurtma jarayoni: ro'yxat, hujjat va xulosa (har kim o'z huquqiga ko'ra qayta o'qiydi)
+  'fulfillment.status_changed': { keys: () => [queryKeys.fulfillment.all], debounceMs: 500 },
   // fondagi hisobot: "Tayyorlangan fayllar" ro'yxati (toast — RealtimeProvider)
   'report.ready': { keys: () => [queryKeys.reports.jobs] },
   'report.failed': { keys: () => [queryKeys.reports.jobs] },
