@@ -8,6 +8,8 @@ import {
   Building,
   BadgeCheck,
   CalendarCheck,
+  CalendarRange,
+  ListChecks,
   ClipboardCheck,
   FileBarChart,
   Factory,
@@ -245,6 +247,12 @@ export const navItems: NavItem[] = [
         capability: ACCOUNTING_VIEW_CAPS,
       },
       {
+        to: '/accounting/fiscal-years',
+        labelKey: 'fiscalYears',
+        icon: CalendarRange,
+        capability: ACCOUNTING_VIEW_CAPS,
+      },
+      {
         to: '/reports',
         labelKey: 'reports',
         icon: FileBarChart,
@@ -260,6 +268,12 @@ export const navItems: NavItem[] = [
     children: [
       { to: '/crm', labelKey: 'leads', icon: Megaphone, capability: CRM_VIEW_CAPS },
       { to: '/crm/deals', labelKey: 'deals', icon: Target, capability: CRM_VIEW_CAPS },
+      {
+        to: '/crm/activities',
+        labelKey: 'activities',
+        icon: ListChecks,
+        capability: CRM_VIEW_CAPS,
+      },
       {
         to: '/manufacturing',
         labelKey: 'boms',

@@ -7,10 +7,15 @@ import type { Paginated, Schemas } from '@/shared/api/types'
 export type Account = Schemas['Account']
 export type AccountRequest = Schemas['AccountRequest']
 export type FiscalPeriod = Schemas['FiscalPeriod']
+export type FiscalYear = Schemas['FiscalYear']
 export type JournalEntry = Schemas['JournalEntry']
 export type JournalLine = Schemas['JournalLine']
 
 export const accountingApi = {
+  fiscalYears: () =>
+    api
+      .get<Paginated<FiscalYear>>('/accounting/fiscal-years/', { page_size: 100 })
+      .then((r) => r.results),
   accounts: () =>
     api.get<Paginated<Account>>('/accounting/accounts/', { page_size: 100 }).then((r) => r.results),
   createAccount: (body: AccountRequest) => api.post<Account>('/accounting/accounts/', body),
@@ -27,6 +32,13 @@ export const accountingApi = {
     api.post<JournalEntry>(`/accounting/journal-entries/${id}/reverse/`, {}),
   trialBalance: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<unknown[]>('/accounting/journal-entries/trial_balance/', params),
+}
+
+export function useFiscalYears() {
+  return useQuery({
+    queryKey: queryKeys.accounting.fiscalYears,
+    queryFn: accountingApi.fiscalYears,
+  })
 }
 
 export function useAccounts() {

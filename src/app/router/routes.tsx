@@ -40,12 +40,14 @@ const accounting = () => import('@/features/accounting')
 const AccountsPage = lazy(() => accounting().then((m) => ({ default: m.AccountsPage })))
 const JournalEntriesPage = lazy(() => accounting().then((m) => ({ default: m.JournalEntriesPage })))
 const TrialBalancePage = lazy(() => accounting().then((m) => ({ default: m.TrialBalancePage })))
+const FiscalYearsPage = lazy(() => accounting().then((m) => ({ default: m.FiscalYearsPage })))
 const hr = () => import('@/features/hr')
 const HrEmployeesPage = lazy(() => hr().then((m) => ({ default: m.EmployeesPage })))
 const HrDepartmentsPage = lazy(() => hr().then((m) => ({ default: m.DepartmentsPage })))
 const crm = () => import('@/features/crm')
 const CrmLeadsPage = lazy(() => crm().then((m) => ({ default: m.LeadsPage })))
 const CrmDealsPage = lazy(() => crm().then((m) => ({ default: m.DealsPage })))
+const CrmActivitiesPage = lazy(() => crm().then((m) => ({ default: m.ActivitiesPage })))
 const manufacturing = () => import('@/features/manufacturing')
 const ManufacturingBomsPage = lazy(() => manufacturing().then((m) => ({ default: m.BomsPage })))
 const ManufacturingOrdersPage = lazy(() =>
@@ -243,10 +245,15 @@ export const router = createBrowserRouter([
         path: 'accounting/trial-balance',
         element: guarded(ACCOUNTING_VIEW_CAPS, <TrialBalancePage />),
       },
+      {
+        path: 'accounting/fiscal-years',
+        element: guarded(ACCOUNTING_VIEW_CAPS, <FiscalYearsPage />),
+      },
       { path: 'hr', element: guarded(HR_VIEW_CAPS, <HrEmployeesPage />) },
       { path: 'hr/departments', element: guarded(HR_VIEW_CAPS, <HrDepartmentsPage />) },
       { path: 'crm', element: guarded(CRM_VIEW_CAPS, <CrmLeadsPage />) },
       { path: 'crm/deals', element: guarded(CRM_VIEW_CAPS, <CrmDealsPage />) },
+      { path: 'crm/activities', element: guarded(CRM_VIEW_CAPS, <CrmActivitiesPage />) },
       {
         path: 'manufacturing',
         element: guarded(MANUFACTURING_VIEW_CAPS, <ManufacturingBomsPage />),
