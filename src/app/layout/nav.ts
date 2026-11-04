@@ -59,12 +59,12 @@ export const TRANSFER_VIEW_CAPS = [
   'inventory.view_cost',
 ] as const
 
-/** Xodimlar (HR) bo'limini ko'rish: yangi `hr.view`, yoki eski `settings.manage` (orqaga moslik). */
-export const HR_VIEW_CAPS = ['hr.view', 'settings.manage'] as const
-export const ACCOUNTING_VIEW_CAPS = ['accounting.view', 'settings.manage'] as const
-export const PAYROLL_VIEW_CAPS = ['payroll.view', 'settings.manage'] as const
-export const CRM_VIEW_CAPS = ['crm.view', 'settings.manage'] as const
-export const MANUFACTURING_VIEW_CAPS = ['manufacturing.view', 'settings.manage'] as const
+/** Backend `hr.view` va boshqa *.view huquqlarini majburan tekshiradi. */
+export const HR_VIEW_CAPS = ['hr.view'] as const
+export const ACCOUNTING_VIEW_CAPS = ['accounting.view'] as const
+export const PAYROLL_VIEW_CAPS = ['payroll.view'] as const
+export const CRM_VIEW_CAPS = ['crm.view'] as const
+export const MANUFACTURING_VIEW_CAPS = ['manufacturing.view'] as const
 
 /**
  * Menyu guruhlari tartibi: ish jarayoniga qarab.

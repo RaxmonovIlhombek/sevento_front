@@ -107,15 +107,17 @@ describe("Xodimlar, dastavchiklar va moliya bo'limlari", () => {
     expect(paths(['inventory.view'])).not.toContain('/accounting')
   })
 
-  it("eski settings.manage foydalanuvchisi HR va buxgalteriyani hali ham ko'radi (orqaga moslik)", () => {
-    const legacy = paths(['settings.manage'])
-    expect(legacy).toEqual(expect.arrayContaining(['/hr', '/accounting', '/crm']))
+  it("settings.manage yolg'iz HR, buxgalteriya va CRM ni ochmaydi (backend ham rad etadi)", () => {
+    const admin = paths(['settings.manage'])
+    expect(admin).not.toContain('/hr')
+    expect(admin).not.toContain('/accounting')
+    expect(admin).not.toContain('/crm')
   })
 })
 
 describe('rol shablonlari', () => {
   it("kuryer telefonda faqat yetkazishlarni ko'radi, savdo va qoldiq ko'rinmaydi", () => {
-    const courier = paths(['deliveries.view', 'deliveries.update'])
+    const courier = paths(['deliveries.view', 'deliveries.manage'])
     expect(courier).toContain('/deliveries')
     expect(courier).not.toContain('/sales/pos')
     expect(courier).not.toContain('/inventory/stock')
