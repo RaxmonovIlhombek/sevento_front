@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useCapability } from '@/features/auth'
 import { useActiveCurrencies } from '@/features/currency'
-import { useAllBranches } from '@/features/settings/api/branches.api'
+import { useAllBranches } from '@/features/settings'
 import type { CustomerDetail } from '@/shared/api/types'
 import { applyServerErrors } from '@/shared/forms/serverErrors'
 import { z } from '@/shared/forms/zod'

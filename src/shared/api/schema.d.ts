@@ -296,6 +296,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/auth/me/avatar/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["auth_me_avatar_update"];
+        post?: never;
+        delete: operations["auth_me_avatar_destroy"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/auth/refresh/": {
         parameters: {
             query?: never;
@@ -734,6 +750,160 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/fulfillment/orders/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        get: operations["fulfillment_orders_list"];
+        put?: never;
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        post: operations["fulfillment_orders_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        get: operations["fulfillment_orders_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/{id}/accept/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        post: operations["fulfillment_orders_accept_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/{id}/cancel/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        post: operations["fulfillment_orders_cancel_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/{id}/deliver/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        post: operations["fulfillment_orders_deliver_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/{id}/pack/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        post: operations["fulfillment_orders_pack_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/{id}/reject/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        post: operations["fulfillment_orders_reject_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/{id}/verify/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        post: operations["fulfillment_orders_verify_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/fulfillment/orders/summary/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Yetkazish jarayoni: omborchi taxlaydi → operator tekshiradi → kuryer yetkazadi. */
+        get: operations["fulfillment_orders_summary_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/health/": {
         parameters: {
             query?: never;
@@ -812,6 +982,57 @@ export interface paths {
         options?: never;
         head?: never;
         patch: operations["hr_employees_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/hr/employees/{id}/terminate/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Ishdan bo'shatish: tizimga kirish ham o'chiriladi. */
+        post: operations["hr_employees_terminate_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/hr/employees/hire/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Yangi xodim: login, rol va nuqta bilan birga yaratiladi. */
+        post: operations["hr_employees_hire_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/hr/employees/hire-options/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Yollash formasi uchun: faqat shu foydalanuvchi tanlay oladigan rol va nuqtalar. */
+        get: operations["hr_employees_hire_options_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/api/v1/hr/positions/": {
@@ -2463,6 +2684,91 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/security/logins/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kirish tarixi. Ro'yxat va xulosa — `users.manage`; `mine` — har kim o'zinikini ko'radi. */
+        get: operations["security_logins_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/security/logins/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Kirish tarixi. Ro'yxat va xulosa — `users.manage`; `mine` — har kim o'zinikini ko'radi. */
+        get: operations["security_logins_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/security/logins/current/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Hozir ishlatilayotgan qurilma: brauzer, OS, qurilma turi va IP (shu so'rovdan). */
+        get: operations["security_logins_current_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/security/logins/mine/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Joriy foydalanuvchining o'z kirishlari (so'nggi 50 ta). */
+        get: operations["security_logins_mine_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/security/logins/summary/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Har bir foydalanuvchi: oxirgi kirish, qurilma, IP va oxirgi 30 kundagi kirishlar soni. */
+        get: operations["security_logins_summary_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/settings/": {
         parameters: {
             query?: never;
@@ -2557,8 +2863,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** @description So'rovlar. Oddiy foydalanuvchi faqat o'zi yuborgan yoki tasdiqlovchi bo'lganini ko'radi. */
         get: operations["workflow_instances_list"];
         put?: never;
+        /** @description So'rovlar. Oddiy foydalanuvchi faqat o'zi yuborgan yoki tasdiqlovchi bo'lganini ko'radi. */
         post: operations["workflow_instances_create"];
         delete?: never;
         options?: never;
@@ -2573,13 +2881,14 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** @description So'rovlar. Oddiy foydalanuvchi faqat o'zi yuborgan yoki tasdiqlovchi bo'lganini ko'radi. */
         get: operations["workflow_instances_retrieve"];
-        put: operations["workflow_instances_update"];
+        put?: never;
         post?: never;
-        delete: operations["workflow_instances_destroy"];
+        delete?: never;
         options?: never;
         head?: never;
-        patch: operations["workflow_instances_partial_update"];
+        patch?: never;
         trace?: never;
     };
     "/api/v1/workflow/instances/{id}/approve/": {
@@ -2591,7 +2900,25 @@ export interface paths {
         };
         get?: never;
         put?: never;
+        /** @description So'rovlar. Oddiy foydalanuvchi faqat o'zi yuborgan yoki tasdiqlovchi bo'lganini ko'radi. */
         post: operations["workflow_instances_approve_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/workflow/instances/{id}/cancel/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description So'rovlar. Oddiy foydalanuvchi faqat o'zi yuborgan yoki tasdiqlovchi bo'lganini ko'radi. */
+        post: operations["workflow_instances_cancel_create"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2607,7 +2934,25 @@ export interface paths {
         };
         get?: never;
         put?: never;
+        /** @description So'rovlar. Oddiy foydalanuvchi faqat o'zi yuborgan yoki tasdiqlovchi bo'lganini ko'radi. */
         post: operations["workflow_instances_reject_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/workflow/instances/summary/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Menyu/tablar uchun sonlar: menga kelgan va o'zim yuborgan kutilayotganlar. */
+        get: operations["workflow_instances_summary_retrieve"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -2621,8 +2966,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** @description Qoidalar: faqat rahbar (workflow.manage) ko'radi va boshqaradi. */
         get: operations["workflow_rules_list"];
         put?: never;
+        /** @description Qoidalar: faqat rahbar (workflow.manage) ko'radi va boshqaradi. */
         post: operations["workflow_rules_create"];
         delete?: never;
         options?: never;
@@ -2637,12 +2984,16 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** @description Qoidalar: faqat rahbar (workflow.manage) ko'radi va boshqaradi. */
         get: operations["workflow_rules_retrieve"];
+        /** @description Qoidalar: faqat rahbar (workflow.manage) ko'radi va boshqaradi. */
         put: operations["workflow_rules_update"];
         post?: never;
+        /** @description Qoidalar: faqat rahbar (workflow.manage) ko'radi va boshqaradi. */
         delete: operations["workflow_rules_destroy"];
         options?: never;
         head?: never;
+        /** @description Qoidalar: faqat rahbar (workflow.manage) ko'radi va boshqaradi. */
         patch: operations["workflow_rules_partial_update"];
         trace?: never;
     };
@@ -2747,33 +3098,28 @@ export interface components {
         AllocationMethodEnum: "by_value" | "by_quantity";
         ApprovalInstance: {
             readonly id: number;
-            entity_type: string;
-            /** Format: int64 */
-            entity_id: number;
+            readonly entity_type: string;
+            readonly type_label: string;
+            readonly entity_id: number | null;
+            readonly title: string;
             readonly status: components["schemas"]["ApprovalInstanceStatusEnum"];
-            requested_by: number;
+            readonly requested_by: number;
             readonly requested_by_name: string;
-            branch?: number | null;
+            readonly branch: number | null;
+            readonly branch_name: string;
             /** Format: decimal */
-            amount?: string;
+            readonly amount: string;
             /** Format: date-time */
             readonly decided_at: string | null;
-            notes?: string;
+            readonly notes: string;
             readonly steps: components["schemas"]["ApprovalStep"][];
+            readonly current_approver_name: string | null;
+            readonly can_decide: boolean;
+            readonly can_cancel: boolean;
             /** Format: date-time */
             readonly created_at: string;
             /** Format: date-time */
             readonly updated_at: string;
-        };
-        ApprovalInstanceRequest: {
-            entity_type: string;
-            /** Format: int64 */
-            entity_id: number;
-            requested_by: number;
-            branch?: number | null;
-            /** Format: decimal */
-            amount?: string;
-            notes?: string;
         };
         /**
          * @description * `pending` - Kutilmoqda
@@ -2786,14 +3132,15 @@ export interface components {
         ApprovalRule: {
             readonly id: number;
             entity_type: string;
+            readonly type_label: string;
             /** Format: decimal */
             min_amount?: string;
             /** Format: decimal */
             max_amount?: string | null;
             branch?: number | null;
+            readonly branch_name: string;
             approver: number;
             readonly approver_name: string;
-            /** Format: int64 */
             sequence?: number;
             is_active?: boolean;
             /** Format: date-time */
@@ -2809,7 +3156,6 @@ export interface components {
             max_amount?: string | null;
             branch?: number | null;
             approver: number;
-            /** Format: int64 */
             sequence?: number;
             is_active?: boolean;
         };
@@ -2817,24 +3163,21 @@ export interface components {
             readonly id: number;
             approver: number;
             readonly approver_name: string;
-            /** Format: int64 */
             sequence?: number;
-            decision?: components["schemas"]["DecisionEnum"];
+            decision?: components["schemas"]["ApprovalStepDecisionEnum"];
             /** Format: date-time */
             decided_at?: string | null;
             comment?: string;
             /** Format: date-time */
             readonly created_at: string;
         };
-        ApprovalStepRequest: {
-            approver: number;
-            /** Format: int64 */
-            sequence?: number;
-            decision?: components["schemas"]["DecisionEnum"];
-            /** Format: date-time */
-            decided_at?: string | null;
-            comment?: string;
-        };
+        /**
+         * @description * `pending` - Kutilmoqda
+         *     * `approved` - Tasdiqlandi
+         *     * `rejected` - Rad etildi
+         * @enum {string}
+         */
+        ApprovalStepDecisionEnum: "pending" | "approved" | "rejected";
         AuditLog: {
             readonly id: number;
             readonly event_name: string;
@@ -2850,6 +3193,9 @@ export interface components {
             readonly request_id: string;
             /** Format: date-time */
             readonly created_at: string;
+        };
+        AvatarRequest: {
+            image: string;
         };
         BOMItem: {
             readonly id: number;
@@ -3013,6 +3359,7 @@ export interface components {
             readonly id: number;
             readonly branch: number;
             readonly branch_name: string;
+            /** @default open */
             readonly status: components["schemas"]["CashShiftStatusEnum"];
             readonly opened_by_name: string;
             /** Format: date-time */
@@ -3071,7 +3418,6 @@ export interface components {
             name: string;
             parent?: number | null;
             readonly parent_name: string | null;
-            /** Format: int64 */
             sort_order?: number;
             is_active?: boolean;
             /** Format: date-time */
@@ -3082,7 +3428,6 @@ export interface components {
         CategoryRequest: {
             name: string;
             parent?: number | null;
-            /** Format: int64 */
             sort_order?: number;
             is_active?: boolean;
         };
@@ -3141,6 +3486,15 @@ export interface components {
         CountedWriteRequest: {
             items: components["schemas"]["CountedLineRequest"][];
         };
+        CreateRequestRequest: {
+            entity_type: components["schemas"]["EntityTypeEnum"];
+            title: string;
+            /** Format: decimal */
+            amount: string;
+            branch?: number | null;
+            /** @default  */
+            notes: string;
+        };
         CreditStatus: {
             /** Format: decimal */
             limit_base: string;
@@ -3158,10 +3512,8 @@ export interface components {
             code: string;
             name: string;
             symbol?: string;
-            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
-            /** Format: int64 */
             sort_order?: number;
             /** @description Tannarx, foyda va kredit limiti shu valyutada (sozlama currency.base_code). */
             readonly is_base: boolean;
@@ -3179,11 +3531,15 @@ export interface components {
             code: string;
             name: string;
             symbol?: string;
-            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
-            /** Format: int64 */
             sort_order?: number;
+        };
+        CurrentDevice: {
+            ip: string;
+            browser: string;
+            os: string;
+            device_type: string;
         };
         CurrentPrice: {
             price_type: string;
@@ -3441,13 +3797,10 @@ export interface components {
             overdue: string;
             overdue_count: number;
         };
-        /**
-         * @description * `pending` - Kutilmoqda
-         *     * `approved` - Tasdiqlandi
-         *     * `rejected` - Rad etildi
-         * @enum {string}
-         */
-        DecisionEnum: "pending" | "approved" | "rejected";
+        DecisionRequest: {
+            /** @default  */
+            comment: string;
+        };
         Department: {
             readonly id: number;
             name: string;
@@ -3513,6 +3866,52 @@ export interface components {
             address?: string;
             notes?: string;
         };
+        /** @description Tahrirlashda yangi nuqta foydalanuvchi doirasida bo'lishi shart. */
+        EmployeeSerializerScoped: {
+            readonly id: number;
+            user: number;
+            readonly user_username: string;
+            readonly user_full_name: string;
+            employee_number: string;
+            department: number;
+            readonly department_name: string;
+            position: number;
+            readonly position_name: string;
+            branch: number;
+            readonly branch_name: string;
+            /** Format: date */
+            hire_date: string;
+            /** Format: date */
+            termination_date?: string | null;
+            status?: components["schemas"]["EmployeeStatusEnum"];
+            /** Format: decimal */
+            base_salary?: string;
+            phone?: string;
+            address?: string;
+            notes?: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        /** @description Tahrirlashda yangi nuqta foydalanuvchi doirasida bo'lishi shart. */
+        EmployeeSerializerScopedRequest: {
+            user: number;
+            employee_number: string;
+            department: number;
+            position: number;
+            branch: number;
+            /** Format: date */
+            hire_date: string;
+            /** Format: date */
+            termination_date?: string | null;
+            status?: components["schemas"]["EmployeeStatusEnum"];
+            /** Format: decimal */
+            base_salary?: string;
+            phone?: string;
+            address?: string;
+            notes?: string;
+        };
         /**
          * @description * `active` - Faol
          *     * `on_leave` - Ta'tilda
@@ -3520,6 +3919,16 @@ export interface components {
          * @enum {string}
          */
         EmployeeStatusEnum: "active" | "on_leave" | "terminated";
+        /**
+         * @description * `discount` - discount
+         *     * `writeoff` - writeoff
+         *     * `expense` - expense
+         *     * `refund` - refund
+         *     * `purchase` - purchase
+         *     * `other` - other
+         * @enum {string}
+         */
+        EntityTypeEnum: "discount" | "writeoff" | "expense" | "refund" | "purchase" | "other";
         ErrorBody: {
             code: string;
             message: string;
@@ -3589,7 +3998,6 @@ export interface components {
             readonly id: number;
             fiscal_year: number;
             readonly fiscal_year_value: number;
-            /** Format: int64 */
             number: number;
             /** Format: date */
             start_date: string;
@@ -3603,7 +4011,6 @@ export interface components {
         };
         FiscalPeriodRequest: {
             fiscal_year: number;
-            /** Format: int64 */
             number: number;
             /** Format: date */
             start_date: string;
@@ -3613,7 +4020,6 @@ export interface components {
         };
         FiscalYear: {
             readonly id: number;
-            /** Format: int64 */
             year: number;
             /** Format: date */
             start_date: string;
@@ -3626,7 +4032,6 @@ export interface components {
             readonly updated_at: string;
         };
         FiscalYearRequest: {
-            /** Format: int64 */
             year: number;
             /** Format: date */
             start_date: string;
@@ -3640,10 +4045,144 @@ export interface components {
          * @enum {string}
          */
         FormatEnum: "pdf" | "xlsx";
+        Fulfillment: {
+            readonly id: number;
+            readonly sale: number;
+            readonly number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly status: components["schemas"]["FulfillmentStatusEnum"];
+            readonly status_label: string;
+            readonly address: string;
+            readonly contact_phone: string;
+            readonly note: string;
+            readonly reject_reason: string;
+            readonly customer_name: string;
+            /** Format: decimal */
+            readonly total: string;
+            readonly currency_code: string;
+            readonly packed_by: number | null;
+            readonly packed_by_name: string;
+            /** Format: date-time */
+            readonly packed_at: string | null;
+            readonly verified_by: number | null;
+            readonly verified_by_name: string;
+            /** Format: date-time */
+            readonly verified_at: string | null;
+            readonly courier: number | null;
+            readonly courier_name: string;
+            /** Format: date-time */
+            readonly accepted_at: string | null;
+            /** Format: date-time */
+            readonly delivered_at: string | null;
+            readonly delivered_note: string;
+            /** Format: date-time */
+            readonly cancelled_at: string | null;
+            readonly cancel_reason: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+        };
+        FulfillmentCreateRequest: {
+            sale: number;
+            /** @default  */
+            address: string;
+            /** @default  */
+            contact_phone: string;
+            /** @default  */
+            note: string;
+        };
+        FulfillmentDetail: {
+            readonly id: number;
+            readonly sale: number;
+            readonly number: string;
+            readonly branch: number;
+            readonly branch_name: string;
+            readonly status: components["schemas"]["FulfillmentStatusEnum"];
+            readonly status_label: string;
+            readonly address: string;
+            readonly contact_phone: string;
+            readonly note: string;
+            readonly reject_reason: string;
+            readonly customer_name: string;
+            /** Format: decimal */
+            readonly total: string;
+            readonly currency_code: string;
+            readonly packed_by: number | null;
+            readonly packed_by_name: string;
+            /** Format: date-time */
+            readonly packed_at: string | null;
+            readonly verified_by: number | null;
+            readonly verified_by_name: string;
+            /** Format: date-time */
+            readonly verified_at: string | null;
+            readonly courier: number | null;
+            readonly courier_name: string;
+            /** Format: date-time */
+            readonly accepted_at: string | null;
+            /** Format: date-time */
+            readonly delivered_at: string | null;
+            readonly delivered_note: string;
+            /** Format: date-time */
+            readonly cancelled_at: string | null;
+            readonly cancel_reason: string;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+            readonly items: components["schemas"]["Item"][];
+            readonly steps: components["schemas"]["Step"][];
+        };
+        FulfillmentReasonRequest: {
+            reason: string;
+        };
+        /**
+         * @description * `pending` - Omborchi kutmoqda
+         *     * `packed` - Taxlandi — operator tekshiradi
+         *     * `ready` - Tayyor — kuryer kutmoqda
+         *     * `on_the_way` - Yo'lda
+         *     * `delivered` - Yetkazildi
+         *     * `cancelled` - Bekor qilindi
+         * @enum {string}
+         */
+        FulfillmentStatusEnum: "pending" | "packed" | "ready" | "on_the_way" | "delivered" | "cancelled";
         Health: {
             status: string;
             db: boolean;
             redis: boolean;
+        };
+        /** @description Yollash formasi uchun: foydalanuvchi o'zi tanlay oladigan qiymatlar. */
+        HireOptions: {
+            roles: components["schemas"]["_RoleOption"][];
+            branches: components["schemas"]["_BranchOption"][];
+            departments: components["schemas"]["_Option"][];
+            positions: components["schemas"]["_PositionOption"][];
+        };
+        /** @description Yangi xodim: login + rol + nuqta + ish joyi bitta formada. */
+        HireRequest: {
+            full_name: string;
+            username: string;
+            password: string;
+            /** @default  */
+            phone: string;
+            role: number;
+            branch: number;
+            department: number;
+            position: number;
+            /** @default  */
+            employee_number: string;
+            /** Format: date */
+            hire_date?: string;
+            /**
+             * Format: decimal
+             * @default 0.0000
+             */
+            base_salary: string;
+            /** @default  */
+            address: string;
+            /** @default  */
+            notes: string;
         };
         IncomingTransfers: {
             count: number;
@@ -3656,6 +4195,13 @@ export interface components {
             /** Format: decimal */
             stock_value: string | null;
             incoming_transfers: number;
+        };
+        Item: {
+            product_name: string;
+            /** Format: decimal */
+            quantity: string;
+            /** @default  */
+            unit: string;
         };
         JournalEntry: {
             readonly id: number;
@@ -3740,7 +4286,6 @@ export interface components {
             name: string;
             company?: string;
             phone?: string;
-            /** Format: email */
             email?: string;
             source?: string;
             status?: components["schemas"]["LeadStatusEnum"];
@@ -3756,7 +4301,6 @@ export interface components {
             name: string;
             company?: string;
             phone?: string;
-            /** Format: email */
             email?: string;
             source?: string;
             status?: components["schemas"]["LeadStatusEnum"];
@@ -3814,6 +4358,21 @@ export interface components {
             /** Format: decimal */
             quantity: string;
         };
+        LoginEvent: {
+            readonly id: number;
+            readonly user: number | null;
+            readonly username: string;
+            readonly user_full_name: string;
+            readonly role_name: string;
+            readonly success: boolean;
+            readonly reason: string;
+            readonly ip: string;
+            readonly browser: string;
+            readonly os: string;
+            readonly device_type: string;
+            /** Format: date-time */
+            readonly created_at: string;
+        };
         LoginRequest: {
             username: string;
             password: string;
@@ -3864,6 +4423,10 @@ export interface components {
          * @enum {string}
          */
         NormalBalanceEnum: "debit" | "credit";
+        NoteRequest: {
+            /** @default  */
+            note: string;
+        };
         NoticeRequest: {
             /** @default info */
             level: components["schemas"]["LevelEnum"];
@@ -4093,6 +4656,17 @@ export interface components {
             total_pages: number;
             results: components["schemas"]["FiscalYear"][];
         };
+        PaginatedFulfillmentList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["Fulfillment"][];
+        };
         PaginatedJournalEntryList: {
             /** @example 120 */
             count: number;
@@ -4125,6 +4699,17 @@ export interface components {
             /** @example 5 */
             total_pages: number;
             results: components["schemas"]["LedgerEntry"][];
+        };
+        PaginatedLoginEventList: {
+            /** @example 120 */
+            count: number;
+            /** @example 2 */
+            page: number;
+            /** @example 25 */
+            page_size: number;
+            /** @example 5 */
+            total_pages: number;
+            results: components["schemas"]["LoginEvent"][];
         };
         PaginatedNotificationList: {
             /** @example 120 */
@@ -4346,16 +4931,6 @@ export interface components {
             deal?: number | null;
             owner?: number | null;
         };
-        PatchedApprovalInstanceRequest: {
-            entity_type?: string;
-            /** Format: int64 */
-            entity_id?: number;
-            requested_by?: number;
-            branch?: number | null;
-            /** Format: decimal */
-            amount?: string;
-            notes?: string;
-        };
         PatchedApprovalRuleRequest: {
             entity_type?: string;
             /** Format: decimal */
@@ -4364,7 +4939,6 @@ export interface components {
             max_amount?: string | null;
             branch?: number | null;
             approver?: number;
-            /** Format: int64 */
             sequence?: number;
             is_active?: boolean;
         };
@@ -4395,7 +4969,6 @@ export interface components {
         PatchedCategoryRequest: {
             name?: string;
             parent?: number | null;
-            /** Format: int64 */
             sort_order?: number;
             is_active?: boolean;
         };
@@ -4403,10 +4976,8 @@ export interface components {
             code?: string;
             name?: string;
             symbol?: string;
-            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
-            /** Format: int64 */
             sort_order?: number;
         };
         PatchedDealRequest: {
@@ -4429,7 +5000,8 @@ export interface components {
             branch?: number | null;
             is_active?: boolean;
         };
-        PatchedEmployeeRequest: {
+        /** @description Tahrirlashda yangi nuqta foydalanuvchi doirasida bo'lishi shart. */
+        PatchedEmployeeSerializerScopedRequest: {
             user?: number;
             employee_number?: string;
             department?: number;
@@ -4454,7 +5026,6 @@ export interface components {
         };
         PatchedFiscalPeriodRequest: {
             fiscal_year?: number;
-            /** Format: int64 */
             number?: number;
             /** Format: date */
             start_date?: string;
@@ -4463,7 +5034,6 @@ export interface components {
             is_closed?: boolean;
         };
         PatchedFiscalYearRequest: {
-            /** Format: int64 */
             year?: number;
             /** Format: date */
             start_date?: string;
@@ -4483,7 +5053,6 @@ export interface components {
             name?: string;
             company?: string;
             phone?: string;
-            /** Format: email */
             email?: string;
             source?: string;
             status?: components["schemas"]["LeadStatusEnum"];
@@ -4503,7 +5072,6 @@ export interface components {
             /** @description Kassa qoldig'iga ta'sir qiladimi */
             is_cash?: boolean;
             is_active?: boolean;
-            /** Format: int64 */
             sort_order?: number;
         };
         PatchedPayrollRunRequest: {
@@ -4522,7 +5090,6 @@ export interface components {
             code?: string;
             name?: string;
             is_default?: boolean;
-            /** Format: int64 */
             sort_order?: number;
         };
         PatchedProductWriteRequest: {
@@ -4540,10 +5107,7 @@ export interface components {
             is_active?: boolean;
             /** @description Karobka/blok shtrix-kodi */
             box_barcode?: string;
-            /**
-             * Format: int64
-             * @description 1 karobkada necha dona (qadoq soni)
-             */
+            /** @description 1 karobkada necha dona (qadoq soni) */
             units_per_box?: number;
             /** @description Qadoq turi (Karobka, Blok, Qop, Palet) */
             box_name?: string;
@@ -4606,7 +5170,6 @@ export interface components {
         PatchedUnitRequest: {
             code?: string;
             name?: string;
-            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
         };
@@ -4718,7 +5281,6 @@ export interface components {
             /** @description Kassa qoldig'iga ta'sir qiladimi */
             is_cash?: boolean;
             is_active?: boolean;
-            /** Format: int64 */
             sort_order?: number;
         };
         PaymentMethodRequest: {
@@ -4729,7 +5291,6 @@ export interface components {
             /** @description Kassa qoldig'iga ta'sir qiladimi */
             is_cash?: boolean;
             is_active?: boolean;
-            /** Format: int64 */
             sort_order?: number;
         };
         /**
@@ -4873,7 +5434,6 @@ export interface components {
             code: string;
             name: string;
             is_default?: boolean;
-            /** Format: int64 */
             sort_order?: number;
             /** Format: date-time */
             readonly created_at: string;
@@ -4884,7 +5444,6 @@ export interface components {
             code: string;
             name: string;
             is_default?: boolean;
-            /** Format: int64 */
             sort_order?: number;
         };
         Product: {
@@ -4979,10 +5538,7 @@ export interface components {
             is_active?: boolean;
             /** @description Karobka/blok shtrix-kodi */
             box_barcode?: string;
-            /**
-             * Format: int64
-             * @description 1 karobkada necha dona (qadoq soni)
-             */
+            /** @description 1 karobkada necha dona (qadoq soni) */
             units_per_box?: number;
             /** @description Qadoq turi (Karobka, Blok, Qop, Palet) */
             box_name?: string;
@@ -5031,10 +5587,7 @@ export interface components {
             is_active?: boolean;
             /** @description Karobka/blok shtrix-kodi */
             box_barcode?: string;
-            /**
-             * Format: int64
-             * @description 1 karobkada necha dona (qadoq soni)
-             */
+            /** @description 1 karobkada necha dona (qadoq soni) */
             units_per_box?: number;
             /** @description Qadoq turi (Karobka, Blok, Qop, Palet) */
             box_name?: string;
@@ -5765,6 +6318,16 @@ export interface components {
          * @enum {string}
          */
         StageEnum: "prospecting" | "qualification" | "proposal" | "negotiation" | "won" | "lost";
+        Step: {
+            readonly id: number;
+            readonly status: components["schemas"]["FulfillmentStatusEnum"];
+            readonly status_label: string;
+            readonly actor: number | null;
+            readonly actor_name: string;
+            readonly note: string;
+            /** Format: date-time */
+            readonly at: string;
+        };
         StockCountCreateRequest: {
             branch: number;
             category?: number | null;
@@ -5804,6 +6367,7 @@ export interface components {
             readonly branch_name: string;
             readonly category: number | null;
             readonly category_name: string | null;
+            /** @default draft */
             readonly status: components["schemas"]["StockCountStatusEnum"];
             readonly status_display: string;
             /** @default 0 */
@@ -5884,6 +6448,14 @@ export interface components {
             /** Format: date-time */
             readonly created_at: string;
         };
+        Summary: {
+            pending: number;
+            packed: number;
+            ready: number;
+            on_the_way: number;
+            delivered: number;
+            cancelled: number;
+        };
         SummaryCurrency: {
             currency: string;
             count: number;
@@ -5931,6 +6503,10 @@ export interface components {
         };
         SystemSettingUpdateRequest: {
             value: unknown;
+        };
+        TerminateRequest: {
+            /** Format: date */
+            termination_date?: string;
         };
         Ticket: {
             ticket: string;
@@ -6078,7 +6654,6 @@ export interface components {
             readonly id: number;
             code: string;
             name: string;
-            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
             /** Format: date-time */
@@ -6089,7 +6664,6 @@ export interface components {
         UnitRequest: {
             code: string;
             name: string;
-            /** Format: int64 */
             decimal_places?: number;
             is_active?: boolean;
         };
@@ -6134,6 +6708,22 @@ export interface components {
             name: string;
             is_default: boolean;
         };
+        /** @description Har bir foydalanuvchining oxirgi kirishi — 'kim qachon va qaysi qurilmadan kirgan'. */
+        UserLoginSummary: {
+            id: number;
+            username: string;
+            full_name: string;
+            role_name: string | null;
+            is_active: boolean;
+            /** Format: date-time */
+            last_login: string | null;
+            last_ip: string;
+            last_browser: string;
+            last_os: string;
+            last_device_type: string;
+            logins_30d: number;
+            failed_30d: number;
+        };
         UserWrite: {
             username: string;
             full_name: string;
@@ -6156,6 +6746,10 @@ export interface components {
             default_branch_id?: number | null;
             /** @default true */
             is_active: boolean;
+        };
+        WorkflowSummary: {
+            assigned: number;
+            mine_pending: number;
         };
         /** @description inventory.view_cost huquqi bo'lmasa tannarx maydonlari javobdan olib tashlanadi. */
         WriteOffDetail: {
@@ -6246,6 +6840,25 @@ export interface components {
             /** @default  */
             note: string;
             items: components["schemas"]["LineWriteRequest"][];
+        };
+        _BranchOption: {
+            id: number;
+            name: string;
+            code: string;
+        };
+        _Option: {
+            id: number;
+            name: string;
+        };
+        _PositionOption: {
+            id: number;
+            name: string;
+            department: number;
+        };
+        _RoleOption: {
+            id: number;
+            name: string;
+            code: string;
         };
     };
     responses: never;
@@ -7122,6 +7735,48 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["Me"];
                 };
+            };
+        };
+    };
+    auth_me_avatar_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AvatarRequest"];
+                "multipart/form-data": components["schemas"]["AvatarRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Me"];
+                };
+            };
+        };
+    };
+    auth_me_avatar_destroy: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description No response body */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
@@ -8607,6 +9262,268 @@ export interface operations {
             };
         };
     };
+    fulfillment_orders_list: {
+        parameters: {
+            query?: {
+                branch?: number;
+                courier?: number;
+                mine?: boolean;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                /**
+                 * @description * `pending` - Omborchi kutmoqda
+                 *     * `packed` - Taxlandi — operator tekshiradi
+                 *     * `ready` - Tayyor — kuryer kutmoqda
+                 *     * `on_the_way` - Yo'lda
+                 *     * `delivered` - Yetkazildi
+                 *     * `cancelled` - Bekor qilindi
+                 */
+                status?: ("cancelled" | "delivered" | "on_the_way" | "packed" | "pending" | "ready")[];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedFulfillmentList"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FulfillmentCreateRequest"];
+                "multipart/form-data": components["schemas"]["FulfillmentCreateRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fulfillment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_accept_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fulfillment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_cancel_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fulfillment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FulfillmentReasonRequest"];
+                "multipart/form-data": components["schemas"]["FulfillmentReasonRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_deliver_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fulfillment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["NoteRequest"];
+                "multipart/form-data": components["schemas"]["NoteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_pack_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fulfillment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["NoteRequest"];
+                "multipart/form-data": components["schemas"]["NoteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_reject_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fulfillment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FulfillmentReasonRequest"];
+                "multipart/form-data": components["schemas"]["FulfillmentReasonRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_verify_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this fulfillment. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["NoteRequest"];
+                "multipart/form-data": components["schemas"]["NoteRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FulfillmentDetail"];
+                };
+            };
+        };
+    };
+    fulfillment_orders_summary_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Summary"];
+                };
+            };
+        };
+    };
     health_retrieve: {
         parameters: {
             query?: never;
@@ -8873,8 +9790,8 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["EmployeeRequest"];
-                "multipart/form-data": components["schemas"]["EmployeeRequest"];
+                "application/json": components["schemas"]["EmployeeSerializerScopedRequest"];
+                "multipart/form-data": components["schemas"]["EmployeeSerializerScopedRequest"];
             };
         };
         responses: {
@@ -8883,7 +9800,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Employee"];
+                    "application/json": components["schemas"]["EmployeeSerializerScoped"];
                 };
             };
         };
@@ -8921,8 +9838,35 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": components["schemas"]["PatchedEmployeeRequest"];
-                "multipart/form-data": components["schemas"]["PatchedEmployeeRequest"];
+                "application/json": components["schemas"]["PatchedEmployeeSerializerScopedRequest"];
+                "multipart/form-data": components["schemas"]["PatchedEmployeeSerializerScopedRequest"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EmployeeSerializerScoped"];
+                };
+            };
+        };
+    };
+    hr_employees_terminate_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this employee. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["TerminateRequest"];
+                "multipart/form-data": components["schemas"]["TerminateRequest"];
             };
         };
         responses: {
@@ -8932,6 +9876,49 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Employee"];
+                };
+            };
+        };
+    };
+    hr_employees_hire_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["HireRequest"];
+                "multipart/form-data": components["schemas"]["HireRequest"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Employee"];
+                };
+            };
+        };
+    };
+    hr_employees_hire_options_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HireOptions"];
                 };
             };
         };
@@ -12812,6 +13799,142 @@ export interface operations {
             };
         };
     };
+    security_logins_list: {
+        parameters: {
+            query?: {
+                date_from?: string;
+                date_to?: string;
+                device_type?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                success?: boolean;
+                user?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedLoginEventList"];
+                };
+            };
+        };
+    };
+    security_logins_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description A unique integer value identifying this login event. */
+                id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LoginEvent"];
+                };
+            };
+        };
+    };
+    security_logins_current_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CurrentDevice"];
+                };
+            };
+        };
+    };
+    security_logins_mine_list: {
+        parameters: {
+            query?: {
+                date_from?: string;
+                date_to?: string;
+                device_type?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A page number within the paginated result set. */
+                page?: number;
+                /** @description Number of results to return per page. */
+                page_size?: number;
+                /** @description A search term. */
+                search?: string;
+                success?: boolean;
+                user?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PaginatedLoginEventList"];
+                };
+            };
+        };
+    };
+    security_logins_summary_list: {
+        parameters: {
+            query?: {
+                date_from?: string;
+                date_to?: string;
+                device_type?: string;
+                /** @description Which field to use when ordering the results. */
+                ordering?: string;
+                /** @description A search term. */
+                search?: string;
+                success?: boolean;
+                user?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserLoginSummary"][];
+                };
+            };
+        };
+    };
     settings_list: {
         parameters: {
             query?: never;
@@ -13066,6 +14189,11 @@ export interface operations {
                 /** @description Number of results to return per page. */
                 page_size?: number;
                 /**
+                 * @description * `assigned` - assigned
+                 *     * `mine` - mine
+                 */
+                scope?: "assigned" | "mine";
+                /**
                  * @description * `pending` - Kutilmoqda
                  *     * `approved` - Tasdiqlandi
                  *     * `rejected` - Rad etildi
@@ -13098,8 +14226,8 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["ApprovalInstanceRequest"];
-                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
+                "application/json": components["schemas"]["CreateRequestRequest"];
+                "multipart/form-data": components["schemas"]["CreateRequestRequest"];
             };
         };
         responses: {
@@ -13135,55 +14263,7 @@ export interface operations {
             };
         };
     };
-    workflow_instances_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description A unique integer value identifying this approval instance. */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ApprovalInstanceRequest"];
-                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ApprovalInstance"];
-                };
-            };
-        };
-    };
-    workflow_instances_destroy: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                /** @description A unique integer value identifying this approval instance. */
-                id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description No response body */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    workflow_instances_partial_update: {
+    workflow_instances_approve_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -13195,8 +14275,8 @@ export interface operations {
         };
         requestBody?: {
             content: {
-                "application/json": components["schemas"]["PatchedApprovalInstanceRequest"];
-                "multipart/form-data": components["schemas"]["PatchedApprovalInstanceRequest"];
+                "application/json": components["schemas"]["DecisionRequest"];
+                "multipart/form-data": components["schemas"]["DecisionRequest"];
             };
         };
         responses: {
@@ -13210,7 +14290,7 @@ export interface operations {
             };
         };
     };
-    workflow_instances_approve_create: {
+    workflow_instances_cancel_create: {
         parameters: {
             query?: never;
             header?: never;
@@ -13220,12 +14300,7 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ApprovalInstanceRequest"];
-                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
-            };
-        };
+        requestBody?: never;
         responses: {
             200: {
                 headers: {
@@ -13247,10 +14322,10 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody: {
+        requestBody?: {
             content: {
-                "application/json": components["schemas"]["ApprovalInstanceRequest"];
-                "multipart/form-data": components["schemas"]["ApprovalInstanceRequest"];
+                "application/json": components["schemas"]["DecisionRequest"];
+                "multipart/form-data": components["schemas"]["DecisionRequest"];
             };
         };
         responses: {
@@ -13260,6 +14335,25 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApprovalInstance"];
+                };
+            };
+        };
+    };
+    workflow_instances_summary_retrieve: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WorkflowSummary"];
                 };
             };
         };
