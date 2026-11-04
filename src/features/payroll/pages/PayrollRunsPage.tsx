@@ -1,7 +1,12 @@
-import { usePayrollRuns } from '../api/payroll.api'
+import { useCapability } from '@/features/auth'
+
+import { useCalculatePayroll, usePayPayroll, usePayrollRuns } from '../api/payroll.api'
 
 export function PayrollRunsPage() {
   const { data, isPending } = usePayrollRuns()
+  const calculate = useCalculatePayroll()
+  const pay = usePayPayroll()
+  const canManage = useCapability('payroll.manage')
   return (
     <div className="p-4">
       <h1 className="text-xl font-bold mb-4">Ish haqi (Payroll)</h1>
@@ -14,6 +19,7 @@ export function PayrollRunsPage() {
             <th className="border px-2">Holat</th>
             <th className="border px-2">Jami (gross)</th>
             <th className="border px-2">Jami (net)</th>
+            <th className="border px-2">Amal</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +32,26 @@ export function PayrollRunsPage() {
               <td className="border px-2">{r.status}</td>
               <td className="border px-2">{r.total_gross}</td>
               <td className="border px-2">{r.total_net}</td>
+              <td className="border px-2">
+                {canManage && r.status === 'draft' && (
+                  <button
+                    className="text-blue-600"
+                    disabled={calculate.isPending}
+                    onClick={() => calculate.mutate(r.id)}
+                  >
+                    Hisoblash
+                  </button>
+                )}
+                {canManage && r.status === 'calculated' && (
+                  <button
+                    className="text-green-700"
+                    disabled={pay.isPending}
+                    onClick={() => pay.mutate(r.id)}
+                  >
+                    To'lash
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

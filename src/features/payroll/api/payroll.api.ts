@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '@/shared/api/client'
 import { queryKeys } from '@/shared/api/queryKeys'
@@ -8,8 +8,26 @@ export type PayrollRun = Schemas['PayrollRun']
 
 export const payrollApi = {
   runs: () => api.get<PayrollRun[]>('/payroll/runs/'),
+  calculate: (id: number) => api.post<PayrollRun>(`/payroll/runs/${id}/calculate/`, {}),
+  pay: (id: number) => api.post<PayrollRun>(`/payroll/runs/${id}/pay/`, {}),
 }
 
 export function usePayrollRuns() {
   return useQuery({ queryKey: queryKeys.payroll.runs, queryFn: payrollApi.runs })
+}
+
+export function useCalculatePayroll() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: payrollApi.calculate,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.payroll.all }),
+  })
+}
+
+export function usePayPayroll() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: payrollApi.pay,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.payroll.all }),
+  })
 }

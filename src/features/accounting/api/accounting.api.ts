@@ -19,6 +19,8 @@ export const accountingApi = {
   createJournalEntry: (body: unknown) =>
     api.post<JournalEntry>('/accounting/journal-entries/', body),
   postEntry: (id: number) => api.post<JournalEntry>(`/accounting/journal-entries/${id}/post/`),
+  reverseEntry: (id: number) =>
+    api.post<JournalEntry>(`/accounting/journal-entries/${id}/reverse/`, {}),
   trialBalance: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<unknown[]>('/accounting/journal-entries/trial_balance/', params),
 }
@@ -61,6 +63,14 @@ export function usePostEntry() {
   const qc = useQueryClient()
   return useMutation({
     mutationFn: accountingApi.postEntry,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.accounting.all }),
+  })
+}
+
+export function useReverseEntry() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: accountingApi.reverseEntry,
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.accounting.all }),
   })
 }

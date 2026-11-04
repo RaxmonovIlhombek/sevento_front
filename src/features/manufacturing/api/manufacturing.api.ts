@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '@/shared/api/client'
 import { queryKeys } from '@/shared/api/queryKeys'
@@ -11,6 +11,8 @@ export const manufacturingApi = {
   boms: () => api.get<BillOfMaterials[]>('/manufacturing/boms/'),
   orders: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<{ count: number; results: ProductionOrder[] }>('/manufacturing/orders/', params),
+  release: (id: number) => api.post<ProductionOrder>(`/manufacturing/orders/${id}/release/`, {}),
+  complete: (id: number) => api.post<ProductionOrder>(`/manufacturing/orders/${id}/complete/`, {}),
 }
 
 export function useBoms() {
@@ -21,5 +23,21 @@ export function useProductionOrders(params: Record<string, string | number | boo
   return useQuery({
     queryKey: queryKeys.manufacturing.orders(params),
     queryFn: () => manufacturingApi.orders(params),
+  })
+}
+
+export function useReleaseOrder() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: manufacturingApi.release,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.manufacturing.all }),
+  })
+}
+
+export function useCompleteOrder() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: manufacturingApi.complete,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.manufacturing.all }),
   })
 }

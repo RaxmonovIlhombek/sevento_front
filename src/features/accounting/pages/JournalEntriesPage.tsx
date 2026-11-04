@@ -1,8 +1,12 @@
-import { useJournalEntries, usePostEntry } from '../api/accounting.api'
+import { useCapability } from '@/features/auth'
+
+import { useJournalEntries, usePostEntry, useReverseEntry } from '../api/accounting.api'
 
 export function JournalEntriesPage() {
   const { data, isPending } = useJournalEntries({ page: 1, page_size: 50 })
   const post = usePostEntry()
+  const reverse = useReverseEntry()
+  const canManage = useCapability('accounting.manage')
   const rows = data?.results ?? []
 
   return (
@@ -25,9 +29,21 @@ export function JournalEntriesPage() {
               <td className="border px-2">{e.date}</td>
               <td className="border px-2">{e.status}</td>
               <td className="border px-2">
-                {e.status === 'draft' && (
+                {canManage && e.status === 'draft' && (
                   <button className="text-blue-600" onClick={() => post.mutate(e.id)}>
                     O'tkazish
+                  </button>
+                )}
+                {canManage && e.status === 'posted' && (
+                  <button
+                    className="text-red-600"
+                    disabled={reverse.isPending}
+                    onClick={() => {
+                      if (window.confirm(`${e.number} yozuvi bekor qilinsinmi?`))
+                        reverse.mutate(e.id)
+                    }}
+                  >
+                    Bekor qilish
                   </button>
                 )}
               </td>
