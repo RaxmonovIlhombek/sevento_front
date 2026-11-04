@@ -8,12 +8,34 @@ export type Department = Schemas['Department']
 export type Position = Schemas['Position']
 export type Employee = Schemas['Employee']
 
+export interface HireOptions {
+  roles: { id: number; code: string; name: string }[]
+  branches: { id: number; code: string; name: string }[]
+  departments: { id: number; name: string }[]
+  positions: { id: number; name: string; department: number }[]
+}
+
+export interface HireBody {
+  full_name: string
+  username: string
+  password: string
+  phone?: string
+  role: number
+  branch: number
+  department: number
+  position: number
+  base_salary?: string
+}
+
 export const hrApi = {
   departments: () => api.get<Department[]>('/hr/departments/'),
   positions: () => api.get<Position[]>('/hr/positions/'),
   employees: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<{ count: number; results: Employee[] }>('/hr/employees/', params),
   createEmployee: (body: unknown) => api.post<Employee>('/hr/employees/', body),
+  hireOptions: () => api.get<HireOptions>('/hr/employees/hire-options/'),
+  hire: (body: HireBody) => api.post<Employee>('/hr/employees/hire/', body),
+  terminate: (id: number) => api.post<Employee>(`/hr/employees/${id}/terminate/`, {}),
 }
 
 export function useDepartments() {
@@ -35,6 +57,30 @@ export function useCreateEmployee() {
   const qc = useQueryClient()
   return useMutation({
     mutationFn: hrApi.createEmployee,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useHireOptions(enabled = true) {
+  return useQuery({
+    queryKey: [...queryKeys.hr.all, 'hire-options'],
+    queryFn: hrApi.hireOptions,
+    enabled,
+  })
+}
+
+export function useHireEmployee() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: hrApi.hire,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useTerminateEmployee() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: hrApi.terminate,
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
   })
 }

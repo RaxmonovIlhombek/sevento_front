@@ -55,6 +55,6 @@
   "boms": "Retseptlar (BOM)",
   "productionOrders": "Ishlab chiqarish buyurtmalari",
   "notifications": "Bildirishnomalar",
-  "delivery": "Dastavka",
-  "deliveries": "Yetkazishlar"
+  "fulfillmentGroup": "Buyurtma jarayoni",
+  "fulfillment": "Taxlash va yetkazish"
 }

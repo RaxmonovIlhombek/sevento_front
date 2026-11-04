@@ -10,6 +10,7 @@ import { AppShell } from '../layout/AppShell'
 import {
   ACCOUNTING_VIEW_CAPS,
   CRM_VIEW_CAPS,
+  FULFILLMENT_VIEW_CAPS,
   HR_VIEW_CAPS,
   MANUFACTURING_VIEW_CAPS,
   PAYROLL_VIEW_CAPS,
@@ -99,8 +100,8 @@ const PurchaseFormPage = lazy(() => purchasing().then((m) => ({ default: m.Purch
 const SuppliersPage = lazy(() => purchasing().then((m) => ({ default: m.SuppliersPage })))
 const ExpenseTypesPage = lazy(() => purchasing().then((m) => ({ default: m.ExpenseTypesPage })))
 
-const deliveries = () => import('@/features/deliveries')
-const DeliveriesPage = lazy(() => deliveries().then((m) => ({ default: m.DeliveriesPage })))
+const fulfillment = () => import('@/features/fulfillment')
+const FulfillmentPage = lazy(() => fulfillment().then((m) => ({ default: m.FulfillmentPage })))
 
 const lazyPage = (element: ReactNode) => <Suspense fallback={<PageSpinner />}>{element}</Suspense>
 
@@ -157,9 +158,10 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: 'deliveries',
-        element: guarded(['deliveries.view', 'deliveries.manage'], <DeliveriesPage />),
+        path: 'fulfillment',
+        element: guarded(FULFILLMENT_VIEW_CAPS, <FulfillmentPage />),
       },
+      { path: 'deliveries', element: <Navigate to="/fulfillment" replace /> },
       { path: 'cash', element: guarded('cashbox.view', <CashPage />) },
       { path: 'customers', element: guarded('customers.view', <CustomersPage />) },
       { path: 'customers/:id', element: guarded('customers.view', <CustomerDetailPage />) },

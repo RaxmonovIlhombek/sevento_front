@@ -113,6 +113,12 @@ export const queryKeys = {
     journalEntries: (params: object) => ['accounting', 'journal-entries', params] as const,
     trialBalance: (params: object) => ['accounting', 'trial-balance', params] as const,
   },
+  fulfillment: {
+    all: ['fulfillment'] as const,
+    list: (params: object) => ['fulfillment', 'list', params] as const,
+    detail: (id: number) => ['fulfillment', 'detail', id] as const,
+    summary: ['fulfillment', 'summary'] as const,
+  },
   hr: {
     all: ['hr'] as const,
     departments: ['hr', 'departments'] as const,

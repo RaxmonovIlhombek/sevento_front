@@ -118,7 +118,7 @@ describe("Xodimlar, dastavchiklar va moliya bo'limlari", () => {
 describe('rol shablonlari', () => {
   it("kuryer telefonda faqat yetkazishlarni ko'radi, savdo va qoldiq ko'rinmaydi", () => {
     const courier = paths(['deliveries.view', 'deliveries.manage'])
-    expect(courier).toContain('/deliveries')
+    expect(courier).toContain('/fulfillment')
     expect(courier).not.toContain('/sales/pos')
     expect(courier).not.toContain('/inventory/stock')
     expect(courier).not.toContain('/hr')
@@ -129,7 +129,25 @@ describe('rol shablonlari', () => {
   it("HR roli alohida: savdo, qoldiq yoki dastavka ko'rinmaydi", () => {
     const hr = paths(['hr.view', 'hr.manage', 'payroll.view'])
     expect(hr).toEqual(expect.arrayContaining(['/hr', '/payroll']))
-    expect(hr).not.toContain('/deliveries')
+    expect(hr).not.toContain('/fulfillment')
     expect(hr).not.toContain('/sales/pos')
+  })
+})
+
+describe('buyurtma jarayoni menyusi', () => {
+  it("omborchi, operator va kuryer jarayon sahifasini ko'radi", () => {
+    for (const cap of ['fulfillment.pack', 'fulfillment.verify', 'deliveries.view']) {
+      expect(paths([cap])).toContain('/fulfillment')
+    }
+  })
+
+  it("jarayon huquqi yo'q xodim sahifani ko'rmaydi", () => {
+    expect(paths(['sales.view', 'inventory.view'])).not.toContain('/fulfillment')
+  })
+
+  it("HR va moliya bo'limlari kuryer va operatorga ko'rinmaydi", () => {
+    const operator = paths(['fulfillment.view', 'fulfillment.verify', 'sales.view'])
+    expect(operator).not.toContain('/hr')
+    expect(operator).not.toContain('/accounting')
   })
 })
