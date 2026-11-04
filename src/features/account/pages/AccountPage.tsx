@@ -211,7 +211,16 @@ export function AccountPage() {
                 </h1>
                 <p className="text-sm text-slate-500">@{user.username}</p>
                 <div className="mt-2 flex flex-wrap justify-center gap-1.5 sm:justify-start">
-                  {user.role && <Badge tone="brand">{user.role.name}</Badge>}
+                  {user.role && (
+                    <Badge tone="brand">
+                      {user.role.name}
+                      {!user.all_branches && user.branches.length === 1
+                        ? ` — ${user.branches[0].name}`
+                        : user.all_branches
+                          ? ' — barcha nuqtalar'
+                          : ''}
+                    </Badge>
+                  )}
                   {user.is_superuser && <Badge tone="info">{t('superuser')}</Badge>}
                   <Badge tone="success">{t('active')}</Badge>
                 </div>

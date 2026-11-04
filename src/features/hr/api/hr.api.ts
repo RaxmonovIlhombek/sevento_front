@@ -27,11 +27,32 @@ export interface HireBody {
   base_salary?: string
 }
 
+export interface DepartmentBody {
+  name: string
+  parent?: number | null
+  branch?: number | null
+  is_active?: boolean
+}
+
+export interface PositionBody {
+  name: string
+  department: number
+  is_active?: boolean
+}
+
 export const hrApi = {
   departments: () =>
     api.get<Paginated<Department>>('/hr/departments/', { page_size: 100 }).then((r) => r.results),
   positions: () =>
     api.get<Paginated<Position>>('/hr/positions/', { page_size: 100 }).then((r) => r.results),
+  createDepartment: (body: DepartmentBody) => api.post<Department>('/hr/departments/', body),
+  updateDepartment: (id: number, body: DepartmentBody) =>
+    api.patch<Department>(`/hr/departments/${id}/`, body),
+  deleteDepartment: (id: number) => api.delete(`/hr/departments/${id}/`),
+  createPosition: (body: PositionBody) => api.post<Position>('/hr/positions/', body),
+  updatePosition: (id: number, body: PositionBody) =>
+    api.patch<Position>(`/hr/positions/${id}/`, body),
+  deletePosition: (id: number) => api.delete(`/hr/positions/${id}/`),
   employees: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<{ count: number; results: Employee[] }>('/hr/employees/', params),
   createEmployee: (body: unknown) => api.post<Employee>('/hr/employees/', body),
@@ -83,6 +104,56 @@ export function useTerminateEmployee() {
   const qc = useQueryClient()
   return useMutation({
     mutationFn: hrApi.terminate,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useCreateDepartment() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: hrApi.createDepartment,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useUpdateDepartment() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ id, body }: { id: number; body: DepartmentBody }) =>
+      hrApi.updateDepartment(id, body),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useDeleteDepartment() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: hrApi.deleteDepartment,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useCreatePosition() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: hrApi.createPosition,
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useUpdatePosition() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ id, body }: { id: number; body: PositionBody }) =>
+      hrApi.updatePosition(id, body),
+    onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
+  })
+}
+
+export function useDeletePosition() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: hrApi.deletePosition,
     onSuccess: () => qc.invalidateQueries({ queryKey: queryKeys.hr.all }),
   })
 }
