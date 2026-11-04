@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '@/shared/api/client'
 import { queryKeys } from '@/shared/api/queryKeys'
-import type { Schemas } from '@/shared/api/types'
+import type { Paginated, Schemas } from '@/shared/api/types'
 
 export type Department = Schemas['Department']
 export type Position = Schemas['Position']
@@ -28,8 +28,10 @@ export interface HireBody {
 }
 
 export const hrApi = {
-  departments: () => api.get<Department[]>('/hr/departments/'),
-  positions: () => api.get<Position[]>('/hr/positions/'),
+  departments: () =>
+    api.get<Paginated<Department>>('/hr/departments/', { page_size: 100 }).then((r) => r.results),
+  positions: () =>
+    api.get<Paginated<Position>>('/hr/positions/', { page_size: 100 }).then((r) => r.results),
   employees: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<{ count: number; results: Employee[] }>('/hr/employees/', params),
   createEmployee: (body: unknown) => api.post<Employee>('/hr/employees/', body),

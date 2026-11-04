@@ -2,12 +2,13 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '@/shared/api/client'
 import { queryKeys } from '@/shared/api/queryKeys'
-import type { Schemas } from '@/shared/api/types'
+import type { Paginated, Schemas } from '@/shared/api/types'
 
 export type Notification = Schemas['Notification']
 
 export const notificationsApi = {
-  list: () => api.get<Notification[]>('/notifications/'),
+  list: () =>
+    api.get<Paginated<Notification>>('/notifications/', { page_size: 100 }).then((r) => r.results),
   read: (id: number) => api.post<Notification>(`/notifications/${id}/read/`),
   readAll: () => api.post<{ updated: number }>('/notifications/read_all/'),
 }

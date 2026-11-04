@@ -2,13 +2,13 @@ import { useQuery } from '@tanstack/react-query'
 
 import { api } from '@/shared/api/client'
 import { queryKeys } from '@/shared/api/queryKeys'
-import type { Schemas } from '@/shared/api/types'
+import type { Paginated, Schemas } from '@/shared/api/types'
 
 export type Lead = Schemas['Lead']
 export type Deal = Schemas['Deal']
 
 export const crmApi = {
-  leads: () => api.get<Lead[]>('/crm/leads/'),
+  leads: () => api.get<Paginated<Lead>>('/crm/leads/', { page_size: 100 }).then((r) => r.results),
   deals: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<{ count: number; results: Deal[] }>('/crm/deals/', params),
 }

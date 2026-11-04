@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { api } from '@/shared/api/client'
 import { queryKeys } from '@/shared/api/queryKeys'
-import type { Schemas } from '@/shared/api/types'
+import type { Paginated, Schemas } from '@/shared/api/types'
 
 export type Account = Schemas['Account']
 export type AccountRequest = Schemas['AccountRequest']
@@ -11,9 +11,13 @@ export type JournalEntry = Schemas['JournalEntry']
 export type JournalLine = Schemas['JournalLine']
 
 export const accountingApi = {
-  accounts: () => api.get<Account[]>('/accounting/accounts/'),
+  accounts: () =>
+    api.get<Paginated<Account>>('/accounting/accounts/', { page_size: 100 }).then((r) => r.results),
   createAccount: (body: AccountRequest) => api.post<Account>('/accounting/accounts/', body),
-  fiscalPeriods: () => api.get<FiscalPeriod[]>('/accounting/fiscal-periods/'),
+  fiscalPeriods: () =>
+    api
+      .get<Paginated<FiscalPeriod>>('/accounting/fiscal-periods/', { page_size: 100 })
+      .then((r) => r.results),
   journalEntries: (params: Record<string, string | number | boolean | undefined>) =>
     api.get<{ count: number; results: JournalEntry[] }>('/accounting/journal-entries/', params),
   createJournalEntry: (body: unknown) =>
