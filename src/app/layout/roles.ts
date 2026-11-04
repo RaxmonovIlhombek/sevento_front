@@ -22,7 +22,8 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
   {
     code: 'owner',
     name: 'Rahbar',
-    description: 'Barcha nuqtalar, barcha modullar, foydalanuvchilar va tizim sozlamalari.',
+    description:
+      'Barcha nuqtalar, filial rahbarlari va xodimlar, barcha modullar va tizim sozlamalari.',
     home: '/dashboard',
     scope: 'all',
     capabilities: [
@@ -47,7 +48,12 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
       'debts.view',
       'deliveries.manage',
       'deliveries.view',
+      'fulfillment.manage',
+      'fulfillment.pack',
+      'fulfillment.verify',
+      'fulfillment.view',
       'hr.manage',
+      'hr.staff.manage',
       'hr.view',
       'inventory.counts.manage',
       'inventory.manage',
@@ -84,7 +90,7 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
     code: 'branch_manager',
     name: 'Filial rahbari',
     description:
-      "Faqat o'z filialining savdosi, xodimlari, mijozlari, qoldig'i va kassasi. Boshqa filiallar ko'rinmaydi.",
+      "Faqat o'z filiali: xodimlarni yollaydi va boshqaradi, mijoz qo'shadi, savdo, qoldiq, kassa va butun buyurtma jarayonini kuzatadi.",
     home: '/dashboard',
     scope: 'branch',
     capabilities: [
@@ -95,6 +101,9 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
       'customers.view',
       'dashboard.view',
       'debts.view',
+      'fulfillment.manage',
+      'fulfillment.view',
+      'hr.staff.manage',
       'hr.view',
       'inventory.counts.manage',
       'inventory.transfers.create',
@@ -115,7 +124,8 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
   {
     code: 'seller',
     name: 'Sotuvchi',
-    description: "Kassa (POS), savdo va mijozlar. Faqat o'z nuqtasida.",
+    description:
+      "Kassa (POS), savdo va mijozlar. Faqat o'z nuqtasida. Sotganini yetkazishga yuboradi.",
     home: '/sales/pos',
     scope: 'branch',
     capabilities: [
@@ -137,12 +147,14 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
   {
     code: 'storekeeper',
     name: 'Omborchi',
-    description: "Qoldiq, kirim, ko'chirish va inventarizatsiya. Faqat o'z nuqtasida.",
-    home: '/inventory/stock',
+    description:
+      "O'z nuqtasi qoldig'i, kirim, ko'chirish va inventarizatsiya. Sotilgan buyurtmani taxlaydi.",
+    home: '/fulfillment',
     scope: 'branch',
     capabilities: [
       'catalog.manage',
       'catalog.view',
+      'fulfillment.pack',
       'inventory.counts.manage',
       'inventory.manage',
       'inventory.transfers.cancel',
@@ -155,6 +167,31 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
       'purchasing.view',
       'reports.view',
     ],
+  },
+  {
+    code: 'operator',
+    name: 'Operator',
+    description:
+      "Omborchi taxlaganini tekshiradi: to'g'ri bo'lsa «Tayyor», noto'g'ri bo'lsa qaytaradi. Butun jarayonni kuzatadi.",
+    home: '/fulfillment',
+    scope: 'branch',
+    capabilities: [
+      'catalog.view',
+      'customers.view',
+      'fulfillment.verify',
+      'fulfillment.view',
+      'inventory.view',
+      'sales.view',
+    ],
+  },
+  {
+    code: 'courier',
+    name: 'Dastavka (kuryer)',
+    description:
+      'Telefonda ishlaydi. Tayyor buyurtmani qabul qiladi, mijozga yetkazadi va «yetib keldim» tugmasini bosadi.',
+    home: '/fulfillment',
+    scope: 'branch',
+    capabilities: ['deliveries.manage', 'deliveries.view'],
   },
   {
     code: 'accountant',
@@ -187,6 +224,35 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
     ],
   },
   {
+    code: 'branch_accountant',
+    name: 'Filial buxgalteri',
+    description: "Buxgalter huquqlari, lekin faqat o'z nuqtasi ma'lumotlari.",
+    home: '/debts',
+    scope: 'branch',
+    capabilities: [
+      'cashbox.manage',
+      'cashbox.view',
+      'catalog.prices.manage',
+      'catalog.view',
+      'currency.rates.manage',
+      'customers.credit_limit.manage',
+      'customers.manage',
+      'customers.view',
+      'dashboard.view',
+      'debts.manage',
+      'debts.view',
+      'inventory.view',
+      'inventory.view_cost',
+      'payments.receive',
+      'payments.refund',
+      'payments.view',
+      'purchasing.view',
+      'reports.financial',
+      'reports.view',
+      'sales.view',
+    ],
+  },
+  {
     code: 'hr_manager',
     name: "Kadrlar bo'limi (HR)",
     description:
@@ -194,15 +260,6 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
     home: '/hr',
     scope: 'all',
     capabilities: ['branches.view_all', 'hr.manage', 'hr.view', 'payroll.manage', 'payroll.view'],
-  },
-  {
-    code: 'courier',
-    name: 'Dastavka (kuryer)',
-    description:
-      "Telefonda ishlaydi. Faqat o'ziga biriktirilgan yetkazishlar. Narx va qoldiq ko'rinmaydi.",
-    home: '/deliveries',
-    scope: 'branch',
-    capabilities: ['deliveries.manage', 'deliveries.view'],
   },
 ] as const
 

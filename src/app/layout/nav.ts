@@ -60,6 +60,13 @@ export const TRANSFER_VIEW_CAPS = [
 ] as const
 
 /** Backend `hr.view` va boshqa *.view huquqlarini majburan tekshiradi. */
+/** Buyurtma jarayonini ko'ra oladiganlar: rahbar, omborchi, operator, kuryer, sotuvchi. */
+export const FULFILLMENT_VIEW_CAPS = [
+  'fulfillment.view',
+  'fulfillment.pack',
+  'fulfillment.verify',
+  'deliveries.view',
+] as const
 export const HR_VIEW_CAPS = ['hr.view'] as const
 export const ACCOUNTING_VIEW_CAPS = ['accounting.view'] as const
 export const PAYROLL_VIEW_CAPS = ['payroll.view'] as const
@@ -167,16 +174,16 @@ export const navItems: NavItem[] = [
     ],
   },
 
-  // Dastavka — kuryerlar uchun (telefonda ham qulay)
+  // Buyurtma jarayoni: omborchi → operator → kuryer (telefonda ham qulay)
   {
-    labelKey: 'delivery',
+    labelKey: 'fulfillmentGroup',
     icon: Truck,
     children: [
       {
-        to: '/deliveries',
-        labelKey: 'deliveries',
-        icon: Truck,
-        capability: ['deliveries.view', 'deliveries.manage'],
+        to: '/fulfillment',
+        labelKey: 'fulfillment',
+        icon: PackageCheck,
+        capability: FULFILLMENT_VIEW_CAPS,
       },
     ],
   },

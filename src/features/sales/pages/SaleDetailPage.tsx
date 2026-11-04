@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router'
 
+import { useAuthStore } from '@/features/auth'
+import { SendToFulfillmentButton } from '@/features/fulfillment'
 import { errorMessage } from '@/shared/api/errors'
 import type { SaleItem, SalePayment, SaleReturnBrief } from '@/shared/api/types'
 import { formatDate, formatDateTime } from '@/shared/lib/date'
@@ -37,6 +39,7 @@ export function SaleDetailPage() {
   const [cancelOpen, setCancelOpen] = useState(false)
   const [returnOpen, setReturnOpen] = useState(false)
   const [reason, setReason] = useState('')
+  const canSend = useAuthStore((st) => st.user?.capabilities.includes('sales.create') ?? false)
 
   if (sale.isPending) return <PageSpinner />
   if (!sale.data) return null
@@ -195,6 +198,7 @@ export function SaleDetailPage() {
             >
               {t('detail.print')}
             </Button>
+            {canSend && s.status === 'completed' && <SendToFulfillmentButton saleId={s.id} />}
             {s.can_return && (
               <Button
                 variant="secondary"
