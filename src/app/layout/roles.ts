@@ -88,7 +88,7 @@ export const ROLE_PRESETS: readonly RolePreset[] = [
   },
   {
     code: 'branch_manager',
-    name: 'Filial rahbari',
+    name: 'Rahbar',
     description:
       "Faqat o'z filiali: xodimlarni yollaydi va boshqaradi, mijoz qo'shadi, savdo, qoldiq, kassa va butun buyurtma jarayonini kuzatadi.",
     home: '/dashboard',
