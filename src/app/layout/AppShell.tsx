@@ -31,7 +31,7 @@ export function AppShell() {
   )
 
   const nav = (
-    <nav className="flex-1 space-y-1.5 px-3 py-4">
+    <nav className="min-h-0 flex-1 space-y-1.5 overflow-y-auto px-3 py-4">
       {items.map((item) => {
         if (item.children) {
           const isGroupActive = item === activeGroup
@@ -102,7 +102,7 @@ export function AppShell() {
   return (
     <div className="flex h-full">
       {/* Desktop sidebar */}
-      <aside className="hidden w-60 shrink-0 flex-col bg-slate-900 text-slate-200 lg:flex">
+      <aside className="hidden h-full min-h-0 w-60 shrink-0 flex-col bg-slate-900 text-slate-200 lg:flex">
         <div className="flex h-14 items-center gap-2 px-4 text-lg font-bold text-white">
           <span className="flex size-8 items-center justify-center rounded-lg bg-brand-600">S</span>
           {t('app')}
@@ -115,7 +115,7 @@ export function AppShell() {
       {mobileOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-slate-900/50" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute inset-y-0 left-0 flex w-64 flex-col bg-slate-900 text-slate-200 shadow-xl">
+          <aside className="absolute inset-y-0 left-0 flex w-64 min-h-0 flex-col bg-slate-900 text-slate-200 shadow-xl">
             <div className="flex h-14 items-center justify-between px-4 text-lg font-bold text-white">
               {t('app')}
               <button
