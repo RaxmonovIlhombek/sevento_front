@@ -239,12 +239,10 @@ function DepartmentFormModal({
 }) {
   const create = useCreateDepartment()
   const update = useUpdateDepartment()
-  const { register, handleSubmit, control, reset, setError, formState } = useForm<DeptFormValues>(
-    {
-      resolver: zodResolver(deptSchema),
-      defaultValues: { name: department?.name ?? '', is_active: department?.is_active ?? true },
-    },
-  )
+  const { register, handleSubmit, control, reset, setError, formState } = useForm<DeptFormValues>({
+    resolver: zodResolver(deptSchema),
+    defaultValues: { name: department?.name ?? '', is_active: department?.is_active ?? true },
+  })
 
   useEffect(() => {
     if (open) reset({ name: department?.name ?? '', is_active: department?.is_active ?? true })
@@ -315,10 +313,11 @@ function DepartmentFormModal({
 
 const posSchema = z.object({
   name: z.string().trim().min(1).max(100),
-  department: z.coerce.number().int().positive(),
+  department: z.coerce.number<string>().int().positive(),
   is_active: z.boolean(),
 })
-type PosFormValues = z.infer<typeof posSchema>
+type PosFormInput = z.input<typeof posSchema>
+type PosFormValues = z.output<typeof posSchema>
 
 function PositionFormModal({
   position,
@@ -336,12 +335,16 @@ function PositionFormModal({
   const defaults = useMemo(
     () => ({
       name: position?.name ?? '',
-      department: position?.department ?? departments[0]?.id ?? 0,
+      department: String(position?.department ?? departments[0]?.id ?? ''),
       is_active: position?.is_active ?? true,
     }),
     [position, departments],
   )
-  const { register, handleSubmit, control, reset, setError, formState } = useForm<PosFormValues>({
+  const { register, handleSubmit, control, reset, setError, formState } = useForm<
+    PosFormInput,
+    unknown,
+    PosFormValues
+  >({
     resolver: zodResolver(posSchema),
     defaultValues: defaults,
   })
