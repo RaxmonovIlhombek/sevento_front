@@ -39,6 +39,7 @@
   "customers": {
     "title": "Mijozlar",
     "new": "Yangi mijoz",
+    "quickNew": "Mijoz (nasiya uchun)",
     "edit": "Mijozni tahrirlash",
     "name": "F.I.Sh. / nomi",
     "phone": "Telefon",

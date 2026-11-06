@@ -108,4 +108,30 @@ describe("to'lov oynasi: nasiya", () => {
     expect(screen.getByTestId('pay-confirm')).toBeDisabled()
     expect(screen.getByText(/Kredit limiti yetmaydi/)).toBeInTheDocument()
   })
+
+  it("mijoz tanlanmagan holda to'lov yetmasa, tezkor mijoz qo'shish tugmasi chiqadi", () => {
+    const onAddCustomer = vi.fn()
+    render(
+      <PaymentModal
+        totalMinor={142500n}
+        saleCurrency="UZS"
+        places={0}
+        currencies={currencies}
+        decimals={{ USD: 2, UZS: 0 }}
+        rates={{ UZS: '1', USD: '12500' }}
+        methods={methods}
+        loading={false}
+        error={null}
+        credit={null}
+        canCredit
+        onAddCustomer={onAddCustomer}
+        onClose={() => {}}
+        onConfirm={() => {}}
+      />,
+    )
+    fireEvent.change(screen.getByTestId('pay-amount-1'), { target: { value: '20000' } })
+    expect(screen.getByTestId('pay-confirm')).toBeDisabled()
+    fireEvent.click(screen.getByTestId('pay-add-customer'))
+    expect(onAddCustomer).toHaveBeenCalledOnce()
+  })
 })
