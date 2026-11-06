@@ -1,2 +1,2 @@
 export { FulfillmentPage } from './pages/FulfillmentPage'
-export { SendToFulfillmentButton } from './components/SendToFulfillmentButton'
+export { FulfillmentStatusLink } from './components/FulfillmentStatusLink'
