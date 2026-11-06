@@ -97,3 +97,20 @@ GitHub Actions: `desktop.yml` (teg `v*` yoki qo'lda) Linux, Windows, macOS paket
 - Boshqa feature faqat `@/features/<nom>` (index.ts) orqali; `shared/` features ni import qilmaydi (ESLint tekshiradi).
 - Matnlar `src/shared/i18n/locales/uz/*.json` da; kodda qattiq matn yo'q.
 - WebSocket faqat bildirishnoma kanali: xabar → `src/shared/realtime/invalidation.ts` xaritasi → TanStack kesh invalidate; ma'lumot doim REST dan. Uzilganda `meta.pollWhenOffline` so'rovlar har 30 s qayta o'qiladi.
+
+
+## Cloudflare Pages ga deploy (bepul, Netlify o'rniga)
+
+Workers & Pages → Create → Pages → Connect to Git → `sevento_front`, branch `main`.
+
+| Maydon | Qiymat |
+|---|---|
+| Framework preset | None (yoki Vite) |
+| Build command | `npm ci && npm run build` |
+| Build output directory | `dist` |
+| Environment variables | `VITE_API_URL=https://sevento-backend.onrender.com`, `VITE_WS_URL=wss://sevento-backend.onrender.com` |
+
+- Node versiyasi `.node-version` faylidan olinadi (22).
+- `404.html` yo'q, shuning uchun Cloudflare Pages saytni SPA deb hisoblaydi va barcha yo'llarni `index.html` ga qaytaradi (alohida `_redirects` kerak emas).
+- `VITE_*` o'zgaruvchilari build paytida kodga yoziladi; ularni o'zgartirgach qayta deploy qiling.
+- Sayt manzili (`https://<nom>.pages.dev`) backend dagi `DJANGO_TRUSTED_ORIGINS` va `CORS_ALLOWED_ORIGINS` ga qo'shilgan bo'lishi shart.
