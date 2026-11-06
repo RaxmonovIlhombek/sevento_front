@@ -32,6 +32,7 @@ const schema = z.object({
   promise_pay_date: z.string(),
   promise_amount: optionalNumber,
 })
+const quickSchema = schema.extend({ phone: z.string().trim().min(5).max(30) })
 type FormValues = z.infer<typeof schema>
 
 interface Props {
@@ -39,19 +40,21 @@ interface Props {
   open: boolean
   onClose: () => void
   onSaved?: (customer: CustomerDetail) => void
+  /** To'lovni kechiktirish uchun tezkor mijoz qo'shish: faqat ism+telefon, ikkalasi ham shart. */
+  quick?: boolean
 }
 
 /** Mijoz qo'shish/tahrirlash. Kredit limiti, baza biriktirish, kanal va to'lov va'dasi. */
-export function CustomerFormModal({ customer, open, onClose, onSaved }: Props) {
+export function CustomerFormModal({ customer, open, onClose, onSaved, quick = false }: Props) {
   const { t } = useTranslation('payments')
   const { t: tc } = useTranslation()
-  const canLimit = useCapability('customers.credit_limit.manage')
+  const canLimit = useCapability('customers.credit_limit.manage') && !quick
   const { base } = useActiveCurrencies()
   const branches = useAllBranches()
   const save = useSaveCustomer()
 
   const { register, control, handleSubmit, setError, formState } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(quick ? quickSchema : schema),
     values: open
       ? {
           name: customer?.name ?? '',
@@ -109,7 +112,7 @@ export function CustomerFormModal({ customer, open, onClose, onSaved }: Props) {
     <Modal
       open={open}
       onClose={onClose}
-      title={customer ? t('customers.edit') : t('customers.new')}
+      title={quick ? t('customers.quickNew') : customer ? t('customers.edit') : t('customers.new')}
       footer={
         <>
           <Button variant="secondary" onClick={onClose}>
@@ -131,7 +134,11 @@ export function CustomerFormModal({ customer, open, onClose, onSaved }: Props) {
           <Input autoFocus {...register('name')} invalid={!!formState.errors.name} />
         </FormField>
         <div className="grid gap-4 sm:grid-cols-2">
-          <FormField label={t('customers.phone')} error={formState.errors.phone?.message}>
+          <FormField
+            label={t('customers.phone')}
+            required={quick}
+            error={formState.errors.phone?.message}
+          >
             <Controller
               name="phone"
               control={control}
@@ -144,82 +151,88 @@ export function CustomerFormModal({ customer, open, onClose, onSaved }: Props) {
               )}
             />
           </FormField>
-          <FormField label={t('customers.tin')} error={formState.errors.tin?.message}>
-            <Input {...register('tin')} inputMode="numeric" />
-          </FormField>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <FormField label={t('customers.primaryBranch')}>
-            <Select {...register('primary_branch')}>
-              <option value="">{t('customers.allBranches')}</option>
-              {branches.data?.map((b) => (
-                <option key={b.id} value={b.id}>
-                  {b.name}
-                </option>
-              ))}
-            </Select>
-          </FormField>
-          <FormField label={t('customers.channel')}>
-            <Select {...register('channel')}>
-              <option value="retail">{t('customers.channels.retail')}</option>
-              <option value="market">{t('customers.channels.market')}</option>
-              <option value="wholesale">{t('customers.channels.wholesale')}</option>
-              <option value="horeca">{t('customers.channels.horeca')}</option>
-              <option value="other">{t('customers.channels.other')}</option>
-            </Select>
-          </FormField>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <FormField label={t('customers.contactPerson')}>
-            <Input {...register('contact_person')} placeholder="Do'kondor / mas'ul shaxs" />
-          </FormField>
-          <FormField label={t('customers.address')}>
-            <Input {...register('address')} />
-          </FormField>
-        </div>
-
-        {canLimit && (
-          <div className="grid gap-4 sm:grid-cols-2">
-            <FormField
-              label={t('customers.creditLimit', { base })}
-              hint={t('customers.creditLimitHint')}
-              error={formState.errors.credit_limit_base?.message}
-            >
-              <Input
-                {...register('credit_limit_base')}
-                inputMode="decimal"
-                data-testid="customer-limit"
-              />
+          {!quick && (
+            <FormField label={t('customers.tin')} error={formState.errors.tin?.message}>
+              <Input {...register('tin')} inputMode="numeric" />
             </FormField>
-            <FormField
-              label={t('customers.dueDays')}
-              hint={t('customers.dueDaysHint')}
-              error={formState.errors.default_due_days?.message}
-            >
-              <Input {...register('default_due_days')} inputMode="numeric" />
+          )}
+        </div>
+
+        {!quick && (
+          <>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField label={t('customers.primaryBranch')}>
+                <Select {...register('primary_branch')}>
+                  <option value="">{t('customers.allBranches')}</option>
+                  {branches.data?.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.name}
+                    </option>
+                  ))}
+                </Select>
+              </FormField>
+              <FormField label={t('customers.channel')}>
+                <Select {...register('channel')}>
+                  <option value="retail">{t('customers.channels.retail')}</option>
+                  <option value="market">{t('customers.channels.market')}</option>
+                  <option value="wholesale">{t('customers.channels.wholesale')}</option>
+                  <option value="horeca">{t('customers.channels.horeca')}</option>
+                  <option value="other">{t('customers.channels.other')}</option>
+                </Select>
+              </FormField>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField label={t('customers.contactPerson')}>
+                <Input {...register('contact_person')} placeholder="Do'kondor / mas'ul shaxs" />
+              </FormField>
+              <FormField label={t('customers.address')}>
+                <Input {...register('address')} />
+              </FormField>
+            </div>
+
+            {canLimit && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                <FormField
+                  label={t('customers.creditLimit', { base })}
+                  hint={t('customers.creditLimitHint')}
+                  error={formState.errors.credit_limit_base?.message}
+                >
+                  <Input
+                    {...register('credit_limit_base')}
+                    inputMode="decimal"
+                    data-testid="customer-limit"
+                  />
+                </FormField>
+                <FormField
+                  label={t('customers.dueDays')}
+                  hint={t('customers.dueDaysHint')}
+                  error={formState.errors.default_due_days?.message}
+                >
+                  <Input {...register('default_due_days')} inputMode="numeric" />
+                </FormField>
+              </div>
+            )}
+
+            <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-3 space-y-3">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-amber-800">
+                {t('customers.promisePayDate')}
+              </h4>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <FormField label={t('customers.promisePayDate')}>
+                  <Input type="date" {...register('promise_pay_date')} />
+                </FormField>
+                <FormField label={t('customers.promiseAmount')}>
+                  <Input {...register('promise_amount')} inputMode="decimal" placeholder="0.00" />
+                </FormField>
+              </div>
+            </div>
+
+            <FormField label={t('customers.note')}>
+              <Textarea rows={2} {...register('note')} />
             </FormField>
-          </div>
+          </>
         )}
-
-        <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-3 space-y-3">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-amber-800">
-            {t('customers.promisePayDate')}
-          </h4>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <FormField label={t('customers.promisePayDate')}>
-              <Input type="date" {...register('promise_pay_date')} />
-            </FormField>
-            <FormField label={t('customers.promiseAmount')}>
-              <Input {...register('promise_amount')} inputMode="decimal" placeholder="0.00" />
-            </FormField>
-          </div>
-        </div>
-
-        <FormField label={t('customers.note')}>
-          <Textarea rows={2} {...register('note')} />
-        </FormField>
       </form>
     </Modal>
   )

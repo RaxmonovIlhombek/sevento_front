@@ -71,7 +71,8 @@
     "credit": "Nasiyaga",
     "creditHint": "Qolgan summa {{customer}} nomiga nasiya yoziladi",
     "dueDate": "Nasiya muddati",
-    "noCustomer": "Nasiya uchun mijozni tanlang",
+    "noCustomer": "Qolgan summani nasiyaga qoldirish uchun mijoz kerak",
+    "addCustomer": "+ Mijoz qo'shish",
     "overLimit": "Kredit limiti yetmaydi (mavjud {{amount}} {{base}})"
   },
   "success": {

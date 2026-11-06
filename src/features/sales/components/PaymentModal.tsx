@@ -52,6 +52,8 @@ interface Props {
   credit?: CreditOptions | null
   /** foydalanuvchi nasiyaga sota oladi (mijoz tanlanmagan bo'lsa — maslahat ko'rsatiladi) */
   canCredit?: boolean
+  /** mijoz tanlanmagan holda nasiyaga sotish uchun tezkor mijoz qo'shish oynasini ochadi */
+  onAddCustomer?: () => void
   onClose: () => void
   onConfirm: (payments: PaymentInput[], extra: { dueDate: string | null }) => void
 }
@@ -343,7 +345,20 @@ export function PaymentModal(props: Props) {
         </div>
       )}
       {state.remaining4 > 0n && !credit && props.canCredit && (
-        <p className="mt-2 text-xs text-slate-500">{t('payment.noCustomer')}</p>
+        <div className="mt-2 flex items-center justify-between gap-2 rounded-md bg-amber-50 px-3 py-2">
+          <p className="text-xs text-amber-800">{t('payment.noCustomer')}</p>
+          {props.onAddCustomer && (
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={props.onAddCustomer}
+              data-testid="pay-add-customer"
+            >
+              {t('payment.addCustomer')}
+            </Button>
+          )}
+        </div>
       )}
       {state.changeNotCash && (
         <p className="mt-2 text-sm text-red-600">{t('payment.changeNotCash')}</p>

@@ -123,6 +123,7 @@ function PosTerminal({
   const canCredit = useCapability('sales.credit')
   const canCreateCustomer = useCapability('customers.manage')
   const [newCustomerOpen, setNewCustomerOpen] = useState(false)
+  const [quickCustomerOpen, setQuickCustomerOpen] = useState(false)
   const { currencies, decimals } = useActiveCurrencies()
   const priceTypes = usePriceTypes()
   const methods = usePaymentMethods()
@@ -569,6 +570,7 @@ function PosTerminal({
           error={paymentError}
           credit={credit}
           canCredit={canCredit}
+          onAddCustomer={canCreateCustomer ? () => setQuickCustomerOpen(true) : undefined}
           onClose={() => setCheckout(null)}
           onConfirm={pay}
         />
@@ -585,6 +587,12 @@ function PosTerminal({
       <CustomerFormModal
         open={newCustomerOpen}
         onClose={() => setNewCustomerOpen(false)}
+        onSaved={(c) => cart.setCustomer(c)}
+      />
+      <CustomerFormModal
+        quick
+        open={quickCustomerOpen}
+        onClose={() => setQuickCustomerOpen(false)}
         onSaved={(c) => cart.setCustomer(c)}
       />
       <ConfirmDialog
