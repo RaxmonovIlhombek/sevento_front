@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router'
 
 import { useAuthStore } from '@/features/auth'
-import { SendToFulfillmentButton } from '@/features/fulfillment'
+import { FulfillmentStatusLink } from '@/features/fulfillment'
 import { errorMessage } from '@/shared/api/errors'
 import type { SaleItem, SalePayment, SaleReturnBrief } from '@/shared/api/types'
 import { formatDate, formatDateTime } from '@/shared/lib/date'
@@ -198,7 +198,9 @@ export function SaleDetailPage() {
             >
               {t('detail.print')}
             </Button>
-            {canSend && s.status === 'completed' && <SendToFulfillmentButton saleId={s.id} />}
+            {canSend && s.status === 'completed' && (
+              <FulfillmentStatusLink saleId={s.id} saleNumber={s.number} />
+            )}
             {s.can_return && (
               <Button
                 variant="secondary"
