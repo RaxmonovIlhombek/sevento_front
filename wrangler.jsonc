@@ -7,6 +7,6 @@
   "assets": {
     "directory": "./dist",
     // SPA: noma'lum yo'llar (masalan /sales/12) index.html ga qaytariladi
-    "not_found_handling": "single-page-application"
-  }
+    "not_found_handling": "single-page-application",
+  },
 }
