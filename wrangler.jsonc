@@ -2,7 +2,7 @@
   // Cloudflare (Workers Builds) uchun: dist/ papkasini statik sayt sifatida chiqaradi.
   // Build: npm ci && npm run build   |   Deploy: npx wrangler deploy
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "sevento",
+  "name": "sevento-front",
   "compatibility_date": "2026-11-06",
   "assets": {
     "directory": "./dist",
